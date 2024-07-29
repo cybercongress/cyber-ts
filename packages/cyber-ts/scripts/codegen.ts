@@ -13,62 +13,80 @@ export const options: TelescopeInput = {
   protoDirs,
   outPath,
   options: {
+    bundle: {
+      enabled: true
+    },
+    reactQuery: {
+      enabled: true
+    },
     interfaces: {
       enabled: true,
-      useUnionTypes: true
+      useUnionTypes: true,
+      useGlobalDecoderRegistry: true
     },
     prototypes: {
       enabled: true,
+      addTypeUrlToDecoders: true,
+      addTypeUrlToObjects: true,
+      addAminoTypeToObjects: true,
+      parser: {
+        keepCase: true
+      },
       excluded: {
         packages: [
-          'ibc.applications.fee.v1', // issue with parsing protos (LCD routes with nested objects in params)
-          'cosmos.app.v1alpha1',
-          'cosmos.app.v1beta1',
+          'cosmos.app.**',
+          'cosmos.autocli.**',
           'cosmos.base.kv.v1beta1',
           'cosmos.base.reflection.v1beta1',
           'cosmos.base.snapshots.v1beta1',
           'cosmos.base.store.v1beta1',
           'cosmos.base.tendermint.v1beta1',
-          'cosmos.crisis.v1beta1',
-          'cosmos.evidence.v1beta1',
-          'cosmos.genutil.v1beta1',
-          'cosmos.autocli.v1',
-          'cosmos.msg.v1',
-          'cosmos.nft.v1beta1',
-          'cosmos.capability.v1beta1',
-          'cosmos.orm.v1alpha1',
-          'cosmos.orm.v1',
-          'cosmos.slashing.v1beta1',
+          'cosmos.circuit.**',
+          'cosmos.consensus.**',
+          'cosmos.crisis.**',
+          'cosmos.evidence.**',
+          'cosmos.feegrant.**',
+          'cosmos.genutil.**',
+          'cosmos.group.**',
+          'cosmos.msg.**',
+          'cosmos.nft.**',
+          'cosmos.capability.**',
+          'cosmos.orm.**',
+          'cosmos.reflection.**',
+          'cosmos.store.**',
+          'cosmos.slashing.**',
           'google.api',
           'ibc.core.port.v1',
-          'ibc.core.types.v1'
+          'ibc.core.types.v1',
+          'ibc.applications.fee.**',
         ]
       },
+      methods: {
+        fromJSON: true,
+        toJSON: true,
+        encode: true,
+        decode: true,
+        fromPartial: true,
+        toAmino: true,
+        fromAmino: true,
+        fromProto: true,
+        toProto: true
+      },
+      typingsFormat: {
+        customTypes: {
+          useCosmosSDKDec: true
+        },
+        num64: 'bigint',
+        useDeepPartial: true,
+        useExact: false,
+        timestamp: 'date',
+        duration: 'duration',
+        autoFixUndefinedEnumDefault: true
+      }
     },
-
-    bundle: {
-      enabled: true
-    },
-
-    tsDisable: {
-      files: [],
-      patterns: [],
-      disableAll: true
-    },
-
-    eslintDisable: {
-      files: [],
-      patterns: [],
-      disableAll: false
-    },
-
-    stargateClients: {
-      enabled: true,
-      includeCosmosDefaultTypes: true
-    },
-
     aminoEncoding: {
       enabled: true,
+      omitEmptyTags: ['omitempty', 'dont_omitempty'],
       customTypes: {
         useCosmosSDKDec: false
       },
@@ -76,25 +94,20 @@ export const options: TelescopeInput = {
         ...AMINO_MAP
       },
     },
-    lcdClients: {
-      enabled: false
+    stargateClients: {
+      enabled: true,
+      includeCosmosDefaultTypes: true,
+      //addGetTxRpc: true
     },
-    rpcClients: {
-      type: 'tendermint',
+    lcdClients: {
       enabled: true
     },
-
-    reactQuery: {
-      enabled: false
+    rpcClients: {
+      // type: 'grpc-gateway',
+      enabled: true,
+      camelCase: true,
+      useConnectComet: true
     },
-
-    mobx: {
-      enabled: false
-    },
-
-    pinia: {
-      enabled: false
-    }
   }
 };
 
