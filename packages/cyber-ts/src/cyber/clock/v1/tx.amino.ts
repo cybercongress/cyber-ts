@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { MsgRegisterClockContract, MsgUnregisterClockContract, MsgUnjailClockContract, MsgUpdateParams } from "./tx";
 export const AminoConverter = {
   "/cyber.clock.v1.MsgRegisterClockContract": {

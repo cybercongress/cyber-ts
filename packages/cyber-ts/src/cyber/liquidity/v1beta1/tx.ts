@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 import { Decimal } from "@cosmjs/math";
@@ -12,17 +13,17 @@ import { Decimal } from "@cosmjs/math";
  * https://github.com/gravity-devs/liquidity/blob/develop/x/liquidity/spec/04_messages.md
  */
 export interface MsgCreatePool {
-  pool_creator_address: string;
+  poolCreatorAddress: string;
   /**
    * id of the target pool type, must match the value in the pool. Only
    * pool-type-id 1 is supported.
    */
-  pool_type_id: number;
+  poolTypeId: number;
   /** reserve coin pair of the pool to deposit. */
-  deposit_coins: Coin[];
+  depositCoins: Coin[];
 }
 export interface MsgCreatePoolProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.MsgCreatePool";
+  typeUrl: "/cyber.liquidity.v1beta1.MsgCreatePool";
   value: Uint8Array;
 }
 /**
@@ -61,7 +62,7 @@ export interface MsgCreatePoolSDKType {
 /** MsgCreatePoolResponse defines the Msg/CreatePool response type. */
 export interface MsgCreatePoolResponse {}
 export interface MsgCreatePoolResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.MsgCreatePoolResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.MsgCreatePoolResponse";
   value: Uint8Array;
 }
 /** MsgCreatePoolResponse defines the Msg/CreatePool response type. */
@@ -85,14 +86,14 @@ export interface MsgCreatePoolResponseSDKType {}
  * https://github.com/gravity-devs/liquidity/blob/develop/x/liquidity/spec/04_messages.md
  */
 export interface MsgDepositWithinBatch {
-  depositor_address: string;
+  depositorAddress: string;
   /** id of the target pool */
-  pool_id: bigint;
+  poolId: bigint;
   /** reserve coin pair of the pool to deposit */
-  deposit_coins: Coin[];
+  depositCoins: Coin[];
 }
 export interface MsgDepositWithinBatchProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.MsgDepositWithinBatch";
+  typeUrl: "/cyber.liquidity.v1beta1.MsgDepositWithinBatch";
   value: Uint8Array;
 }
 /**
@@ -141,7 +142,7 @@ export interface MsgDepositWithinBatchSDKType {
  */
 export interface MsgDepositWithinBatchResponse {}
 export interface MsgDepositWithinBatchResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.MsgDepositWithinBatchResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.MsgDepositWithinBatchResponse";
   value: Uint8Array;
 }
 /**
@@ -171,13 +172,13 @@ export interface MsgDepositWithinBatchResponseSDKType {}
  * https://github.com/gravity-devs/liquidity/blob/develop/x/liquidity/spec/04_messages.md
  */
 export interface MsgWithdrawWithinBatch {
-  withdrawer_address: string;
+  withdrawerAddress: string;
   /** id of the target pool */
-  pool_id: bigint;
-  pool_coin: Coin;
+  poolId: bigint;
+  poolCoin: Coin;
 }
 export interface MsgWithdrawWithinBatchProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.MsgWithdrawWithinBatch";
+  typeUrl: "/cyber.liquidity.v1beta1.MsgWithdrawWithinBatch";
   value: Uint8Array;
 }
 /**
@@ -225,7 +226,7 @@ export interface MsgWithdrawWithinBatchSDKType {
  */
 export interface MsgWithdrawWithinBatchResponse {}
 export interface MsgWithdrawWithinBatchResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.MsgWithdrawWithinBatchResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.MsgWithdrawWithinBatchResponse";
   value: Uint8Array;
 }
 /**
@@ -259,35 +260,35 @@ export interface MsgWithdrawWithinBatchResponseSDKType {}
  */
 export interface MsgSwapWithinBatch {
   /** address of swap requester */
-  swap_requester_address: string;
+  swapRequesterAddress: string;
   /**
    * id of swap type, must match the value in the pool. Only `swap_type_id` 1 is
    * supported.
    */
-  pool_id: bigint;
+  poolId: bigint;
   /** id of swap type. Must match the value in the pool. */
-  swap_type_id: number;
+  swapTypeId: number;
   /** offer sdk.coin for the swap request, must match the denom in the pool. */
-  offer_coin: Coin;
+  offerCoin: Coin;
   /**
    * denom of demand coin to be exchanged on the swap request, must match the
    * denom in the pool.
    */
-  demand_coin_denom: string;
+  demandCoinDenom: string;
   /**
    * half of offer coin amount * params.swap_fee_rate and ceil for reservation
    * to pay fees.
    */
-  offer_coin_fee: Coin;
+  offerCoinFee: Coin;
   /**
    * limit order price for the order, the price is the exchange ratio of X/Y
    * where X is the amount of the first coin and Y is the amount
    * of the second coin when their denoms are sorted alphabetically.
    */
-  order_price: string;
+  orderPrice: string;
 }
 export interface MsgSwapWithinBatchProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.MsgSwapWithinBatch";
+  typeUrl: "/cyber.liquidity.v1beta1.MsgSwapWithinBatch";
   value: Uint8Array;
 }
 /**
@@ -365,7 +366,7 @@ export interface MsgSwapWithinBatchSDKType {
 /** MsgSwapWithinBatchResponse defines the Msg/Swap response type. */
 export interface MsgSwapWithinBatchResponse {}
 export interface MsgSwapWithinBatchResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.MsgSwapWithinBatchResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.MsgSwapWithinBatchResponse";
   value: Uint8Array;
 }
 /** MsgSwapWithinBatchResponse defines the Msg/Swap response type. */
@@ -378,15 +379,15 @@ export interface MsgSwapWithinBatchResponseAminoMsg {
 export interface MsgSwapWithinBatchResponseSDKType {}
 function createBaseMsgCreatePool(): MsgCreatePool {
   return {
-    pool_creator_address: "",
-    pool_type_id: 0,
-    deposit_coins: []
+    poolCreatorAddress: "",
+    poolTypeId: 0,
+    depositCoins: []
   };
 }
 export const MsgCreatePool = {
   typeUrl: "/cyber.liquidity.v1beta1.MsgCreatePool",
   is(o: any): o is MsgCreatePool {
-    return o && (o.$typeUrl === MsgCreatePool.typeUrl || typeof o.pool_creator_address === "string" && typeof o.pool_type_id === "number" && Array.isArray(o.deposit_coins) && (!o.deposit_coins.length || Coin.is(o.deposit_coins[0])));
+    return o && (o.$typeUrl === MsgCreatePool.typeUrl || typeof o.poolCreatorAddress === "string" && typeof o.poolTypeId === "number" && Array.isArray(o.depositCoins) && (!o.depositCoins.length || Coin.is(o.depositCoins[0])));
   },
   isSDK(o: any): o is MsgCreatePoolSDKType {
     return o && (o.$typeUrl === MsgCreatePool.typeUrl || typeof o.pool_creator_address === "string" && typeof o.pool_type_id === "number" && Array.isArray(o.deposit_coins) && (!o.deposit_coins.length || Coin.isSDK(o.deposit_coins[0])));
@@ -395,13 +396,13 @@ export const MsgCreatePool = {
     return o && (o.$typeUrl === MsgCreatePool.typeUrl || typeof o.pool_creator_address === "string" && typeof o.pool_type_id === "number" && Array.isArray(o.deposit_coins) && (!o.deposit_coins.length || Coin.isAmino(o.deposit_coins[0])));
   },
   encode(message: MsgCreatePool, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_creator_address !== "") {
-      writer.uint32(10).string(message.pool_creator_address);
+    if (message.poolCreatorAddress !== "") {
+      writer.uint32(10).string(message.poolCreatorAddress);
     }
-    if (message.pool_type_id !== 0) {
-      writer.uint32(16).uint32(message.pool_type_id);
+    if (message.poolTypeId !== 0) {
+      writer.uint32(16).uint32(message.poolTypeId);
     }
-    for (const v of message.deposit_coins) {
+    for (const v of message.depositCoins) {
       Coin.encode(v!, writer.uint32(34).fork()).ldelim();
     }
     return writer;
@@ -414,13 +415,13 @@ export const MsgCreatePool = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_creator_address = reader.string();
+          message.poolCreatorAddress = reader.string();
           break;
         case 2:
-          message.pool_type_id = reader.uint32();
+          message.poolTypeId = reader.uint32();
           break;
         case 4:
-          message.deposit_coins.push(Coin.decode(reader, reader.uint32()));
+          message.depositCoins.push(Coin.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -431,48 +432,48 @@ export const MsgCreatePool = {
   },
   fromJSON(object: any): MsgCreatePool {
     return {
-      pool_creator_address: isSet(object.pool_creator_address) ? String(object.pool_creator_address) : "",
-      pool_type_id: isSet(object.pool_type_id) ? Number(object.pool_type_id) : 0,
-      deposit_coins: Array.isArray(object?.deposit_coins) ? object.deposit_coins.map((e: any) => Coin.fromJSON(e)) : []
+      poolCreatorAddress: isSet(object.poolCreatorAddress) ? String(object.poolCreatorAddress) : "",
+      poolTypeId: isSet(object.poolTypeId) ? Number(object.poolTypeId) : 0,
+      depositCoins: Array.isArray(object?.depositCoins) ? object.depositCoins.map((e: any) => Coin.fromJSON(e)) : []
     };
   },
   toJSON(message: MsgCreatePool): JsonSafe<MsgCreatePool> {
     const obj: any = {};
-    message.pool_creator_address !== undefined && (obj.pool_creator_address = message.pool_creator_address);
-    message.pool_type_id !== undefined && (obj.pool_type_id = Math.round(message.pool_type_id));
-    if (message.deposit_coins) {
-      obj.deposit_coins = message.deposit_coins.map(e => e ? Coin.toJSON(e) : undefined);
+    message.poolCreatorAddress !== undefined && (obj.poolCreatorAddress = message.poolCreatorAddress);
+    message.poolTypeId !== undefined && (obj.poolTypeId = Math.round(message.poolTypeId));
+    if (message.depositCoins) {
+      obj.depositCoins = message.depositCoins.map(e => e ? Coin.toJSON(e) : undefined);
     } else {
-      obj.deposit_coins = [];
+      obj.depositCoins = [];
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgCreatePool>): MsgCreatePool {
+  fromPartial(object: Partial<MsgCreatePool>): MsgCreatePool {
     const message = createBaseMsgCreatePool();
-    message.pool_creator_address = object.pool_creator_address ?? "";
-    message.pool_type_id = object.pool_type_id ?? 0;
-    message.deposit_coins = object.deposit_coins?.map(e => Coin.fromPartial(e)) || [];
+    message.poolCreatorAddress = object.poolCreatorAddress ?? "";
+    message.poolTypeId = object.poolTypeId ?? 0;
+    message.depositCoins = object.depositCoins?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: MsgCreatePoolAmino): MsgCreatePool {
     const message = createBaseMsgCreatePool();
     if (object.pool_creator_address !== undefined && object.pool_creator_address !== null) {
-      message.pool_creator_address = object.pool_creator_address;
+      message.poolCreatorAddress = object.pool_creator_address;
     }
     if (object.pool_type_id !== undefined && object.pool_type_id !== null) {
-      message.pool_type_id = object.pool_type_id;
+      message.poolTypeId = object.pool_type_id;
     }
-    message.deposit_coins = object.deposit_coins?.map(e => Coin.fromAmino(e)) || [];
+    message.depositCoins = object.deposit_coins?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: MsgCreatePool): MsgCreatePoolAmino {
     const obj: any = {};
-    obj.pool_creator_address = message.pool_creator_address === "" ? undefined : message.pool_creator_address;
-    obj.pool_type_id = message.pool_type_id === 0 ? undefined : message.pool_type_id;
-    if (message.deposit_coins) {
-      obj.deposit_coins = message.deposit_coins.map(e => e ? Coin.toAmino(e) : undefined);
+    obj.pool_creator_address = message.poolCreatorAddress === "" ? undefined : message.poolCreatorAddress;
+    obj.pool_type_id = message.poolTypeId === 0 ? undefined : message.poolTypeId;
+    if (message.depositCoins) {
+      obj.deposit_coins = message.depositCoins.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.deposit_coins = message.deposit_coins;
+      obj.deposit_coins = message.depositCoins;
     }
     return obj;
   },
@@ -531,7 +532,7 @@ export const MsgCreatePoolResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgCreatePoolResponse>): MsgCreatePoolResponse {
+  fromPartial(_: Partial<MsgCreatePoolResponse>): MsgCreatePoolResponse {
     const message = createBaseMsgCreatePoolResponse();
     return message;
   },
@@ -562,15 +563,15 @@ export const MsgCreatePoolResponse = {
 GlobalDecoderRegistry.register(MsgCreatePoolResponse.typeUrl, MsgCreatePoolResponse);
 function createBaseMsgDepositWithinBatch(): MsgDepositWithinBatch {
   return {
-    depositor_address: "",
-    pool_id: BigInt(0),
-    deposit_coins: []
+    depositorAddress: "",
+    poolId: BigInt(0),
+    depositCoins: []
   };
 }
 export const MsgDepositWithinBatch = {
   typeUrl: "/cyber.liquidity.v1beta1.MsgDepositWithinBatch",
   is(o: any): o is MsgDepositWithinBatch {
-    return o && (o.$typeUrl === MsgDepositWithinBatch.typeUrl || typeof o.depositor_address === "string" && typeof o.pool_id === "bigint" && Array.isArray(o.deposit_coins) && (!o.deposit_coins.length || Coin.is(o.deposit_coins[0])));
+    return o && (o.$typeUrl === MsgDepositWithinBatch.typeUrl || typeof o.depositorAddress === "string" && typeof o.poolId === "bigint" && Array.isArray(o.depositCoins) && (!o.depositCoins.length || Coin.is(o.depositCoins[0])));
   },
   isSDK(o: any): o is MsgDepositWithinBatchSDKType {
     return o && (o.$typeUrl === MsgDepositWithinBatch.typeUrl || typeof o.depositor_address === "string" && typeof o.pool_id === "bigint" && Array.isArray(o.deposit_coins) && (!o.deposit_coins.length || Coin.isSDK(o.deposit_coins[0])));
@@ -579,13 +580,13 @@ export const MsgDepositWithinBatch = {
     return o && (o.$typeUrl === MsgDepositWithinBatch.typeUrl || typeof o.depositor_address === "string" && typeof o.pool_id === "bigint" && Array.isArray(o.deposit_coins) && (!o.deposit_coins.length || Coin.isAmino(o.deposit_coins[0])));
   },
   encode(message: MsgDepositWithinBatch, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.depositor_address !== "") {
-      writer.uint32(10).string(message.depositor_address);
+    if (message.depositorAddress !== "") {
+      writer.uint32(10).string(message.depositorAddress);
     }
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(16).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(16).uint64(message.poolId);
     }
-    for (const v of message.deposit_coins) {
+    for (const v of message.depositCoins) {
       Coin.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
@@ -598,13 +599,13 @@ export const MsgDepositWithinBatch = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.depositor_address = reader.string();
+          message.depositorAddress = reader.string();
           break;
         case 2:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         case 3:
-          message.deposit_coins.push(Coin.decode(reader, reader.uint32()));
+          message.depositCoins.push(Coin.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -615,48 +616,48 @@ export const MsgDepositWithinBatch = {
   },
   fromJSON(object: any): MsgDepositWithinBatch {
     return {
-      depositor_address: isSet(object.depositor_address) ? String(object.depositor_address) : "",
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0),
-      deposit_coins: Array.isArray(object?.deposit_coins) ? object.deposit_coins.map((e: any) => Coin.fromJSON(e)) : []
+      depositorAddress: isSet(object.depositorAddress) ? String(object.depositorAddress) : "",
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0),
+      depositCoins: Array.isArray(object?.depositCoins) ? object.depositCoins.map((e: any) => Coin.fromJSON(e)) : []
     };
   },
   toJSON(message: MsgDepositWithinBatch): JsonSafe<MsgDepositWithinBatch> {
     const obj: any = {};
-    message.depositor_address !== undefined && (obj.depositor_address = message.depositor_address);
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
-    if (message.deposit_coins) {
-      obj.deposit_coins = message.deposit_coins.map(e => e ? Coin.toJSON(e) : undefined);
+    message.depositorAddress !== undefined && (obj.depositorAddress = message.depositorAddress);
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
+    if (message.depositCoins) {
+      obj.depositCoins = message.depositCoins.map(e => e ? Coin.toJSON(e) : undefined);
     } else {
-      obj.deposit_coins = [];
+      obj.depositCoins = [];
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgDepositWithinBatch>): MsgDepositWithinBatch {
+  fromPartial(object: Partial<MsgDepositWithinBatch>): MsgDepositWithinBatch {
     const message = createBaseMsgDepositWithinBatch();
-    message.depositor_address = object.depositor_address ?? "";
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
-    message.deposit_coins = object.deposit_coins?.map(e => Coin.fromPartial(e)) || [];
+    message.depositorAddress = object.depositorAddress ?? "";
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
+    message.depositCoins = object.depositCoins?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: MsgDepositWithinBatchAmino): MsgDepositWithinBatch {
     const message = createBaseMsgDepositWithinBatch();
     if (object.depositor_address !== undefined && object.depositor_address !== null) {
-      message.depositor_address = object.depositor_address;
+      message.depositorAddress = object.depositor_address;
     }
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
-    message.deposit_coins = object.deposit_coins?.map(e => Coin.fromAmino(e)) || [];
+    message.depositCoins = object.deposit_coins?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: MsgDepositWithinBatch): MsgDepositWithinBatchAmino {
     const obj: any = {};
-    obj.depositor_address = message.depositor_address === "" ? undefined : message.depositor_address;
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
-    if (message.deposit_coins) {
-      obj.deposit_coins = message.deposit_coins.map(e => e ? Coin.toAmino(e) : undefined);
+    obj.depositor_address = message.depositorAddress === "" ? undefined : message.depositorAddress;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    if (message.depositCoins) {
+      obj.deposit_coins = message.depositCoins.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.deposit_coins = message.deposit_coins;
+      obj.deposit_coins = message.depositCoins;
     }
     return obj;
   },
@@ -715,7 +716,7 @@ export const MsgDepositWithinBatchResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgDepositWithinBatchResponse>): MsgDepositWithinBatchResponse {
+  fromPartial(_: Partial<MsgDepositWithinBatchResponse>): MsgDepositWithinBatchResponse {
     const message = createBaseMsgDepositWithinBatchResponse();
     return message;
   },
@@ -746,15 +747,15 @@ export const MsgDepositWithinBatchResponse = {
 GlobalDecoderRegistry.register(MsgDepositWithinBatchResponse.typeUrl, MsgDepositWithinBatchResponse);
 function createBaseMsgWithdrawWithinBatch(): MsgWithdrawWithinBatch {
   return {
-    withdrawer_address: "",
-    pool_id: BigInt(0),
-    pool_coin: Coin.fromPartial({})
+    withdrawerAddress: "",
+    poolId: BigInt(0),
+    poolCoin: Coin.fromPartial({})
   };
 }
 export const MsgWithdrawWithinBatch = {
   typeUrl: "/cyber.liquidity.v1beta1.MsgWithdrawWithinBatch",
   is(o: any): o is MsgWithdrawWithinBatch {
-    return o && (o.$typeUrl === MsgWithdrawWithinBatch.typeUrl || typeof o.withdrawer_address === "string" && typeof o.pool_id === "bigint" && Coin.is(o.pool_coin));
+    return o && (o.$typeUrl === MsgWithdrawWithinBatch.typeUrl || typeof o.withdrawerAddress === "string" && typeof o.poolId === "bigint" && Coin.is(o.poolCoin));
   },
   isSDK(o: any): o is MsgWithdrawWithinBatchSDKType {
     return o && (o.$typeUrl === MsgWithdrawWithinBatch.typeUrl || typeof o.withdrawer_address === "string" && typeof o.pool_id === "bigint" && Coin.isSDK(o.pool_coin));
@@ -763,14 +764,14 @@ export const MsgWithdrawWithinBatch = {
     return o && (o.$typeUrl === MsgWithdrawWithinBatch.typeUrl || typeof o.withdrawer_address === "string" && typeof o.pool_id === "bigint" && Coin.isAmino(o.pool_coin));
   },
   encode(message: MsgWithdrawWithinBatch, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.withdrawer_address !== "") {
-      writer.uint32(10).string(message.withdrawer_address);
+    if (message.withdrawerAddress !== "") {
+      writer.uint32(10).string(message.withdrawerAddress);
     }
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(16).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(16).uint64(message.poolId);
     }
-    if (message.pool_coin !== undefined) {
-      Coin.encode(message.pool_coin, writer.uint32(26).fork()).ldelim();
+    if (message.poolCoin !== undefined) {
+      Coin.encode(message.poolCoin, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -782,13 +783,13 @@ export const MsgWithdrawWithinBatch = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.withdrawer_address = reader.string();
+          message.withdrawerAddress = reader.string();
           break;
         case 2:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         case 3:
-          message.pool_coin = Coin.decode(reader, reader.uint32());
+          message.poolCoin = Coin.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -799,43 +800,43 @@ export const MsgWithdrawWithinBatch = {
   },
   fromJSON(object: any): MsgWithdrawWithinBatch {
     return {
-      withdrawer_address: isSet(object.withdrawer_address) ? String(object.withdrawer_address) : "",
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0),
-      pool_coin: isSet(object.pool_coin) ? Coin.fromJSON(object.pool_coin) : undefined
+      withdrawerAddress: isSet(object.withdrawerAddress) ? String(object.withdrawerAddress) : "",
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0),
+      poolCoin: isSet(object.poolCoin) ? Coin.fromJSON(object.poolCoin) : undefined
     };
   },
   toJSON(message: MsgWithdrawWithinBatch): JsonSafe<MsgWithdrawWithinBatch> {
     const obj: any = {};
-    message.withdrawer_address !== undefined && (obj.withdrawer_address = message.withdrawer_address);
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
-    message.pool_coin !== undefined && (obj.pool_coin = message.pool_coin ? Coin.toJSON(message.pool_coin) : undefined);
+    message.withdrawerAddress !== undefined && (obj.withdrawerAddress = message.withdrawerAddress);
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
+    message.poolCoin !== undefined && (obj.poolCoin = message.poolCoin ? Coin.toJSON(message.poolCoin) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgWithdrawWithinBatch>): MsgWithdrawWithinBatch {
+  fromPartial(object: Partial<MsgWithdrawWithinBatch>): MsgWithdrawWithinBatch {
     const message = createBaseMsgWithdrawWithinBatch();
-    message.withdrawer_address = object.withdrawer_address ?? "";
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
-    message.pool_coin = object.pool_coin !== undefined && object.pool_coin !== null ? Coin.fromPartial(object.pool_coin) : undefined;
+    message.withdrawerAddress = object.withdrawerAddress ?? "";
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
+    message.poolCoin = object.poolCoin !== undefined && object.poolCoin !== null ? Coin.fromPartial(object.poolCoin) : undefined;
     return message;
   },
   fromAmino(object: MsgWithdrawWithinBatchAmino): MsgWithdrawWithinBatch {
     const message = createBaseMsgWithdrawWithinBatch();
     if (object.withdrawer_address !== undefined && object.withdrawer_address !== null) {
-      message.withdrawer_address = object.withdrawer_address;
+      message.withdrawerAddress = object.withdrawer_address;
     }
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     if (object.pool_coin !== undefined && object.pool_coin !== null) {
-      message.pool_coin = Coin.fromAmino(object.pool_coin);
+      message.poolCoin = Coin.fromAmino(object.pool_coin);
     }
     return message;
   },
   toAmino(message: MsgWithdrawWithinBatch): MsgWithdrawWithinBatchAmino {
     const obj: any = {};
-    obj.withdrawer_address = message.withdrawer_address === "" ? undefined : message.withdrawer_address;
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
-    obj.pool_coin = message.pool_coin ? Coin.toAmino(message.pool_coin) : undefined;
+    obj.withdrawer_address = message.withdrawerAddress === "" ? undefined : message.withdrawerAddress;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    obj.pool_coin = message.poolCoin ? Coin.toAmino(message.poolCoin) : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgWithdrawWithinBatchAminoMsg): MsgWithdrawWithinBatch {
@@ -893,7 +894,7 @@ export const MsgWithdrawWithinBatchResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgWithdrawWithinBatchResponse>): MsgWithdrawWithinBatchResponse {
+  fromPartial(_: Partial<MsgWithdrawWithinBatchResponse>): MsgWithdrawWithinBatchResponse {
     const message = createBaseMsgWithdrawWithinBatchResponse();
     return message;
   },
@@ -924,19 +925,19 @@ export const MsgWithdrawWithinBatchResponse = {
 GlobalDecoderRegistry.register(MsgWithdrawWithinBatchResponse.typeUrl, MsgWithdrawWithinBatchResponse);
 function createBaseMsgSwapWithinBatch(): MsgSwapWithinBatch {
   return {
-    swap_requester_address: "",
-    pool_id: BigInt(0),
-    swap_type_id: 0,
-    offer_coin: Coin.fromPartial({}),
-    demand_coin_denom: "",
-    offer_coin_fee: Coin.fromPartial({}),
-    order_price: ""
+    swapRequesterAddress: "",
+    poolId: BigInt(0),
+    swapTypeId: 0,
+    offerCoin: Coin.fromPartial({}),
+    demandCoinDenom: "",
+    offerCoinFee: Coin.fromPartial({}),
+    orderPrice: ""
   };
 }
 export const MsgSwapWithinBatch = {
   typeUrl: "/cyber.liquidity.v1beta1.MsgSwapWithinBatch",
   is(o: any): o is MsgSwapWithinBatch {
-    return o && (o.$typeUrl === MsgSwapWithinBatch.typeUrl || typeof o.swap_requester_address === "string" && typeof o.pool_id === "bigint" && typeof o.swap_type_id === "number" && Coin.is(o.offer_coin) && typeof o.demand_coin_denom === "string" && Coin.is(o.offer_coin_fee) && typeof o.order_price === "string");
+    return o && (o.$typeUrl === MsgSwapWithinBatch.typeUrl || typeof o.swapRequesterAddress === "string" && typeof o.poolId === "bigint" && typeof o.swapTypeId === "number" && Coin.is(o.offerCoin) && typeof o.demandCoinDenom === "string" && Coin.is(o.offerCoinFee) && typeof o.orderPrice === "string");
   },
   isSDK(o: any): o is MsgSwapWithinBatchSDKType {
     return o && (o.$typeUrl === MsgSwapWithinBatch.typeUrl || typeof o.swap_requester_address === "string" && typeof o.pool_id === "bigint" && typeof o.swap_type_id === "number" && Coin.isSDK(o.offer_coin) && typeof o.demand_coin_denom === "string" && Coin.isSDK(o.offer_coin_fee) && typeof o.order_price === "string");
@@ -945,26 +946,26 @@ export const MsgSwapWithinBatch = {
     return o && (o.$typeUrl === MsgSwapWithinBatch.typeUrl || typeof o.swap_requester_address === "string" && typeof o.pool_id === "bigint" && typeof o.swap_type_id === "number" && Coin.isAmino(o.offer_coin) && typeof o.demand_coin_denom === "string" && Coin.isAmino(o.offer_coin_fee) && typeof o.order_price === "string");
   },
   encode(message: MsgSwapWithinBatch, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.swap_requester_address !== "") {
-      writer.uint32(10).string(message.swap_requester_address);
+    if (message.swapRequesterAddress !== "") {
+      writer.uint32(10).string(message.swapRequesterAddress);
     }
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(16).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(16).uint64(message.poolId);
     }
-    if (message.swap_type_id !== 0) {
-      writer.uint32(24).uint32(message.swap_type_id);
+    if (message.swapTypeId !== 0) {
+      writer.uint32(24).uint32(message.swapTypeId);
     }
-    if (message.offer_coin !== undefined) {
-      Coin.encode(message.offer_coin, writer.uint32(34).fork()).ldelim();
+    if (message.offerCoin !== undefined) {
+      Coin.encode(message.offerCoin, writer.uint32(34).fork()).ldelim();
     }
-    if (message.demand_coin_denom !== "") {
-      writer.uint32(42).string(message.demand_coin_denom);
+    if (message.demandCoinDenom !== "") {
+      writer.uint32(42).string(message.demandCoinDenom);
     }
-    if (message.offer_coin_fee !== undefined) {
-      Coin.encode(message.offer_coin_fee, writer.uint32(50).fork()).ldelim();
+    if (message.offerCoinFee !== undefined) {
+      Coin.encode(message.offerCoinFee, writer.uint32(50).fork()).ldelim();
     }
-    if (message.order_price !== "") {
-      writer.uint32(58).string(Decimal.fromUserInput(message.order_price, 18).atomics);
+    if (message.orderPrice !== "") {
+      writer.uint32(58).string(Decimal.fromUserInput(message.orderPrice, 18).atomics);
     }
     return writer;
   },
@@ -976,25 +977,25 @@ export const MsgSwapWithinBatch = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.swap_requester_address = reader.string();
+          message.swapRequesterAddress = reader.string();
           break;
         case 2:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         case 3:
-          message.swap_type_id = reader.uint32();
+          message.swapTypeId = reader.uint32();
           break;
         case 4:
-          message.offer_coin = Coin.decode(reader, reader.uint32());
+          message.offerCoin = Coin.decode(reader, reader.uint32());
           break;
         case 5:
-          message.demand_coin_denom = reader.string();
+          message.demandCoinDenom = reader.string();
           break;
         case 6:
-          message.offer_coin_fee = Coin.decode(reader, reader.uint32());
+          message.offerCoinFee = Coin.decode(reader, reader.uint32());
           break;
         case 7:
-          message.order_price = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.orderPrice = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1005,71 +1006,71 @@ export const MsgSwapWithinBatch = {
   },
   fromJSON(object: any): MsgSwapWithinBatch {
     return {
-      swap_requester_address: isSet(object.swap_requester_address) ? String(object.swap_requester_address) : "",
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0),
-      swap_type_id: isSet(object.swap_type_id) ? Number(object.swap_type_id) : 0,
-      offer_coin: isSet(object.offer_coin) ? Coin.fromJSON(object.offer_coin) : undefined,
-      demand_coin_denom: isSet(object.demand_coin_denom) ? String(object.demand_coin_denom) : "",
-      offer_coin_fee: isSet(object.offer_coin_fee) ? Coin.fromJSON(object.offer_coin_fee) : undefined,
-      order_price: isSet(object.order_price) ? String(object.order_price) : ""
+      swapRequesterAddress: isSet(object.swapRequesterAddress) ? String(object.swapRequesterAddress) : "",
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0),
+      swapTypeId: isSet(object.swapTypeId) ? Number(object.swapTypeId) : 0,
+      offerCoin: isSet(object.offerCoin) ? Coin.fromJSON(object.offerCoin) : undefined,
+      demandCoinDenom: isSet(object.demandCoinDenom) ? String(object.demandCoinDenom) : "",
+      offerCoinFee: isSet(object.offerCoinFee) ? Coin.fromJSON(object.offerCoinFee) : undefined,
+      orderPrice: isSet(object.orderPrice) ? String(object.orderPrice) : ""
     };
   },
   toJSON(message: MsgSwapWithinBatch): JsonSafe<MsgSwapWithinBatch> {
     const obj: any = {};
-    message.swap_requester_address !== undefined && (obj.swap_requester_address = message.swap_requester_address);
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
-    message.swap_type_id !== undefined && (obj.swap_type_id = Math.round(message.swap_type_id));
-    message.offer_coin !== undefined && (obj.offer_coin = message.offer_coin ? Coin.toJSON(message.offer_coin) : undefined);
-    message.demand_coin_denom !== undefined && (obj.demand_coin_denom = message.demand_coin_denom);
-    message.offer_coin_fee !== undefined && (obj.offer_coin_fee = message.offer_coin_fee ? Coin.toJSON(message.offer_coin_fee) : undefined);
-    message.order_price !== undefined && (obj.order_price = message.order_price);
+    message.swapRequesterAddress !== undefined && (obj.swapRequesterAddress = message.swapRequesterAddress);
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
+    message.swapTypeId !== undefined && (obj.swapTypeId = Math.round(message.swapTypeId));
+    message.offerCoin !== undefined && (obj.offerCoin = message.offerCoin ? Coin.toJSON(message.offerCoin) : undefined);
+    message.demandCoinDenom !== undefined && (obj.demandCoinDenom = message.demandCoinDenom);
+    message.offerCoinFee !== undefined && (obj.offerCoinFee = message.offerCoinFee ? Coin.toJSON(message.offerCoinFee) : undefined);
+    message.orderPrice !== undefined && (obj.orderPrice = message.orderPrice);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgSwapWithinBatch>): MsgSwapWithinBatch {
+  fromPartial(object: Partial<MsgSwapWithinBatch>): MsgSwapWithinBatch {
     const message = createBaseMsgSwapWithinBatch();
-    message.swap_requester_address = object.swap_requester_address ?? "";
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
-    message.swap_type_id = object.swap_type_id ?? 0;
-    message.offer_coin = object.offer_coin !== undefined && object.offer_coin !== null ? Coin.fromPartial(object.offer_coin) : undefined;
-    message.demand_coin_denom = object.demand_coin_denom ?? "";
-    message.offer_coin_fee = object.offer_coin_fee !== undefined && object.offer_coin_fee !== null ? Coin.fromPartial(object.offer_coin_fee) : undefined;
-    message.order_price = object.order_price ?? "";
+    message.swapRequesterAddress = object.swapRequesterAddress ?? "";
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
+    message.swapTypeId = object.swapTypeId ?? 0;
+    message.offerCoin = object.offerCoin !== undefined && object.offerCoin !== null ? Coin.fromPartial(object.offerCoin) : undefined;
+    message.demandCoinDenom = object.demandCoinDenom ?? "";
+    message.offerCoinFee = object.offerCoinFee !== undefined && object.offerCoinFee !== null ? Coin.fromPartial(object.offerCoinFee) : undefined;
+    message.orderPrice = object.orderPrice ?? "";
     return message;
   },
   fromAmino(object: MsgSwapWithinBatchAmino): MsgSwapWithinBatch {
     const message = createBaseMsgSwapWithinBatch();
     if (object.swap_requester_address !== undefined && object.swap_requester_address !== null) {
-      message.swap_requester_address = object.swap_requester_address;
+      message.swapRequesterAddress = object.swap_requester_address;
     }
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     if (object.swap_type_id !== undefined && object.swap_type_id !== null) {
-      message.swap_type_id = object.swap_type_id;
+      message.swapTypeId = object.swap_type_id;
     }
     if (object.offer_coin !== undefined && object.offer_coin !== null) {
-      message.offer_coin = Coin.fromAmino(object.offer_coin);
+      message.offerCoin = Coin.fromAmino(object.offer_coin);
     }
     if (object.demand_coin_denom !== undefined && object.demand_coin_denom !== null) {
-      message.demand_coin_denom = object.demand_coin_denom;
+      message.demandCoinDenom = object.demand_coin_denom;
     }
     if (object.offer_coin_fee !== undefined && object.offer_coin_fee !== null) {
-      message.offer_coin_fee = Coin.fromAmino(object.offer_coin_fee);
+      message.offerCoinFee = Coin.fromAmino(object.offer_coin_fee);
     }
     if (object.order_price !== undefined && object.order_price !== null) {
-      message.order_price = object.order_price;
+      message.orderPrice = object.order_price;
     }
     return message;
   },
   toAmino(message: MsgSwapWithinBatch): MsgSwapWithinBatchAmino {
     const obj: any = {};
-    obj.swap_requester_address = message.swap_requester_address === "" ? undefined : message.swap_requester_address;
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
-    obj.swap_type_id = message.swap_type_id === 0 ? undefined : message.swap_type_id;
-    obj.offer_coin = message.offer_coin ? Coin.toAmino(message.offer_coin) : undefined;
-    obj.demand_coin_denom = message.demand_coin_denom === "" ? undefined : message.demand_coin_denom;
-    obj.offer_coin_fee = message.offer_coin_fee ? Coin.toAmino(message.offer_coin_fee) : undefined;
-    obj.order_price = message.order_price === "" ? undefined : message.order_price;
+    obj.swap_requester_address = message.swapRequesterAddress === "" ? undefined : message.swapRequesterAddress;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    obj.swap_type_id = message.swapTypeId === 0 ? undefined : message.swapTypeId;
+    obj.offer_coin = message.offerCoin ? Coin.toAmino(message.offerCoin) : undefined;
+    obj.demand_coin_denom = message.demandCoinDenom === "" ? undefined : message.demandCoinDenom;
+    obj.offer_coin_fee = message.offerCoinFee ? Coin.toAmino(message.offerCoinFee) : undefined;
+    obj.order_price = message.orderPrice === "" ? undefined : message.orderPrice;
     return obj;
   },
   fromAminoMsg(object: MsgSwapWithinBatchAminoMsg): MsgSwapWithinBatch {
@@ -1127,7 +1128,7 @@ export const MsgSwapWithinBatchResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgSwapWithinBatchResponse>): MsgSwapWithinBatchResponse {
+  fromPartial(_: Partial<MsgSwapWithinBatchResponse>): MsgSwapWithinBatchResponse {
     const message = createBaseMsgSwapWithinBatchResponse();
     return message;
   },

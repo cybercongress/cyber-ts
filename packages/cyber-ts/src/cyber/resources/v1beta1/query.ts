@@ -1,12 +1,13 @@
+//@ts-nocheck
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { Params, ParamsAmino, ParamsSDKType } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { JsonSafe } from "../../../json-safe";
-import { DeepPartial, isSet } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { isSet } from "../../../helpers";
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cyber.resources.v1beta1.QueryParamsRequest";
+  typeUrl: "/cyber.resources.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 export interface QueryParamsRequestAmino {}
@@ -19,7 +20,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cyber.resources.v1beta1.QueryParamsResponse";
+  typeUrl: "/cyber.resources.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 export interface QueryParamsResponseAmino {
@@ -38,7 +39,7 @@ export interface QueryInvestmintRequest {
   length: bigint;
 }
 export interface QueryInvestmintRequestProtoMsg {
-  type_url: "/cyber.resources.v1beta1.QueryInvestmintRequest";
+  typeUrl: "/cyber.resources.v1beta1.QueryInvestmintRequest";
   value: Uint8Array;
 }
 export interface QueryInvestmintRequestAmino {
@@ -59,7 +60,7 @@ export interface QueryInvestmintResponse {
   amount: Coin;
 }
 export interface QueryInvestmintResponseProtoMsg {
-  type_url: "/cyber.resources.v1beta1.QueryInvestmintResponse";
+  typeUrl: "/cyber.resources.v1beta1.QueryInvestmintResponse";
   value: Uint8Array;
 }
 export interface QueryInvestmintResponseAmino {
@@ -110,7 +111,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -188,7 +189,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -289,7 +290,7 @@ export const QueryInvestmintRequest = {
     message.length !== undefined && (obj.length = (message.length || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryInvestmintRequest>): QueryInvestmintRequest {
+  fromPartial(object: Partial<QueryInvestmintRequest>): QueryInvestmintRequest {
     const message = createBaseQueryInvestmintRequest();
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     message.resource = object.resource ?? "";
@@ -382,7 +383,7 @@ export const QueryInvestmintResponse = {
     message.amount !== undefined && (obj.amount = message.amount ? Coin.toJSON(message.amount) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryInvestmintResponse>): QueryInvestmintResponse {
+  fromPartial(object: Partial<QueryInvestmintResponse>): QueryInvestmintResponse {
     const message = createBaseQueryInvestmintResponse();
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     return message;

@@ -1,12 +1,13 @@
+//@ts-nocheck
 import { NeuronBandwidth, NeuronBandwidthAmino, NeuronBandwidthSDKType, Params, ParamsAmino, ParamsSDKType } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { JsonSafe } from "../../../json-safe";
-import { DeepPartial, isSet } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
 import { Decimal } from "@cosmjs/math";
+import { isSet } from "../../../helpers";
 export interface QueryLoadRequest {}
 export interface QueryLoadRequestProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryLoadRequest";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryLoadRequest";
   value: Uint8Array;
 }
 export interface QueryLoadRequestAmino {}
@@ -19,7 +20,7 @@ export interface QueryLoadResponse {
   load: string;
 }
 export interface QueryLoadResponseProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryLoadResponse";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryLoadResponse";
   value: Uint8Array;
 }
 export interface QueryLoadResponseAmino {
@@ -34,7 +35,7 @@ export interface QueryLoadResponseSDKType {
 }
 export interface QueryPriceRequest {}
 export interface QueryPriceRequestProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryPriceRequest";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryPriceRequest";
   value: Uint8Array;
 }
 export interface QueryPriceRequestAmino {}
@@ -47,7 +48,7 @@ export interface QueryPriceResponse {
   price: string;
 }
 export interface QueryPriceResponseProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryPriceResponse";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryPriceResponse";
   value: Uint8Array;
 }
 export interface QueryPriceResponseAmino {
@@ -62,7 +63,7 @@ export interface QueryPriceResponseSDKType {
 }
 export interface QueryTotalBandwidthRequest {}
 export interface QueryTotalBandwidthRequestProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryTotalBandwidthRequest";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryTotalBandwidthRequest";
   value: Uint8Array;
 }
 export interface QueryTotalBandwidthRequestAmino {}
@@ -72,10 +73,10 @@ export interface QueryTotalBandwidthRequestAminoMsg {
 }
 export interface QueryTotalBandwidthRequestSDKType {}
 export interface QueryTotalBandwidthResponse {
-  total_bandwidth: bigint;
+  totalBandwidth: bigint;
 }
 export interface QueryTotalBandwidthResponseProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryTotalBandwidthResponse";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryTotalBandwidthResponse";
   value: Uint8Array;
 }
 export interface QueryTotalBandwidthResponseAmino {
@@ -92,7 +93,7 @@ export interface QueryNeuronBandwidthRequest {
   neuron: string;
 }
 export interface QueryNeuronBandwidthRequestProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryNeuronBandwidthRequest";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryNeuronBandwidthRequest";
   value: Uint8Array;
 }
 export interface QueryNeuronBandwidthRequestAmino {
@@ -106,10 +107,10 @@ export interface QueryNeuronBandwidthRequestSDKType {
   neuron: string;
 }
 export interface QueryNeuronBandwidthResponse {
-  neuron_bandwidth: NeuronBandwidth;
+  neuronBandwidth: NeuronBandwidth;
 }
 export interface QueryNeuronBandwidthResponseProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryNeuronBandwidthResponse";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryNeuronBandwidthResponse";
   value: Uint8Array;
 }
 export interface QueryNeuronBandwidthResponseAmino {
@@ -124,7 +125,7 @@ export interface QueryNeuronBandwidthResponseSDKType {
 }
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryParamsRequest";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 export interface QueryParamsRequestAmino {}
@@ -137,7 +138,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.QueryParamsResponse";
+  typeUrl: "/cyber.bandwidth.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 export interface QueryParamsResponseAmino {
@@ -188,7 +189,7 @@ export const QueryLoadRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryLoadRequest>): QueryLoadRequest {
+  fromPartial(_: Partial<QueryLoadRequest>): QueryLoadRequest {
     const message = createBaseQueryLoadRequest();
     return message;
   },
@@ -266,7 +267,7 @@ export const QueryLoadResponse = {
     message.load !== undefined && (obj.load = message.load);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLoadResponse>): QueryLoadResponse {
+  fromPartial(object: Partial<QueryLoadResponse>): QueryLoadResponse {
     const message = createBaseQueryLoadResponse();
     message.load = object.load ?? "";
     return message;
@@ -338,7 +339,7 @@ export const QueryPriceRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryPriceRequest>): QueryPriceRequest {
+  fromPartial(_: Partial<QueryPriceRequest>): QueryPriceRequest {
     const message = createBaseQueryPriceRequest();
     return message;
   },
@@ -416,7 +417,7 @@ export const QueryPriceResponse = {
     message.price !== undefined && (obj.price = message.price);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPriceResponse>): QueryPriceResponse {
+  fromPartial(object: Partial<QueryPriceResponse>): QueryPriceResponse {
     const message = createBaseQueryPriceResponse();
     message.price = object.price ?? "";
     return message;
@@ -488,7 +489,7 @@ export const QueryTotalBandwidthRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryTotalBandwidthRequest>): QueryTotalBandwidthRequest {
+  fromPartial(_: Partial<QueryTotalBandwidthRequest>): QueryTotalBandwidthRequest {
     const message = createBaseQueryTotalBandwidthRequest();
     return message;
   },
@@ -519,13 +520,13 @@ export const QueryTotalBandwidthRequest = {
 GlobalDecoderRegistry.register(QueryTotalBandwidthRequest.typeUrl, QueryTotalBandwidthRequest);
 function createBaseQueryTotalBandwidthResponse(): QueryTotalBandwidthResponse {
   return {
-    total_bandwidth: BigInt(0)
+    totalBandwidth: BigInt(0)
   };
 }
 export const QueryTotalBandwidthResponse = {
   typeUrl: "/cyber.bandwidth.v1beta1.QueryTotalBandwidthResponse",
   is(o: any): o is QueryTotalBandwidthResponse {
-    return o && (o.$typeUrl === QueryTotalBandwidthResponse.typeUrl || typeof o.total_bandwidth === "bigint");
+    return o && (o.$typeUrl === QueryTotalBandwidthResponse.typeUrl || typeof o.totalBandwidth === "bigint");
   },
   isSDK(o: any): o is QueryTotalBandwidthResponseSDKType {
     return o && (o.$typeUrl === QueryTotalBandwidthResponse.typeUrl || typeof o.total_bandwidth === "bigint");
@@ -534,8 +535,8 @@ export const QueryTotalBandwidthResponse = {
     return o && (o.$typeUrl === QueryTotalBandwidthResponse.typeUrl || typeof o.total_bandwidth === "bigint");
   },
   encode(message: QueryTotalBandwidthResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.total_bandwidth !== BigInt(0)) {
-      writer.uint32(8).uint64(message.total_bandwidth);
+    if (message.totalBandwidth !== BigInt(0)) {
+      writer.uint32(8).uint64(message.totalBandwidth);
     }
     return writer;
   },
@@ -547,7 +548,7 @@ export const QueryTotalBandwidthResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.total_bandwidth = reader.uint64();
+          message.totalBandwidth = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -558,29 +559,29 @@ export const QueryTotalBandwidthResponse = {
   },
   fromJSON(object: any): QueryTotalBandwidthResponse {
     return {
-      total_bandwidth: isSet(object.total_bandwidth) ? BigInt(object.total_bandwidth.toString()) : BigInt(0)
+      totalBandwidth: isSet(object.totalBandwidth) ? BigInt(object.totalBandwidth.toString()) : BigInt(0)
     };
   },
   toJSON(message: QueryTotalBandwidthResponse): JsonSafe<QueryTotalBandwidthResponse> {
     const obj: any = {};
-    message.total_bandwidth !== undefined && (obj.total_bandwidth = (message.total_bandwidth || BigInt(0)).toString());
+    message.totalBandwidth !== undefined && (obj.totalBandwidth = (message.totalBandwidth || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryTotalBandwidthResponse>): QueryTotalBandwidthResponse {
+  fromPartial(object: Partial<QueryTotalBandwidthResponse>): QueryTotalBandwidthResponse {
     const message = createBaseQueryTotalBandwidthResponse();
-    message.total_bandwidth = object.total_bandwidth !== undefined && object.total_bandwidth !== null ? BigInt(object.total_bandwidth.toString()) : BigInt(0);
+    message.totalBandwidth = object.totalBandwidth !== undefined && object.totalBandwidth !== null ? BigInt(object.totalBandwidth.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryTotalBandwidthResponseAmino): QueryTotalBandwidthResponse {
     const message = createBaseQueryTotalBandwidthResponse();
     if (object.total_bandwidth !== undefined && object.total_bandwidth !== null) {
-      message.total_bandwidth = BigInt(object.total_bandwidth);
+      message.totalBandwidth = BigInt(object.total_bandwidth);
     }
     return message;
   },
   toAmino(message: QueryTotalBandwidthResponse): QueryTotalBandwidthResponseAmino {
     const obj: any = {};
-    obj.total_bandwidth = message.total_bandwidth !== BigInt(0) ? message.total_bandwidth.toString() : undefined;
+    obj.total_bandwidth = message.totalBandwidth !== BigInt(0) ? message.totalBandwidth.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryTotalBandwidthResponseAminoMsg): QueryTotalBandwidthResponse {
@@ -649,7 +650,7 @@ export const QueryNeuronBandwidthRequest = {
     message.neuron !== undefined && (obj.neuron = message.neuron);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryNeuronBandwidthRequest>): QueryNeuronBandwidthRequest {
+  fromPartial(object: Partial<QueryNeuronBandwidthRequest>): QueryNeuronBandwidthRequest {
     const message = createBaseQueryNeuronBandwidthRequest();
     message.neuron = object.neuron ?? "";
     return message;
@@ -685,13 +686,13 @@ export const QueryNeuronBandwidthRequest = {
 GlobalDecoderRegistry.register(QueryNeuronBandwidthRequest.typeUrl, QueryNeuronBandwidthRequest);
 function createBaseQueryNeuronBandwidthResponse(): QueryNeuronBandwidthResponse {
   return {
-    neuron_bandwidth: NeuronBandwidth.fromPartial({})
+    neuronBandwidth: NeuronBandwidth.fromPartial({})
   };
 }
 export const QueryNeuronBandwidthResponse = {
   typeUrl: "/cyber.bandwidth.v1beta1.QueryNeuronBandwidthResponse",
   is(o: any): o is QueryNeuronBandwidthResponse {
-    return o && (o.$typeUrl === QueryNeuronBandwidthResponse.typeUrl || NeuronBandwidth.is(o.neuron_bandwidth));
+    return o && (o.$typeUrl === QueryNeuronBandwidthResponse.typeUrl || NeuronBandwidth.is(o.neuronBandwidth));
   },
   isSDK(o: any): o is QueryNeuronBandwidthResponseSDKType {
     return o && (o.$typeUrl === QueryNeuronBandwidthResponse.typeUrl || NeuronBandwidth.isSDK(o.neuron_bandwidth));
@@ -700,8 +701,8 @@ export const QueryNeuronBandwidthResponse = {
     return o && (o.$typeUrl === QueryNeuronBandwidthResponse.typeUrl || NeuronBandwidth.isAmino(o.neuron_bandwidth));
   },
   encode(message: QueryNeuronBandwidthResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.neuron_bandwidth !== undefined) {
-      NeuronBandwidth.encode(message.neuron_bandwidth, writer.uint32(10).fork()).ldelim();
+    if (message.neuronBandwidth !== undefined) {
+      NeuronBandwidth.encode(message.neuronBandwidth, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -713,7 +714,7 @@ export const QueryNeuronBandwidthResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.neuron_bandwidth = NeuronBandwidth.decode(reader, reader.uint32());
+          message.neuronBandwidth = NeuronBandwidth.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -724,29 +725,29 @@ export const QueryNeuronBandwidthResponse = {
   },
   fromJSON(object: any): QueryNeuronBandwidthResponse {
     return {
-      neuron_bandwidth: isSet(object.neuron_bandwidth) ? NeuronBandwidth.fromJSON(object.neuron_bandwidth) : undefined
+      neuronBandwidth: isSet(object.neuronBandwidth) ? NeuronBandwidth.fromJSON(object.neuronBandwidth) : undefined
     };
   },
   toJSON(message: QueryNeuronBandwidthResponse): JsonSafe<QueryNeuronBandwidthResponse> {
     const obj: any = {};
-    message.neuron_bandwidth !== undefined && (obj.neuron_bandwidth = message.neuron_bandwidth ? NeuronBandwidth.toJSON(message.neuron_bandwidth) : undefined);
+    message.neuronBandwidth !== undefined && (obj.neuronBandwidth = message.neuronBandwidth ? NeuronBandwidth.toJSON(message.neuronBandwidth) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryNeuronBandwidthResponse>): QueryNeuronBandwidthResponse {
+  fromPartial(object: Partial<QueryNeuronBandwidthResponse>): QueryNeuronBandwidthResponse {
     const message = createBaseQueryNeuronBandwidthResponse();
-    message.neuron_bandwidth = object.neuron_bandwidth !== undefined && object.neuron_bandwidth !== null ? NeuronBandwidth.fromPartial(object.neuron_bandwidth) : undefined;
+    message.neuronBandwidth = object.neuronBandwidth !== undefined && object.neuronBandwidth !== null ? NeuronBandwidth.fromPartial(object.neuronBandwidth) : undefined;
     return message;
   },
   fromAmino(object: QueryNeuronBandwidthResponseAmino): QueryNeuronBandwidthResponse {
     const message = createBaseQueryNeuronBandwidthResponse();
     if (object.neuron_bandwidth !== undefined && object.neuron_bandwidth !== null) {
-      message.neuron_bandwidth = NeuronBandwidth.fromAmino(object.neuron_bandwidth);
+      message.neuronBandwidth = NeuronBandwidth.fromAmino(object.neuron_bandwidth);
     }
     return message;
   },
   toAmino(message: QueryNeuronBandwidthResponse): QueryNeuronBandwidthResponseAmino {
     const obj: any = {};
-    obj.neuron_bandwidth = message.neuron_bandwidth ? NeuronBandwidth.toAmino(message.neuron_bandwidth) : undefined;
+    obj.neuron_bandwidth = message.neuronBandwidth ? NeuronBandwidth.toAmino(message.neuronBandwidth) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryNeuronBandwidthResponseAminoMsg): QueryNeuronBandwidthResponse {
@@ -804,7 +805,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -882,7 +883,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;

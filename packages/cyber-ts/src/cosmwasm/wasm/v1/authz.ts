@@ -1,9 +1,10 @@
+//@ts-nocheck
 import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { JsonSafe } from "../../../json-safe";
-import { DeepPartial, isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { toUtf8, fromUtf8 } from "@cosmjs/encoding";
 /**
  * ContractExecutionAuthorization defines authorization for wasm execute.
@@ -15,7 +16,7 @@ export interface ContractExecutionAuthorization {
   grants: ContractGrant[];
 }
 export interface ContractExecutionAuthorizationProtoMsg {
-  type_url: "/cosmwasm.wasm.v1.ContractExecutionAuthorization";
+  typeUrl: "/cosmwasm.wasm.v1.ContractExecutionAuthorization";
   value: Uint8Array;
 }
 /**
@@ -48,7 +49,7 @@ export interface ContractMigrationAuthorization {
   grants: ContractGrant[];
 }
 export interface ContractMigrationAuthorizationProtoMsg {
-  type_url: "/cosmwasm.wasm.v1.ContractMigrationAuthorization";
+  typeUrl: "/cosmwasm.wasm.v1.ContractMigrationAuthorization";
   value: Uint8Array;
 }
 /**
@@ -91,7 +92,7 @@ export interface ContractGrant {
   filter?: AllowAllMessagesFilter | AcceptedMessageKeysFilter | AcceptedMessagesFilter | Any | undefined;
 }
 export interface ContractGrantProtoMsg {
-  type_url: "/cosmwasm.wasm.v1.ContractGrant";
+  typeUrl: "/cosmwasm.wasm.v1.ContractGrant";
   value: Uint8Array;
 }
 export type ContractGrantEncoded = Omit<ContractGrant, "limit" | "filter"> & {
@@ -149,7 +150,7 @@ export interface MaxCallsLimit {
   remaining: bigint;
 }
 export interface MaxCallsLimitProtoMsg {
-  type_url: "/cosmwasm.wasm.v1.MaxCallsLimit";
+  typeUrl: "/cosmwasm.wasm.v1.MaxCallsLimit";
   value: Uint8Array;
 }
 /**
@@ -182,7 +183,7 @@ export interface MaxFundsLimit {
   amounts: Coin[];
 }
 export interface MaxFundsLimitProtoMsg {
-  type_url: "/cosmwasm.wasm.v1.MaxFundsLimit";
+  typeUrl: "/cosmwasm.wasm.v1.MaxFundsLimit";
   value: Uint8Array;
 }
 /**
@@ -213,12 +214,12 @@ export interface MaxFundsLimitSDKType {
 export interface CombinedLimit {
   $typeUrl?: "/cosmwasm.wasm.v1.CombinedLimit";
   /** Remaining number that is decremented on each execution */
-  calls_remaining: bigint;
+  callsRemaining: bigint;
   /** Amounts is the maximal amount of tokens transferable to the contract. */
   amounts: Coin[];
 }
 export interface CombinedLimitProtoMsg {
-  type_url: "/cosmwasm.wasm.v1.CombinedLimit";
+  typeUrl: "/cosmwasm.wasm.v1.CombinedLimit";
   value: Uint8Array;
 }
 /**
@@ -255,7 +256,7 @@ export interface AllowAllMessagesFilter {
   $typeUrl?: "/cosmwasm.wasm.v1.AllowAllMessagesFilter";
 }
 export interface AllowAllMessagesFilterProtoMsg {
-  type_url: "/cosmwasm.wasm.v1.AllowAllMessagesFilter";
+  typeUrl: "/cosmwasm.wasm.v1.AllowAllMessagesFilter";
   value: Uint8Array;
 }
 /**
@@ -287,7 +288,7 @@ export interface AcceptedMessageKeysFilter {
   keys: string[];
 }
 export interface AcceptedMessageKeysFilterProtoMsg {
-  type_url: "/cosmwasm.wasm.v1.AcceptedMessageKeysFilter";
+  typeUrl: "/cosmwasm.wasm.v1.AcceptedMessageKeysFilter";
   value: Uint8Array;
 }
 /**
@@ -323,7 +324,7 @@ export interface AcceptedMessagesFilter {
   messages: Uint8Array[];
 }
 export interface AcceptedMessagesFilterProtoMsg {
-  type_url: "/cosmwasm.wasm.v1.AcceptedMessagesFilter";
+  typeUrl: "/cosmwasm.wasm.v1.AcceptedMessagesFilter";
   value: Uint8Array;
 }
 /**
@@ -403,7 +404,7 @@ export const ContractExecutionAuthorization = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<ContractExecutionAuthorization>): ContractExecutionAuthorization {
+  fromPartial(object: Partial<ContractExecutionAuthorization>): ContractExecutionAuthorization {
     const message = createBaseContractExecutionAuthorization();
     message.grants = object.grants?.map(e => ContractGrant.fromPartial(e)) || [];
     return message;
@@ -501,7 +502,7 @@ export const ContractMigrationAuthorization = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<ContractMigrationAuthorization>): ContractMigrationAuthorization {
+  fromPartial(object: Partial<ContractMigrationAuthorization>): ContractMigrationAuthorization {
     const message = createBaseContractMigrationAuthorization();
     message.grants = object.grants?.map(e => ContractGrant.fromPartial(e)) || [];
     return message;
@@ -612,7 +613,7 @@ export const ContractGrant = {
     message.filter !== undefined && (obj.filter = message.filter ? GlobalDecoderRegistry.toJSON(message.filter) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<ContractGrant>): ContractGrant {
+  fromPartial(object: Partial<ContractGrant>): ContractGrant {
     const message = createBaseContractGrant();
     message.contract = object.contract ?? "";
     message.limit = object.limit !== undefined && object.limit !== null ? GlobalDecoderRegistry.fromPartial(object.limit) : undefined;
@@ -714,7 +715,7 @@ export const MaxCallsLimit = {
     message.remaining !== undefined && (obj.remaining = (message.remaining || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<MaxCallsLimit>): MaxCallsLimit {
+  fromPartial(object: Partial<MaxCallsLimit>): MaxCallsLimit {
     const message = createBaseMaxCallsLimit();
     message.remaining = object.remaining !== undefined && object.remaining !== null ? BigInt(object.remaining.toString()) : BigInt(0);
     return message;
@@ -810,7 +811,7 @@ export const MaxFundsLimit = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<MaxFundsLimit>): MaxFundsLimit {
+  fromPartial(object: Partial<MaxFundsLimit>): MaxFundsLimit {
     const message = createBaseMaxFundsLimit();
     message.amounts = object.amounts?.map(e => Coin.fromPartial(e)) || [];
     return message;
@@ -856,7 +857,7 @@ GlobalDecoderRegistry.registerAminoProtoMapping(MaxFundsLimit.aminoType, MaxFund
 function createBaseCombinedLimit(): CombinedLimit {
   return {
     $typeUrl: "/cosmwasm.wasm.v1.CombinedLimit",
-    calls_remaining: BigInt(0),
+    callsRemaining: BigInt(0),
     amounts: []
   };
 }
@@ -864,7 +865,7 @@ export const CombinedLimit = {
   typeUrl: "/cosmwasm.wasm.v1.CombinedLimit",
   aminoType: "wasm/CombinedLimit",
   is(o: any): o is CombinedLimit {
-    return o && (o.$typeUrl === CombinedLimit.typeUrl || typeof o.calls_remaining === "bigint" && Array.isArray(o.amounts) && (!o.amounts.length || Coin.is(o.amounts[0])));
+    return o && (o.$typeUrl === CombinedLimit.typeUrl || typeof o.callsRemaining === "bigint" && Array.isArray(o.amounts) && (!o.amounts.length || Coin.is(o.amounts[0])));
   },
   isSDK(o: any): o is CombinedLimitSDKType {
     return o && (o.$typeUrl === CombinedLimit.typeUrl || typeof o.calls_remaining === "bigint" && Array.isArray(o.amounts) && (!o.amounts.length || Coin.isSDK(o.amounts[0])));
@@ -873,8 +874,8 @@ export const CombinedLimit = {
     return o && (o.$typeUrl === CombinedLimit.typeUrl || typeof o.calls_remaining === "bigint" && Array.isArray(o.amounts) && (!o.amounts.length || Coin.isAmino(o.amounts[0])));
   },
   encode(message: CombinedLimit, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.calls_remaining !== BigInt(0)) {
-      writer.uint32(8).uint64(message.calls_remaining);
+    if (message.callsRemaining !== BigInt(0)) {
+      writer.uint32(8).uint64(message.callsRemaining);
     }
     for (const v of message.amounts) {
       Coin.encode(v!, writer.uint32(18).fork()).ldelim();
@@ -889,7 +890,7 @@ export const CombinedLimit = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.calls_remaining = reader.uint64();
+          message.callsRemaining = reader.uint64();
           break;
         case 2:
           message.amounts.push(Coin.decode(reader, reader.uint32()));
@@ -903,13 +904,13 @@ export const CombinedLimit = {
   },
   fromJSON(object: any): CombinedLimit {
     return {
-      calls_remaining: isSet(object.calls_remaining) ? BigInt(object.calls_remaining.toString()) : BigInt(0),
+      callsRemaining: isSet(object.callsRemaining) ? BigInt(object.callsRemaining.toString()) : BigInt(0),
       amounts: Array.isArray(object?.amounts) ? object.amounts.map((e: any) => Coin.fromJSON(e)) : []
     };
   },
   toJSON(message: CombinedLimit): JsonSafe<CombinedLimit> {
     const obj: any = {};
-    message.calls_remaining !== undefined && (obj.calls_remaining = (message.calls_remaining || BigInt(0)).toString());
+    message.callsRemaining !== undefined && (obj.callsRemaining = (message.callsRemaining || BigInt(0)).toString());
     if (message.amounts) {
       obj.amounts = message.amounts.map(e => e ? Coin.toJSON(e) : undefined);
     } else {
@@ -917,23 +918,23 @@ export const CombinedLimit = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<CombinedLimit>): CombinedLimit {
+  fromPartial(object: Partial<CombinedLimit>): CombinedLimit {
     const message = createBaseCombinedLimit();
-    message.calls_remaining = object.calls_remaining !== undefined && object.calls_remaining !== null ? BigInt(object.calls_remaining.toString()) : BigInt(0);
+    message.callsRemaining = object.callsRemaining !== undefined && object.callsRemaining !== null ? BigInt(object.callsRemaining.toString()) : BigInt(0);
     message.amounts = object.amounts?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: CombinedLimitAmino): CombinedLimit {
     const message = createBaseCombinedLimit();
     if (object.calls_remaining !== undefined && object.calls_remaining !== null) {
-      message.calls_remaining = BigInt(object.calls_remaining);
+      message.callsRemaining = BigInt(object.calls_remaining);
     }
     message.amounts = object.amounts?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: CombinedLimit): CombinedLimitAmino {
     const obj: any = {};
-    obj.calls_remaining = message.calls_remaining !== BigInt(0) ? message.calls_remaining.toString() : undefined;
+    obj.calls_remaining = message.callsRemaining !== BigInt(0) ? message.callsRemaining.toString() : undefined;
     if (message.amounts) {
       obj.amounts = message.amounts.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
@@ -1006,7 +1007,7 @@ export const AllowAllMessagesFilter = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<AllowAllMessagesFilter>): AllowAllMessagesFilter {
+  fromPartial(_: Partial<AllowAllMessagesFilter>): AllowAllMessagesFilter {
     const message = createBaseAllowAllMessagesFilter();
     return message;
   },
@@ -1097,7 +1098,7 @@ export const AcceptedMessageKeysFilter = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<AcceptedMessageKeysFilter>): AcceptedMessageKeysFilter {
+  fromPartial(object: Partial<AcceptedMessageKeysFilter>): AcceptedMessageKeysFilter {
     const message = createBaseAcceptedMessageKeysFilter();
     message.keys = object.keys?.map(e => e) || [];
     return message;
@@ -1195,7 +1196,7 @@ export const AcceptedMessagesFilter = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<AcceptedMessagesFilter>): AcceptedMessagesFilter {
+  fromPartial(object: Partial<AcceptedMessagesFilter>): AcceptedMessagesFilter {
     const message = createBaseAcceptedMessagesFilter();
     message.messages = object.messages?.map(e => e) || [];
     return message;

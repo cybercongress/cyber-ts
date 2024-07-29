@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Rpc } from "../../../helpers";
 import { BinaryReader } from "../../../binary";
 import { MsgCreatePool, MsgCreatePoolResponse, MsgDepositWithinBatch, MsgDepositWithinBatchResponse, MsgWithdrawWithinBatch, MsgWithdrawWithinBatchResponse, MsgSwapWithinBatch, MsgSwapWithinBatchResponse } from "./tx";

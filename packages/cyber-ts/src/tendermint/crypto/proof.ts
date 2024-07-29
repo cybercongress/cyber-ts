@@ -1,15 +1,16 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { isSet, bytesFromBase64, base64FromBytes, DeepPartial } from "../../helpers";
+import { isSet, bytesFromBase64, base64FromBytes } from "../../helpers";
 import { JsonSafe } from "../../json-safe";
 import { GlobalDecoderRegistry } from "../../registry";
 export interface Proof {
   total: bigint;
   index: bigint;
-  leaf_hash: Uint8Array;
+  leafHash: Uint8Array;
   aunts: Uint8Array[];
 }
 export interface ProofProtoMsg {
-  type_url: "/tendermint.crypto.Proof";
+  typeUrl: "/tendermint.crypto.Proof";
   value: Uint8Array;
 }
 export interface ProofAmino {
@@ -35,7 +36,7 @@ export interface ValueOp {
   proof?: Proof;
 }
 export interface ValueOpProtoMsg {
-  type_url: "/tendermint.crypto.ValueOp";
+  typeUrl: "/tendermint.crypto.ValueOp";
   value: Uint8Array;
 }
 export interface ValueOpAmino {
@@ -58,7 +59,7 @@ export interface DominoOp {
   output: string;
 }
 export interface DominoOpProtoMsg {
-  type_url: "/tendermint.crypto.DominoOp";
+  typeUrl: "/tendermint.crypto.DominoOp";
   value: Uint8Array;
 }
 export interface DominoOpAmino {
@@ -86,7 +87,7 @@ export interface ProofOp {
   data: Uint8Array;
 }
 export interface ProofOpProtoMsg {
-  type_url: "/tendermint.crypto.ProofOp";
+  typeUrl: "/tendermint.crypto.ProofOp";
   value: Uint8Array;
 }
 /**
@@ -118,7 +119,7 @@ export interface ProofOps {
   ops: ProofOp[];
 }
 export interface ProofOpsProtoMsg {
-  type_url: "/tendermint.crypto.ProofOps";
+  typeUrl: "/tendermint.crypto.ProofOps";
   value: Uint8Array;
 }
 /** ProofOps is Merkle proof defined by the list of ProofOps */
@@ -137,14 +138,14 @@ function createBaseProof(): Proof {
   return {
     total: BigInt(0),
     index: BigInt(0),
-    leaf_hash: new Uint8Array(),
+    leafHash: new Uint8Array(),
     aunts: []
   };
 }
 export const Proof = {
   typeUrl: "/tendermint.crypto.Proof",
   is(o: any): o is Proof {
-    return o && (o.$typeUrl === Proof.typeUrl || typeof o.total === "bigint" && typeof o.index === "bigint" && (o.leaf_hash instanceof Uint8Array || typeof o.leaf_hash === "string") && Array.isArray(o.aunts) && (!o.aunts.length || o.aunts[0] instanceof Uint8Array || typeof o.aunts[0] === "string"));
+    return o && (o.$typeUrl === Proof.typeUrl || typeof o.total === "bigint" && typeof o.index === "bigint" && (o.leafHash instanceof Uint8Array || typeof o.leafHash === "string") && Array.isArray(o.aunts) && (!o.aunts.length || o.aunts[0] instanceof Uint8Array || typeof o.aunts[0] === "string"));
   },
   isSDK(o: any): o is ProofSDKType {
     return o && (o.$typeUrl === Proof.typeUrl || typeof o.total === "bigint" && typeof o.index === "bigint" && (o.leaf_hash instanceof Uint8Array || typeof o.leaf_hash === "string") && Array.isArray(o.aunts) && (!o.aunts.length || o.aunts[0] instanceof Uint8Array || typeof o.aunts[0] === "string"));
@@ -159,8 +160,8 @@ export const Proof = {
     if (message.index !== BigInt(0)) {
       writer.uint32(16).int64(message.index);
     }
-    if (message.leaf_hash.length !== 0) {
-      writer.uint32(26).bytes(message.leaf_hash);
+    if (message.leafHash.length !== 0) {
+      writer.uint32(26).bytes(message.leafHash);
     }
     for (const v of message.aunts) {
       writer.uint32(34).bytes(v!);
@@ -181,7 +182,7 @@ export const Proof = {
           message.index = reader.int64();
           break;
         case 3:
-          message.leaf_hash = reader.bytes();
+          message.leafHash = reader.bytes();
           break;
         case 4:
           message.aunts.push(reader.bytes());
@@ -197,7 +198,7 @@ export const Proof = {
     return {
       total: isSet(object.total) ? BigInt(object.total.toString()) : BigInt(0),
       index: isSet(object.index) ? BigInt(object.index.toString()) : BigInt(0),
-      leaf_hash: isSet(object.leaf_hash) ? bytesFromBase64(object.leaf_hash) : new Uint8Array(),
+      leafHash: isSet(object.leafHash) ? bytesFromBase64(object.leafHash) : new Uint8Array(),
       aunts: Array.isArray(object?.aunts) ? object.aunts.map((e: any) => bytesFromBase64(e)) : []
     };
   },
@@ -205,7 +206,7 @@ export const Proof = {
     const obj: any = {};
     message.total !== undefined && (obj.total = (message.total || BigInt(0)).toString());
     message.index !== undefined && (obj.index = (message.index || BigInt(0)).toString());
-    message.leaf_hash !== undefined && (obj.leaf_hash = base64FromBytes(message.leaf_hash !== undefined ? message.leaf_hash : new Uint8Array()));
+    message.leafHash !== undefined && (obj.leafHash = base64FromBytes(message.leafHash !== undefined ? message.leafHash : new Uint8Array()));
     if (message.aunts) {
       obj.aunts = message.aunts.map(e => base64FromBytes(e !== undefined ? e : new Uint8Array()));
     } else {
@@ -213,11 +214,11 @@ export const Proof = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<Proof>): Proof {
+  fromPartial(object: Partial<Proof>): Proof {
     const message = createBaseProof();
     message.total = object.total !== undefined && object.total !== null ? BigInt(object.total.toString()) : BigInt(0);
     message.index = object.index !== undefined && object.index !== null ? BigInt(object.index.toString()) : BigInt(0);
-    message.leaf_hash = object.leaf_hash ?? new Uint8Array();
+    message.leafHash = object.leafHash ?? new Uint8Array();
     message.aunts = object.aunts?.map(e => e) || [];
     return message;
   },
@@ -230,7 +231,7 @@ export const Proof = {
       message.index = BigInt(object.index);
     }
     if (object.leaf_hash !== undefined && object.leaf_hash !== null) {
-      message.leaf_hash = bytesFromBase64(object.leaf_hash);
+      message.leafHash = bytesFromBase64(object.leaf_hash);
     }
     message.aunts = object.aunts?.map(e => bytesFromBase64(e)) || [];
     return message;
@@ -239,7 +240,7 @@ export const Proof = {
     const obj: any = {};
     obj.total = message.total !== BigInt(0) ? message.total.toString() : undefined;
     obj.index = message.index !== BigInt(0) ? message.index.toString() : undefined;
-    obj.leaf_hash = message.leaf_hash ? base64FromBytes(message.leaf_hash) : undefined;
+    obj.leaf_hash = message.leafHash ? base64FromBytes(message.leafHash) : undefined;
     if (message.aunts) {
       obj.aunts = message.aunts.map(e => base64FromBytes(e));
     } else {
@@ -322,7 +323,7 @@ export const ValueOp = {
     message.proof !== undefined && (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<ValueOp>): ValueOp {
+  fromPartial(object: Partial<ValueOp>): ValueOp {
     const message = createBaseValueOp();
     message.key = object.key ?? new Uint8Array();
     message.proof = object.proof !== undefined && object.proof !== null ? Proof.fromPartial(object.proof) : undefined;
@@ -428,7 +429,7 @@ export const DominoOp = {
     message.output !== undefined && (obj.output = message.output);
     return obj;
   },
-  fromPartial(object: DeepPartial<DominoOp>): DominoOp {
+  fromPartial(object: Partial<DominoOp>): DominoOp {
     const message = createBaseDominoOp();
     message.key = object.key ?? "";
     message.input = object.input ?? "";
@@ -539,7 +540,7 @@ export const ProofOp = {
     message.data !== undefined && (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<ProofOp>): ProofOp {
+  fromPartial(object: Partial<ProofOp>): ProofOp {
     const message = createBaseProofOp();
     message.type = object.type ?? "";
     message.key = object.key ?? new Uint8Array();
@@ -636,7 +637,7 @@ export const ProofOps = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<ProofOps>): ProofOps {
+  fromPartial(object: Partial<ProofOps>): ProofOps {
     const message = createBaseProofOps();
     message.ops = object.ops?.map(e => ProofOp.fromPartial(e)) || [];
     return message;

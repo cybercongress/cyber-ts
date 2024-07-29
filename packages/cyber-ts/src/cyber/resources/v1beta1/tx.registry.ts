@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
 import { MsgInvestmint, MsgUpdateParams } from "./tx";
 export const registry: ReadonlyArray<[string, GeneratedType]> = [["/cyber.resources.v1beta1.MsgInvestmint", MsgInvestmint], ["/cyber.resources.v1beta1.MsgUpdateParams", MsgUpdateParams]];

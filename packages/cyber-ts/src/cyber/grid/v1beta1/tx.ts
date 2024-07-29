@@ -1,7 +1,8 @@
+//@ts-nocheck
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { Params, ParamsAmino, ParamsSDKType } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface MsgCreateRoute {
@@ -10,7 +11,7 @@ export interface MsgCreateRoute {
   name: string;
 }
 export interface MsgCreateRouteProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgCreateRoute";
+  typeUrl: "/cyber.grid.v1beta1.MsgCreateRoute";
   value: Uint8Array;
 }
 export interface MsgCreateRouteAmino {
@@ -33,7 +34,7 @@ export interface MsgEditRoute {
   value: Coin;
 }
 export interface MsgEditRouteProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgEditRoute";
+  typeUrl: "/cyber.grid.v1beta1.MsgEditRoute";
   value: Uint8Array;
 }
 export interface MsgEditRouteAmino {
@@ -55,7 +56,7 @@ export interface MsgDeleteRoute {
   destination: string;
 }
 export interface MsgDeleteRouteProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgDeleteRoute";
+  typeUrl: "/cyber.grid.v1beta1.MsgDeleteRoute";
   value: Uint8Array;
 }
 export interface MsgDeleteRouteAmino {
@@ -76,7 +77,7 @@ export interface MsgEditRouteName {
   name: string;
 }
 export interface MsgEditRouteNameProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgEditRouteName";
+  typeUrl: "/cyber.grid.v1beta1.MsgEditRouteName";
   value: Uint8Array;
 }
 export interface MsgEditRouteNameAmino {
@@ -98,7 +99,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgUpdateParams";
+  typeUrl: "/cyber.grid.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 export interface MsgUpdateParamsAmino {
@@ -115,7 +116,7 @@ export interface MsgUpdateParamsSDKType {
 }
 export interface MsgCreateRouteResponse {}
 export interface MsgCreateRouteResponseProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgCreateRouteResponse";
+  typeUrl: "/cyber.grid.v1beta1.MsgCreateRouteResponse";
   value: Uint8Array;
 }
 export interface MsgCreateRouteResponseAmino {}
@@ -126,7 +127,7 @@ export interface MsgCreateRouteResponseAminoMsg {
 export interface MsgCreateRouteResponseSDKType {}
 export interface MsgEditRouteResponse {}
 export interface MsgEditRouteResponseProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgEditRouteResponse";
+  typeUrl: "/cyber.grid.v1beta1.MsgEditRouteResponse";
   value: Uint8Array;
 }
 export interface MsgEditRouteResponseAmino {}
@@ -137,7 +138,7 @@ export interface MsgEditRouteResponseAminoMsg {
 export interface MsgEditRouteResponseSDKType {}
 export interface MsgDeleteRouteResponse {}
 export interface MsgDeleteRouteResponseProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgDeleteRouteResponse";
+  typeUrl: "/cyber.grid.v1beta1.MsgDeleteRouteResponse";
   value: Uint8Array;
 }
 export interface MsgDeleteRouteResponseAmino {}
@@ -148,7 +149,7 @@ export interface MsgDeleteRouteResponseAminoMsg {
 export interface MsgDeleteRouteResponseSDKType {}
 export interface MsgEditRouteNameResponse {}
 export interface MsgEditRouteNameResponseProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgEditRouteNameResponse";
+  typeUrl: "/cyber.grid.v1beta1.MsgEditRouteNameResponse";
   value: Uint8Array;
 }
 export interface MsgEditRouteNameResponseAmino {}
@@ -159,7 +160,7 @@ export interface MsgEditRouteNameResponseAminoMsg {
 export interface MsgEditRouteNameResponseSDKType {}
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  type_url: "/cyber.grid.v1beta1.MsgUpdateParamsResponse";
+  typeUrl: "/cyber.grid.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 export interface MsgUpdateParamsResponseAmino {}
@@ -235,7 +236,7 @@ export const MsgCreateRoute = {
     message.name !== undefined && (obj.name = message.name);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgCreateRoute>): MsgCreateRoute {
+  fromPartial(object: Partial<MsgCreateRoute>): MsgCreateRoute {
     const message = createBaseMsgCreateRoute();
     message.source = object.source ?? "";
     message.destination = object.destination ?? "";
@@ -346,7 +347,7 @@ export const MsgEditRoute = {
     message.value !== undefined && (obj.value = message.value ? Coin.toJSON(message.value) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgEditRoute>): MsgEditRoute {
+  fromPartial(object: Partial<MsgEditRoute>): MsgEditRoute {
     const message = createBaseMsgEditRoute();
     message.source = object.source ?? "";
     message.destination = object.destination ?? "";
@@ -448,7 +449,7 @@ export const MsgDeleteRoute = {
     message.destination !== undefined && (obj.destination = message.destination);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgDeleteRoute>): MsgDeleteRoute {
+  fromPartial(object: Partial<MsgDeleteRoute>): MsgDeleteRoute {
     const message = createBaseMsgDeleteRoute();
     message.source = object.source ?? "";
     message.destination = object.destination ?? "";
@@ -554,7 +555,7 @@ export const MsgEditRouteName = {
     message.name !== undefined && (obj.name = message.name);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgEditRouteName>): MsgEditRouteName {
+  fromPartial(object: Partial<MsgEditRouteName>): MsgEditRouteName {
     const message = createBaseMsgEditRouteName();
     message.source = object.source ?? "";
     message.destination = object.destination ?? "";
@@ -656,7 +657,7 @@ export const MsgUpdateParams = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgUpdateParams>): MsgUpdateParams {
+  fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? "";
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
@@ -733,7 +734,7 @@ export const MsgCreateRouteResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgCreateRouteResponse>): MsgCreateRouteResponse {
+  fromPartial(_: Partial<MsgCreateRouteResponse>): MsgCreateRouteResponse {
     const message = createBaseMsgCreateRouteResponse();
     return message;
   },
@@ -800,7 +801,7 @@ export const MsgEditRouteResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgEditRouteResponse>): MsgEditRouteResponse {
+  fromPartial(_: Partial<MsgEditRouteResponse>): MsgEditRouteResponse {
     const message = createBaseMsgEditRouteResponse();
     return message;
   },
@@ -867,7 +868,7 @@ export const MsgDeleteRouteResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgDeleteRouteResponse>): MsgDeleteRouteResponse {
+  fromPartial(_: Partial<MsgDeleteRouteResponse>): MsgDeleteRouteResponse {
     const message = createBaseMsgDeleteRouteResponse();
     return message;
   },
@@ -934,7 +935,7 @@ export const MsgEditRouteNameResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgEditRouteNameResponse>): MsgEditRouteNameResponse {
+  fromPartial(_: Partial<MsgEditRouteNameResponse>): MsgEditRouteNameResponse {
     const message = createBaseMsgEditRouteNameResponse();
     return message;
   },
@@ -1001,7 +1002,7 @@ export const MsgUpdateParamsResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
+  fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
   },

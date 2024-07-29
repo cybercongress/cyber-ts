@@ -1,6 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../binary";
 import { JsonSafe } from "../../json-safe";
-import { DeepPartial } from "../../helpers";
 import { GlobalDecoderRegistry } from "../../registry";
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
@@ -15,7 +15,7 @@ import { GlobalDecoderRegistry } from "../../registry";
  */
 export interface Empty {}
 export interface EmptyProtoMsg {
-  type_url: "/google.protobuf.Empty";
+  typeUrl: "/google.protobuf.Empty";
   value: Uint8Array;
 }
 /**
@@ -84,7 +84,7 @@ export const Empty = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<Empty>): Empty {
+  fromPartial(_: Partial<Empty>): Empty {
     const message = createBaseEmpty();
     return message;
   },

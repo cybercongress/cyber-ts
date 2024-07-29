@@ -1,18 +1,19 @@
+//@ts-nocheck
 import { DecCoin, DecCoinAmino, DecCoinSDKType, Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { Decimal } from "@cosmjs/math";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** Params defines the set of params for the distribution module. */
 export interface Params {
-  community_tax: string;
-  base_proposer_reward: string;
-  bonus_proposer_reward: string;
-  withdraw_addr_enabled: boolean;
+  communityTax: string;
+  baseProposerReward: string;
+  bonusProposerReward: string;
+  withdrawAddrEnabled: boolean;
 }
 export interface ParamsProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.Params";
+  typeUrl: "/cosmos.distribution.v1beta1.Params";
   value: Uint8Array;
 }
 /** Params defines the set of params for the distribution module. */
@@ -48,11 +49,11 @@ export interface ParamsSDKType {
  *  + one per validator for the zeroeth period, set on initialization
  */
 export interface ValidatorHistoricalRewards {
-  cumulative_reward_ratio: DecCoin[];
-  reference_count: number;
+  cumulativeRewardRatio: DecCoin[];
+  referenceCount: number;
 }
 export interface ValidatorHistoricalRewardsProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards";
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards";
   value: Uint8Array;
 }
 /**
@@ -105,7 +106,7 @@ export interface ValidatorCurrentRewards {
   period: bigint;
 }
 export interface ValidatorCurrentRewardsProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards";
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards";
   value: Uint8Array;
 }
 /**
@@ -138,7 +139,7 @@ export interface ValidatorAccumulatedCommission {
   commission: DecCoin[];
 }
 export interface ValidatorAccumulatedCommissionProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission";
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission";
   value: Uint8Array;
 }
 /**
@@ -167,7 +168,7 @@ export interface ValidatorOutstandingRewards {
   rewards: DecCoin[];
 }
 export interface ValidatorOutstandingRewardsProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.ValidatorOutstandingRewards";
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorOutstandingRewards";
   value: Uint8Array;
 }
 /**
@@ -195,11 +196,11 @@ export interface ValidatorOutstandingRewardsSDKType {
  * for delegations which are withdrawn after a slash has occurred.
  */
 export interface ValidatorSlashEvent {
-  validator_period: bigint;
+  validatorPeriod: bigint;
   fraction: string;
 }
 export interface ValidatorSlashEventProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.ValidatorSlashEvent";
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent";
   value: Uint8Array;
 }
 /**
@@ -228,10 +229,10 @@ export interface ValidatorSlashEventSDKType {
 }
 /** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
 export interface ValidatorSlashEvents {
-  validator_slash_events: ValidatorSlashEvent[];
+  validatorSlashEvents: ValidatorSlashEvent[];
 }
 export interface ValidatorSlashEventsProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.ValidatorSlashEvents";
+  typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents";
   value: Uint8Array;
 }
 /** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
@@ -248,10 +249,10 @@ export interface ValidatorSlashEventsSDKType {
 }
 /** FeePool is the global fee pool for distribution. */
 export interface FeePool {
-  community_pool: DecCoin[];
+  communityPool: DecCoin[];
 }
 export interface FeePoolProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.FeePool";
+  typeUrl: "/cosmos.distribution.v1beta1.FeePool";
   value: Uint8Array;
 }
 /** FeePool is the global fee pool for distribution. */
@@ -279,7 +280,7 @@ export interface CommunityPoolSpendProposal {
   amount: Coin[];
 }
 export interface CommunityPoolSpendProposalProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
+  typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
   value: Uint8Array;
 }
 /**
@@ -318,12 +319,12 @@ export interface CommunityPoolSpendProposalSDKType {
  * thus sdk.Dec is used.
  */
 export interface DelegatorStartingInfo {
-  previous_period: bigint;
+  previousPeriod: bigint;
   stake: string;
   height: bigint;
 }
 export interface DelegatorStartingInfoProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.DelegatorStartingInfo";
+  typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo";
   value: Uint8Array;
 }
 /**
@@ -361,11 +362,11 @@ export interface DelegatorStartingInfoSDKType {
  * of a delegator's delegation reward.
  */
 export interface DelegationDelegatorReward {
-  validator_address: string;
+  validatorAddress: string;
   reward: DecCoin[];
 }
 export interface DelegationDelegatorRewardProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.DelegationDelegatorReward";
+  typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward";
   value: Uint8Array;
 }
 /**
@@ -401,7 +402,7 @@ export interface CommunityPoolSpendProposalWithDeposit {
   deposit: string;
 }
 export interface CommunityPoolSpendProposalWithDepositProtoMsg {
-  type_url: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
+  typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
   value: Uint8Array;
 }
 /**
@@ -433,17 +434,17 @@ export interface CommunityPoolSpendProposalWithDepositSDKType {
 }
 function createBaseParams(): Params {
   return {
-    community_tax: "",
-    base_proposer_reward: "",
-    bonus_proposer_reward: "",
-    withdraw_addr_enabled: false
+    communityTax: "",
+    baseProposerReward: "",
+    bonusProposerReward: "",
+    withdrawAddrEnabled: false
   };
 }
 export const Params = {
   typeUrl: "/cosmos.distribution.v1beta1.Params",
   aminoType: "cosmos-sdk/Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.community_tax === "string" && typeof o.base_proposer_reward === "string" && typeof o.bonus_proposer_reward === "string" && typeof o.withdraw_addr_enabled === "boolean");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.communityTax === "string" && typeof o.baseProposerReward === "string" && typeof o.bonusProposerReward === "string" && typeof o.withdrawAddrEnabled === "boolean");
   },
   isSDK(o: any): o is ParamsSDKType {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.community_tax === "string" && typeof o.base_proposer_reward === "string" && typeof o.bonus_proposer_reward === "string" && typeof o.withdraw_addr_enabled === "boolean");
@@ -452,17 +453,17 @@ export const Params = {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.community_tax === "string" && typeof o.base_proposer_reward === "string" && typeof o.bonus_proposer_reward === "string" && typeof o.withdraw_addr_enabled === "boolean");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.community_tax !== "") {
-      writer.uint32(10).string(Decimal.fromUserInput(message.community_tax, 18).atomics);
+    if (message.communityTax !== "") {
+      writer.uint32(10).string(Decimal.fromUserInput(message.communityTax, 18).atomics);
     }
-    if (message.base_proposer_reward !== "") {
-      writer.uint32(18).string(Decimal.fromUserInput(message.base_proposer_reward, 18).atomics);
+    if (message.baseProposerReward !== "") {
+      writer.uint32(18).string(Decimal.fromUserInput(message.baseProposerReward, 18).atomics);
     }
-    if (message.bonus_proposer_reward !== "") {
-      writer.uint32(26).string(Decimal.fromUserInput(message.bonus_proposer_reward, 18).atomics);
+    if (message.bonusProposerReward !== "") {
+      writer.uint32(26).string(Decimal.fromUserInput(message.bonusProposerReward, 18).atomics);
     }
-    if (message.withdraw_addr_enabled === true) {
-      writer.uint32(32).bool(message.withdraw_addr_enabled);
+    if (message.withdrawAddrEnabled === true) {
+      writer.uint32(32).bool(message.withdrawAddrEnabled);
     }
     return writer;
   },
@@ -474,16 +475,16 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.community_tax = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.communityTax = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 2:
-          message.base_proposer_reward = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.baseProposerReward = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
-          message.bonus_proposer_reward = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.bonusProposerReward = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
-          message.withdraw_addr_enabled = reader.bool();
+          message.withdrawAddrEnabled = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -494,50 +495,50 @@ export const Params = {
   },
   fromJSON(object: any): Params {
     return {
-      community_tax: isSet(object.community_tax) ? String(object.community_tax) : "",
-      base_proposer_reward: isSet(object.base_proposer_reward) ? String(object.base_proposer_reward) : "",
-      bonus_proposer_reward: isSet(object.bonus_proposer_reward) ? String(object.bonus_proposer_reward) : "",
-      withdraw_addr_enabled: isSet(object.withdraw_addr_enabled) ? Boolean(object.withdraw_addr_enabled) : false
+      communityTax: isSet(object.communityTax) ? String(object.communityTax) : "",
+      baseProposerReward: isSet(object.baseProposerReward) ? String(object.baseProposerReward) : "",
+      bonusProposerReward: isSet(object.bonusProposerReward) ? String(object.bonusProposerReward) : "",
+      withdrawAddrEnabled: isSet(object.withdrawAddrEnabled) ? Boolean(object.withdrawAddrEnabled) : false
     };
   },
   toJSON(message: Params): JsonSafe<Params> {
     const obj: any = {};
-    message.community_tax !== undefined && (obj.community_tax = message.community_tax);
-    message.base_proposer_reward !== undefined && (obj.base_proposer_reward = message.base_proposer_reward);
-    message.bonus_proposer_reward !== undefined && (obj.bonus_proposer_reward = message.bonus_proposer_reward);
-    message.withdraw_addr_enabled !== undefined && (obj.withdraw_addr_enabled = message.withdraw_addr_enabled);
+    message.communityTax !== undefined && (obj.communityTax = message.communityTax);
+    message.baseProposerReward !== undefined && (obj.baseProposerReward = message.baseProposerReward);
+    message.bonusProposerReward !== undefined && (obj.bonusProposerReward = message.bonusProposerReward);
+    message.withdrawAddrEnabled !== undefined && (obj.withdrawAddrEnabled = message.withdrawAddrEnabled);
     return obj;
   },
-  fromPartial(object: DeepPartial<Params>): Params {
+  fromPartial(object: Partial<Params>): Params {
     const message = createBaseParams();
-    message.community_tax = object.community_tax ?? "";
-    message.base_proposer_reward = object.base_proposer_reward ?? "";
-    message.bonus_proposer_reward = object.bonus_proposer_reward ?? "";
-    message.withdraw_addr_enabled = object.withdraw_addr_enabled ?? false;
+    message.communityTax = object.communityTax ?? "";
+    message.baseProposerReward = object.baseProposerReward ?? "";
+    message.bonusProposerReward = object.bonusProposerReward ?? "";
+    message.withdrawAddrEnabled = object.withdrawAddrEnabled ?? false;
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.community_tax !== undefined && object.community_tax !== null) {
-      message.community_tax = object.community_tax;
+      message.communityTax = object.community_tax;
     }
     if (object.base_proposer_reward !== undefined && object.base_proposer_reward !== null) {
-      message.base_proposer_reward = object.base_proposer_reward;
+      message.baseProposerReward = object.base_proposer_reward;
     }
     if (object.bonus_proposer_reward !== undefined && object.bonus_proposer_reward !== null) {
-      message.bonus_proposer_reward = object.bonus_proposer_reward;
+      message.bonusProposerReward = object.bonus_proposer_reward;
     }
     if (object.withdraw_addr_enabled !== undefined && object.withdraw_addr_enabled !== null) {
-      message.withdraw_addr_enabled = object.withdraw_addr_enabled;
+      message.withdrawAddrEnabled = object.withdraw_addr_enabled;
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.community_tax = message.community_tax === "" ? undefined : message.community_tax;
-    obj.base_proposer_reward = message.base_proposer_reward === "" ? undefined : message.base_proposer_reward;
-    obj.bonus_proposer_reward = message.bonus_proposer_reward === "" ? undefined : message.bonus_proposer_reward;
-    obj.withdraw_addr_enabled = message.withdraw_addr_enabled === false ? undefined : message.withdraw_addr_enabled;
+    obj.community_tax = message.communityTax === "" ? undefined : message.communityTax;
+    obj.base_proposer_reward = message.baseProposerReward === "" ? undefined : message.baseProposerReward;
+    obj.bonus_proposer_reward = message.bonusProposerReward === "" ? undefined : message.bonusProposerReward;
+    obj.withdraw_addr_enabled = message.withdrawAddrEnabled === false ? undefined : message.withdrawAddrEnabled;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -566,15 +567,15 @@ GlobalDecoderRegistry.register(Params.typeUrl, Params);
 GlobalDecoderRegistry.registerAminoProtoMapping(Params.aminoType, Params.typeUrl);
 function createBaseValidatorHistoricalRewards(): ValidatorHistoricalRewards {
   return {
-    cumulative_reward_ratio: [],
-    reference_count: 0
+    cumulativeRewardRatio: [],
+    referenceCount: 0
   };
 }
 export const ValidatorHistoricalRewards = {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards",
   aminoType: "cosmos-sdk/ValidatorHistoricalRewards",
   is(o: any): o is ValidatorHistoricalRewards {
-    return o && (o.$typeUrl === ValidatorHistoricalRewards.typeUrl || Array.isArray(o.cumulative_reward_ratio) && (!o.cumulative_reward_ratio.length || DecCoin.is(o.cumulative_reward_ratio[0])) && typeof o.reference_count === "number");
+    return o && (o.$typeUrl === ValidatorHistoricalRewards.typeUrl || Array.isArray(o.cumulativeRewardRatio) && (!o.cumulativeRewardRatio.length || DecCoin.is(o.cumulativeRewardRatio[0])) && typeof o.referenceCount === "number");
   },
   isSDK(o: any): o is ValidatorHistoricalRewardsSDKType {
     return o && (o.$typeUrl === ValidatorHistoricalRewards.typeUrl || Array.isArray(o.cumulative_reward_ratio) && (!o.cumulative_reward_ratio.length || DecCoin.isSDK(o.cumulative_reward_ratio[0])) && typeof o.reference_count === "number");
@@ -583,11 +584,11 @@ export const ValidatorHistoricalRewards = {
     return o && (o.$typeUrl === ValidatorHistoricalRewards.typeUrl || Array.isArray(o.cumulative_reward_ratio) && (!o.cumulative_reward_ratio.length || DecCoin.isAmino(o.cumulative_reward_ratio[0])) && typeof o.reference_count === "number");
   },
   encode(message: ValidatorHistoricalRewards, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.cumulative_reward_ratio) {
+    for (const v of message.cumulativeRewardRatio) {
       DecCoin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.reference_count !== 0) {
-      writer.uint32(16).uint32(message.reference_count);
+    if (message.referenceCount !== 0) {
+      writer.uint32(16).uint32(message.referenceCount);
     }
     return writer;
   },
@@ -599,10 +600,10 @@ export const ValidatorHistoricalRewards = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.cumulative_reward_ratio.push(DecCoin.decode(reader, reader.uint32()));
+          message.cumulativeRewardRatio.push(DecCoin.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.reference_count = reader.uint32();
+          message.referenceCount = reader.uint32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -613,42 +614,42 @@ export const ValidatorHistoricalRewards = {
   },
   fromJSON(object: any): ValidatorHistoricalRewards {
     return {
-      cumulative_reward_ratio: Array.isArray(object?.cumulative_reward_ratio) ? object.cumulative_reward_ratio.map((e: any) => DecCoin.fromJSON(e)) : [],
-      reference_count: isSet(object.reference_count) ? Number(object.reference_count) : 0
+      cumulativeRewardRatio: Array.isArray(object?.cumulativeRewardRatio) ? object.cumulativeRewardRatio.map((e: any) => DecCoin.fromJSON(e)) : [],
+      referenceCount: isSet(object.referenceCount) ? Number(object.referenceCount) : 0
     };
   },
   toJSON(message: ValidatorHistoricalRewards): JsonSafe<ValidatorHistoricalRewards> {
     const obj: any = {};
-    if (message.cumulative_reward_ratio) {
-      obj.cumulative_reward_ratio = message.cumulative_reward_ratio.map(e => e ? DecCoin.toJSON(e) : undefined);
+    if (message.cumulativeRewardRatio) {
+      obj.cumulativeRewardRatio = message.cumulativeRewardRatio.map(e => e ? DecCoin.toJSON(e) : undefined);
     } else {
-      obj.cumulative_reward_ratio = [];
+      obj.cumulativeRewardRatio = [];
     }
-    message.reference_count !== undefined && (obj.reference_count = Math.round(message.reference_count));
+    message.referenceCount !== undefined && (obj.referenceCount = Math.round(message.referenceCount));
     return obj;
   },
-  fromPartial(object: DeepPartial<ValidatorHistoricalRewards>): ValidatorHistoricalRewards {
+  fromPartial(object: Partial<ValidatorHistoricalRewards>): ValidatorHistoricalRewards {
     const message = createBaseValidatorHistoricalRewards();
-    message.cumulative_reward_ratio = object.cumulative_reward_ratio?.map(e => DecCoin.fromPartial(e)) || [];
-    message.reference_count = object.reference_count ?? 0;
+    message.cumulativeRewardRatio = object.cumulativeRewardRatio?.map(e => DecCoin.fromPartial(e)) || [];
+    message.referenceCount = object.referenceCount ?? 0;
     return message;
   },
   fromAmino(object: ValidatorHistoricalRewardsAmino): ValidatorHistoricalRewards {
     const message = createBaseValidatorHistoricalRewards();
-    message.cumulative_reward_ratio = object.cumulative_reward_ratio?.map(e => DecCoin.fromAmino(e)) || [];
+    message.cumulativeRewardRatio = object.cumulative_reward_ratio?.map(e => DecCoin.fromAmino(e)) || [];
     if (object.reference_count !== undefined && object.reference_count !== null) {
-      message.reference_count = object.reference_count;
+      message.referenceCount = object.reference_count;
     }
     return message;
   },
   toAmino(message: ValidatorHistoricalRewards): ValidatorHistoricalRewardsAmino {
     const obj: any = {};
-    if (message.cumulative_reward_ratio) {
-      obj.cumulative_reward_ratio = message.cumulative_reward_ratio.map(e => e ? DecCoin.toAmino(e) : undefined);
+    if (message.cumulativeRewardRatio) {
+      obj.cumulative_reward_ratio = message.cumulativeRewardRatio.map(e => e ? DecCoin.toAmino(e) : undefined);
     } else {
-      obj.cumulative_reward_ratio = message.cumulative_reward_ratio;
+      obj.cumulative_reward_ratio = message.cumulativeRewardRatio;
     }
-    obj.reference_count = message.reference_count === 0 ? undefined : message.reference_count;
+    obj.reference_count = message.referenceCount === 0 ? undefined : message.referenceCount;
     return obj;
   },
   fromAminoMsg(object: ValidatorHistoricalRewardsAminoMsg): ValidatorHistoricalRewards {
@@ -738,7 +739,7 @@ export const ValidatorCurrentRewards = {
     message.period !== undefined && (obj.period = (message.period || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<ValidatorCurrentRewards>): ValidatorCurrentRewards {
+  fromPartial(object: Partial<ValidatorCurrentRewards>): ValidatorCurrentRewards {
     const message = createBaseValidatorCurrentRewards();
     message.rewards = object.rewards?.map(e => DecCoin.fromPartial(e)) || [];
     message.period = object.period !== undefined && object.period !== null ? BigInt(object.period.toString()) : BigInt(0);
@@ -840,7 +841,7 @@ export const ValidatorAccumulatedCommission = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<ValidatorAccumulatedCommission>): ValidatorAccumulatedCommission {
+  fromPartial(object: Partial<ValidatorAccumulatedCommission>): ValidatorAccumulatedCommission {
     const message = createBaseValidatorAccumulatedCommission();
     message.commission = object.commission?.map(e => DecCoin.fromPartial(e)) || [];
     return message;
@@ -937,7 +938,7 @@ export const ValidatorOutstandingRewards = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<ValidatorOutstandingRewards>): ValidatorOutstandingRewards {
+  fromPartial(object: Partial<ValidatorOutstandingRewards>): ValidatorOutstandingRewards {
     const message = createBaseValidatorOutstandingRewards();
     message.rewards = object.rewards?.map(e => DecCoin.fromPartial(e)) || [];
     return message;
@@ -982,7 +983,7 @@ GlobalDecoderRegistry.register(ValidatorOutstandingRewards.typeUrl, ValidatorOut
 GlobalDecoderRegistry.registerAminoProtoMapping(ValidatorOutstandingRewards.aminoType, ValidatorOutstandingRewards.typeUrl);
 function createBaseValidatorSlashEvent(): ValidatorSlashEvent {
   return {
-    validator_period: BigInt(0),
+    validatorPeriod: BigInt(0),
     fraction: ""
   };
 }
@@ -990,7 +991,7 @@ export const ValidatorSlashEvent = {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent",
   aminoType: "cosmos-sdk/ValidatorSlashEvent",
   is(o: any): o is ValidatorSlashEvent {
-    return o && (o.$typeUrl === ValidatorSlashEvent.typeUrl || typeof o.validator_period === "bigint" && typeof o.fraction === "string");
+    return o && (o.$typeUrl === ValidatorSlashEvent.typeUrl || typeof o.validatorPeriod === "bigint" && typeof o.fraction === "string");
   },
   isSDK(o: any): o is ValidatorSlashEventSDKType {
     return o && (o.$typeUrl === ValidatorSlashEvent.typeUrl || typeof o.validator_period === "bigint" && typeof o.fraction === "string");
@@ -999,8 +1000,8 @@ export const ValidatorSlashEvent = {
     return o && (o.$typeUrl === ValidatorSlashEvent.typeUrl || typeof o.validator_period === "bigint" && typeof o.fraction === "string");
   },
   encode(message: ValidatorSlashEvent, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.validator_period !== BigInt(0)) {
-      writer.uint32(8).uint64(message.validator_period);
+    if (message.validatorPeriod !== BigInt(0)) {
+      writer.uint32(8).uint64(message.validatorPeriod);
     }
     if (message.fraction !== "") {
       writer.uint32(18).string(Decimal.fromUserInput(message.fraction, 18).atomics);
@@ -1015,7 +1016,7 @@ export const ValidatorSlashEvent = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.validator_period = reader.uint64();
+          message.validatorPeriod = reader.uint64();
           break;
         case 2:
           message.fraction = Decimal.fromAtomics(reader.string(), 18).toString();
@@ -1029,26 +1030,26 @@ export const ValidatorSlashEvent = {
   },
   fromJSON(object: any): ValidatorSlashEvent {
     return {
-      validator_period: isSet(object.validator_period) ? BigInt(object.validator_period.toString()) : BigInt(0),
+      validatorPeriod: isSet(object.validatorPeriod) ? BigInt(object.validatorPeriod.toString()) : BigInt(0),
       fraction: isSet(object.fraction) ? String(object.fraction) : ""
     };
   },
   toJSON(message: ValidatorSlashEvent): JsonSafe<ValidatorSlashEvent> {
     const obj: any = {};
-    message.validator_period !== undefined && (obj.validator_period = (message.validator_period || BigInt(0)).toString());
+    message.validatorPeriod !== undefined && (obj.validatorPeriod = (message.validatorPeriod || BigInt(0)).toString());
     message.fraction !== undefined && (obj.fraction = message.fraction);
     return obj;
   },
-  fromPartial(object: DeepPartial<ValidatorSlashEvent>): ValidatorSlashEvent {
+  fromPartial(object: Partial<ValidatorSlashEvent>): ValidatorSlashEvent {
     const message = createBaseValidatorSlashEvent();
-    message.validator_period = object.validator_period !== undefined && object.validator_period !== null ? BigInt(object.validator_period.toString()) : BigInt(0);
+    message.validatorPeriod = object.validatorPeriod !== undefined && object.validatorPeriod !== null ? BigInt(object.validatorPeriod.toString()) : BigInt(0);
     message.fraction = object.fraction ?? "";
     return message;
   },
   fromAmino(object: ValidatorSlashEventAmino): ValidatorSlashEvent {
     const message = createBaseValidatorSlashEvent();
     if (object.validator_period !== undefined && object.validator_period !== null) {
-      message.validator_period = BigInt(object.validator_period);
+      message.validatorPeriod = BigInt(object.validator_period);
     }
     if (object.fraction !== undefined && object.fraction !== null) {
       message.fraction = object.fraction;
@@ -1057,7 +1058,7 @@ export const ValidatorSlashEvent = {
   },
   toAmino(message: ValidatorSlashEvent): ValidatorSlashEventAmino {
     const obj: any = {};
-    obj.validator_period = message.validator_period !== BigInt(0) ? message.validator_period.toString() : undefined;
+    obj.validator_period = message.validatorPeriod !== BigInt(0) ? message.validatorPeriod.toString() : undefined;
     obj.fraction = message.fraction === "" ? undefined : message.fraction;
     return obj;
   },
@@ -1087,14 +1088,14 @@ GlobalDecoderRegistry.register(ValidatorSlashEvent.typeUrl, ValidatorSlashEvent)
 GlobalDecoderRegistry.registerAminoProtoMapping(ValidatorSlashEvent.aminoType, ValidatorSlashEvent.typeUrl);
 function createBaseValidatorSlashEvents(): ValidatorSlashEvents {
   return {
-    validator_slash_events: []
+    validatorSlashEvents: []
   };
 }
 export const ValidatorSlashEvents = {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents",
   aminoType: "cosmos-sdk/ValidatorSlashEvents",
   is(o: any): o is ValidatorSlashEvents {
-    return o && (o.$typeUrl === ValidatorSlashEvents.typeUrl || Array.isArray(o.validator_slash_events) && (!o.validator_slash_events.length || ValidatorSlashEvent.is(o.validator_slash_events[0])));
+    return o && (o.$typeUrl === ValidatorSlashEvents.typeUrl || Array.isArray(o.validatorSlashEvents) && (!o.validatorSlashEvents.length || ValidatorSlashEvent.is(o.validatorSlashEvents[0])));
   },
   isSDK(o: any): o is ValidatorSlashEventsSDKType {
     return o && (o.$typeUrl === ValidatorSlashEvents.typeUrl || Array.isArray(o.validator_slash_events) && (!o.validator_slash_events.length || ValidatorSlashEvent.isSDK(o.validator_slash_events[0])));
@@ -1103,7 +1104,7 @@ export const ValidatorSlashEvents = {
     return o && (o.$typeUrl === ValidatorSlashEvents.typeUrl || Array.isArray(o.validator_slash_events) && (!o.validator_slash_events.length || ValidatorSlashEvent.isAmino(o.validator_slash_events[0])));
   },
   encode(message: ValidatorSlashEvents, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.validator_slash_events) {
+    for (const v of message.validatorSlashEvents) {
       ValidatorSlashEvent.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -1116,7 +1117,7 @@ export const ValidatorSlashEvents = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.validator_slash_events.push(ValidatorSlashEvent.decode(reader, reader.uint32()));
+          message.validatorSlashEvents.push(ValidatorSlashEvent.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1127,34 +1128,34 @@ export const ValidatorSlashEvents = {
   },
   fromJSON(object: any): ValidatorSlashEvents {
     return {
-      validator_slash_events: Array.isArray(object?.validator_slash_events) ? object.validator_slash_events.map((e: any) => ValidatorSlashEvent.fromJSON(e)) : []
+      validatorSlashEvents: Array.isArray(object?.validatorSlashEvents) ? object.validatorSlashEvents.map((e: any) => ValidatorSlashEvent.fromJSON(e)) : []
     };
   },
   toJSON(message: ValidatorSlashEvents): JsonSafe<ValidatorSlashEvents> {
     const obj: any = {};
-    if (message.validator_slash_events) {
-      obj.validator_slash_events = message.validator_slash_events.map(e => e ? ValidatorSlashEvent.toJSON(e) : undefined);
+    if (message.validatorSlashEvents) {
+      obj.validatorSlashEvents = message.validatorSlashEvents.map(e => e ? ValidatorSlashEvent.toJSON(e) : undefined);
     } else {
-      obj.validator_slash_events = [];
+      obj.validatorSlashEvents = [];
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<ValidatorSlashEvents>): ValidatorSlashEvents {
+  fromPartial(object: Partial<ValidatorSlashEvents>): ValidatorSlashEvents {
     const message = createBaseValidatorSlashEvents();
-    message.validator_slash_events = object.validator_slash_events?.map(e => ValidatorSlashEvent.fromPartial(e)) || [];
+    message.validatorSlashEvents = object.validatorSlashEvents?.map(e => ValidatorSlashEvent.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ValidatorSlashEventsAmino): ValidatorSlashEvents {
     const message = createBaseValidatorSlashEvents();
-    message.validator_slash_events = object.validator_slash_events?.map(e => ValidatorSlashEvent.fromAmino(e)) || [];
+    message.validatorSlashEvents = object.validator_slash_events?.map(e => ValidatorSlashEvent.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ValidatorSlashEvents): ValidatorSlashEventsAmino {
     const obj: any = {};
-    if (message.validator_slash_events) {
-      obj.validator_slash_events = message.validator_slash_events.map(e => e ? ValidatorSlashEvent.toAmino(e) : undefined);
+    if (message.validatorSlashEvents) {
+      obj.validator_slash_events = message.validatorSlashEvents.map(e => e ? ValidatorSlashEvent.toAmino(e) : undefined);
     } else {
-      obj.validator_slash_events = message.validator_slash_events;
+      obj.validator_slash_events = message.validatorSlashEvents;
     }
     return obj;
   },
@@ -1184,14 +1185,14 @@ GlobalDecoderRegistry.register(ValidatorSlashEvents.typeUrl, ValidatorSlashEvent
 GlobalDecoderRegistry.registerAminoProtoMapping(ValidatorSlashEvents.aminoType, ValidatorSlashEvents.typeUrl);
 function createBaseFeePool(): FeePool {
   return {
-    community_pool: []
+    communityPool: []
   };
 }
 export const FeePool = {
   typeUrl: "/cosmos.distribution.v1beta1.FeePool",
   aminoType: "cosmos-sdk/FeePool",
   is(o: any): o is FeePool {
-    return o && (o.$typeUrl === FeePool.typeUrl || Array.isArray(o.community_pool) && (!o.community_pool.length || DecCoin.is(o.community_pool[0])));
+    return o && (o.$typeUrl === FeePool.typeUrl || Array.isArray(o.communityPool) && (!o.communityPool.length || DecCoin.is(o.communityPool[0])));
   },
   isSDK(o: any): o is FeePoolSDKType {
     return o && (o.$typeUrl === FeePool.typeUrl || Array.isArray(o.community_pool) && (!o.community_pool.length || DecCoin.isSDK(o.community_pool[0])));
@@ -1200,7 +1201,7 @@ export const FeePool = {
     return o && (o.$typeUrl === FeePool.typeUrl || Array.isArray(o.community_pool) && (!o.community_pool.length || DecCoin.isAmino(o.community_pool[0])));
   },
   encode(message: FeePool, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.community_pool) {
+    for (const v of message.communityPool) {
       DecCoin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -1213,7 +1214,7 @@ export const FeePool = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.community_pool.push(DecCoin.decode(reader, reader.uint32()));
+          message.communityPool.push(DecCoin.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1224,34 +1225,34 @@ export const FeePool = {
   },
   fromJSON(object: any): FeePool {
     return {
-      community_pool: Array.isArray(object?.community_pool) ? object.community_pool.map((e: any) => DecCoin.fromJSON(e)) : []
+      communityPool: Array.isArray(object?.communityPool) ? object.communityPool.map((e: any) => DecCoin.fromJSON(e)) : []
     };
   },
   toJSON(message: FeePool): JsonSafe<FeePool> {
     const obj: any = {};
-    if (message.community_pool) {
-      obj.community_pool = message.community_pool.map(e => e ? DecCoin.toJSON(e) : undefined);
+    if (message.communityPool) {
+      obj.communityPool = message.communityPool.map(e => e ? DecCoin.toJSON(e) : undefined);
     } else {
-      obj.community_pool = [];
+      obj.communityPool = [];
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<FeePool>): FeePool {
+  fromPartial(object: Partial<FeePool>): FeePool {
     const message = createBaseFeePool();
-    message.community_pool = object.community_pool?.map(e => DecCoin.fromPartial(e)) || [];
+    message.communityPool = object.communityPool?.map(e => DecCoin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: FeePoolAmino): FeePool {
     const message = createBaseFeePool();
-    message.community_pool = object.community_pool?.map(e => DecCoin.fromAmino(e)) || [];
+    message.communityPool = object.community_pool?.map(e => DecCoin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: FeePool): FeePoolAmino {
     const obj: any = {};
-    if (message.community_pool) {
-      obj.community_pool = message.community_pool.map(e => e ? DecCoin.toAmino(e) : undefined);
+    if (message.communityPool) {
+      obj.community_pool = message.communityPool.map(e => e ? DecCoin.toAmino(e) : undefined);
     } else {
-      obj.community_pool = message.community_pool;
+      obj.community_pool = message.communityPool;
     }
     return obj;
   },
@@ -1361,7 +1362,7 @@ export const CommunityPoolSpendProposal = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<CommunityPoolSpendProposal>): CommunityPoolSpendProposal {
+  fromPartial(object: Partial<CommunityPoolSpendProposal>): CommunityPoolSpendProposal {
     const message = createBaseCommunityPoolSpendProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
@@ -1421,7 +1422,7 @@ GlobalDecoderRegistry.register(CommunityPoolSpendProposal.typeUrl, CommunityPool
 GlobalDecoderRegistry.registerAminoProtoMapping(CommunityPoolSpendProposal.aminoType, CommunityPoolSpendProposal.typeUrl);
 function createBaseDelegatorStartingInfo(): DelegatorStartingInfo {
   return {
-    previous_period: BigInt(0),
+    previousPeriod: BigInt(0),
     stake: "",
     height: BigInt(0)
   };
@@ -1430,7 +1431,7 @@ export const DelegatorStartingInfo = {
   typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo",
   aminoType: "cosmos-sdk/DelegatorStartingInfo",
   is(o: any): o is DelegatorStartingInfo {
-    return o && (o.$typeUrl === DelegatorStartingInfo.typeUrl || typeof o.previous_period === "bigint" && typeof o.stake === "string" && typeof o.height === "bigint");
+    return o && (o.$typeUrl === DelegatorStartingInfo.typeUrl || typeof o.previousPeriod === "bigint" && typeof o.stake === "string" && typeof o.height === "bigint");
   },
   isSDK(o: any): o is DelegatorStartingInfoSDKType {
     return o && (o.$typeUrl === DelegatorStartingInfo.typeUrl || typeof o.previous_period === "bigint" && typeof o.stake === "string" && typeof o.height === "bigint");
@@ -1439,8 +1440,8 @@ export const DelegatorStartingInfo = {
     return o && (o.$typeUrl === DelegatorStartingInfo.typeUrl || typeof o.previous_period === "bigint" && typeof o.stake === "string" && typeof o.height === "bigint");
   },
   encode(message: DelegatorStartingInfo, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.previous_period !== BigInt(0)) {
-      writer.uint32(8).uint64(message.previous_period);
+    if (message.previousPeriod !== BigInt(0)) {
+      writer.uint32(8).uint64(message.previousPeriod);
     }
     if (message.stake !== "") {
       writer.uint32(18).string(Decimal.fromUserInput(message.stake, 18).atomics);
@@ -1458,7 +1459,7 @@ export const DelegatorStartingInfo = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.previous_period = reader.uint64();
+          message.previousPeriod = reader.uint64();
           break;
         case 2:
           message.stake = Decimal.fromAtomics(reader.string(), 18).toString();
@@ -1475,21 +1476,21 @@ export const DelegatorStartingInfo = {
   },
   fromJSON(object: any): DelegatorStartingInfo {
     return {
-      previous_period: isSet(object.previous_period) ? BigInt(object.previous_period.toString()) : BigInt(0),
+      previousPeriod: isSet(object.previousPeriod) ? BigInt(object.previousPeriod.toString()) : BigInt(0),
       stake: isSet(object.stake) ? String(object.stake) : "",
       height: isSet(object.height) ? BigInt(object.height.toString()) : BigInt(0)
     };
   },
   toJSON(message: DelegatorStartingInfo): JsonSafe<DelegatorStartingInfo> {
     const obj: any = {};
-    message.previous_period !== undefined && (obj.previous_period = (message.previous_period || BigInt(0)).toString());
+    message.previousPeriod !== undefined && (obj.previousPeriod = (message.previousPeriod || BigInt(0)).toString());
     message.stake !== undefined && (obj.stake = message.stake);
     message.height !== undefined && (obj.height = (message.height || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<DelegatorStartingInfo>): DelegatorStartingInfo {
+  fromPartial(object: Partial<DelegatorStartingInfo>): DelegatorStartingInfo {
     const message = createBaseDelegatorStartingInfo();
-    message.previous_period = object.previous_period !== undefined && object.previous_period !== null ? BigInt(object.previous_period.toString()) : BigInt(0);
+    message.previousPeriod = object.previousPeriod !== undefined && object.previousPeriod !== null ? BigInt(object.previousPeriod.toString()) : BigInt(0);
     message.stake = object.stake ?? "";
     message.height = object.height !== undefined && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
     return message;
@@ -1497,7 +1498,7 @@ export const DelegatorStartingInfo = {
   fromAmino(object: DelegatorStartingInfoAmino): DelegatorStartingInfo {
     const message = createBaseDelegatorStartingInfo();
     if (object.previous_period !== undefined && object.previous_period !== null) {
-      message.previous_period = BigInt(object.previous_period);
+      message.previousPeriod = BigInt(object.previous_period);
     }
     if (object.stake !== undefined && object.stake !== null) {
       message.stake = object.stake;
@@ -1509,7 +1510,7 @@ export const DelegatorStartingInfo = {
   },
   toAmino(message: DelegatorStartingInfo): DelegatorStartingInfoAmino {
     const obj: any = {};
-    obj.previous_period = message.previous_period !== BigInt(0) ? message.previous_period.toString() : undefined;
+    obj.previous_period = message.previousPeriod !== BigInt(0) ? message.previousPeriod.toString() : undefined;
     obj.stake = message.stake === "" ? undefined : message.stake;
     obj.height = message.height ? message.height.toString() : "0";
     return obj;
@@ -1540,7 +1541,7 @@ GlobalDecoderRegistry.register(DelegatorStartingInfo.typeUrl, DelegatorStartingI
 GlobalDecoderRegistry.registerAminoProtoMapping(DelegatorStartingInfo.aminoType, DelegatorStartingInfo.typeUrl);
 function createBaseDelegationDelegatorReward(): DelegationDelegatorReward {
   return {
-    validator_address: "",
+    validatorAddress: "",
     reward: []
   };
 }
@@ -1548,7 +1549,7 @@ export const DelegationDelegatorReward = {
   typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward",
   aminoType: "cosmos-sdk/DelegationDelegatorReward",
   is(o: any): o is DelegationDelegatorReward {
-    return o && (o.$typeUrl === DelegationDelegatorReward.typeUrl || typeof o.validator_address === "string" && Array.isArray(o.reward) && (!o.reward.length || DecCoin.is(o.reward[0])));
+    return o && (o.$typeUrl === DelegationDelegatorReward.typeUrl || typeof o.validatorAddress === "string" && Array.isArray(o.reward) && (!o.reward.length || DecCoin.is(o.reward[0])));
   },
   isSDK(o: any): o is DelegationDelegatorRewardSDKType {
     return o && (o.$typeUrl === DelegationDelegatorReward.typeUrl || typeof o.validator_address === "string" && Array.isArray(o.reward) && (!o.reward.length || DecCoin.isSDK(o.reward[0])));
@@ -1557,8 +1558,8 @@ export const DelegationDelegatorReward = {
     return o && (o.$typeUrl === DelegationDelegatorReward.typeUrl || typeof o.validator_address === "string" && Array.isArray(o.reward) && (!o.reward.length || DecCoin.isAmino(o.reward[0])));
   },
   encode(message: DelegationDelegatorReward, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.validator_address !== "") {
-      writer.uint32(10).string(message.validator_address);
+    if (message.validatorAddress !== "") {
+      writer.uint32(10).string(message.validatorAddress);
     }
     for (const v of message.reward) {
       DecCoin.encode(v!, writer.uint32(18).fork()).ldelim();
@@ -1573,7 +1574,7 @@ export const DelegationDelegatorReward = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.validator_address = reader.string();
+          message.validatorAddress = reader.string();
           break;
         case 2:
           message.reward.push(DecCoin.decode(reader, reader.uint32()));
@@ -1587,13 +1588,13 @@ export const DelegationDelegatorReward = {
   },
   fromJSON(object: any): DelegationDelegatorReward {
     return {
-      validator_address: isSet(object.validator_address) ? String(object.validator_address) : "",
+      validatorAddress: isSet(object.validatorAddress) ? String(object.validatorAddress) : "",
       reward: Array.isArray(object?.reward) ? object.reward.map((e: any) => DecCoin.fromJSON(e)) : []
     };
   },
   toJSON(message: DelegationDelegatorReward): JsonSafe<DelegationDelegatorReward> {
     const obj: any = {};
-    message.validator_address !== undefined && (obj.validator_address = message.validator_address);
+    message.validatorAddress !== undefined && (obj.validatorAddress = message.validatorAddress);
     if (message.reward) {
       obj.reward = message.reward.map(e => e ? DecCoin.toJSON(e) : undefined);
     } else {
@@ -1601,23 +1602,23 @@ export const DelegationDelegatorReward = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<DelegationDelegatorReward>): DelegationDelegatorReward {
+  fromPartial(object: Partial<DelegationDelegatorReward>): DelegationDelegatorReward {
     const message = createBaseDelegationDelegatorReward();
-    message.validator_address = object.validator_address ?? "";
+    message.validatorAddress = object.validatorAddress ?? "";
     message.reward = object.reward?.map(e => DecCoin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: DelegationDelegatorRewardAmino): DelegationDelegatorReward {
     const message = createBaseDelegationDelegatorReward();
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validator_address = object.validator_address;
+      message.validatorAddress = object.validator_address;
     }
     message.reward = object.reward?.map(e => DecCoin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: DelegationDelegatorReward): DelegationDelegatorRewardAmino {
     const obj: any = {};
-    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
+    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
     if (message.reward) {
       obj.reward = message.reward.map(e => e ? DecCoin.toAmino(e) : undefined);
     } else {
@@ -1736,7 +1737,7 @@ export const CommunityPoolSpendProposalWithDeposit = {
     message.deposit !== undefined && (obj.deposit = message.deposit);
     return obj;
   },
-  fromPartial(object: DeepPartial<CommunityPoolSpendProposalWithDeposit>): CommunityPoolSpendProposalWithDeposit {
+  fromPartial(object: Partial<CommunityPoolSpendProposalWithDeposit>): CommunityPoolSpendProposalWithDeposit {
     const message = createBaseCommunityPoolSpendProposalWithDeposit();
     message.title = object.title ?? "";
     message.description = object.description ?? "";

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { LCDClient } from "@cosmology/lcd";
 import { QueryCurrentPlanRequest, QueryCurrentPlanResponseSDKType, QueryAppliedPlanRequest, QueryAppliedPlanResponseSDKType, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponseSDKType, QueryModuleVersionsRequest, QueryModuleVersionsResponseSDKType, QueryAuthorityRequest, QueryAuthorityResponseSDKType } from "./query";
 export class LCDQueryClient {
@@ -31,7 +32,7 @@ export class LCDQueryClient {
    This rpc is deprecated now that IBC has its own replacement
    (https://github.com/cosmos/ibc-go/blob/2c880a22e9f9cc75f62b527ca94aa75ce1106001/proto/ibc/core/client/v1/query.proto#L54) */
   async upgradedConsensusState(params: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponseSDKType> {
-    const endpoint = `cosmos/upgrade/v1beta1/upgraded_consensus_state/${params.last_height}`;
+    const endpoint = `cosmos/upgrade/v1beta1/upgraded_consensus_state/${params.lastHeight}`;
     return await this.req.get<QueryUpgradedConsensusStateResponseSDKType>(endpoint);
   }
   /* ModuleVersions queries the list of module versions from state.
@@ -41,8 +42,8 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.module_name !== "undefined") {
-      options.params.module_name = params.module_name;
+    if (typeof params?.moduleName !== "undefined") {
+      options.params.module_name = params.moduleName;
     }
     const endpoint = `cosmos/upgrade/v1beta1/module_versions`;
     return await this.req.get<QueryModuleVersionsResponseSDKType>(endpoint, options);

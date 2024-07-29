@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Rpc } from "../../../helpers";
 import { BinaryReader } from "../../../binary";
 import { MsgCreateThought, MsgCreateThoughtResponse, MsgForgetThought, MsgForgetThoughtResponse, MsgChangeThoughtParticle, MsgChangeThoughtParticleResponse, MsgChangeThoughtName, MsgChangeThoughtNameResponse, MsgChangeThoughtInput, MsgChangeThoughtInputResponse, MsgChangeThoughtGasPrice, MsgChangeThoughtGasPriceResponse, MsgChangeThoughtPeriod, MsgChangeThoughtPeriodResponse, MsgChangeThoughtBlock, MsgChangeThoughtBlockResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";

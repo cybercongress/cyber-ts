@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { Timestamp } from "../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { isSet, DeepPartial, bytesFromBase64, base64FromBytes, toTimestamp, fromTimestamp, fromJsonTimestamp } from "../../helpers";
+import { isSet, bytesFromBase64, base64FromBytes, toTimestamp, fromTimestamp, fromJsonTimestamp } from "../../helpers";
 import { JsonSafe } from "../../json-safe";
 import { GlobalDecoderRegistry } from "../../registry";
 export interface ProtocolVersion {
@@ -9,7 +10,7 @@ export interface ProtocolVersion {
   app: bigint;
 }
 export interface ProtocolVersionProtoMsg {
-  type_url: "/tendermint.p2p.ProtocolVersion";
+  typeUrl: "/tendermint.p2p.ProtocolVersion";
   value: Uint8Array;
 }
 export interface ProtocolVersionAmino {
@@ -27,9 +28,9 @@ export interface ProtocolVersionSDKType {
   app: bigint;
 }
 export interface NodeInfo {
-  protocol_version: ProtocolVersion;
-  node_id: string;
-  listen_addr: string;
+  protocolVersion: ProtocolVersion;
+  nodeId: string;
+  listenAddr: string;
   network: string;
   version: string;
   channels: Uint8Array;
@@ -37,7 +38,7 @@ export interface NodeInfo {
   other: NodeInfoOther;
 }
 export interface NodeInfoProtoMsg {
-  type_url: "/tendermint.p2p.NodeInfo";
+  typeUrl: "/tendermint.p2p.NodeInfo";
   value: Uint8Array;
 }
 export interface NodeInfoAmino {
@@ -65,11 +66,11 @@ export interface NodeInfoSDKType {
   other: NodeInfoOtherSDKType;
 }
 export interface NodeInfoOther {
-  tx_index: string;
-  rpc_address: string;
+  txIndex: string;
+  rpcAddress: string;
 }
 export interface NodeInfoOtherProtoMsg {
-  type_url: "/tendermint.p2p.NodeInfoOther";
+  typeUrl: "/tendermint.p2p.NodeInfoOther";
   value: Uint8Array;
 }
 export interface NodeInfoOtherAmino {
@@ -86,11 +87,11 @@ export interface NodeInfoOtherSDKType {
 }
 export interface PeerInfo {
   id: string;
-  address_info: PeerAddressInfo[];
-  last_connected?: Date;
+  addressInfo: PeerAddressInfo[];
+  lastConnected?: Date;
 }
 export interface PeerInfoProtoMsg {
-  type_url: "/tendermint.p2p.PeerInfo";
+  typeUrl: "/tendermint.p2p.PeerInfo";
   value: Uint8Array;
 }
 export interface PeerInfoAmino {
@@ -109,12 +110,12 @@ export interface PeerInfoSDKType {
 }
 export interface PeerAddressInfo {
   address: string;
-  last_dial_success?: Date;
-  last_dial_failure?: Date;
-  dial_failures: number;
+  lastDialSuccess?: Date;
+  lastDialFailure?: Date;
+  dialFailures: number;
 }
 export interface PeerAddressInfoProtoMsg {
-  type_url: "/tendermint.p2p.PeerAddressInfo";
+  typeUrl: "/tendermint.p2p.PeerAddressInfo";
   value: Uint8Array;
 }
 export interface PeerAddressInfoAmino {
@@ -200,7 +201,7 @@ export const ProtocolVersion = {
     message.app !== undefined && (obj.app = (message.app || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<ProtocolVersion>): ProtocolVersion {
+  fromPartial(object: Partial<ProtocolVersion>): ProtocolVersion {
     const message = createBaseProtocolVersion();
     message.p2p = object.p2p !== undefined && object.p2p !== null ? BigInt(object.p2p.toString()) : BigInt(0);
     message.block = object.block !== undefined && object.block !== null ? BigInt(object.block.toString()) : BigInt(0);
@@ -246,9 +247,9 @@ export const ProtocolVersion = {
 GlobalDecoderRegistry.register(ProtocolVersion.typeUrl, ProtocolVersion);
 function createBaseNodeInfo(): NodeInfo {
   return {
-    protocol_version: ProtocolVersion.fromPartial({}),
-    node_id: "",
-    listen_addr: "",
+    protocolVersion: ProtocolVersion.fromPartial({}),
+    nodeId: "",
+    listenAddr: "",
     network: "",
     version: "",
     channels: new Uint8Array(),
@@ -259,7 +260,7 @@ function createBaseNodeInfo(): NodeInfo {
 export const NodeInfo = {
   typeUrl: "/tendermint.p2p.NodeInfo",
   is(o: any): o is NodeInfo {
-    return o && (o.$typeUrl === NodeInfo.typeUrl || ProtocolVersion.is(o.protocol_version) && typeof o.node_id === "string" && typeof o.listen_addr === "string" && typeof o.network === "string" && typeof o.version === "string" && (o.channels instanceof Uint8Array || typeof o.channels === "string") && typeof o.moniker === "string" && NodeInfoOther.is(o.other));
+    return o && (o.$typeUrl === NodeInfo.typeUrl || ProtocolVersion.is(o.protocolVersion) && typeof o.nodeId === "string" && typeof o.listenAddr === "string" && typeof o.network === "string" && typeof o.version === "string" && (o.channels instanceof Uint8Array || typeof o.channels === "string") && typeof o.moniker === "string" && NodeInfoOther.is(o.other));
   },
   isSDK(o: any): o is NodeInfoSDKType {
     return o && (o.$typeUrl === NodeInfo.typeUrl || ProtocolVersion.isSDK(o.protocol_version) && typeof o.node_id === "string" && typeof o.listen_addr === "string" && typeof o.network === "string" && typeof o.version === "string" && (o.channels instanceof Uint8Array || typeof o.channels === "string") && typeof o.moniker === "string" && NodeInfoOther.isSDK(o.other));
@@ -268,14 +269,14 @@ export const NodeInfo = {
     return o && (o.$typeUrl === NodeInfo.typeUrl || ProtocolVersion.isAmino(o.protocol_version) && typeof o.node_id === "string" && typeof o.listen_addr === "string" && typeof o.network === "string" && typeof o.version === "string" && (o.channels instanceof Uint8Array || typeof o.channels === "string") && typeof o.moniker === "string" && NodeInfoOther.isAmino(o.other));
   },
   encode(message: NodeInfo, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.protocol_version !== undefined) {
-      ProtocolVersion.encode(message.protocol_version, writer.uint32(10).fork()).ldelim();
+    if (message.protocolVersion !== undefined) {
+      ProtocolVersion.encode(message.protocolVersion, writer.uint32(10).fork()).ldelim();
     }
-    if (message.node_id !== "") {
-      writer.uint32(18).string(message.node_id);
+    if (message.nodeId !== "") {
+      writer.uint32(18).string(message.nodeId);
     }
-    if (message.listen_addr !== "") {
-      writer.uint32(26).string(message.listen_addr);
+    if (message.listenAddr !== "") {
+      writer.uint32(26).string(message.listenAddr);
     }
     if (message.network !== "") {
       writer.uint32(34).string(message.network);
@@ -302,13 +303,13 @@ export const NodeInfo = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.protocol_version = ProtocolVersion.decode(reader, reader.uint32());
+          message.protocolVersion = ProtocolVersion.decode(reader, reader.uint32());
           break;
         case 2:
-          message.node_id = reader.string();
+          message.nodeId = reader.string();
           break;
         case 3:
-          message.listen_addr = reader.string();
+          message.listenAddr = reader.string();
           break;
         case 4:
           message.network = reader.string();
@@ -334,9 +335,9 @@ export const NodeInfo = {
   },
   fromJSON(object: any): NodeInfo {
     return {
-      protocol_version: isSet(object.protocol_version) ? ProtocolVersion.fromJSON(object.protocol_version) : undefined,
-      node_id: isSet(object.node_id) ? String(object.node_id) : "",
-      listen_addr: isSet(object.listen_addr) ? String(object.listen_addr) : "",
+      protocolVersion: isSet(object.protocolVersion) ? ProtocolVersion.fromJSON(object.protocolVersion) : undefined,
+      nodeId: isSet(object.nodeId) ? String(object.nodeId) : "",
+      listenAddr: isSet(object.listenAddr) ? String(object.listenAddr) : "",
       network: isSet(object.network) ? String(object.network) : "",
       version: isSet(object.version) ? String(object.version) : "",
       channels: isSet(object.channels) ? bytesFromBase64(object.channels) : new Uint8Array(),
@@ -346,9 +347,9 @@ export const NodeInfo = {
   },
   toJSON(message: NodeInfo): JsonSafe<NodeInfo> {
     const obj: any = {};
-    message.protocol_version !== undefined && (obj.protocol_version = message.protocol_version ? ProtocolVersion.toJSON(message.protocol_version) : undefined);
-    message.node_id !== undefined && (obj.node_id = message.node_id);
-    message.listen_addr !== undefined && (obj.listen_addr = message.listen_addr);
+    message.protocolVersion !== undefined && (obj.protocolVersion = message.protocolVersion ? ProtocolVersion.toJSON(message.protocolVersion) : undefined);
+    message.nodeId !== undefined && (obj.nodeId = message.nodeId);
+    message.listenAddr !== undefined && (obj.listenAddr = message.listenAddr);
     message.network !== undefined && (obj.network = message.network);
     message.version !== undefined && (obj.version = message.version);
     message.channels !== undefined && (obj.channels = base64FromBytes(message.channels !== undefined ? message.channels : new Uint8Array()));
@@ -356,11 +357,11 @@ export const NodeInfo = {
     message.other !== undefined && (obj.other = message.other ? NodeInfoOther.toJSON(message.other) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<NodeInfo>): NodeInfo {
+  fromPartial(object: Partial<NodeInfo>): NodeInfo {
     const message = createBaseNodeInfo();
-    message.protocol_version = object.protocol_version !== undefined && object.protocol_version !== null ? ProtocolVersion.fromPartial(object.protocol_version) : undefined;
-    message.node_id = object.node_id ?? "";
-    message.listen_addr = object.listen_addr ?? "";
+    message.protocolVersion = object.protocolVersion !== undefined && object.protocolVersion !== null ? ProtocolVersion.fromPartial(object.protocolVersion) : undefined;
+    message.nodeId = object.nodeId ?? "";
+    message.listenAddr = object.listenAddr ?? "";
     message.network = object.network ?? "";
     message.version = object.version ?? "";
     message.channels = object.channels ?? new Uint8Array();
@@ -371,13 +372,13 @@ export const NodeInfo = {
   fromAmino(object: NodeInfoAmino): NodeInfo {
     const message = createBaseNodeInfo();
     if (object.protocol_version !== undefined && object.protocol_version !== null) {
-      message.protocol_version = ProtocolVersion.fromAmino(object.protocol_version);
+      message.protocolVersion = ProtocolVersion.fromAmino(object.protocol_version);
     }
     if (object.node_id !== undefined && object.node_id !== null) {
-      message.node_id = object.node_id;
+      message.nodeId = object.node_id;
     }
     if (object.listen_addr !== undefined && object.listen_addr !== null) {
-      message.listen_addr = object.listen_addr;
+      message.listenAddr = object.listen_addr;
     }
     if (object.network !== undefined && object.network !== null) {
       message.network = object.network;
@@ -398,9 +399,9 @@ export const NodeInfo = {
   },
   toAmino(message: NodeInfo): NodeInfoAmino {
     const obj: any = {};
-    obj.protocol_version = message.protocol_version ? ProtocolVersion.toAmino(message.protocol_version) : undefined;
-    obj.node_id = message.node_id === "" ? undefined : message.node_id;
-    obj.listen_addr = message.listen_addr === "" ? undefined : message.listen_addr;
+    obj.protocol_version = message.protocolVersion ? ProtocolVersion.toAmino(message.protocolVersion) : undefined;
+    obj.node_id = message.nodeId === "" ? undefined : message.nodeId;
+    obj.listen_addr = message.listenAddr === "" ? undefined : message.listenAddr;
     obj.network = message.network === "" ? undefined : message.network;
     obj.version = message.version === "" ? undefined : message.version;
     obj.channels = message.channels ? base64FromBytes(message.channels) : undefined;
@@ -427,14 +428,14 @@ export const NodeInfo = {
 GlobalDecoderRegistry.register(NodeInfo.typeUrl, NodeInfo);
 function createBaseNodeInfoOther(): NodeInfoOther {
   return {
-    tx_index: "",
-    rpc_address: ""
+    txIndex: "",
+    rpcAddress: ""
   };
 }
 export const NodeInfoOther = {
   typeUrl: "/tendermint.p2p.NodeInfoOther",
   is(o: any): o is NodeInfoOther {
-    return o && (o.$typeUrl === NodeInfoOther.typeUrl || typeof o.tx_index === "string" && typeof o.rpc_address === "string");
+    return o && (o.$typeUrl === NodeInfoOther.typeUrl || typeof o.txIndex === "string" && typeof o.rpcAddress === "string");
   },
   isSDK(o: any): o is NodeInfoOtherSDKType {
     return o && (o.$typeUrl === NodeInfoOther.typeUrl || typeof o.tx_index === "string" && typeof o.rpc_address === "string");
@@ -443,11 +444,11 @@ export const NodeInfoOther = {
     return o && (o.$typeUrl === NodeInfoOther.typeUrl || typeof o.tx_index === "string" && typeof o.rpc_address === "string");
   },
   encode(message: NodeInfoOther, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.tx_index !== "") {
-      writer.uint32(10).string(message.tx_index);
+    if (message.txIndex !== "") {
+      writer.uint32(10).string(message.txIndex);
     }
-    if (message.rpc_address !== "") {
-      writer.uint32(18).string(message.rpc_address);
+    if (message.rpcAddress !== "") {
+      writer.uint32(18).string(message.rpcAddress);
     }
     return writer;
   },
@@ -459,10 +460,10 @@ export const NodeInfoOther = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.tx_index = reader.string();
+          message.txIndex = reader.string();
           break;
         case 2:
-          message.rpc_address = reader.string();
+          message.rpcAddress = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -473,36 +474,36 @@ export const NodeInfoOther = {
   },
   fromJSON(object: any): NodeInfoOther {
     return {
-      tx_index: isSet(object.tx_index) ? String(object.tx_index) : "",
-      rpc_address: isSet(object.rpc_address) ? String(object.rpc_address) : ""
+      txIndex: isSet(object.txIndex) ? String(object.txIndex) : "",
+      rpcAddress: isSet(object.rpcAddress) ? String(object.rpcAddress) : ""
     };
   },
   toJSON(message: NodeInfoOther): JsonSafe<NodeInfoOther> {
     const obj: any = {};
-    message.tx_index !== undefined && (obj.tx_index = message.tx_index);
-    message.rpc_address !== undefined && (obj.rpc_address = message.rpc_address);
+    message.txIndex !== undefined && (obj.txIndex = message.txIndex);
+    message.rpcAddress !== undefined && (obj.rpcAddress = message.rpcAddress);
     return obj;
   },
-  fromPartial(object: DeepPartial<NodeInfoOther>): NodeInfoOther {
+  fromPartial(object: Partial<NodeInfoOther>): NodeInfoOther {
     const message = createBaseNodeInfoOther();
-    message.tx_index = object.tx_index ?? "";
-    message.rpc_address = object.rpc_address ?? "";
+    message.txIndex = object.txIndex ?? "";
+    message.rpcAddress = object.rpcAddress ?? "";
     return message;
   },
   fromAmino(object: NodeInfoOtherAmino): NodeInfoOther {
     const message = createBaseNodeInfoOther();
     if (object.tx_index !== undefined && object.tx_index !== null) {
-      message.tx_index = object.tx_index;
+      message.txIndex = object.tx_index;
     }
     if (object.rpc_address !== undefined && object.rpc_address !== null) {
-      message.rpc_address = object.rpc_address;
+      message.rpcAddress = object.rpc_address;
     }
     return message;
   },
   toAmino(message: NodeInfoOther): NodeInfoOtherAmino {
     const obj: any = {};
-    obj.tx_index = message.tx_index === "" ? undefined : message.tx_index;
-    obj.rpc_address = message.rpc_address === "" ? undefined : message.rpc_address;
+    obj.tx_index = message.txIndex === "" ? undefined : message.txIndex;
+    obj.rpc_address = message.rpcAddress === "" ? undefined : message.rpcAddress;
     return obj;
   },
   fromAminoMsg(object: NodeInfoOtherAminoMsg): NodeInfoOther {
@@ -525,14 +526,14 @@ GlobalDecoderRegistry.register(NodeInfoOther.typeUrl, NodeInfoOther);
 function createBasePeerInfo(): PeerInfo {
   return {
     id: "",
-    address_info: [],
-    last_connected: undefined
+    addressInfo: [],
+    lastConnected: undefined
   };
 }
 export const PeerInfo = {
   typeUrl: "/tendermint.p2p.PeerInfo",
   is(o: any): o is PeerInfo {
-    return o && (o.$typeUrl === PeerInfo.typeUrl || typeof o.id === "string" && Array.isArray(o.address_info) && (!o.address_info.length || PeerAddressInfo.is(o.address_info[0])));
+    return o && (o.$typeUrl === PeerInfo.typeUrl || typeof o.id === "string" && Array.isArray(o.addressInfo) && (!o.addressInfo.length || PeerAddressInfo.is(o.addressInfo[0])));
   },
   isSDK(o: any): o is PeerInfoSDKType {
     return o && (o.$typeUrl === PeerInfo.typeUrl || typeof o.id === "string" && Array.isArray(o.address_info) && (!o.address_info.length || PeerAddressInfo.isSDK(o.address_info[0])));
@@ -544,11 +545,11 @@ export const PeerInfo = {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
-    for (const v of message.address_info) {
+    for (const v of message.addressInfo) {
       PeerAddressInfo.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    if (message.last_connected !== undefined) {
-      Timestamp.encode(toTimestamp(message.last_connected), writer.uint32(26).fork()).ldelim();
+    if (message.lastConnected !== undefined) {
+      Timestamp.encode(toTimestamp(message.lastConnected), writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -563,10 +564,10 @@ export const PeerInfo = {
           message.id = reader.string();
           break;
         case 2:
-          message.address_info.push(PeerAddressInfo.decode(reader, reader.uint32()));
+          message.addressInfo.push(PeerAddressInfo.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.last_connected = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.lastConnected = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -578,26 +579,26 @@ export const PeerInfo = {
   fromJSON(object: any): PeerInfo {
     return {
       id: isSet(object.id) ? String(object.id) : "",
-      address_info: Array.isArray(object?.address_info) ? object.address_info.map((e: any) => PeerAddressInfo.fromJSON(e)) : [],
-      last_connected: isSet(object.last_connected) ? fromJsonTimestamp(object.last_connected) : undefined
+      addressInfo: Array.isArray(object?.addressInfo) ? object.addressInfo.map((e: any) => PeerAddressInfo.fromJSON(e)) : [],
+      lastConnected: isSet(object.lastConnected) ? fromJsonTimestamp(object.lastConnected) : undefined
     };
   },
   toJSON(message: PeerInfo): JsonSafe<PeerInfo> {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
-    if (message.address_info) {
-      obj.address_info = message.address_info.map(e => e ? PeerAddressInfo.toJSON(e) : undefined);
+    if (message.addressInfo) {
+      obj.addressInfo = message.addressInfo.map(e => e ? PeerAddressInfo.toJSON(e) : undefined);
     } else {
-      obj.address_info = [];
+      obj.addressInfo = [];
     }
-    message.last_connected !== undefined && (obj.last_connected = message.last_connected.toISOString());
+    message.lastConnected !== undefined && (obj.lastConnected = message.lastConnected.toISOString());
     return obj;
   },
-  fromPartial(object: DeepPartial<PeerInfo>): PeerInfo {
+  fromPartial(object: Partial<PeerInfo>): PeerInfo {
     const message = createBasePeerInfo();
     message.id = object.id ?? "";
-    message.address_info = object.address_info?.map(e => PeerAddressInfo.fromPartial(e)) || [];
-    message.last_connected = object.last_connected ?? undefined;
+    message.addressInfo = object.addressInfo?.map(e => PeerAddressInfo.fromPartial(e)) || [];
+    message.lastConnected = object.lastConnected ?? undefined;
     return message;
   },
   fromAmino(object: PeerInfoAmino): PeerInfo {
@@ -605,21 +606,21 @@ export const PeerInfo = {
     if (object.id !== undefined && object.id !== null) {
       message.id = object.id;
     }
-    message.address_info = object.address_info?.map(e => PeerAddressInfo.fromAmino(e)) || [];
+    message.addressInfo = object.address_info?.map(e => PeerAddressInfo.fromAmino(e)) || [];
     if (object.last_connected !== undefined && object.last_connected !== null) {
-      message.last_connected = fromTimestamp(Timestamp.fromAmino(object.last_connected));
+      message.lastConnected = fromTimestamp(Timestamp.fromAmino(object.last_connected));
     }
     return message;
   },
   toAmino(message: PeerInfo): PeerInfoAmino {
     const obj: any = {};
     obj.id = message.id === "" ? undefined : message.id;
-    if (message.address_info) {
-      obj.address_info = message.address_info.map(e => e ? PeerAddressInfo.toAmino(e) : undefined);
+    if (message.addressInfo) {
+      obj.address_info = message.addressInfo.map(e => e ? PeerAddressInfo.toAmino(e) : undefined);
     } else {
-      obj.address_info = message.address_info;
+      obj.address_info = message.addressInfo;
     }
-    obj.last_connected = message.last_connected ? Timestamp.toAmino(toTimestamp(message.last_connected)) : undefined;
+    obj.last_connected = message.lastConnected ? Timestamp.toAmino(toTimestamp(message.lastConnected)) : undefined;
     return obj;
   },
   fromAminoMsg(object: PeerInfoAminoMsg): PeerInfo {
@@ -642,15 +643,15 @@ GlobalDecoderRegistry.register(PeerInfo.typeUrl, PeerInfo);
 function createBasePeerAddressInfo(): PeerAddressInfo {
   return {
     address: "",
-    last_dial_success: undefined,
-    last_dial_failure: undefined,
-    dial_failures: 0
+    lastDialSuccess: undefined,
+    lastDialFailure: undefined,
+    dialFailures: 0
   };
 }
 export const PeerAddressInfo = {
   typeUrl: "/tendermint.p2p.PeerAddressInfo",
   is(o: any): o is PeerAddressInfo {
-    return o && (o.$typeUrl === PeerAddressInfo.typeUrl || typeof o.address === "string" && typeof o.dial_failures === "number");
+    return o && (o.$typeUrl === PeerAddressInfo.typeUrl || typeof o.address === "string" && typeof o.dialFailures === "number");
   },
   isSDK(o: any): o is PeerAddressInfoSDKType {
     return o && (o.$typeUrl === PeerAddressInfo.typeUrl || typeof o.address === "string" && typeof o.dial_failures === "number");
@@ -662,14 +663,14 @@ export const PeerAddressInfo = {
     if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
-    if (message.last_dial_success !== undefined) {
-      Timestamp.encode(toTimestamp(message.last_dial_success), writer.uint32(18).fork()).ldelim();
+    if (message.lastDialSuccess !== undefined) {
+      Timestamp.encode(toTimestamp(message.lastDialSuccess), writer.uint32(18).fork()).ldelim();
     }
-    if (message.last_dial_failure !== undefined) {
-      Timestamp.encode(toTimestamp(message.last_dial_failure), writer.uint32(26).fork()).ldelim();
+    if (message.lastDialFailure !== undefined) {
+      Timestamp.encode(toTimestamp(message.lastDialFailure), writer.uint32(26).fork()).ldelim();
     }
-    if (message.dial_failures !== 0) {
-      writer.uint32(32).uint32(message.dial_failures);
+    if (message.dialFailures !== 0) {
+      writer.uint32(32).uint32(message.dialFailures);
     }
     return writer;
   },
@@ -684,13 +685,13 @@ export const PeerAddressInfo = {
           message.address = reader.string();
           break;
         case 2:
-          message.last_dial_success = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.lastDialSuccess = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.last_dial_failure = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.lastDialFailure = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 4:
-          message.dial_failures = reader.uint32();
+          message.dialFailures = reader.uint32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -702,25 +703,25 @@ export const PeerAddressInfo = {
   fromJSON(object: any): PeerAddressInfo {
     return {
       address: isSet(object.address) ? String(object.address) : "",
-      last_dial_success: isSet(object.last_dial_success) ? fromJsonTimestamp(object.last_dial_success) : undefined,
-      last_dial_failure: isSet(object.last_dial_failure) ? fromJsonTimestamp(object.last_dial_failure) : undefined,
-      dial_failures: isSet(object.dial_failures) ? Number(object.dial_failures) : 0
+      lastDialSuccess: isSet(object.lastDialSuccess) ? fromJsonTimestamp(object.lastDialSuccess) : undefined,
+      lastDialFailure: isSet(object.lastDialFailure) ? fromJsonTimestamp(object.lastDialFailure) : undefined,
+      dialFailures: isSet(object.dialFailures) ? Number(object.dialFailures) : 0
     };
   },
   toJSON(message: PeerAddressInfo): JsonSafe<PeerAddressInfo> {
     const obj: any = {};
     message.address !== undefined && (obj.address = message.address);
-    message.last_dial_success !== undefined && (obj.last_dial_success = message.last_dial_success.toISOString());
-    message.last_dial_failure !== undefined && (obj.last_dial_failure = message.last_dial_failure.toISOString());
-    message.dial_failures !== undefined && (obj.dial_failures = Math.round(message.dial_failures));
+    message.lastDialSuccess !== undefined && (obj.lastDialSuccess = message.lastDialSuccess.toISOString());
+    message.lastDialFailure !== undefined && (obj.lastDialFailure = message.lastDialFailure.toISOString());
+    message.dialFailures !== undefined && (obj.dialFailures = Math.round(message.dialFailures));
     return obj;
   },
-  fromPartial(object: DeepPartial<PeerAddressInfo>): PeerAddressInfo {
+  fromPartial(object: Partial<PeerAddressInfo>): PeerAddressInfo {
     const message = createBasePeerAddressInfo();
     message.address = object.address ?? "";
-    message.last_dial_success = object.last_dial_success ?? undefined;
-    message.last_dial_failure = object.last_dial_failure ?? undefined;
-    message.dial_failures = object.dial_failures ?? 0;
+    message.lastDialSuccess = object.lastDialSuccess ?? undefined;
+    message.lastDialFailure = object.lastDialFailure ?? undefined;
+    message.dialFailures = object.dialFailures ?? 0;
     return message;
   },
   fromAmino(object: PeerAddressInfoAmino): PeerAddressInfo {
@@ -729,22 +730,22 @@ export const PeerAddressInfo = {
       message.address = object.address;
     }
     if (object.last_dial_success !== undefined && object.last_dial_success !== null) {
-      message.last_dial_success = fromTimestamp(Timestamp.fromAmino(object.last_dial_success));
+      message.lastDialSuccess = fromTimestamp(Timestamp.fromAmino(object.last_dial_success));
     }
     if (object.last_dial_failure !== undefined && object.last_dial_failure !== null) {
-      message.last_dial_failure = fromTimestamp(Timestamp.fromAmino(object.last_dial_failure));
+      message.lastDialFailure = fromTimestamp(Timestamp.fromAmino(object.last_dial_failure));
     }
     if (object.dial_failures !== undefined && object.dial_failures !== null) {
-      message.dial_failures = object.dial_failures;
+      message.dialFailures = object.dial_failures;
     }
     return message;
   },
   toAmino(message: PeerAddressInfo): PeerAddressInfoAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    obj.last_dial_success = message.last_dial_success ? Timestamp.toAmino(toTimestamp(message.last_dial_success)) : undefined;
-    obj.last_dial_failure = message.last_dial_failure ? Timestamp.toAmino(toTimestamp(message.last_dial_failure)) : undefined;
-    obj.dial_failures = message.dial_failures === 0 ? undefined : message.dial_failures;
+    obj.last_dial_success = message.lastDialSuccess ? Timestamp.toAmino(toTimestamp(message.lastDialSuccess)) : undefined;
+    obj.last_dial_failure = message.lastDialFailure ? Timestamp.toAmino(toTimestamp(message.lastDialFailure)) : undefined;
+    obj.dial_failures = message.dialFailures === 0 ? undefined : message.dialFailures;
     return obj;
   },
   fromAminoMsg(object: PeerAddressInfoAminoMsg): PeerAddressInfo {

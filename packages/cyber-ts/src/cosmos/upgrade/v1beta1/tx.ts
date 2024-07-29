@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { Plan, PlanAmino, PlanSDKType } from "./upgrade";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -15,7 +16,7 @@ export interface MsgSoftwareUpgrade {
   plan: Plan;
 }
 export interface MsgSoftwareUpgradeProtoMsg {
-  type_url: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgrade";
+  typeUrl: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgrade";
   value: Uint8Array;
 }
 /**
@@ -49,7 +50,7 @@ export interface MsgSoftwareUpgradeSDKType {
  */
 export interface MsgSoftwareUpgradeResponse {}
 export interface MsgSoftwareUpgradeResponseProtoMsg {
-  type_url: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse";
+  typeUrl: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse";
   value: Uint8Array;
 }
 /**
@@ -78,7 +79,7 @@ export interface MsgCancelUpgrade {
   authority: string;
 }
 export interface MsgCancelUpgradeProtoMsg {
-  type_url: "/cosmos.upgrade.v1beta1.MsgCancelUpgrade";
+  typeUrl: "/cosmos.upgrade.v1beta1.MsgCancelUpgrade";
   value: Uint8Array;
 }
 /**
@@ -109,7 +110,7 @@ export interface MsgCancelUpgradeSDKType {
  */
 export interface MsgCancelUpgradeResponse {}
 export interface MsgCancelUpgradeResponseProtoMsg {
-  type_url: "/cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse";
+  typeUrl: "/cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse";
   value: Uint8Array;
 }
 /**
@@ -187,7 +188,7 @@ export const MsgSoftwareUpgrade = {
     message.plan !== undefined && (obj.plan = message.plan ? Plan.toJSON(message.plan) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgSoftwareUpgrade>): MsgSoftwareUpgrade {
+  fromPartial(object: Partial<MsgSoftwareUpgrade>): MsgSoftwareUpgrade {
     const message = createBaseMsgSoftwareUpgrade();
     message.authority = object.authority ?? "";
     message.plan = object.plan !== undefined && object.plan !== null ? Plan.fromPartial(object.plan) : undefined;
@@ -272,7 +273,7 @@ export const MsgSoftwareUpgradeResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgSoftwareUpgradeResponse>): MsgSoftwareUpgradeResponse {
+  fromPartial(_: Partial<MsgSoftwareUpgradeResponse>): MsgSoftwareUpgradeResponse {
     const message = createBaseMsgSoftwareUpgradeResponse();
     return message;
   },
@@ -358,7 +359,7 @@ export const MsgCancelUpgrade = {
     message.authority !== undefined && (obj.authority = message.authority);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgCancelUpgrade>): MsgCancelUpgrade {
+  fromPartial(object: Partial<MsgCancelUpgrade>): MsgCancelUpgrade {
     const message = createBaseMsgCancelUpgrade();
     message.authority = object.authority ?? "";
     return message;
@@ -438,7 +439,7 @@ export const MsgCancelUpgradeResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgCancelUpgradeResponse>): MsgCancelUpgradeResponse {
+  fromPartial(_: Partial<MsgCancelUpgradeResponse>): MsgCancelUpgradeResponse {
     const message = createBaseMsgCancelUpgradeResponse();
     return message;
   },

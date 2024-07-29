@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -10,10 +11,10 @@ import { GlobalDecoderRegistry } from "../../../registry";
  */
 export interface LegacyAminoPubKey {
   threshold: number;
-  public_keys: Any[];
+  publicKeys: Any[];
 }
 export interface LegacyAminoPubKeyProtoMsg {
-  type_url: "/cosmos.crypto.multisig.LegacyAminoPubKey";
+  typeUrl: "/cosmos.crypto.multisig.LegacyAminoPubKey";
   value: Uint8Array;
 }
 /**
@@ -41,14 +42,14 @@ export interface LegacyAminoPubKeySDKType {
 function createBaseLegacyAminoPubKey(): LegacyAminoPubKey {
   return {
     threshold: 0,
-    public_keys: []
+    publicKeys: []
   };
 }
 export const LegacyAminoPubKey = {
   typeUrl: "/cosmos.crypto.multisig.LegacyAminoPubKey",
   aminoType: "cosmos-sdk/LegacyAminoPubKey",
   is(o: any): o is LegacyAminoPubKey {
-    return o && (o.$typeUrl === LegacyAminoPubKey.typeUrl || typeof o.threshold === "number" && Array.isArray(o.public_keys) && (!o.public_keys.length || Any.is(o.public_keys[0])));
+    return o && (o.$typeUrl === LegacyAminoPubKey.typeUrl || typeof o.threshold === "number" && Array.isArray(o.publicKeys) && (!o.publicKeys.length || Any.is(o.publicKeys[0])));
   },
   isSDK(o: any): o is LegacyAminoPubKeySDKType {
     return o && (o.$typeUrl === LegacyAminoPubKey.typeUrl || typeof o.threshold === "number" && Array.isArray(o.public_keys) && (!o.public_keys.length || Any.isSDK(o.public_keys[0])));
@@ -60,7 +61,7 @@ export const LegacyAminoPubKey = {
     if (message.threshold !== 0) {
       writer.uint32(8).uint32(message.threshold);
     }
-    for (const v of message.public_keys) {
+    for (const v of message.publicKeys) {
       Any.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     return writer;
@@ -76,7 +77,7 @@ export const LegacyAminoPubKey = {
           message.threshold = reader.uint32();
           break;
         case 2:
-          message.public_keys.push(Any.decode(reader, reader.uint32()));
+          message.publicKeys.push(Any.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -88,23 +89,23 @@ export const LegacyAminoPubKey = {
   fromJSON(object: any): LegacyAminoPubKey {
     return {
       threshold: isSet(object.threshold) ? Number(object.threshold) : 0,
-      public_keys: Array.isArray(object?.public_keys) ? object.public_keys.map((e: any) => Any.fromJSON(e)) : []
+      publicKeys: Array.isArray(object?.publicKeys) ? object.publicKeys.map((e: any) => Any.fromJSON(e)) : []
     };
   },
   toJSON(message: LegacyAminoPubKey): JsonSafe<LegacyAminoPubKey> {
     const obj: any = {};
     message.threshold !== undefined && (obj.threshold = Math.round(message.threshold));
-    if (message.public_keys) {
-      obj.public_keys = message.public_keys.map(e => e ? Any.toJSON(e) : undefined);
+    if (message.publicKeys) {
+      obj.publicKeys = message.publicKeys.map(e => e ? Any.toJSON(e) : undefined);
     } else {
-      obj.public_keys = [];
+      obj.publicKeys = [];
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<LegacyAminoPubKey>): LegacyAminoPubKey {
+  fromPartial(object: Partial<LegacyAminoPubKey>): LegacyAminoPubKey {
     const message = createBaseLegacyAminoPubKey();
     message.threshold = object.threshold ?? 0;
-    message.public_keys = object.public_keys?.map(e => Any.fromPartial(e)) || [];
+    message.publicKeys = object.publicKeys?.map(e => Any.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: LegacyAminoPubKeyAmino): LegacyAminoPubKey {
@@ -112,16 +113,16 @@ export const LegacyAminoPubKey = {
     if (object.threshold !== undefined && object.threshold !== null) {
       message.threshold = object.threshold;
     }
-    message.public_keys = object.public_keys?.map(e => Any.fromAmino(e)) || [];
+    message.publicKeys = object.public_keys?.map(e => Any.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: LegacyAminoPubKey): LegacyAminoPubKeyAmino {
     const obj: any = {};
     obj.threshold = message.threshold === 0 ? undefined : message.threshold;
-    if (message.public_keys) {
-      obj.public_keys = message.public_keys.map(e => e ? Any.toAmino(e) : undefined);
+    if (message.publicKeys) {
+      obj.public_keys = message.publicKeys.map(e => e ? Any.toAmino(e) : undefined);
     } else {
-      obj.public_keys = message.public_keys;
+      obj.public_keys = message.publicKeys;
     }
     return obj;
   },

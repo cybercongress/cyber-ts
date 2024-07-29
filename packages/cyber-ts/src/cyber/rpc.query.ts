@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { connectComet, HttpEndpoint } from "@cosmjs/tendermint-rpc";
 import { QueryClient } from "@cosmjs/stargate";
 export const createRPCQueryClient = async ({

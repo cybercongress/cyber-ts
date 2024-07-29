@@ -1,7 +1,8 @@
+//@ts-nocheck
 import { Grant, GrantAmino, GrantSDKType } from "./authz";
 import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
+import { isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -14,7 +15,7 @@ export interface MsgGrant {
   grant: Grant;
 }
 export interface MsgGrantProtoMsg {
-  type_url: "/cosmos.authz.v1beta1.MsgGrant";
+  typeUrl: "/cosmos.authz.v1beta1.MsgGrant";
   value: Uint8Array;
 }
 /**
@@ -44,7 +45,7 @@ export interface MsgExecResponse {
   results: Uint8Array[];
 }
 export interface MsgExecResponseProtoMsg {
-  type_url: "/cosmos.authz.v1beta1.MsgExecResponse";
+  typeUrl: "/cosmos.authz.v1beta1.MsgExecResponse";
   value: Uint8Array;
 }
 /** MsgExecResponse defines the Msg/MsgExecResponse response type. */
@@ -74,7 +75,7 @@ export interface MsgExec {
   msgs: (Any)[] | Any[];
 }
 export interface MsgExecProtoMsg {
-  type_url: "/cosmos.authz.v1beta1.MsgExec";
+  typeUrl: "/cosmos.authz.v1beta1.MsgExec";
   value: Uint8Array;
 }
 export type MsgExecEncoded = Omit<MsgExec, "msgs"> & {
@@ -115,7 +116,7 @@ export interface MsgExecSDKType {
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
 export interface MsgGrantResponse {}
 export interface MsgGrantResponseProtoMsg {
-  type_url: "/cosmos.authz.v1beta1.MsgGrantResponse";
+  typeUrl: "/cosmos.authz.v1beta1.MsgGrantResponse";
   value: Uint8Array;
 }
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
@@ -133,10 +134,10 @@ export interface MsgGrantResponseSDKType {}
 export interface MsgRevoke {
   granter: string;
   grantee: string;
-  msg_type_url: string;
+  msgTypeUrl: string;
 }
 export interface MsgRevokeProtoMsg {
-  type_url: "/cosmos.authz.v1beta1.MsgRevoke";
+  typeUrl: "/cosmos.authz.v1beta1.MsgRevoke";
   value: Uint8Array;
 }
 /**
@@ -164,7 +165,7 @@ export interface MsgRevokeSDKType {
 /** MsgRevokeResponse defines the Msg/MsgRevokeResponse response type. */
 export interface MsgRevokeResponse {}
 export interface MsgRevokeResponseProtoMsg {
-  type_url: "/cosmos.authz.v1beta1.MsgRevokeResponse";
+  typeUrl: "/cosmos.authz.v1beta1.MsgRevokeResponse";
   value: Uint8Array;
 }
 /** MsgRevokeResponse defines the Msg/MsgRevokeResponse response type. */
@@ -243,7 +244,7 @@ export const MsgGrant = {
     message.grant !== undefined && (obj.grant = message.grant ? Grant.toJSON(message.grant) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgGrant>): MsgGrant {
+  fromPartial(object: Partial<MsgGrant>): MsgGrant {
     const message = createBaseMsgGrant();
     message.granter = object.granter ?? "";
     message.grantee = object.grantee ?? "";
@@ -348,7 +349,7 @@ export const MsgExecResponse = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgExecResponse>): MsgExecResponse {
+  fromPartial(object: Partial<MsgExecResponse>): MsgExecResponse {
     const message = createBaseMsgExecResponse();
     message.results = object.results?.map(e => e) || [];
     return message;
@@ -454,7 +455,7 @@ export const MsgExec = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgExec>): MsgExec {
+  fromPartial(object: Partial<MsgExec>): MsgExec {
     const message = createBaseMsgExec();
     message.grantee = object.grantee ?? "";
     message.msgs = object.msgs?.map(e => GlobalDecoderRegistry.fromPartial(e) as any) || [];
@@ -541,7 +542,7 @@ export const MsgGrantResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgGrantResponse>): MsgGrantResponse {
+  fromPartial(_: Partial<MsgGrantResponse>): MsgGrantResponse {
     const message = createBaseMsgGrantResponse();
     return message;
   },
@@ -581,14 +582,14 @@ function createBaseMsgRevoke(): MsgRevoke {
   return {
     granter: "",
     grantee: "",
-    msg_type_url: ""
+    msgTypeUrl: ""
   };
 }
 export const MsgRevoke = {
   typeUrl: "/cosmos.authz.v1beta1.MsgRevoke",
   aminoType: "cosmos-sdk/MsgRevoke",
   is(o: any): o is MsgRevoke {
-    return o && (o.$typeUrl === MsgRevoke.typeUrl || typeof o.granter === "string" && typeof o.grantee === "string" && typeof o.msg_type_url === "string");
+    return o && (o.$typeUrl === MsgRevoke.typeUrl || typeof o.granter === "string" && typeof o.grantee === "string" && typeof o.msgTypeUrl === "string");
   },
   isSDK(o: any): o is MsgRevokeSDKType {
     return o && (o.$typeUrl === MsgRevoke.typeUrl || typeof o.granter === "string" && typeof o.grantee === "string" && typeof o.msg_type_url === "string");
@@ -603,8 +604,8 @@ export const MsgRevoke = {
     if (message.grantee !== "") {
       writer.uint32(18).string(message.grantee);
     }
-    if (message.msg_type_url !== "") {
-      writer.uint32(26).string(message.msg_type_url);
+    if (message.msgTypeUrl !== "") {
+      writer.uint32(26).string(message.msgTypeUrl);
     }
     return writer;
   },
@@ -622,7 +623,7 @@ export const MsgRevoke = {
           message.grantee = reader.string();
           break;
         case 3:
-          message.msg_type_url = reader.string();
+          message.msgTypeUrl = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -635,21 +636,21 @@ export const MsgRevoke = {
     return {
       granter: isSet(object.granter) ? String(object.granter) : "",
       grantee: isSet(object.grantee) ? String(object.grantee) : "",
-      msg_type_url: isSet(object.msg_type_url) ? String(object.msg_type_url) : ""
+      msgTypeUrl: isSet(object.msgTypeUrl) ? String(object.msgTypeUrl) : ""
     };
   },
   toJSON(message: MsgRevoke): JsonSafe<MsgRevoke> {
     const obj: any = {};
     message.granter !== undefined && (obj.granter = message.granter);
     message.grantee !== undefined && (obj.grantee = message.grantee);
-    message.msg_type_url !== undefined && (obj.msg_type_url = message.msg_type_url);
+    message.msgTypeUrl !== undefined && (obj.msgTypeUrl = message.msgTypeUrl);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgRevoke>): MsgRevoke {
+  fromPartial(object: Partial<MsgRevoke>): MsgRevoke {
     const message = createBaseMsgRevoke();
     message.granter = object.granter ?? "";
     message.grantee = object.grantee ?? "";
-    message.msg_type_url = object.msg_type_url ?? "";
+    message.msgTypeUrl = object.msgTypeUrl ?? "";
     return message;
   },
   fromAmino(object: MsgRevokeAmino): MsgRevoke {
@@ -661,7 +662,7 @@ export const MsgRevoke = {
       message.grantee = object.grantee;
     }
     if (object.msg_type_url !== undefined && object.msg_type_url !== null) {
-      message.msg_type_url = object.msg_type_url;
+      message.msgTypeUrl = object.msg_type_url;
     }
     return message;
   },
@@ -669,7 +670,7 @@ export const MsgRevoke = {
     const obj: any = {};
     obj.granter = message.granter === "" ? undefined : message.granter;
     obj.grantee = message.grantee === "" ? undefined : message.grantee;
-    obj.msg_type_url = message.msg_type_url === "" ? undefined : message.msg_type_url;
+    obj.msg_type_url = message.msgTypeUrl === "" ? undefined : message.msgTypeUrl;
     return obj;
   },
   fromAminoMsg(object: MsgRevokeAminoMsg): MsgRevoke {
@@ -735,7 +736,7 @@ export const MsgRevokeResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgRevokeResponse>): MsgRevokeResponse {
+  fromPartial(_: Partial<MsgRevokeResponse>): MsgRevokeResponse {
     const message = createBaseMsgRevokeResponse();
     return message;
   },

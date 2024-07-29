@@ -1,13 +1,14 @@
+//@ts-nocheck
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface Params {
-  max_routes: number;
+  maxRoutes: number;
 }
 export interface ParamsProtoMsg {
-  type_url: "/cyber.grid.v1beta1.Params";
+  typeUrl: "/cyber.grid.v1beta1.Params";
   value: Uint8Array;
 }
 export interface ParamsAmino {
@@ -27,7 +28,7 @@ export interface Route {
   value: Coin[];
 }
 export interface RouteProtoMsg {
-  type_url: "/cyber.grid.v1beta1.Route";
+  typeUrl: "/cyber.grid.v1beta1.Route";
   value: Uint8Array;
 }
 export interface RouteAmino {
@@ -50,7 +51,7 @@ export interface Value {
   value: Coin[];
 }
 export interface ValueProtoMsg {
-  type_url: "/cyber.grid.v1beta1.Value";
+  typeUrl: "/cyber.grid.v1beta1.Value";
   value: Uint8Array;
 }
 export interface ValueAmino {
@@ -65,13 +66,13 @@ export interface ValueSDKType {
 }
 function createBaseParams(): Params {
   return {
-    max_routes: 0
+    maxRoutes: 0
   };
 }
 export const Params = {
   typeUrl: "/cyber.grid.v1beta1.Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.max_routes === "number");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.maxRoutes === "number");
   },
   isSDK(o: any): o is ParamsSDKType {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.max_routes === "number");
@@ -80,8 +81,8 @@ export const Params = {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.max_routes === "number");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.max_routes !== 0) {
-      writer.uint32(8).uint32(message.max_routes);
+    if (message.maxRoutes !== 0) {
+      writer.uint32(8).uint32(message.maxRoutes);
     }
     return writer;
   },
@@ -93,7 +94,7 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.max_routes = reader.uint32();
+          message.maxRoutes = reader.uint32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -104,29 +105,29 @@ export const Params = {
   },
   fromJSON(object: any): Params {
     return {
-      max_routes: isSet(object.max_routes) ? Number(object.max_routes) : 0
+      maxRoutes: isSet(object.maxRoutes) ? Number(object.maxRoutes) : 0
     };
   },
   toJSON(message: Params): JsonSafe<Params> {
     const obj: any = {};
-    message.max_routes !== undefined && (obj.max_routes = Math.round(message.max_routes));
+    message.maxRoutes !== undefined && (obj.maxRoutes = Math.round(message.maxRoutes));
     return obj;
   },
-  fromPartial(object: DeepPartial<Params>): Params {
+  fromPartial(object: Partial<Params>): Params {
     const message = createBaseParams();
-    message.max_routes = object.max_routes ?? 0;
+    message.maxRoutes = object.maxRoutes ?? 0;
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.max_routes !== undefined && object.max_routes !== null) {
-      message.max_routes = object.max_routes;
+      message.maxRoutes = object.max_routes;
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.max_routes = message.max_routes === 0 ? undefined : message.max_routes;
+    obj.max_routes = message.maxRoutes === 0 ? undefined : message.maxRoutes;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -226,7 +227,7 @@ export const Route = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<Route>): Route {
+  fromPartial(object: Partial<Route>): Route {
     const message = createBaseRoute();
     message.source = object.source ?? "";
     message.destination = object.destination ?? "";
@@ -330,7 +331,7 @@ export const Value = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<Value>): Value {
+  fromPartial(object: Partial<Value>): Value {
     const message = createBaseValue();
     message.value = object.value?.map(e => Coin.fromPartial(e)) || [];
     return message;

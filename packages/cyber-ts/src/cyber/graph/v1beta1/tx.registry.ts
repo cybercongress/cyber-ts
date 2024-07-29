@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
 import { MsgCyberlink } from "./tx";
 export const registry: ReadonlyArray<[string, GeneratedType]> = [["/cyber.graph.v1beta1.MsgCyberlink", MsgCyberlink]];

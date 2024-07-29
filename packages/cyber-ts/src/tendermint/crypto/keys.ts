@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { isSet, bytesFromBase64, base64FromBytes, DeepPartial } from "../../helpers";
+import { isSet, bytesFromBase64, base64FromBytes } from "../../helpers";
 import { JsonSafe } from "../../json-safe";
 import { GlobalDecoderRegistry } from "../../registry";
 /** PublicKey defines the keys available for use with Tendermint Validators */
@@ -8,7 +9,7 @@ export interface PublicKey {
   secp256k1?: Uint8Array;
 }
 export interface PublicKeyProtoMsg {
-  type_url: "/tendermint.crypto.PublicKey";
+  typeUrl: "/tendermint.crypto.PublicKey";
   value: Uint8Array;
 }
 /** PublicKey defines the keys available for use with Tendermint Validators */
@@ -83,7 +84,7 @@ export const PublicKey = {
     message.secp256k1 !== undefined && (obj.secp256k1 = message.secp256k1 !== undefined ? base64FromBytes(message.secp256k1) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<PublicKey>): PublicKey {
+  fromPartial(object: Partial<PublicKey>): PublicKey {
     const message = createBasePublicKey();
     message.ed25519 = object.ed25519 ?? undefined;
     message.secp256k1 = object.secp256k1 ?? undefined;

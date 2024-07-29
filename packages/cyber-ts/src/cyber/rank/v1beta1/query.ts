@@ -1,12 +1,13 @@
+//@ts-nocheck
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "./pagination";
 import { Params, ParamsAmino, ParamsSDKType, RankedParticle, RankedParticleAmino, RankedParticleSDKType } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { JsonSafe } from "../../../json-safe";
-import { DeepPartial, isSet } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { isSet } from "../../../helpers";
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryParamsRequest";
+  typeUrl: "/cyber.rank.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 export interface QueryParamsRequestAmino {}
@@ -19,7 +20,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryParamsResponse";
+  typeUrl: "/cyber.rank.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 export interface QueryParamsResponseAmino {
@@ -36,7 +37,7 @@ export interface QueryRankRequest {
   particle: string;
 }
 export interface QueryRankRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryRankRequest";
+  typeUrl: "/cyber.rank.v1beta1.QueryRankRequest";
   value: Uint8Array;
 }
 export interface QueryRankRequestAmino {
@@ -53,7 +54,7 @@ export interface QueryRankResponse {
   rank: bigint;
 }
 export interface QueryRankResponseProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryRankResponse";
+  typeUrl: "/cyber.rank.v1beta1.QueryRankResponse";
   value: Uint8Array;
 }
 export interface QueryRankResponseAmino {
@@ -71,7 +72,7 @@ export interface QuerySearchRequest {
   pagination?: PageRequest;
 }
 export interface QuerySearchRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QuerySearchRequest";
+  typeUrl: "/cyber.rank.v1beta1.QuerySearchRequest";
   value: Uint8Array;
 }
 export interface QuerySearchRequestAmino {
@@ -91,7 +92,7 @@ export interface QuerySearchResponse {
   pagination?: PageResponse;
 }
 export interface QuerySearchResponseProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QuerySearchResponse";
+  typeUrl: "/cyber.rank.v1beta1.QuerySearchResponse";
   value: Uint8Array;
 }
 export interface QuerySearchResponseAmino {
@@ -110,7 +111,7 @@ export interface QueryTopRequest {
   pagination?: PageRequest;
 }
 export interface QueryTopRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryTopRequest";
+  typeUrl: "/cyber.rank.v1beta1.QueryTopRequest";
   value: Uint8Array;
 }
 export interface QueryTopRequestAmino {
@@ -129,7 +130,7 @@ export interface QueryIsLinkExistRequest {
   address: string;
 }
 export interface QueryIsLinkExistRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryIsLinkExistRequest";
+  typeUrl: "/cyber.rank.v1beta1.QueryIsLinkExistRequest";
   value: Uint8Array;
 }
 export interface QueryIsLinkExistRequestAmino {
@@ -151,7 +152,7 @@ export interface QueryIsAnyLinkExistRequest {
   to: string;
 }
 export interface QueryIsAnyLinkExistRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryIsAnyLinkExistRequest";
+  typeUrl: "/cyber.rank.v1beta1.QueryIsAnyLinkExistRequest";
   value: Uint8Array;
 }
 export interface QueryIsAnyLinkExistRequestAmino {
@@ -170,7 +171,7 @@ export interface QueryLinkExistResponse {
   exist: boolean;
 }
 export interface QueryLinkExistResponseProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryLinkExistResponse";
+  typeUrl: "/cyber.rank.v1beta1.QueryLinkExistResponse";
   value: Uint8Array;
 }
 export interface QueryLinkExistResponseAmino {
@@ -187,7 +188,7 @@ export interface QueryNegentropyPartilceRequest {
   particle: string;
 }
 export interface QueryNegentropyPartilceRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryNegentropyPartilceRequest";
+  typeUrl: "/cyber.rank.v1beta1.QueryNegentropyPartilceRequest";
   value: Uint8Array;
 }
 export interface QueryNegentropyPartilceRequestAmino {
@@ -204,7 +205,7 @@ export interface QueryNegentropyParticleResponse {
   entropy: bigint;
 }
 export interface QueryNegentropyParticleResponseProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryNegentropyParticleResponse";
+  typeUrl: "/cyber.rank.v1beta1.QueryNegentropyParticleResponse";
   value: Uint8Array;
 }
 export interface QueryNegentropyParticleResponseAmino {
@@ -219,7 +220,7 @@ export interface QueryNegentropyParticleResponseSDKType {
 }
 export interface QueryNegentropyRequest {}
 export interface QueryNegentropyRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryNegentropyRequest";
+  typeUrl: "/cyber.rank.v1beta1.QueryNegentropyRequest";
   value: Uint8Array;
 }
 export interface QueryNegentropyRequestAmino {}
@@ -232,7 +233,7 @@ export interface QueryNegentropyResponse {
   negentropy: bigint;
 }
 export interface QueryNegentropyResponseProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryNegentropyResponse";
+  typeUrl: "/cyber.rank.v1beta1.QueryNegentropyResponse";
   value: Uint8Array;
 }
 export interface QueryNegentropyResponseAmino {
@@ -249,7 +250,7 @@ export interface QueryKarmaRequest {
   neuron: string;
 }
 export interface QueryKarmaRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryKarmaRequest";
+  typeUrl: "/cyber.rank.v1beta1.QueryKarmaRequest";
   value: Uint8Array;
 }
 export interface QueryKarmaRequestAmino {
@@ -266,7 +267,7 @@ export interface QueryKarmaResponse {
   karma: bigint;
 }
 export interface QueryKarmaResponseProtoMsg {
-  type_url: "/cyber.rank.v1beta1.QueryKarmaResponse";
+  typeUrl: "/cyber.rank.v1beta1.QueryKarmaResponse";
   value: Uint8Array;
 }
 export interface QueryKarmaResponseAmino {
@@ -317,7 +318,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -395,7 +396,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -478,7 +479,7 @@ export const QueryRankRequest = {
     message.particle !== undefined && (obj.particle = message.particle);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryRankRequest>): QueryRankRequest {
+  fromPartial(object: Partial<QueryRankRequest>): QueryRankRequest {
     const message = createBaseQueryRankRequest();
     message.particle = object.particle ?? "";
     return message;
@@ -561,7 +562,7 @@ export const QueryRankResponse = {
     message.rank !== undefined && (obj.rank = (message.rank || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryRankResponse>): QueryRankResponse {
+  fromPartial(object: Partial<QueryRankResponse>): QueryRankResponse {
     const message = createBaseQueryRankResponse();
     message.rank = object.rank !== undefined && object.rank !== null ? BigInt(object.rank.toString()) : BigInt(0);
     return message;
@@ -653,7 +654,7 @@ export const QuerySearchRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QuerySearchRequest>): QuerySearchRequest {
+  fromPartial(object: Partial<QuerySearchRequest>): QuerySearchRequest {
     const message = createBaseQuerySearchRequest();
     message.particle = object.particle ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
@@ -754,7 +755,7 @@ export const QuerySearchResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QuerySearchResponse>): QuerySearchResponse {
+  fromPartial(object: Partial<QuerySearchResponse>): QuerySearchResponse {
     const message = createBaseQuerySearchResponse();
     message.result = object.result?.map(e => RankedParticle.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -844,7 +845,7 @@ export const QueryTopRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryTopRequest>): QueryTopRequest {
+  fromPartial(object: Partial<QueryTopRequest>): QueryTopRequest {
     const message = createBaseQueryTopRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -945,7 +946,7 @@ export const QueryIsLinkExistRequest = {
     message.address !== undefined && (obj.address = message.address);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryIsLinkExistRequest>): QueryIsLinkExistRequest {
+  fromPartial(object: Partial<QueryIsLinkExistRequest>): QueryIsLinkExistRequest {
     const message = createBaseQueryIsLinkExistRequest();
     message.from = object.from ?? "";
     message.to = object.to ?? "";
@@ -1047,7 +1048,7 @@ export const QueryIsAnyLinkExistRequest = {
     message.to !== undefined && (obj.to = message.to);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryIsAnyLinkExistRequest>): QueryIsAnyLinkExistRequest {
+  fromPartial(object: Partial<QueryIsAnyLinkExistRequest>): QueryIsAnyLinkExistRequest {
     const message = createBaseQueryIsAnyLinkExistRequest();
     message.from = object.from ?? "";
     message.to = object.to ?? "";
@@ -1135,7 +1136,7 @@ export const QueryLinkExistResponse = {
     message.exist !== undefined && (obj.exist = message.exist);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLinkExistResponse>): QueryLinkExistResponse {
+  fromPartial(object: Partial<QueryLinkExistResponse>): QueryLinkExistResponse {
     const message = createBaseQueryLinkExistResponse();
     message.exist = object.exist ?? false;
     return message;
@@ -1218,7 +1219,7 @@ export const QueryNegentropyPartilceRequest = {
     message.particle !== undefined && (obj.particle = message.particle);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryNegentropyPartilceRequest>): QueryNegentropyPartilceRequest {
+  fromPartial(object: Partial<QueryNegentropyPartilceRequest>): QueryNegentropyPartilceRequest {
     const message = createBaseQueryNegentropyPartilceRequest();
     message.particle = object.particle ?? "";
     return message;
@@ -1301,7 +1302,7 @@ export const QueryNegentropyParticleResponse = {
     message.entropy !== undefined && (obj.entropy = (message.entropy || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryNegentropyParticleResponse>): QueryNegentropyParticleResponse {
+  fromPartial(object: Partial<QueryNegentropyParticleResponse>): QueryNegentropyParticleResponse {
     const message = createBaseQueryNegentropyParticleResponse();
     message.entropy = object.entropy !== undefined && object.entropy !== null ? BigInt(object.entropy.toString()) : BigInt(0);
     return message;
@@ -1373,7 +1374,7 @@ export const QueryNegentropyRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryNegentropyRequest>): QueryNegentropyRequest {
+  fromPartial(_: Partial<QueryNegentropyRequest>): QueryNegentropyRequest {
     const message = createBaseQueryNegentropyRequest();
     return message;
   },
@@ -1451,7 +1452,7 @@ export const QueryNegentropyResponse = {
     message.negentropy !== undefined && (obj.negentropy = (message.negentropy || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryNegentropyResponse>): QueryNegentropyResponse {
+  fromPartial(object: Partial<QueryNegentropyResponse>): QueryNegentropyResponse {
     const message = createBaseQueryNegentropyResponse();
     message.negentropy = object.negentropy !== undefined && object.negentropy !== null ? BigInt(object.negentropy.toString()) : BigInt(0);
     return message;
@@ -1534,7 +1535,7 @@ export const QueryKarmaRequest = {
     message.neuron !== undefined && (obj.neuron = message.neuron);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryKarmaRequest>): QueryKarmaRequest {
+  fromPartial(object: Partial<QueryKarmaRequest>): QueryKarmaRequest {
     const message = createBaseQueryKarmaRequest();
     message.neuron = object.neuron ?? "";
     return message;
@@ -1617,7 +1618,7 @@ export const QueryKarmaResponse = {
     message.karma !== undefined && (obj.karma = (message.karma || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryKarmaResponse>): QueryKarmaResponse {
+  fromPartial(object: Partial<QueryKarmaResponse>): QueryKarmaResponse {
     const message = createBaseQueryKarmaResponse();
     message.karma = object.karma !== undefined && object.karma !== null ? BigInt(object.karma.toString()) : BigInt(0);
     return message;

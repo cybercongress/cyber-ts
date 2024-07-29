@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { setPaginationParams } from "../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
 import { QueryProposalRequest, QueryProposalResponseSDKType, QueryProposalsRequest, QueryProposalsResponseSDKType, QueryVoteRequest, QueryVoteResponseSDKType, QueryVotesRequest, QueryVotesResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryDepositRequest, QueryDepositResponseSDKType, QueryDepositsRequest, QueryDepositsResponseSDKType, QueryTallyResultRequest, QueryTallyResultResponseSDKType } from "./query";
@@ -20,7 +21,7 @@ export class LCDQueryClient {
   }
   /* Proposal queries proposal details based on ProposalID. */
   async proposal(params: QueryProposalRequest): Promise<QueryProposalResponseSDKType> {
-    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposal_id}`;
+    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposalId}`;
     return await this.req.get<QueryProposalResponseSDKType>(endpoint);
   }
   /* Proposals queries all proposals based on given status. */
@@ -28,8 +29,8 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.proposal_status !== "undefined") {
-      options.params.proposal_status = params.proposal_status;
+    if (typeof params?.proposalStatus !== "undefined") {
+      options.params.proposal_status = params.proposalStatus;
     }
     if (typeof params?.voter !== "undefined") {
       options.params.voter = params.voter;
@@ -45,7 +46,7 @@ export class LCDQueryClient {
   }
   /* Vote queries voted information based on proposalID, voterAddr. */
   async vote(params: QueryVoteRequest): Promise<QueryVoteResponseSDKType> {
-    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposal_id}/votes/${params.voter}`;
+    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposalId}/votes/${params.voter}`;
     return await this.req.get<QueryVoteResponseSDKType>(endpoint);
   }
   /* Votes queries votes of a given proposal. */
@@ -56,17 +57,17 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposal_id}/votes`;
+    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposalId}/votes`;
     return await this.req.get<QueryVotesResponseSDKType>(endpoint, options);
   }
   /* Params queries all parameters of the gov module. */
   async params(params: QueryParamsRequest): Promise<QueryParamsResponseSDKType> {
-    const endpoint = `cosmos/gov/v1beta1/params/${params.params_type}`;
+    const endpoint = `cosmos/gov/v1beta1/params/${params.paramsType}`;
     return await this.req.get<QueryParamsResponseSDKType>(endpoint);
   }
   /* Deposit queries single deposit information based proposalID, depositAddr. */
   async deposit(params: QueryDepositRequest): Promise<QueryDepositResponseSDKType> {
-    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposal_id}/deposits/${params.depositor}`;
+    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposalId}/deposits/${params.depositor}`;
     return await this.req.get<QueryDepositResponseSDKType>(endpoint);
   }
   /* Deposits queries all deposits of a single proposal. */
@@ -77,12 +78,12 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposal_id}/deposits`;
+    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposalId}/deposits`;
     return await this.req.get<QueryDepositsResponseSDKType>(endpoint, options);
   }
   /* TallyResult queries the tally of a proposal vote. */
   async tallyResult(params: QueryTallyResultRequest): Promise<QueryTallyResultResponseSDKType> {
-    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposal_id}/tally`;
+    const endpoint = `cosmos/gov/v1beta1/proposals/${params.proposalId}/tally`;
     return await this.req.get<QueryTallyResultResponseSDKType>(endpoint);
   }
 }

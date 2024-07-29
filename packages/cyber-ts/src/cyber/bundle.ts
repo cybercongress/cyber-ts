@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as _62 from "./bandwidth/v1beta1/genesis";
 import * as _63 from "./bandwidth/v1beta1/query";
 import * as _64 from "./bandwidth/v1beta1/tx";

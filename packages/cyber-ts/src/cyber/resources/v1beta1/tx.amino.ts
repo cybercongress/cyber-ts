@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { MsgInvestmint, MsgUpdateParams } from "./tx";
 export const AminoConverter = {
   "/cyber.resources.v1beta1.MsgInvestmint": {

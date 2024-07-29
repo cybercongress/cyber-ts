@@ -1,9 +1,10 @@
+//@ts-nocheck
 import { CompactBitArray, CompactBitArrayAmino, CompactBitArraySDKType } from "../../../crypto/multisig/v1beta1/multisig";
 import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { JsonSafe } from "../../../../json-safe";
-import { DeepPartial, isSet, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { isSet, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 /**
  * SignMode represents a signing mode with its own security guarantees.
  * 
@@ -95,7 +96,7 @@ export interface SignatureDescriptors {
   signatures: SignatureDescriptor[];
 }
 export interface SignatureDescriptorsProtoMsg {
-  type_url: "/cosmos.tx.signing.v1beta1.SignatureDescriptors";
+  typeUrl: "/cosmos.tx.signing.v1beta1.SignatureDescriptors";
   value: Uint8Array;
 }
 /** SignatureDescriptors wraps multiple SignatureDescriptor's. */
@@ -119,7 +120,7 @@ export interface SignatureDescriptorsSDKType {
  */
 export interface SignatureDescriptor {
   /** public_key is the public key of the signer */
-  public_key?: Any;
+  publicKey?: Any;
   data?: SignatureDescriptor_Data;
   /**
    * sequence is the sequence of the account, which describes the
@@ -129,7 +130,7 @@ export interface SignatureDescriptor {
   sequence: bigint;
 }
 export interface SignatureDescriptorProtoMsg {
-  type_url: "/cosmos.tx.signing.v1beta1.SignatureDescriptor";
+  typeUrl: "/cosmos.tx.signing.v1beta1.SignatureDescriptor";
   value: Uint8Array;
 }
 /**
@@ -172,7 +173,7 @@ export interface SignatureDescriptor_Data {
   multi?: SignatureDescriptor_Data_Multi;
 }
 export interface SignatureDescriptor_DataProtoMsg {
-  type_url: "/cosmos.tx.signing.v1beta1.Data";
+  typeUrl: "/cosmos.tx.signing.v1beta1.Data";
   value: Uint8Array;
 }
 /** Data represents signature data */
@@ -199,7 +200,7 @@ export interface SignatureDescriptor_Data_Single {
   signature: Uint8Array;
 }
 export interface SignatureDescriptor_Data_SingleProtoMsg {
-  type_url: "/cosmos.tx.signing.v1beta1.Single";
+  typeUrl: "/cosmos.tx.signing.v1beta1.Single";
   value: Uint8Array;
 }
 /** Single is the signature data for a single signer */
@@ -226,7 +227,7 @@ export interface SignatureDescriptor_Data_Multi {
   signatures: SignatureDescriptor_Data[];
 }
 export interface SignatureDescriptor_Data_MultiProtoMsg {
-  type_url: "/cosmos.tx.signing.v1beta1.Multi";
+  typeUrl: "/cosmos.tx.signing.v1beta1.Multi";
   value: Uint8Array;
 }
 /** Multi is the signature data for a multisig public key */
@@ -299,7 +300,7 @@ export const SignatureDescriptors = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<SignatureDescriptors>): SignatureDescriptors {
+  fromPartial(object: Partial<SignatureDescriptors>): SignatureDescriptors {
     const message = createBaseSignatureDescriptors();
     message.signatures = object.signatures?.map(e => SignatureDescriptor.fromPartial(e)) || [];
     return message;
@@ -344,7 +345,7 @@ GlobalDecoderRegistry.register(SignatureDescriptors.typeUrl, SignatureDescriptor
 GlobalDecoderRegistry.registerAminoProtoMapping(SignatureDescriptors.aminoType, SignatureDescriptors.typeUrl);
 function createBaseSignatureDescriptor(): SignatureDescriptor {
   return {
-    public_key: undefined,
+    publicKey: undefined,
     data: undefined,
     sequence: BigInt(0)
   };
@@ -362,8 +363,8 @@ export const SignatureDescriptor = {
     return o && (o.$typeUrl === SignatureDescriptor.typeUrl || typeof o.sequence === "bigint");
   },
   encode(message: SignatureDescriptor, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.public_key !== undefined) {
-      Any.encode(message.public_key, writer.uint32(10).fork()).ldelim();
+    if (message.publicKey !== undefined) {
+      Any.encode(message.publicKey, writer.uint32(10).fork()).ldelim();
     }
     if (message.data !== undefined) {
       SignatureDescriptor_Data.encode(message.data, writer.uint32(18).fork()).ldelim();
@@ -381,7 +382,7 @@ export const SignatureDescriptor = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.public_key = Any.decode(reader, reader.uint32());
+          message.publicKey = Any.decode(reader, reader.uint32());
           break;
         case 2:
           message.data = SignatureDescriptor_Data.decode(reader, reader.uint32());
@@ -398,21 +399,21 @@ export const SignatureDescriptor = {
   },
   fromJSON(object: any): SignatureDescriptor {
     return {
-      public_key: isSet(object.public_key) ? Any.fromJSON(object.public_key) : undefined,
+      publicKey: isSet(object.publicKey) ? Any.fromJSON(object.publicKey) : undefined,
       data: isSet(object.data) ? SignatureDescriptor_Data.fromJSON(object.data) : undefined,
       sequence: isSet(object.sequence) ? BigInt(object.sequence.toString()) : BigInt(0)
     };
   },
   toJSON(message: SignatureDescriptor): JsonSafe<SignatureDescriptor> {
     const obj: any = {};
-    message.public_key !== undefined && (obj.public_key = message.public_key ? Any.toJSON(message.public_key) : undefined);
+    message.publicKey !== undefined && (obj.publicKey = message.publicKey ? Any.toJSON(message.publicKey) : undefined);
     message.data !== undefined && (obj.data = message.data ? SignatureDescriptor_Data.toJSON(message.data) : undefined);
     message.sequence !== undefined && (obj.sequence = (message.sequence || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<SignatureDescriptor>): SignatureDescriptor {
+  fromPartial(object: Partial<SignatureDescriptor>): SignatureDescriptor {
     const message = createBaseSignatureDescriptor();
-    message.public_key = object.public_key !== undefined && object.public_key !== null ? Any.fromPartial(object.public_key) : undefined;
+    message.publicKey = object.publicKey !== undefined && object.publicKey !== null ? Any.fromPartial(object.publicKey) : undefined;
     message.data = object.data !== undefined && object.data !== null ? SignatureDescriptor_Data.fromPartial(object.data) : undefined;
     message.sequence = object.sequence !== undefined && object.sequence !== null ? BigInt(object.sequence.toString()) : BigInt(0);
     return message;
@@ -420,7 +421,7 @@ export const SignatureDescriptor = {
   fromAmino(object: SignatureDescriptorAmino): SignatureDescriptor {
     const message = createBaseSignatureDescriptor();
     if (object.public_key !== undefined && object.public_key !== null) {
-      message.public_key = Any.fromAmino(object.public_key);
+      message.publicKey = Any.fromAmino(object.public_key);
     }
     if (object.data !== undefined && object.data !== null) {
       message.data = SignatureDescriptor_Data.fromAmino(object.data);
@@ -432,7 +433,7 @@ export const SignatureDescriptor = {
   },
   toAmino(message: SignatureDescriptor): SignatureDescriptorAmino {
     const obj: any = {};
-    obj.public_key = message.public_key ? Any.toAmino(message.public_key) : undefined;
+    obj.public_key = message.publicKey ? Any.toAmino(message.publicKey) : undefined;
     obj.data = message.data ? SignatureDescriptor_Data.toAmino(message.data) : undefined;
     obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : undefined;
     return obj;
@@ -520,7 +521,7 @@ export const SignatureDescriptor_Data = {
     message.multi !== undefined && (obj.multi = message.multi ? SignatureDescriptor_Data_Multi.toJSON(message.multi) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<SignatureDescriptor_Data>): SignatureDescriptor_Data {
+  fromPartial(object: Partial<SignatureDescriptor_Data>): SignatureDescriptor_Data {
     const message = createBaseSignatureDescriptor_Data();
     message.single = object.single !== undefined && object.single !== null ? SignatureDescriptor_Data_Single.fromPartial(object.single) : undefined;
     message.multi = object.multi !== undefined && object.multi !== null ? SignatureDescriptor_Data_Multi.fromPartial(object.multi) : undefined;
@@ -625,7 +626,7 @@ export const SignatureDescriptor_Data_Single = {
     message.signature !== undefined && (obj.signature = base64FromBytes(message.signature !== undefined ? message.signature : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<SignatureDescriptor_Data_Single>): SignatureDescriptor_Data_Single {
+  fromPartial(object: Partial<SignatureDescriptor_Data_Single>): SignatureDescriptor_Data_Single {
     const message = createBaseSignatureDescriptor_Data_Single();
     message.mode = object.mode ?? 0;
     message.signature = object.signature ?? new Uint8Array();
@@ -734,7 +735,7 @@ export const SignatureDescriptor_Data_Multi = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<SignatureDescriptor_Data_Multi>): SignatureDescriptor_Data_Multi {
+  fromPartial(object: Partial<SignatureDescriptor_Data_Multi>): SignatureDescriptor_Data_Multi {
     const message = createBaseSignatureDescriptor_Data_Multi();
     message.bitarray = object.bitarray !== undefined && object.bitarray !== null ? CompactBitArray.fromPartial(object.bitarray) : undefined;
     message.signatures = object.signatures?.map(e => SignatureDescriptor_Data.fromPartial(e)) || [];

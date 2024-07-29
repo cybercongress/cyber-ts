@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { Params, ParamsAmino, ParamsSDKType } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface MsgUpdateParams {
@@ -8,7 +9,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  type_url: "/cyber.rank.v1beta1.MsgUpdateParams";
+  typeUrl: "/cyber.rank.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 export interface MsgUpdateParamsAmino {
@@ -25,7 +26,7 @@ export interface MsgUpdateParamsSDKType {
 }
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  type_url: "/cyber.rank.v1beta1.MsgUpdateParamsResponse";
+  typeUrl: "/cyber.rank.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 export interface MsgUpdateParamsResponseAmino {}
@@ -92,7 +93,7 @@ export const MsgUpdateParams = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgUpdateParams>): MsgUpdateParams {
+  fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? "";
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
@@ -169,7 +170,7 @@ export const MsgUpdateParamsResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
+  fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
   },

@@ -1,8 +1,9 @@
+//@ts-nocheck
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import { Params, ParamsAmino, ParamsSDKType, Metadata, MetadataAmino, MetadataSDKType } from "./bank";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** QueryBalanceRequest is the request type for the Query/Balance RPC method. */
@@ -13,7 +14,7 @@ export interface QueryBalanceRequest {
   denom: string;
 }
 export interface QueryBalanceRequestProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryBalanceRequest";
+  typeUrl: "/cosmos.bank.v1beta1.QueryBalanceRequest";
   value: Uint8Array;
 }
 /** QueryBalanceRequest is the request type for the Query/Balance RPC method. */
@@ -38,7 +39,7 @@ export interface QueryBalanceResponse {
   balance?: Coin;
 }
 export interface QueryBalanceResponseProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryBalanceResponse";
+  typeUrl: "/cosmos.bank.v1beta1.QueryBalanceResponse";
   value: Uint8Array;
 }
 /** QueryBalanceResponse is the response type for the Query/Balance RPC method. */
@@ -62,7 +63,7 @@ export interface QueryAllBalancesRequest {
   pagination?: PageRequest;
 }
 export interface QueryAllBalancesRequestProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryAllBalancesRequest";
+  typeUrl: "/cosmos.bank.v1beta1.QueryAllBalancesRequest";
   value: Uint8Array;
 }
 /** QueryBalanceRequest is the request type for the Query/AllBalances RPC method. */
@@ -92,7 +93,7 @@ export interface QueryAllBalancesResponse {
   pagination?: PageResponse;
 }
 export interface QueryAllBalancesResponseProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryAllBalancesResponse";
+  typeUrl: "/cosmos.bank.v1beta1.QueryAllBalancesResponse";
   value: Uint8Array;
 }
 /**
@@ -128,7 +129,7 @@ export interface QuerySpendableBalancesRequest {
   pagination?: PageRequest;
 }
 export interface QuerySpendableBalancesRequestProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QuerySpendableBalancesRequest";
+  typeUrl: "/cosmos.bank.v1beta1.QuerySpendableBalancesRequest";
   value: Uint8Array;
 }
 /**
@@ -164,7 +165,7 @@ export interface QuerySpendableBalancesResponse {
   pagination?: PageResponse;
 }
 export interface QuerySpendableBalancesResponseProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QuerySpendableBalancesResponse";
+  typeUrl: "/cosmos.bank.v1beta1.QuerySpendableBalancesResponse";
   value: Uint8Array;
 }
 /**
@@ -202,7 +203,7 @@ export interface QueryTotalSupplyRequest {
   pagination?: PageRequest;
 }
 export interface QueryTotalSupplyRequestProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryTotalSupplyRequest";
+  typeUrl: "/cosmos.bank.v1beta1.QueryTotalSupplyRequest";
   value: Uint8Array;
 }
 /**
@@ -243,7 +244,7 @@ export interface QueryTotalSupplyResponse {
   pagination?: PageResponse;
 }
 export interface QueryTotalSupplyResponseProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryTotalSupplyResponse";
+  typeUrl: "/cosmos.bank.v1beta1.QueryTotalSupplyResponse";
   value: Uint8Array;
 }
 /**
@@ -278,7 +279,7 @@ export interface QuerySupplyOfRequest {
   denom: string;
 }
 export interface QuerySupplyOfRequestProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QuerySupplyOfRequest";
+  typeUrl: "/cosmos.bank.v1beta1.QuerySupplyOfRequest";
   value: Uint8Array;
 }
 /** QuerySupplyOfRequest is the request type for the Query/SupplyOf RPC method. */
@@ -300,7 +301,7 @@ export interface QuerySupplyOfResponse {
   amount: Coin;
 }
 export interface QuerySupplyOfResponseProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QuerySupplyOfResponse";
+  typeUrl: "/cosmos.bank.v1beta1.QuerySupplyOfResponse";
   value: Uint8Array;
 }
 /** QuerySupplyOfResponse is the response type for the Query/SupplyOf RPC method. */
@@ -319,7 +320,7 @@ export interface QuerySupplyOfResponseSDKType {
 /** QueryParamsRequest defines the request type for querying x/bank parameters. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryParamsRequest";
+  typeUrl: "/cosmos.bank.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest defines the request type for querying x/bank parameters. */
@@ -335,7 +336,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryParamsResponse";
+  typeUrl: "/cosmos.bank.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse defines the response type for querying x/bank parameters. */
@@ -356,7 +357,7 @@ export interface QueryDenomsMetadataRequest {
   pagination?: PageRequest;
 }
 export interface QueryDenomsMetadataRequestProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryDenomsMetadataRequest";
+  typeUrl: "/cosmos.bank.v1beta1.QueryDenomsMetadataRequest";
   value: Uint8Array;
 }
 /** QueryDenomsMetadataRequest is the request type for the Query/DenomsMetadata RPC method. */
@@ -383,7 +384,7 @@ export interface QueryDenomsMetadataResponse {
   pagination?: PageResponse;
 }
 export interface QueryDenomsMetadataResponseProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryDenomsMetadataResponse";
+  typeUrl: "/cosmos.bank.v1beta1.QueryDenomsMetadataResponse";
   value: Uint8Array;
 }
 /**
@@ -414,7 +415,7 @@ export interface QueryDenomMetadataRequest {
   denom: string;
 }
 export interface QueryDenomMetadataRequestProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryDenomMetadataRequest";
+  typeUrl: "/cosmos.bank.v1beta1.QueryDenomMetadataRequest";
   value: Uint8Array;
 }
 /** QueryDenomMetadataRequest is the request type for the Query/DenomMetadata RPC method. */
@@ -439,7 +440,7 @@ export interface QueryDenomMetadataResponse {
   metadata: Metadata;
 }
 export interface QueryDenomMetadataResponseProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryDenomMetadataResponse";
+  typeUrl: "/cosmos.bank.v1beta1.QueryDenomMetadataResponse";
   value: Uint8Array;
 }
 /**
@@ -473,7 +474,7 @@ export interface QueryDenomOwnersRequest {
   pagination?: PageRequest;
 }
 export interface QueryDenomOwnersRequestProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryDenomOwnersRequest";
+  typeUrl: "/cosmos.bank.v1beta1.QueryDenomOwnersRequest";
   value: Uint8Array;
 }
 /**
@@ -512,7 +513,7 @@ export interface DenomOwner {
   balance: Coin;
 }
 export interface DenomOwnerProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.DenomOwner";
+  typeUrl: "/cosmos.bank.v1beta1.DenomOwner";
   value: Uint8Array;
 }
 /**
@@ -541,12 +542,12 @@ export interface DenomOwnerSDKType {
 }
 /** QueryDenomOwnersResponse defines the RPC response of a DenomOwners RPC query. */
 export interface QueryDenomOwnersResponse {
-  denom_owners: DenomOwner[];
+  denomOwners: DenomOwner[];
   /** pagination defines the pagination in the response. */
   pagination?: PageResponse;
 }
 export interface QueryDenomOwnersResponseProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.QueryDenomOwnersResponse";
+  typeUrl: "/cosmos.bank.v1beta1.QueryDenomOwnersResponse";
   value: Uint8Array;
 }
 /** QueryDenomOwnersResponse defines the RPC response of a DenomOwners RPC query. */
@@ -623,7 +624,7 @@ export const QueryBalanceRequest = {
     message.denom !== undefined && (obj.denom = message.denom);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryBalanceRequest>): QueryBalanceRequest {
+  fromPartial(object: Partial<QueryBalanceRequest>): QueryBalanceRequest {
     const message = createBaseQueryBalanceRequest();
     message.address = object.address ?? "";
     message.denom = object.denom ?? "";
@@ -719,7 +720,7 @@ export const QueryBalanceResponse = {
     message.balance !== undefined && (obj.balance = message.balance ? Coin.toJSON(message.balance) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryBalanceResponse>): QueryBalanceResponse {
+  fromPartial(object: Partial<QueryBalanceResponse>): QueryBalanceResponse {
     const message = createBaseQueryBalanceResponse();
     message.balance = object.balance !== undefined && object.balance !== null ? Coin.fromPartial(object.balance) : undefined;
     return message;
@@ -819,7 +820,7 @@ export const QueryAllBalancesRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryAllBalancesRequest>): QueryAllBalancesRequest {
+  fromPartial(object: Partial<QueryAllBalancesRequest>): QueryAllBalancesRequest {
     const message = createBaseQueryAllBalancesRequest();
     message.address = object.address ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
@@ -928,7 +929,7 @@ export const QueryAllBalancesResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryAllBalancesResponse>): QueryAllBalancesResponse {
+  fromPartial(object: Partial<QueryAllBalancesResponse>): QueryAllBalancesResponse {
     const message = createBaseQueryAllBalancesResponse();
     message.balances = object.balances?.map(e => Coin.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -1035,7 +1036,7 @@ export const QuerySpendableBalancesRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QuerySpendableBalancesRequest>): QuerySpendableBalancesRequest {
+  fromPartial(object: Partial<QuerySpendableBalancesRequest>): QuerySpendableBalancesRequest {
     const message = createBaseQuerySpendableBalancesRequest();
     message.address = object.address ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
@@ -1144,7 +1145,7 @@ export const QuerySpendableBalancesResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QuerySpendableBalancesResponse>): QuerySpendableBalancesResponse {
+  fromPartial(object: Partial<QuerySpendableBalancesResponse>): QuerySpendableBalancesResponse {
     const message = createBaseQuerySpendableBalancesResponse();
     message.balances = object.balances?.map(e => Coin.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -1242,7 +1243,7 @@ export const QueryTotalSupplyRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryTotalSupplyRequest>): QueryTotalSupplyRequest {
+  fromPartial(object: Partial<QueryTotalSupplyRequest>): QueryTotalSupplyRequest {
     const message = createBaseQueryTotalSupplyRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -1346,7 +1347,7 @@ export const QueryTotalSupplyResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryTotalSupplyResponse>): QueryTotalSupplyResponse {
+  fromPartial(object: Partial<QueryTotalSupplyResponse>): QueryTotalSupplyResponse {
     const message = createBaseQueryTotalSupplyResponse();
     message.supply = object.supply?.map(e => Coin.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -1444,7 +1445,7 @@ export const QuerySupplyOfRequest = {
     message.denom !== undefined && (obj.denom = message.denom);
     return obj;
   },
-  fromPartial(object: DeepPartial<QuerySupplyOfRequest>): QuerySupplyOfRequest {
+  fromPartial(object: Partial<QuerySupplyOfRequest>): QuerySupplyOfRequest {
     const message = createBaseQuerySupplyOfRequest();
     message.denom = object.denom ?? "";
     return message;
@@ -1535,7 +1536,7 @@ export const QuerySupplyOfResponse = {
     message.amount !== undefined && (obj.amount = message.amount ? Coin.toJSON(message.amount) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QuerySupplyOfResponse>): QuerySupplyOfResponse {
+  fromPartial(object: Partial<QuerySupplyOfResponse>): QuerySupplyOfResponse {
     const message = createBaseQuerySupplyOfResponse();
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     return message;
@@ -1615,7 +1616,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -1701,7 +1702,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -1792,7 +1793,7 @@ export const QueryDenomsMetadataRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryDenomsMetadataRequest>): QueryDenomsMetadataRequest {
+  fromPartial(object: Partial<QueryDenomsMetadataRequest>): QueryDenomsMetadataRequest {
     const message = createBaseQueryDenomsMetadataRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -1896,7 +1897,7 @@ export const QueryDenomsMetadataResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryDenomsMetadataResponse>): QueryDenomsMetadataResponse {
+  fromPartial(object: Partial<QueryDenomsMetadataResponse>): QueryDenomsMetadataResponse {
     const message = createBaseQueryDenomsMetadataResponse();
     message.metadatas = object.metadatas?.map(e => Metadata.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -1994,7 +1995,7 @@ export const QueryDenomMetadataRequest = {
     message.denom !== undefined && (obj.denom = message.denom);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryDenomMetadataRequest>): QueryDenomMetadataRequest {
+  fromPartial(object: Partial<QueryDenomMetadataRequest>): QueryDenomMetadataRequest {
     const message = createBaseQueryDenomMetadataRequest();
     message.denom = object.denom ?? "";
     return message;
@@ -2085,7 +2086,7 @@ export const QueryDenomMetadataResponse = {
     message.metadata !== undefined && (obj.metadata = message.metadata ? Metadata.toJSON(message.metadata) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryDenomMetadataResponse>): QueryDenomMetadataResponse {
+  fromPartial(object: Partial<QueryDenomMetadataResponse>): QueryDenomMetadataResponse {
     const message = createBaseQueryDenomMetadataResponse();
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
     return message;
@@ -2185,7 +2186,7 @@ export const QueryDenomOwnersRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryDenomOwnersRequest>): QueryDenomOwnersRequest {
+  fromPartial(object: Partial<QueryDenomOwnersRequest>): QueryDenomOwnersRequest {
     const message = createBaseQueryDenomOwnersRequest();
     message.denom = object.denom ?? "";
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
@@ -2290,7 +2291,7 @@ export const DenomOwner = {
     message.balance !== undefined && (obj.balance = message.balance ? Coin.toJSON(message.balance) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<DenomOwner>): DenomOwner {
+  fromPartial(object: Partial<DenomOwner>): DenomOwner {
     const message = createBaseDenomOwner();
     message.address = object.address ?? "";
     message.balance = object.balance !== undefined && object.balance !== null ? Coin.fromPartial(object.balance) : undefined;
@@ -2338,7 +2339,7 @@ GlobalDecoderRegistry.register(DenomOwner.typeUrl, DenomOwner);
 GlobalDecoderRegistry.registerAminoProtoMapping(DenomOwner.aminoType, DenomOwner.typeUrl);
 function createBaseQueryDenomOwnersResponse(): QueryDenomOwnersResponse {
   return {
-    denom_owners: [],
+    denomOwners: [],
     pagination: undefined
   };
 }
@@ -2346,7 +2347,7 @@ export const QueryDenomOwnersResponse = {
   typeUrl: "/cosmos.bank.v1beta1.QueryDenomOwnersResponse",
   aminoType: "cosmos-sdk/QueryDenomOwnersResponse",
   is(o: any): o is QueryDenomOwnersResponse {
-    return o && (o.$typeUrl === QueryDenomOwnersResponse.typeUrl || Array.isArray(o.denom_owners) && (!o.denom_owners.length || DenomOwner.is(o.denom_owners[0])));
+    return o && (o.$typeUrl === QueryDenomOwnersResponse.typeUrl || Array.isArray(o.denomOwners) && (!o.denomOwners.length || DenomOwner.is(o.denomOwners[0])));
   },
   isSDK(o: any): o is QueryDenomOwnersResponseSDKType {
     return o && (o.$typeUrl === QueryDenomOwnersResponse.typeUrl || Array.isArray(o.denom_owners) && (!o.denom_owners.length || DenomOwner.isSDK(o.denom_owners[0])));
@@ -2355,7 +2356,7 @@ export const QueryDenomOwnersResponse = {
     return o && (o.$typeUrl === QueryDenomOwnersResponse.typeUrl || Array.isArray(o.denom_owners) && (!o.denom_owners.length || DenomOwner.isAmino(o.denom_owners[0])));
   },
   encode(message: QueryDenomOwnersResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.denom_owners) {
+    for (const v of message.denomOwners) {
       DenomOwner.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
@@ -2371,7 +2372,7 @@ export const QueryDenomOwnersResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.denom_owners.push(DenomOwner.decode(reader, reader.uint32()));
+          message.denomOwners.push(DenomOwner.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -2385,29 +2386,29 @@ export const QueryDenomOwnersResponse = {
   },
   fromJSON(object: any): QueryDenomOwnersResponse {
     return {
-      denom_owners: Array.isArray(object?.denom_owners) ? object.denom_owners.map((e: any) => DenomOwner.fromJSON(e)) : [],
+      denomOwners: Array.isArray(object?.denomOwners) ? object.denomOwners.map((e: any) => DenomOwner.fromJSON(e)) : [],
       pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined
     };
   },
   toJSON(message: QueryDenomOwnersResponse): JsonSafe<QueryDenomOwnersResponse> {
     const obj: any = {};
-    if (message.denom_owners) {
-      obj.denom_owners = message.denom_owners.map(e => e ? DenomOwner.toJSON(e) : undefined);
+    if (message.denomOwners) {
+      obj.denomOwners = message.denomOwners.map(e => e ? DenomOwner.toJSON(e) : undefined);
     } else {
-      obj.denom_owners = [];
+      obj.denomOwners = [];
     }
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryDenomOwnersResponse>): QueryDenomOwnersResponse {
+  fromPartial(object: Partial<QueryDenomOwnersResponse>): QueryDenomOwnersResponse {
     const message = createBaseQueryDenomOwnersResponse();
-    message.denom_owners = object.denom_owners?.map(e => DenomOwner.fromPartial(e)) || [];
+    message.denomOwners = object.denomOwners?.map(e => DenomOwner.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryDenomOwnersResponseAmino): QueryDenomOwnersResponse {
     const message = createBaseQueryDenomOwnersResponse();
-    message.denom_owners = object.denom_owners?.map(e => DenomOwner.fromAmino(e)) || [];
+    message.denomOwners = object.denom_owners?.map(e => DenomOwner.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -2415,10 +2416,10 @@ export const QueryDenomOwnersResponse = {
   },
   toAmino(message: QueryDenomOwnersResponse): QueryDenomOwnersResponseAmino {
     const obj: any = {};
-    if (message.denom_owners) {
-      obj.denom_owners = message.denom_owners.map(e => e ? DenomOwner.toAmino(e) : undefined);
+    if (message.denomOwners) {
+      obj.denom_owners = message.denomOwners.map(e => e ? DenomOwner.toAmino(e) : undefined);
     } else {
-      obj.denom_owners = message.denom_owners;
+      obj.denom_owners = message.denomOwners;
     }
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;

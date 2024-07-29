@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { MsgCreateThought, MsgForgetThought, MsgChangeThoughtParticle, MsgChangeThoughtName, MsgChangeThoughtInput, MsgChangeThoughtGasPrice, MsgChangeThoughtPeriod, MsgChangeThoughtBlock, MsgUpdateParams } from "./tx";
 export const AminoConverter = {
   "/cyber.dmn.v1beta1.MsgCreateThought": {

@@ -1,13 +1,14 @@
+//@ts-nocheck
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../../cosmos/base/query/v1beta1/pagination";
 import { Params, ParamsAmino, ParamsSDKType, Route, RouteAmino, RouteSDKType } from "./types";
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { JsonSafe } from "../../../json-safe";
-import { DeepPartial, isSet } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { isSet } from "../../../helpers";
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cyber.grid.v1beta1.QueryParamsRequest";
+  typeUrl: "/cyber.grid.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 export interface QueryParamsRequestAmino {}
@@ -20,7 +21,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cyber.grid.v1beta1.QueryParamsResponse";
+  typeUrl: "/cyber.grid.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 export interface QueryParamsResponseAmino {
@@ -37,7 +38,7 @@ export interface QuerySourceRequest {
   source: string;
 }
 export interface QuerySourceRequestProtoMsg {
-  type_url: "/cyber.grid.v1beta1.QuerySourceRequest";
+  typeUrl: "/cyber.grid.v1beta1.QuerySourceRequest";
   value: Uint8Array;
 }
 export interface QuerySourceRequestAmino {
@@ -54,7 +55,7 @@ export interface QueryDestinationRequest {
   destination: string;
 }
 export interface QueryDestinationRequestProtoMsg {
-  type_url: "/cyber.grid.v1beta1.QueryDestinationRequest";
+  typeUrl: "/cyber.grid.v1beta1.QueryDestinationRequest";
   value: Uint8Array;
 }
 export interface QueryDestinationRequestAmino {
@@ -71,7 +72,7 @@ export interface QueryRoutedEnergyResponse {
   value: Coin[];
 }
 export interface QueryRoutedEnergyResponseProtoMsg {
-  type_url: "/cyber.grid.v1beta1.QueryRoutedEnergyResponse";
+  typeUrl: "/cyber.grid.v1beta1.QueryRoutedEnergyResponse";
   value: Uint8Array;
 }
 export interface QueryRoutedEnergyResponseAmino {
@@ -89,7 +90,7 @@ export interface QueryRouteRequest {
   destination: string;
 }
 export interface QueryRouteRequestProtoMsg {
-  type_url: "/cyber.grid.v1beta1.QueryRouteRequest";
+  typeUrl: "/cyber.grid.v1beta1.QueryRouteRequest";
   value: Uint8Array;
 }
 export interface QueryRouteRequestAmino {
@@ -108,7 +109,7 @@ export interface QueryRouteResponse {
   route: Route;
 }
 export interface QueryRouteResponseProtoMsg {
-  type_url: "/cyber.grid.v1beta1.QueryRouteResponse";
+  typeUrl: "/cyber.grid.v1beta1.QueryRouteResponse";
   value: Uint8Array;
 }
 export interface QueryRouteResponseAmino {
@@ -125,7 +126,7 @@ export interface QueryRoutesRequest {
   pagination?: PageRequest;
 }
 export interface QueryRoutesRequestProtoMsg {
-  type_url: "/cyber.grid.v1beta1.QueryRoutesRequest";
+  typeUrl: "/cyber.grid.v1beta1.QueryRoutesRequest";
   value: Uint8Array;
 }
 export interface QueryRoutesRequestAmino {
@@ -143,7 +144,7 @@ export interface QueryRoutesResponse {
   pagination?: PageResponse;
 }
 export interface QueryRoutesResponseProtoMsg {
-  type_url: "/cyber.grid.v1beta1.QueryRoutesResponse";
+  typeUrl: "/cyber.grid.v1beta1.QueryRoutesResponse";
   value: Uint8Array;
 }
 export interface QueryRoutesResponseAmino {
@@ -196,7 +197,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -274,7 +275,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -357,7 +358,7 @@ export const QuerySourceRequest = {
     message.source !== undefined && (obj.source = message.source);
     return obj;
   },
-  fromPartial(object: DeepPartial<QuerySourceRequest>): QuerySourceRequest {
+  fromPartial(object: Partial<QuerySourceRequest>): QuerySourceRequest {
     const message = createBaseQuerySourceRequest();
     message.source = object.source ?? "";
     return message;
@@ -440,7 +441,7 @@ export const QueryDestinationRequest = {
     message.destination !== undefined && (obj.destination = message.destination);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryDestinationRequest>): QueryDestinationRequest {
+  fromPartial(object: Partial<QueryDestinationRequest>): QueryDestinationRequest {
     const message = createBaseQueryDestinationRequest();
     message.destination = object.destination ?? "";
     return message;
@@ -527,7 +528,7 @@ export const QueryRoutedEnergyResponse = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryRoutedEnergyResponse>): QueryRoutedEnergyResponse {
+  fromPartial(object: Partial<QueryRoutedEnergyResponse>): QueryRoutedEnergyResponse {
     const message = createBaseQueryRoutedEnergyResponse();
     message.value = object.value?.map(e => Coin.fromPartial(e)) || [];
     return message;
@@ -621,7 +622,7 @@ export const QueryRouteRequest = {
     message.destination !== undefined && (obj.destination = message.destination);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryRouteRequest>): QueryRouteRequest {
+  fromPartial(object: Partial<QueryRouteRequest>): QueryRouteRequest {
     const message = createBaseQueryRouteRequest();
     message.source = object.source ?? "";
     message.destination = object.destination ?? "";
@@ -709,7 +710,7 @@ export const QueryRouteResponse = {
     message.route !== undefined && (obj.route = message.route ? Route.toJSON(message.route) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryRouteResponse>): QueryRouteResponse {
+  fromPartial(object: Partial<QueryRouteResponse>): QueryRouteResponse {
     const message = createBaseQueryRouteResponse();
     message.route = object.route !== undefined && object.route !== null ? Route.fromPartial(object.route) : undefined;
     return message;
@@ -792,7 +793,7 @@ export const QueryRoutesRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryRoutesRequest>): QueryRoutesRequest {
+  fromPartial(object: Partial<QueryRoutesRequest>): QueryRoutesRequest {
     const message = createBaseQueryRoutesRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -888,7 +889,7 @@ export const QueryRoutesResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryRoutesResponse>): QueryRoutesResponse {
+  fromPartial(object: Partial<QueryRoutesResponse>): QueryRoutesResponse {
     const message = createBaseQueryRoutesResponse();
     message.routes = object.routes?.map(e => Route.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;

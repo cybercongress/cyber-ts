@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { isSet, bytesFromBase64, base64FromBytes, DeepPartial } from "../../helpers";
+import { isSet, bytesFromBase64, base64FromBytes } from "../../helpers";
 import { JsonSafe } from "../../json-safe";
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -113,12 +114,12 @@ export interface Any {
    * Schemes other than `http`, `https` (or the empty scheme) might be
    * used with implementation specific semantics.
    */
-  type_url: string;
+  typeUrl: string;
   /** Must be a valid serialized protocol buffer of the above specified type. */
   value: Uint8Array;
 }
 export interface AnyProtoMsg {
-  type_url: "/google.protobuf.Any";
+  typeUrl: "/google.protobuf.Any";
   value: Uint8Array;
 }
 /**
@@ -329,14 +330,14 @@ export interface AnySDKType {
 function createBaseAny(): Any {
   return {
     $typeUrl: "/google.protobuf.Any",
-    type_url: "",
+    typeUrl: "",
     value: new Uint8Array()
   };
 }
 export const Any = {
   typeUrl: "/google.protobuf.Any",
   is(o: any): o is Any {
-    return o && (o.$typeUrl === Any.typeUrl || typeof o.type_url === "string" && (o.value instanceof Uint8Array || typeof o.value === "string"));
+    return o && (o.$typeUrl === Any.typeUrl || typeof o.typeUrl === "string" && (o.value instanceof Uint8Array || typeof o.value === "string"));
   },
   isSDK(o: any): o is AnySDKType {
     return o && (o.$typeUrl === Any.typeUrl || typeof o.type_url === "string" && (o.value instanceof Uint8Array || typeof o.value === "string"));
@@ -345,8 +346,8 @@ export const Any = {
     return o && (o.$typeUrl === Any.typeUrl || typeof o.type === "string" && (o.value instanceof Uint8Array || typeof o.value === "string"));
   },
   encode(message: Any, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.type_url !== "") {
-      writer.uint32(10).string(message.type_url);
+    if (message.typeUrl !== "") {
+      writer.uint32(10).string(message.typeUrl);
     }
     if (message.value.length !== 0) {
       writer.uint32(18).bytes(message.value);
@@ -361,7 +362,7 @@ export const Any = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.type_url = reader.string();
+          message.typeUrl = reader.string();
           break;
         case 2:
           message.value = reader.bytes();
@@ -375,19 +376,19 @@ export const Any = {
   },
   fromJSON(object: any): Any {
     return {
-      type_url: isSet(object.type_url) ? String(object.type_url) : "",
+      typeUrl: isSet(object.typeUrl) ? String(object.typeUrl) : "",
       value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array()
     };
   },
   toJSON(message: Any): JsonSafe<Any> {
     const obj: any = {};
-    message.type_url !== undefined && (obj.type_url = message.type_url);
+    message.typeUrl !== undefined && (obj.typeUrl = message.typeUrl);
     message.value !== undefined && (obj.value = base64FromBytes(message.value !== undefined ? message.value : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<Any>): Any {
+  fromPartial(object: Partial<Any>): Any {
     const message = createBaseAny();
-    message.type_url = object.type_url ?? "";
+    message.typeUrl = object.typeUrl ?? "";
     message.value = object.value ?? new Uint8Array();
     return message;
   },

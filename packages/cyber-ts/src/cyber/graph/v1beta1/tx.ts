@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { Link, LinkAmino, LinkSDKType } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface MsgCyberlink {
@@ -8,7 +9,7 @@ export interface MsgCyberlink {
   links: Link[];
 }
 export interface MsgCyberlinkProtoMsg {
-  type_url: "/cyber.graph.v1beta1.MsgCyberlink";
+  typeUrl: "/cyber.graph.v1beta1.MsgCyberlink";
   value: Uint8Array;
 }
 export interface MsgCyberlinkAmino {
@@ -25,7 +26,7 @@ export interface MsgCyberlinkSDKType {
 }
 export interface MsgCyberlinkResponse {}
 export interface MsgCyberlinkResponseProtoMsg {
-  type_url: "/cyber.graph.v1beta1.MsgCyberlinkResponse";
+  typeUrl: "/cyber.graph.v1beta1.MsgCyberlinkResponse";
   value: Uint8Array;
 }
 export interface MsgCyberlinkResponseAmino {}
@@ -96,7 +97,7 @@ export const MsgCyberlink = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgCyberlink>): MsgCyberlink {
+  fromPartial(object: Partial<MsgCyberlink>): MsgCyberlink {
     const message = createBaseMsgCyberlink();
     message.neuron = object.neuron ?? "";
     message.links = object.links?.map(e => Link.fromPartial(e)) || [];
@@ -175,7 +176,7 @@ export const MsgCyberlinkResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgCyberlinkResponse>): MsgCyberlinkResponse {
+  fromPartial(_: Partial<MsgCyberlinkResponse>): MsgCyberlinkResponse {
     const message = createBaseMsgCyberlinkResponse();
     return message;
   },

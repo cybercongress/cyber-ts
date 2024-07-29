@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as _95 from "./protobuf/any";
 import * as _96 from "./protobuf/descriptor";
 import * as _97 from "./protobuf/duration";

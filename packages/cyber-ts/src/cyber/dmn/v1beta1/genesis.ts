@@ -1,13 +1,14 @@
+//@ts-nocheck
 import { Params, ParamsAmino, ParamsSDKType } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface GenesisState {
   params: Params;
 }
 export interface GenesisStateProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.GenesisState";
+  typeUrl: "/cyber.dmn.v1beta1.GenesisState";
   value: Uint8Array;
 }
 export interface GenesisStateAmino {
@@ -69,7 +70,7 @@ export const GenesisState = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+  fromPartial(object: Partial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;

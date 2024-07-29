@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { isSet, DeepPartial } from "../../../../helpers";
+import { isSet } from "../../../../helpers";
 import { JsonSafe } from "../../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../../registry";
 /** BIP44Params is used as path field in ledger item in Record. */
@@ -7,7 +8,7 @@ export interface BIP44Params {
   /** purpose is a constant set to 44' (or 0x8000002C) following the BIP43 recommendation */
   purpose: number;
   /** coin_type is a constant that improves privacy */
-  coin_type: number;
+  coinType: number;
   /** account splits the key space into independent user identities */
   account: number;
   /**
@@ -16,10 +17,10 @@ export interface BIP44Params {
    */
   change: boolean;
   /** address_index is used as child index in BIP32 derivation */
-  address_index: number;
+  addressIndex: number;
 }
 export interface BIP44ParamsProtoMsg {
-  type_url: "/cosmos.crypto.hd.v1.BIP44Params";
+  typeUrl: "/cosmos.crypto.hd.v1.BIP44Params";
   value: Uint8Array;
 }
 /** BIP44Params is used as path field in ledger item in Record. */
@@ -53,17 +54,17 @@ export interface BIP44ParamsSDKType {
 function createBaseBIP44Params(): BIP44Params {
   return {
     purpose: 0,
-    coin_type: 0,
+    coinType: 0,
     account: 0,
     change: false,
-    address_index: 0
+    addressIndex: 0
   };
 }
 export const BIP44Params = {
   typeUrl: "/cosmos.crypto.hd.v1.BIP44Params",
   aminoType: "cosmos-sdk/BIP44Params",
   is(o: any): o is BIP44Params {
-    return o && (o.$typeUrl === BIP44Params.typeUrl || typeof o.purpose === "number" && typeof o.coin_type === "number" && typeof o.account === "number" && typeof o.change === "boolean" && typeof o.address_index === "number");
+    return o && (o.$typeUrl === BIP44Params.typeUrl || typeof o.purpose === "number" && typeof o.coinType === "number" && typeof o.account === "number" && typeof o.change === "boolean" && typeof o.addressIndex === "number");
   },
   isSDK(o: any): o is BIP44ParamsSDKType {
     return o && (o.$typeUrl === BIP44Params.typeUrl || typeof o.purpose === "number" && typeof o.coin_type === "number" && typeof o.account === "number" && typeof o.change === "boolean" && typeof o.address_index === "number");
@@ -75,8 +76,8 @@ export const BIP44Params = {
     if (message.purpose !== 0) {
       writer.uint32(8).uint32(message.purpose);
     }
-    if (message.coin_type !== 0) {
-      writer.uint32(16).uint32(message.coin_type);
+    if (message.coinType !== 0) {
+      writer.uint32(16).uint32(message.coinType);
     }
     if (message.account !== 0) {
       writer.uint32(24).uint32(message.account);
@@ -84,8 +85,8 @@ export const BIP44Params = {
     if (message.change === true) {
       writer.uint32(32).bool(message.change);
     }
-    if (message.address_index !== 0) {
-      writer.uint32(40).uint32(message.address_index);
+    if (message.addressIndex !== 0) {
+      writer.uint32(40).uint32(message.addressIndex);
     }
     return writer;
   },
@@ -100,7 +101,7 @@ export const BIP44Params = {
           message.purpose = reader.uint32();
           break;
         case 2:
-          message.coin_type = reader.uint32();
+          message.coinType = reader.uint32();
           break;
         case 3:
           message.account = reader.uint32();
@@ -109,7 +110,7 @@ export const BIP44Params = {
           message.change = reader.bool();
           break;
         case 5:
-          message.address_index = reader.uint32();
+          message.addressIndex = reader.uint32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -121,28 +122,28 @@ export const BIP44Params = {
   fromJSON(object: any): BIP44Params {
     return {
       purpose: isSet(object.purpose) ? Number(object.purpose) : 0,
-      coin_type: isSet(object.coin_type) ? Number(object.coin_type) : 0,
+      coinType: isSet(object.coinType) ? Number(object.coinType) : 0,
       account: isSet(object.account) ? Number(object.account) : 0,
       change: isSet(object.change) ? Boolean(object.change) : false,
-      address_index: isSet(object.address_index) ? Number(object.address_index) : 0
+      addressIndex: isSet(object.addressIndex) ? Number(object.addressIndex) : 0
     };
   },
   toJSON(message: BIP44Params): JsonSafe<BIP44Params> {
     const obj: any = {};
     message.purpose !== undefined && (obj.purpose = Math.round(message.purpose));
-    message.coin_type !== undefined && (obj.coin_type = Math.round(message.coin_type));
+    message.coinType !== undefined && (obj.coinType = Math.round(message.coinType));
     message.account !== undefined && (obj.account = Math.round(message.account));
     message.change !== undefined && (obj.change = message.change);
-    message.address_index !== undefined && (obj.address_index = Math.round(message.address_index));
+    message.addressIndex !== undefined && (obj.addressIndex = Math.round(message.addressIndex));
     return obj;
   },
-  fromPartial(object: DeepPartial<BIP44Params>): BIP44Params {
+  fromPartial(object: Partial<BIP44Params>): BIP44Params {
     const message = createBaseBIP44Params();
     message.purpose = object.purpose ?? 0;
-    message.coin_type = object.coin_type ?? 0;
+    message.coinType = object.coinType ?? 0;
     message.account = object.account ?? 0;
     message.change = object.change ?? false;
-    message.address_index = object.address_index ?? 0;
+    message.addressIndex = object.addressIndex ?? 0;
     return message;
   },
   fromAmino(object: BIP44ParamsAmino): BIP44Params {
@@ -151,7 +152,7 @@ export const BIP44Params = {
       message.purpose = object.purpose;
     }
     if (object.coin_type !== undefined && object.coin_type !== null) {
-      message.coin_type = object.coin_type;
+      message.coinType = object.coin_type;
     }
     if (object.account !== undefined && object.account !== null) {
       message.account = object.account;
@@ -160,17 +161,17 @@ export const BIP44Params = {
       message.change = object.change;
     }
     if (object.address_index !== undefined && object.address_index !== null) {
-      message.address_index = object.address_index;
+      message.addressIndex = object.address_index;
     }
     return message;
   },
   toAmino(message: BIP44Params): BIP44ParamsAmino {
     const obj: any = {};
     obj.purpose = message.purpose === 0 ? undefined : message.purpose;
-    obj.coin_type = message.coin_type === 0 ? undefined : message.coin_type;
+    obj.coin_type = message.coinType === 0 ? undefined : message.coinType;
     obj.account = message.account === 0 ? undefined : message.account;
     obj.change = message.change === false ? undefined : message.change;
-    obj.address_index = message.address_index === 0 ? undefined : message.address_index;
+    obj.address_index = message.addressIndex === 0 ? undefined : message.addressIndex;
     return obj;
   },
   fromAminoMsg(object: BIP44ParamsAminoMsg): BIP44Params {

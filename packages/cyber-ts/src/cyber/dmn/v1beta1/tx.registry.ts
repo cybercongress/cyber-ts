@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
 import { MsgCreateThought, MsgForgetThought, MsgChangeThoughtParticle, MsgChangeThoughtName, MsgChangeThoughtInput, MsgChangeThoughtGasPrice, MsgChangeThoughtPeriod, MsgChangeThoughtBlock, MsgUpdateParams } from "./tx";
 export const registry: ReadonlyArray<[string, GeneratedType]> = [["/cyber.dmn.v1beta1.MsgCreateThought", MsgCreateThought], ["/cyber.dmn.v1beta1.MsgForgetThought", MsgForgetThought], ["/cyber.dmn.v1beta1.MsgChangeThoughtParticle", MsgChangeThoughtParticle], ["/cyber.dmn.v1beta1.MsgChangeThoughtName", MsgChangeThoughtName], ["/cyber.dmn.v1beta1.MsgChangeThoughtInput", MsgChangeThoughtInput], ["/cyber.dmn.v1beta1.MsgChangeThoughtGasPrice", MsgChangeThoughtGasPrice], ["/cyber.dmn.v1beta1.MsgChangeThoughtPeriod", MsgChangeThoughtPeriod], ["/cyber.dmn.v1beta1.MsgChangeThoughtBlock", MsgChangeThoughtBlock], ["/cyber.dmn.v1beta1.MsgUpdateParams", MsgUpdateParams]];

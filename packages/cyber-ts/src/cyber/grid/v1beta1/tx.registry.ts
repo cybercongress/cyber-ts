@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
 import { MsgCreateRoute, MsgEditRoute, MsgDeleteRoute, MsgEditRouteName, MsgUpdateParams } from "./tx";
 export const registry: ReadonlyArray<[string, GeneratedType]> = [["/cyber.grid.v1beta1.MsgCreateRoute", MsgCreateRoute], ["/cyber.grid.v1beta1.MsgEditRoute", MsgEditRoute], ["/cyber.grid.v1beta1.MsgDeleteRoute", MsgDeleteRoute], ["/cyber.grid.v1beta1.MsgEditRouteName", MsgEditRouteName], ["/cyber.grid.v1beta1.MsgUpdateParams", MsgUpdateParams]];

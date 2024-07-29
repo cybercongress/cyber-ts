@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../binary";
-import { isSet, DeepPartial } from "../helpers";
+import { isSet } from "../helpers";
 import { JsonSafe } from "../json-safe";
 import { GlobalDecoderRegistry } from "../registry";
 export enum ScalarType {
@@ -59,7 +60,7 @@ export interface InterfaceDescriptor {
   description: string;
 }
 export interface InterfaceDescriptorProtoMsg {
-  type_url: "/cosmos_proto.InterfaceDescriptor";
+  typeUrl: "/cosmos_proto.InterfaceDescriptor";
   value: Uint8Array;
 }
 /**
@@ -121,10 +122,10 @@ export interface ScalarDescriptor {
    * encoding standards and simple and clear. Currently only string and
    * bytes fields are supported for scalars.
    */
-  field_type: ScalarType[];
+  fieldType: ScalarType[];
 }
 export interface ScalarDescriptorProtoMsg {
-  type_url: "/cosmos_proto.ScalarDescriptor";
+  typeUrl: "/cosmos_proto.ScalarDescriptor";
   value: Uint8Array;
 }
 /**
@@ -234,7 +235,7 @@ export const InterfaceDescriptor = {
     message.description !== undefined && (obj.description = message.description);
     return obj;
   },
-  fromPartial(object: DeepPartial<InterfaceDescriptor>): InterfaceDescriptor {
+  fromPartial(object: Partial<InterfaceDescriptor>): InterfaceDescriptor {
     const message = createBaseInterfaceDescriptor();
     message.name = object.name ?? "";
     message.description = object.description ?? "";
@@ -277,13 +278,13 @@ function createBaseScalarDescriptor(): ScalarDescriptor {
   return {
     name: "",
     description: "",
-    field_type: []
+    fieldType: []
   };
 }
 export const ScalarDescriptor = {
   typeUrl: "/cosmos_proto.ScalarDescriptor",
   is(o: any): o is ScalarDescriptor {
-    return o && (o.$typeUrl === ScalarDescriptor.typeUrl || typeof o.name === "string" && typeof o.description === "string" && Array.isArray(o.field_type));
+    return o && (o.$typeUrl === ScalarDescriptor.typeUrl || typeof o.name === "string" && typeof o.description === "string" && Array.isArray(o.fieldType));
   },
   isSDK(o: any): o is ScalarDescriptorSDKType {
     return o && (o.$typeUrl === ScalarDescriptor.typeUrl || typeof o.name === "string" && typeof o.description === "string" && Array.isArray(o.field_type));
@@ -299,7 +300,7 @@ export const ScalarDescriptor = {
       writer.uint32(18).string(message.description);
     }
     writer.uint32(26).fork();
-    for (const v of message.field_type) {
+    for (const v of message.fieldType) {
       writer.int32(v);
     }
     writer.ldelim();
@@ -322,10 +323,10 @@ export const ScalarDescriptor = {
           if ((tag & 7) === 2) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.field_type.push(reader.int32() as any);
+              message.fieldType.push(reader.int32() as any);
             }
           } else {
-            message.field_type.push(reader.int32() as any);
+            message.fieldType.push(reader.int32() as any);
           }
           break;
         default:
@@ -339,25 +340,25 @@ export const ScalarDescriptor = {
     return {
       name: isSet(object.name) ? String(object.name) : "",
       description: isSet(object.description) ? String(object.description) : "",
-      field_type: Array.isArray(object?.field_type) ? object.field_type.map((e: any) => scalarTypeFromJSON(e)) : []
+      fieldType: Array.isArray(object?.fieldType) ? object.fieldType.map((e: any) => scalarTypeFromJSON(e)) : []
     };
   },
   toJSON(message: ScalarDescriptor): JsonSafe<ScalarDescriptor> {
     const obj: any = {};
     message.name !== undefined && (obj.name = message.name);
     message.description !== undefined && (obj.description = message.description);
-    if (message.field_type) {
-      obj.field_type = message.field_type.map(e => scalarTypeToJSON(e));
+    if (message.fieldType) {
+      obj.fieldType = message.fieldType.map(e => scalarTypeToJSON(e));
     } else {
-      obj.field_type = [];
+      obj.fieldType = [];
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<ScalarDescriptor>): ScalarDescriptor {
+  fromPartial(object: Partial<ScalarDescriptor>): ScalarDescriptor {
     const message = createBaseScalarDescriptor();
     message.name = object.name ?? "";
     message.description = object.description ?? "";
-    message.field_type = object.field_type?.map(e => e) || [];
+    message.fieldType = object.fieldType?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ScalarDescriptorAmino): ScalarDescriptor {
@@ -368,17 +369,17 @@ export const ScalarDescriptor = {
     if (object.description !== undefined && object.description !== null) {
       message.description = object.description;
     }
-    message.field_type = object.field_type?.map(e => e) || [];
+    message.fieldType = object.field_type?.map(e => e) || [];
     return message;
   },
   toAmino(message: ScalarDescriptor): ScalarDescriptorAmino {
     const obj: any = {};
     obj.name = message.name === "" ? undefined : message.name;
     obj.description = message.description === "" ? undefined : message.description;
-    if (message.field_type) {
-      obj.field_type = message.field_type.map(e => e);
+    if (message.fieldType) {
+      obj.field_type = message.fieldType.map(e => e);
     } else {
-      obj.field_type = message.field_type;
+      obj.field_type = message.fieldType;
     }
     return obj;
   },

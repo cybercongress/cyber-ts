@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { MsgCreatePool, MsgDepositWithinBatch, MsgWithdrawWithinBatch, MsgSwapWithinBatch } from "./tx";
 export const AminoConverter = {
   "/cyber.liquidity.v1beta1.MsgCreatePool": {

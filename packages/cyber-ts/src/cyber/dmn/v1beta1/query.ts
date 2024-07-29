@@ -1,12 +1,13 @@
+//@ts-nocheck
 import { Params, ParamsAmino, ParamsSDKType, Thought, ThoughtAmino, ThoughtSDKType, ThoughtStats, ThoughtStatsAmino, ThoughtStatsSDKType } from "./types";
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { JsonSafe } from "../../../json-safe";
-import { DeepPartial, isSet } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { isSet } from "../../../helpers";
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryParamsRequest";
+  typeUrl: "/cyber.dmn.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 export interface QueryParamsRequestAmino {}
@@ -19,7 +20,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryParamsResponse";
+  typeUrl: "/cyber.dmn.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 export interface QueryParamsResponseAmino {
@@ -37,7 +38,7 @@ export interface QueryThoughtParamsRequest {
   name: string;
 }
 export interface QueryThoughtParamsRequestProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryThoughtParamsRequest";
+  typeUrl: "/cyber.dmn.v1beta1.QueryThoughtParamsRequest";
   value: Uint8Array;
 }
 export interface QueryThoughtParamsRequestAmino {
@@ -56,7 +57,7 @@ export interface QueryThoughtResponse {
   thought: Thought;
 }
 export interface QueryThoughtResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryThoughtResponse";
+  typeUrl: "/cyber.dmn.v1beta1.QueryThoughtResponse";
   value: Uint8Array;
 }
 export interface QueryThoughtResponseAmino {
@@ -70,10 +71,10 @@ export interface QueryThoughtResponseSDKType {
   thought: ThoughtSDKType;
 }
 export interface QueryThoughtStatsResponse {
-  thought_stats: ThoughtStats;
+  thoughtStats: ThoughtStats;
 }
 export interface QueryThoughtStatsResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryThoughtStatsResponse";
+  typeUrl: "/cyber.dmn.v1beta1.QueryThoughtStatsResponse";
   value: Uint8Array;
 }
 export interface QueryThoughtStatsResponseAmino {
@@ -88,7 +89,7 @@ export interface QueryThoughtStatsResponseSDKType {
 }
 export interface QueryThoughtsRequest {}
 export interface QueryThoughtsRequestProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryThoughtsRequest";
+  typeUrl: "/cyber.dmn.v1beta1.QueryThoughtsRequest";
   value: Uint8Array;
 }
 export interface QueryThoughtsRequestAmino {}
@@ -101,7 +102,7 @@ export interface QueryThoughtsResponse {
   thoughts: Thought[];
 }
 export interface QueryThoughtsResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryThoughtsResponse";
+  typeUrl: "/cyber.dmn.v1beta1.QueryThoughtsResponse";
   value: Uint8Array;
 }
 export interface QueryThoughtsResponseAmino {
@@ -116,7 +117,7 @@ export interface QueryThoughtsResponseSDKType {
 }
 export interface QueryThoughtsStatsRequest {}
 export interface QueryThoughtsStatsRequestProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryThoughtsStatsRequest";
+  typeUrl: "/cyber.dmn.v1beta1.QueryThoughtsStatsRequest";
   value: Uint8Array;
 }
 export interface QueryThoughtsStatsRequestAmino {}
@@ -126,10 +127,10 @@ export interface QueryThoughtsStatsRequestAminoMsg {
 }
 export interface QueryThoughtsStatsRequestSDKType {}
 export interface QueryThoughtsStatsResponse {
-  thoughts_stats: ThoughtStats[];
+  thoughtsStats: ThoughtStats[];
 }
 export interface QueryThoughtsStatsResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryThoughtsStatsResponse";
+  typeUrl: "/cyber.dmn.v1beta1.QueryThoughtsStatsResponse";
   value: Uint8Array;
 }
 export interface QueryThoughtsStatsResponseAmino {
@@ -144,7 +145,7 @@ export interface QueryThoughtsStatsResponseSDKType {
 }
 export interface QueryThoughtsFeesRequest {}
 export interface QueryThoughtsFeesRequestProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryThoughtsFeesRequest";
+  typeUrl: "/cyber.dmn.v1beta1.QueryThoughtsFeesRequest";
   value: Uint8Array;
 }
 export interface QueryThoughtsFeesRequestAmino {}
@@ -157,7 +158,7 @@ export interface QueryThoughtsFeesResponse {
   fees: Coin[];
 }
 export interface QueryThoughtsFeesResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.QueryThoughtsFeesResponse";
+  typeUrl: "/cyber.dmn.v1beta1.QueryThoughtsFeesResponse";
   value: Uint8Array;
 }
 export interface QueryThoughtsFeesResponseAmino {
@@ -208,7 +209,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -286,7 +287,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -378,7 +379,7 @@ export const QueryThoughtParamsRequest = {
     message.name !== undefined && (obj.name = message.name);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryThoughtParamsRequest>): QueryThoughtParamsRequest {
+  fromPartial(object: Partial<QueryThoughtParamsRequest>): QueryThoughtParamsRequest {
     const message = createBaseQueryThoughtParamsRequest();
     message.program = object.program ?? "";
     message.name = object.name ?? "";
@@ -466,7 +467,7 @@ export const QueryThoughtResponse = {
     message.thought !== undefined && (obj.thought = message.thought ? Thought.toJSON(message.thought) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryThoughtResponse>): QueryThoughtResponse {
+  fromPartial(object: Partial<QueryThoughtResponse>): QueryThoughtResponse {
     const message = createBaseQueryThoughtResponse();
     message.thought = object.thought !== undefined && object.thought !== null ? Thought.fromPartial(object.thought) : undefined;
     return message;
@@ -502,13 +503,13 @@ export const QueryThoughtResponse = {
 GlobalDecoderRegistry.register(QueryThoughtResponse.typeUrl, QueryThoughtResponse);
 function createBaseQueryThoughtStatsResponse(): QueryThoughtStatsResponse {
   return {
-    thought_stats: ThoughtStats.fromPartial({})
+    thoughtStats: ThoughtStats.fromPartial({})
   };
 }
 export const QueryThoughtStatsResponse = {
   typeUrl: "/cyber.dmn.v1beta1.QueryThoughtStatsResponse",
   is(o: any): o is QueryThoughtStatsResponse {
-    return o && (o.$typeUrl === QueryThoughtStatsResponse.typeUrl || ThoughtStats.is(o.thought_stats));
+    return o && (o.$typeUrl === QueryThoughtStatsResponse.typeUrl || ThoughtStats.is(o.thoughtStats));
   },
   isSDK(o: any): o is QueryThoughtStatsResponseSDKType {
     return o && (o.$typeUrl === QueryThoughtStatsResponse.typeUrl || ThoughtStats.isSDK(o.thought_stats));
@@ -517,8 +518,8 @@ export const QueryThoughtStatsResponse = {
     return o && (o.$typeUrl === QueryThoughtStatsResponse.typeUrl || ThoughtStats.isAmino(o.thought_stats));
   },
   encode(message: QueryThoughtStatsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.thought_stats !== undefined) {
-      ThoughtStats.encode(message.thought_stats, writer.uint32(10).fork()).ldelim();
+    if (message.thoughtStats !== undefined) {
+      ThoughtStats.encode(message.thoughtStats, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -530,7 +531,7 @@ export const QueryThoughtStatsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.thought_stats = ThoughtStats.decode(reader, reader.uint32());
+          message.thoughtStats = ThoughtStats.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -541,29 +542,29 @@ export const QueryThoughtStatsResponse = {
   },
   fromJSON(object: any): QueryThoughtStatsResponse {
     return {
-      thought_stats: isSet(object.thought_stats) ? ThoughtStats.fromJSON(object.thought_stats) : undefined
+      thoughtStats: isSet(object.thoughtStats) ? ThoughtStats.fromJSON(object.thoughtStats) : undefined
     };
   },
   toJSON(message: QueryThoughtStatsResponse): JsonSafe<QueryThoughtStatsResponse> {
     const obj: any = {};
-    message.thought_stats !== undefined && (obj.thought_stats = message.thought_stats ? ThoughtStats.toJSON(message.thought_stats) : undefined);
+    message.thoughtStats !== undefined && (obj.thoughtStats = message.thoughtStats ? ThoughtStats.toJSON(message.thoughtStats) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryThoughtStatsResponse>): QueryThoughtStatsResponse {
+  fromPartial(object: Partial<QueryThoughtStatsResponse>): QueryThoughtStatsResponse {
     const message = createBaseQueryThoughtStatsResponse();
-    message.thought_stats = object.thought_stats !== undefined && object.thought_stats !== null ? ThoughtStats.fromPartial(object.thought_stats) : undefined;
+    message.thoughtStats = object.thoughtStats !== undefined && object.thoughtStats !== null ? ThoughtStats.fromPartial(object.thoughtStats) : undefined;
     return message;
   },
   fromAmino(object: QueryThoughtStatsResponseAmino): QueryThoughtStatsResponse {
     const message = createBaseQueryThoughtStatsResponse();
     if (object.thought_stats !== undefined && object.thought_stats !== null) {
-      message.thought_stats = ThoughtStats.fromAmino(object.thought_stats);
+      message.thoughtStats = ThoughtStats.fromAmino(object.thought_stats);
     }
     return message;
   },
   toAmino(message: QueryThoughtStatsResponse): QueryThoughtStatsResponseAmino {
     const obj: any = {};
-    obj.thought_stats = message.thought_stats ? ThoughtStats.toAmino(message.thought_stats) : undefined;
+    obj.thought_stats = message.thoughtStats ? ThoughtStats.toAmino(message.thoughtStats) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryThoughtStatsResponseAminoMsg): QueryThoughtStatsResponse {
@@ -621,7 +622,7 @@ export const QueryThoughtsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryThoughtsRequest>): QueryThoughtsRequest {
+  fromPartial(_: Partial<QueryThoughtsRequest>): QueryThoughtsRequest {
     const message = createBaseQueryThoughtsRequest();
     return message;
   },
@@ -703,7 +704,7 @@ export const QueryThoughtsResponse = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryThoughtsResponse>): QueryThoughtsResponse {
+  fromPartial(object: Partial<QueryThoughtsResponse>): QueryThoughtsResponse {
     const message = createBaseQueryThoughtsResponse();
     message.thoughts = object.thoughts?.map(e => Thought.fromPartial(e)) || [];
     return message;
@@ -777,7 +778,7 @@ export const QueryThoughtsStatsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryThoughtsStatsRequest>): QueryThoughtsStatsRequest {
+  fromPartial(_: Partial<QueryThoughtsStatsRequest>): QueryThoughtsStatsRequest {
     const message = createBaseQueryThoughtsStatsRequest();
     return message;
   },
@@ -808,13 +809,13 @@ export const QueryThoughtsStatsRequest = {
 GlobalDecoderRegistry.register(QueryThoughtsStatsRequest.typeUrl, QueryThoughtsStatsRequest);
 function createBaseQueryThoughtsStatsResponse(): QueryThoughtsStatsResponse {
   return {
-    thoughts_stats: []
+    thoughtsStats: []
   };
 }
 export const QueryThoughtsStatsResponse = {
   typeUrl: "/cyber.dmn.v1beta1.QueryThoughtsStatsResponse",
   is(o: any): o is QueryThoughtsStatsResponse {
-    return o && (o.$typeUrl === QueryThoughtsStatsResponse.typeUrl || Array.isArray(o.thoughts_stats) && (!o.thoughts_stats.length || ThoughtStats.is(o.thoughts_stats[0])));
+    return o && (o.$typeUrl === QueryThoughtsStatsResponse.typeUrl || Array.isArray(o.thoughtsStats) && (!o.thoughtsStats.length || ThoughtStats.is(o.thoughtsStats[0])));
   },
   isSDK(o: any): o is QueryThoughtsStatsResponseSDKType {
     return o && (o.$typeUrl === QueryThoughtsStatsResponse.typeUrl || Array.isArray(o.thoughts_stats) && (!o.thoughts_stats.length || ThoughtStats.isSDK(o.thoughts_stats[0])));
@@ -823,7 +824,7 @@ export const QueryThoughtsStatsResponse = {
     return o && (o.$typeUrl === QueryThoughtsStatsResponse.typeUrl || Array.isArray(o.thoughts_stats) && (!o.thoughts_stats.length || ThoughtStats.isAmino(o.thoughts_stats[0])));
   },
   encode(message: QueryThoughtsStatsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.thoughts_stats) {
+    for (const v of message.thoughtsStats) {
       ThoughtStats.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -836,7 +837,7 @@ export const QueryThoughtsStatsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.thoughts_stats.push(ThoughtStats.decode(reader, reader.uint32()));
+          message.thoughtsStats.push(ThoughtStats.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -847,34 +848,34 @@ export const QueryThoughtsStatsResponse = {
   },
   fromJSON(object: any): QueryThoughtsStatsResponse {
     return {
-      thoughts_stats: Array.isArray(object?.thoughts_stats) ? object.thoughts_stats.map((e: any) => ThoughtStats.fromJSON(e)) : []
+      thoughtsStats: Array.isArray(object?.thoughtsStats) ? object.thoughtsStats.map((e: any) => ThoughtStats.fromJSON(e)) : []
     };
   },
   toJSON(message: QueryThoughtsStatsResponse): JsonSafe<QueryThoughtsStatsResponse> {
     const obj: any = {};
-    if (message.thoughts_stats) {
-      obj.thoughts_stats = message.thoughts_stats.map(e => e ? ThoughtStats.toJSON(e) : undefined);
+    if (message.thoughtsStats) {
+      obj.thoughtsStats = message.thoughtsStats.map(e => e ? ThoughtStats.toJSON(e) : undefined);
     } else {
-      obj.thoughts_stats = [];
+      obj.thoughtsStats = [];
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryThoughtsStatsResponse>): QueryThoughtsStatsResponse {
+  fromPartial(object: Partial<QueryThoughtsStatsResponse>): QueryThoughtsStatsResponse {
     const message = createBaseQueryThoughtsStatsResponse();
-    message.thoughts_stats = object.thoughts_stats?.map(e => ThoughtStats.fromPartial(e)) || [];
+    message.thoughtsStats = object.thoughtsStats?.map(e => ThoughtStats.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: QueryThoughtsStatsResponseAmino): QueryThoughtsStatsResponse {
     const message = createBaseQueryThoughtsStatsResponse();
-    message.thoughts_stats = object.thoughts_stats?.map(e => ThoughtStats.fromAmino(e)) || [];
+    message.thoughtsStats = object.thoughts_stats?.map(e => ThoughtStats.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: QueryThoughtsStatsResponse): QueryThoughtsStatsResponseAmino {
     const obj: any = {};
-    if (message.thoughts_stats) {
-      obj.thoughts_stats = message.thoughts_stats.map(e => e ? ThoughtStats.toAmino(e) : undefined);
+    if (message.thoughtsStats) {
+      obj.thoughts_stats = message.thoughtsStats.map(e => e ? ThoughtStats.toAmino(e) : undefined);
     } else {
-      obj.thoughts_stats = message.thoughts_stats;
+      obj.thoughts_stats = message.thoughtsStats;
     }
     return obj;
   },
@@ -933,7 +934,7 @@ export const QueryThoughtsFeesRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryThoughtsFeesRequest>): QueryThoughtsFeesRequest {
+  fromPartial(_: Partial<QueryThoughtsFeesRequest>): QueryThoughtsFeesRequest {
     const message = createBaseQueryThoughtsFeesRequest();
     return message;
   },
@@ -1015,7 +1016,7 @@ export const QueryThoughtsFeesResponse = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryThoughtsFeesResponse>): QueryThoughtsFeesResponse {
+  fromPartial(object: Partial<QueryThoughtsFeesResponse>): QueryThoughtsFeesResponse {
     const message = createBaseQueryThoughtsFeesResponse();
     message.fees = object.fees?.map(e => Coin.fromPartial(e)) || [];
     return message;

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { LCDClient } from "@cosmology/lcd";
 import { QueryParamsRequest, QueryParamsResponseSDKType, QueryInvestmintRequest, QueryInvestmintResponseSDKType } from "./query";
 export class LCDQueryClient {

@@ -1,7 +1,8 @@
+//@ts-nocheck
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { Metadata, MetadataAmino, MetadataSDKType, Params, ParamsAmino, ParamsSDKType } from "../../../cosmos/bank/v1beta1/bank";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -21,7 +22,7 @@ export interface MsgCreateDenom {
   subdenom: string;
 }
 export interface MsgCreateDenomProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgCreateDenom";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgCreateDenom";
   value: Uint8Array;
 }
 /**
@@ -64,10 +65,10 @@ export interface MsgCreateDenomSDKType {
  * It returns the full string of the newly created denom
  */
 export interface MsgCreateDenomResponse {
-  new_token_denom: string;
+  newTokenDenom: string;
 }
 export interface MsgCreateDenomResponseProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgCreateDenomResponse";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgCreateDenomResponse";
   value: Uint8Array;
 }
 /**
@@ -98,7 +99,7 @@ export interface MsgMint {
   mintToAddress: string;
 }
 export interface MsgMintProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgMint";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgMint";
   value: Uint8Array;
 }
 /**
@@ -125,7 +126,7 @@ export interface MsgMintSDKType {
 }
 export interface MsgMintResponse {}
 export interface MsgMintResponseProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgMintResponse";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgMintResponse";
   value: Uint8Array;
 }
 export interface MsgMintResponseAmino {}
@@ -144,7 +145,7 @@ export interface MsgBurn {
   burnFromAddress: string;
 }
 export interface MsgBurnProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgBurn";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgBurn";
   value: Uint8Array;
 }
 /**
@@ -171,7 +172,7 @@ export interface MsgBurnSDKType {
 }
 export interface MsgBurnResponse {}
 export interface MsgBurnResponseProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgBurnResponse";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgBurnResponse";
   value: Uint8Array;
 }
 export interface MsgBurnResponseAmino {}
@@ -187,10 +188,10 @@ export interface MsgBurnResponseSDKType {}
 export interface MsgChangeAdmin {
   sender: string;
   denom: string;
-  new_admin: string;
+  newAdmin: string;
 }
 export interface MsgChangeAdminProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgChangeAdmin";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgChangeAdmin";
   value: Uint8Array;
 }
 /**
@@ -221,7 +222,7 @@ export interface MsgChangeAdminSDKType {
  */
 export interface MsgChangeAdminResponse {}
 export interface MsgChangeAdminResponseProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgChangeAdminResponse";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgChangeAdminResponse";
   value: Uint8Array;
 }
 /**
@@ -247,7 +248,7 @@ export interface MsgSetDenomMetadata {
   metadata: Metadata;
 }
 export interface MsgSetDenomMetadataProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgSetDenomMetadata";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgSetDenomMetadata";
   value: Uint8Array;
 }
 /**
@@ -276,7 +277,7 @@ export interface MsgSetDenomMetadataSDKType {
  */
 export interface MsgSetDenomMetadataResponse {}
 export interface MsgSetDenomMetadataResponseProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgSetDenomMetadataResponse";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgSetDenomMetadataResponse";
   value: Uint8Array;
 }
 /**
@@ -300,7 +301,7 @@ export interface MsgForceTransfer {
   transferToAddress: string;
 }
 export interface MsgForceTransferProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgForceTransfer";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgForceTransfer";
   value: Uint8Array;
 }
 export interface MsgForceTransferAmino {
@@ -321,7 +322,7 @@ export interface MsgForceTransferSDKType {
 }
 export interface MsgForceTransferResponse {}
 export interface MsgForceTransferResponseProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgForceTransferResponse";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgForceTransferResponse";
   value: Uint8Array;
 }
 export interface MsgForceTransferResponseAmino {}
@@ -346,7 +347,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgUpdateParams";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 /**
@@ -385,7 +386,7 @@ export interface MsgUpdateParamsSDKType {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.MsgUpdateParamsResponse";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**
@@ -465,7 +466,7 @@ export const MsgCreateDenom = {
     message.subdenom !== undefined && (obj.subdenom = message.subdenom);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgCreateDenom>): MsgCreateDenom {
+  fromPartial(object: Partial<MsgCreateDenom>): MsgCreateDenom {
     const message = createBaseMsgCreateDenom();
     message.sender = object.sender ?? "";
     message.subdenom = object.subdenom ?? "";
@@ -513,14 +514,14 @@ GlobalDecoderRegistry.register(MsgCreateDenom.typeUrl, MsgCreateDenom);
 GlobalDecoderRegistry.registerAminoProtoMapping(MsgCreateDenom.aminoType, MsgCreateDenom.typeUrl);
 function createBaseMsgCreateDenomResponse(): MsgCreateDenomResponse {
   return {
-    new_token_denom: ""
+    newTokenDenom: ""
   };
 }
 export const MsgCreateDenomResponse = {
   typeUrl: "/osmosis.tokenfactory.v1beta1.MsgCreateDenomResponse",
   aminoType: "osmosis/tokenfactory/create-denom-response",
   is(o: any): o is MsgCreateDenomResponse {
-    return o && (o.$typeUrl === MsgCreateDenomResponse.typeUrl || typeof o.new_token_denom === "string");
+    return o && (o.$typeUrl === MsgCreateDenomResponse.typeUrl || typeof o.newTokenDenom === "string");
   },
   isSDK(o: any): o is MsgCreateDenomResponseSDKType {
     return o && (o.$typeUrl === MsgCreateDenomResponse.typeUrl || typeof o.new_token_denom === "string");
@@ -529,8 +530,8 @@ export const MsgCreateDenomResponse = {
     return o && (o.$typeUrl === MsgCreateDenomResponse.typeUrl || typeof o.new_token_denom === "string");
   },
   encode(message: MsgCreateDenomResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.new_token_denom !== "") {
-      writer.uint32(10).string(message.new_token_denom);
+    if (message.newTokenDenom !== "") {
+      writer.uint32(10).string(message.newTokenDenom);
     }
     return writer;
   },
@@ -542,7 +543,7 @@ export const MsgCreateDenomResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.new_token_denom = reader.string();
+          message.newTokenDenom = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -553,29 +554,29 @@ export const MsgCreateDenomResponse = {
   },
   fromJSON(object: any): MsgCreateDenomResponse {
     return {
-      new_token_denom: isSet(object.new_token_denom) ? String(object.new_token_denom) : ""
+      newTokenDenom: isSet(object.newTokenDenom) ? String(object.newTokenDenom) : ""
     };
   },
   toJSON(message: MsgCreateDenomResponse): JsonSafe<MsgCreateDenomResponse> {
     const obj: any = {};
-    message.new_token_denom !== undefined && (obj.new_token_denom = message.new_token_denom);
+    message.newTokenDenom !== undefined && (obj.newTokenDenom = message.newTokenDenom);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgCreateDenomResponse>): MsgCreateDenomResponse {
+  fromPartial(object: Partial<MsgCreateDenomResponse>): MsgCreateDenomResponse {
     const message = createBaseMsgCreateDenomResponse();
-    message.new_token_denom = object.new_token_denom ?? "";
+    message.newTokenDenom = object.newTokenDenom ?? "";
     return message;
   },
   fromAmino(object: MsgCreateDenomResponseAmino): MsgCreateDenomResponse {
     const message = createBaseMsgCreateDenomResponse();
     if (object.new_token_denom !== undefined && object.new_token_denom !== null) {
-      message.new_token_denom = object.new_token_denom;
+      message.newTokenDenom = object.new_token_denom;
     }
     return message;
   },
   toAmino(message: MsgCreateDenomResponse): MsgCreateDenomResponseAmino {
     const obj: any = {};
-    obj.new_token_denom = message.new_token_denom === "" ? undefined : message.new_token_denom;
+    obj.new_token_denom = message.newTokenDenom === "" ? undefined : message.newTokenDenom;
     return obj;
   },
   fromAminoMsg(object: MsgCreateDenomResponseAminoMsg): MsgCreateDenomResponse {
@@ -670,7 +671,7 @@ export const MsgMint = {
     message.mintToAddress !== undefined && (obj.mintToAddress = message.mintToAddress);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgMint>): MsgMint {
+  fromPartial(object: Partial<MsgMint>): MsgMint {
     const message = createBaseMsgMint();
     message.sender = object.sender ?? "";
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
@@ -760,7 +761,7 @@ export const MsgMintResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgMintResponse>): MsgMintResponse {
+  fromPartial(_: Partial<MsgMintResponse>): MsgMintResponse {
     const message = createBaseMsgMintResponse();
     return message;
   },
@@ -864,7 +865,7 @@ export const MsgBurn = {
     message.burnFromAddress !== undefined && (obj.burnFromAddress = message.burnFromAddress);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgBurn>): MsgBurn {
+  fromPartial(object: Partial<MsgBurn>): MsgBurn {
     const message = createBaseMsgBurn();
     message.sender = object.sender ?? "";
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
@@ -954,7 +955,7 @@ export const MsgBurnResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgBurnResponse>): MsgBurnResponse {
+  fromPartial(_: Partial<MsgBurnResponse>): MsgBurnResponse {
     const message = createBaseMsgBurnResponse();
     return message;
   },
@@ -994,14 +995,14 @@ function createBaseMsgChangeAdmin(): MsgChangeAdmin {
   return {
     sender: "",
     denom: "",
-    new_admin: ""
+    newAdmin: ""
   };
 }
 export const MsgChangeAdmin = {
   typeUrl: "/osmosis.tokenfactory.v1beta1.MsgChangeAdmin",
   aminoType: "osmosis/tokenfactory/change-admin",
   is(o: any): o is MsgChangeAdmin {
-    return o && (o.$typeUrl === MsgChangeAdmin.typeUrl || typeof o.sender === "string" && typeof o.denom === "string" && typeof o.new_admin === "string");
+    return o && (o.$typeUrl === MsgChangeAdmin.typeUrl || typeof o.sender === "string" && typeof o.denom === "string" && typeof o.newAdmin === "string");
   },
   isSDK(o: any): o is MsgChangeAdminSDKType {
     return o && (o.$typeUrl === MsgChangeAdmin.typeUrl || typeof o.sender === "string" && typeof o.denom === "string" && typeof o.new_admin === "string");
@@ -1016,8 +1017,8 @@ export const MsgChangeAdmin = {
     if (message.denom !== "") {
       writer.uint32(18).string(message.denom);
     }
-    if (message.new_admin !== "") {
-      writer.uint32(26).string(message.new_admin);
+    if (message.newAdmin !== "") {
+      writer.uint32(26).string(message.newAdmin);
     }
     return writer;
   },
@@ -1035,7 +1036,7 @@ export const MsgChangeAdmin = {
           message.denom = reader.string();
           break;
         case 3:
-          message.new_admin = reader.string();
+          message.newAdmin = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1048,21 +1049,21 @@ export const MsgChangeAdmin = {
     return {
       sender: isSet(object.sender) ? String(object.sender) : "",
       denom: isSet(object.denom) ? String(object.denom) : "",
-      new_admin: isSet(object.new_admin) ? String(object.new_admin) : ""
+      newAdmin: isSet(object.newAdmin) ? String(object.newAdmin) : ""
     };
   },
   toJSON(message: MsgChangeAdmin): JsonSafe<MsgChangeAdmin> {
     const obj: any = {};
     message.sender !== undefined && (obj.sender = message.sender);
     message.denom !== undefined && (obj.denom = message.denom);
-    message.new_admin !== undefined && (obj.new_admin = message.new_admin);
+    message.newAdmin !== undefined && (obj.newAdmin = message.newAdmin);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgChangeAdmin>): MsgChangeAdmin {
+  fromPartial(object: Partial<MsgChangeAdmin>): MsgChangeAdmin {
     const message = createBaseMsgChangeAdmin();
     message.sender = object.sender ?? "";
     message.denom = object.denom ?? "";
-    message.new_admin = object.new_admin ?? "";
+    message.newAdmin = object.newAdmin ?? "";
     return message;
   },
   fromAmino(object: MsgChangeAdminAmino): MsgChangeAdmin {
@@ -1074,7 +1075,7 @@ export const MsgChangeAdmin = {
       message.denom = object.denom;
     }
     if (object.new_admin !== undefined && object.new_admin !== null) {
-      message.new_admin = object.new_admin;
+      message.newAdmin = object.new_admin;
     }
     return message;
   },
@@ -1082,7 +1083,7 @@ export const MsgChangeAdmin = {
     const obj: any = {};
     obj.sender = message.sender === "" ? undefined : message.sender;
     obj.denom = message.denom === "" ? undefined : message.denom;
-    obj.new_admin = message.new_admin === "" ? undefined : message.new_admin;
+    obj.new_admin = message.newAdmin === "" ? undefined : message.newAdmin;
     return obj;
   },
   fromAminoMsg(object: MsgChangeAdminAminoMsg): MsgChangeAdmin {
@@ -1148,7 +1149,7 @@ export const MsgChangeAdminResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgChangeAdminResponse>): MsgChangeAdminResponse {
+  fromPartial(_: Partial<MsgChangeAdminResponse>): MsgChangeAdminResponse {
     const message = createBaseMsgChangeAdminResponse();
     return message;
   },
@@ -1243,7 +1244,7 @@ export const MsgSetDenomMetadata = {
     message.metadata !== undefined && (obj.metadata = message.metadata ? Metadata.toJSON(message.metadata) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgSetDenomMetadata>): MsgSetDenomMetadata {
+  fromPartial(object: Partial<MsgSetDenomMetadata>): MsgSetDenomMetadata {
     const message = createBaseMsgSetDenomMetadata();
     message.sender = object.sender ?? "";
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
@@ -1328,7 +1329,7 @@ export const MsgSetDenomMetadataResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgSetDenomMetadataResponse>): MsgSetDenomMetadataResponse {
+  fromPartial(_: Partial<MsgSetDenomMetadataResponse>): MsgSetDenomMetadataResponse {
     const message = createBaseMsgSetDenomMetadataResponse();
     return message;
   },
@@ -1441,7 +1442,7 @@ export const MsgForceTransfer = {
     message.transferToAddress !== undefined && (obj.transferToAddress = message.transferToAddress);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgForceTransfer>): MsgForceTransfer {
+  fromPartial(object: Partial<MsgForceTransfer>): MsgForceTransfer {
     const message = createBaseMsgForceTransfer();
     message.sender = object.sender ?? "";
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
@@ -1536,7 +1537,7 @@ export const MsgForceTransferResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgForceTransferResponse>): MsgForceTransferResponse {
+  fromPartial(_: Partial<MsgForceTransferResponse>): MsgForceTransferResponse {
     const message = createBaseMsgForceTransferResponse();
     return message;
   },
@@ -1631,7 +1632,7 @@ export const MsgUpdateParams = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgUpdateParams>): MsgUpdateParams {
+  fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? "";
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
@@ -1716,7 +1717,7 @@ export const MsgUpdateParamsResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
+  fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
   },

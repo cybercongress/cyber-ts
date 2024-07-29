@@ -1,7 +1,8 @@
+//@ts-nocheck
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { Params, ParamsAmino, ParamsSDKType } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface MsgInvestmint {
@@ -11,7 +12,7 @@ export interface MsgInvestmint {
   length: bigint;
 }
 export interface MsgInvestmintProtoMsg {
-  type_url: "/cyber.resources.v1beta1.MsgInvestmint";
+  typeUrl: "/cyber.resources.v1beta1.MsgInvestmint";
   value: Uint8Array;
 }
 export interface MsgInvestmintAmino {
@@ -35,7 +36,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  type_url: "/cyber.resources.v1beta1.MsgUpdateParams";
+  typeUrl: "/cyber.resources.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 export interface MsgUpdateParamsAmino {
@@ -52,7 +53,7 @@ export interface MsgUpdateParamsSDKType {
 }
 export interface MsgInvestmintResponse {}
 export interface MsgInvestmintResponseProtoMsg {
-  type_url: "/cyber.resources.v1beta1.MsgInvestmintResponse";
+  typeUrl: "/cyber.resources.v1beta1.MsgInvestmintResponse";
   value: Uint8Array;
 }
 export interface MsgInvestmintResponseAmino {}
@@ -63,7 +64,7 @@ export interface MsgInvestmintResponseAminoMsg {
 export interface MsgInvestmintResponseSDKType {}
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  type_url: "/cyber.resources.v1beta1.MsgUpdateParamsResponse";
+  typeUrl: "/cyber.resources.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 export interface MsgUpdateParamsResponseAmino {}
@@ -148,7 +149,7 @@ export const MsgInvestmint = {
     message.length !== undefined && (obj.length = (message.length || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgInvestmint>): MsgInvestmint {
+  fromPartial(object: Partial<MsgInvestmint>): MsgInvestmint {
     const message = createBaseMsgInvestmint();
     message.neuron = object.neuron ?? "";
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
@@ -255,7 +256,7 @@ export const MsgUpdateParams = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgUpdateParams>): MsgUpdateParams {
+  fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? "";
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
@@ -332,7 +333,7 @@ export const MsgInvestmintResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgInvestmintResponse>): MsgInvestmintResponse {
+  fromPartial(_: Partial<MsgInvestmintResponse>): MsgInvestmintResponse {
     const message = createBaseMsgInvestmintResponse();
     return message;
   },
@@ -399,7 +400,7 @@ export const MsgUpdateParamsResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
+  fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
   },

@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -12,7 +13,7 @@ export interface DenomAuthorityMetadata {
   admin: string;
 }
 export interface DenomAuthorityMetadataProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.DenomAuthorityMetadata";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.DenomAuthorityMetadata";
   value: Uint8Array;
 }
 /**
@@ -86,7 +87,7 @@ export const DenomAuthorityMetadata = {
     message.admin !== undefined && (obj.admin = message.admin);
     return obj;
   },
-  fromPartial(object: DeepPartial<DenomAuthorityMetadata>): DenomAuthorityMetadata {
+  fromPartial(object: Partial<DenomAuthorityMetadata>): DenomAuthorityMetadata {
     const message = createBaseDenomAuthorityMetadata();
     message.admin = object.admin ?? "";
     return message;

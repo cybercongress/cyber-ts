@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { setPaginationParams } from "../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
 import { QueryLiquidityPoolsRequest, QueryLiquidityPoolsResponseSDKType, QueryLiquidityPoolRequest, QueryLiquidityPoolResponseSDKType, QueryLiquidityPoolByPoolCoinDenomRequest, QueryLiquidityPoolByReserveAccRequest, QueryLiquidityPoolBatchRequest, QueryLiquidityPoolBatchResponseSDKType, QueryPoolBatchSwapMsgsRequest, QueryPoolBatchSwapMsgsResponseSDKType, QueryPoolBatchSwapMsgRequest, QueryPoolBatchSwapMsgResponseSDKType, QueryPoolBatchDepositMsgsRequest, QueryPoolBatchDepositMsgsResponseSDKType, QueryPoolBatchDepositMsgRequest, QueryPoolBatchDepositMsgResponseSDKType, QueryPoolBatchWithdrawMsgsRequest, QueryPoolBatchWithdrawMsgsResponseSDKType, QueryPoolBatchWithdrawMsgRequest, QueryPoolBatchWithdrawMsgResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType } from "./query";
@@ -37,22 +38,22 @@ export class LCDQueryClient {
   }
   /* Get specific liquidity pool. */
   async liquidityPool(params: QueryLiquidityPoolRequest): Promise<QueryLiquidityPoolResponseSDKType> {
-    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.pool_id}`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.poolId}`;
     return await this.req.get<QueryLiquidityPoolResponseSDKType>(endpoint);
   }
   /* Get specific liquidity pool corresponding to the pool_coin_denom. */
   async liquidityPoolByPoolCoinDenom(params: QueryLiquidityPoolByPoolCoinDenomRequest): Promise<QueryLiquidityPoolResponseSDKType> {
-    const endpoint = `cosmos/liquidity/v1beta1/pools/pool_coin_denom/${params.pool_coin_denom}`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/pool_coin_denom/${params.poolCoinDenom}`;
     return await this.req.get<QueryLiquidityPoolResponseSDKType>(endpoint);
   }
   /* Get specific liquidity pool corresponding to the reserve account. */
   async liquidityPoolByReserveAcc(params: QueryLiquidityPoolByReserveAccRequest): Promise<QueryLiquidityPoolResponseSDKType> {
-    const endpoint = `cosmos/liquidity/v1beta1/pools/reserve_acc/${params.reserve_acc}`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/reserve_acc/${params.reserveAcc}`;
     return await this.req.get<QueryLiquidityPoolResponseSDKType>(endpoint);
   }
   /* Get the pool's current batch. */
   async liquidityPoolBatch(params: QueryLiquidityPoolBatchRequest): Promise<QueryLiquidityPoolBatchResponseSDKType> {
-    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.pool_id}/batch`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.poolId}/batch`;
     return await this.req.get<QueryLiquidityPoolBatchResponseSDKType>(endpoint);
   }
   /* Get all swap messages in the pool's current batch. */
@@ -63,12 +64,12 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.pool_id}/batch/swaps`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.poolId}/batch/swaps`;
     return await this.req.get<QueryPoolBatchSwapMsgsResponseSDKType>(endpoint, options);
   }
   /* Get a specific swap message in the pool's current batch. */
   async poolBatchSwapMsg(params: QueryPoolBatchSwapMsgRequest): Promise<QueryPoolBatchSwapMsgResponseSDKType> {
-    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.pool_id}/batch/swaps/${params.msg_index}`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.poolId}/batch/swaps/${params.msgIndex}`;
     return await this.req.get<QueryPoolBatchSwapMsgResponseSDKType>(endpoint);
   }
   /* Get all deposit messages in the pool's current batch. */
@@ -79,12 +80,12 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.pool_id}/batch/deposits`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.poolId}/batch/deposits`;
     return await this.req.get<QueryPoolBatchDepositMsgsResponseSDKType>(endpoint, options);
   }
   /* Get a specific deposit message in the pool's current batch. */
   async poolBatchDepositMsg(params: QueryPoolBatchDepositMsgRequest): Promise<QueryPoolBatchDepositMsgResponseSDKType> {
-    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.pool_id}/batch/deposits/${params.msg_index}`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.poolId}/batch/deposits/${params.msgIndex}`;
     return await this.req.get<QueryPoolBatchDepositMsgResponseSDKType>(endpoint);
   }
   /* Get all withdraw messages in the pool's current batch. */
@@ -95,12 +96,12 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.pool_id}/batch/withdraws`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.poolId}/batch/withdraws`;
     return await this.req.get<QueryPoolBatchWithdrawMsgsResponseSDKType>(endpoint, options);
   }
   /* Get a specific withdraw message in the pool's current batch. */
   async poolBatchWithdrawMsg(params: QueryPoolBatchWithdrawMsgRequest): Promise<QueryPoolBatchWithdrawMsgResponseSDKType> {
-    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.pool_id}/batch/withdraws/${params.msg_index}`;
+    const endpoint = `cosmos/liquidity/v1beta1/pools/${params.poolId}/batch/withdraws/${params.msgIndex}`;
     return await this.req.get<QueryPoolBatchWithdrawMsgResponseSDKType>(endpoint);
   }
   /* Get all parameters of the liquidity module. */

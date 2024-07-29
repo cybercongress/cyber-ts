@@ -1,10 +1,11 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { JsonSafe } from "../../../json-safe";
-import { DeepPartial, isSet } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { isSet } from "../../../helpers";
 export interface QueryGraphStatsRequest {}
 export interface QueryGraphStatsRequestProtoMsg {
-  type_url: "/cyber.graph.v1beta1.QueryGraphStatsRequest";
+  typeUrl: "/cyber.graph.v1beta1.QueryGraphStatsRequest";
   value: Uint8Array;
 }
 export interface QueryGraphStatsRequestAmino {}
@@ -18,7 +19,7 @@ export interface QueryGraphStatsResponse {
   particles: bigint;
 }
 export interface QueryGraphStatsResponseProtoMsg {
-  type_url: "/cyber.graph.v1beta1.QueryGraphStatsResponse";
+  typeUrl: "/cyber.graph.v1beta1.QueryGraphStatsResponse";
   value: Uint8Array;
 }
 export interface QueryGraphStatsResponseAmino {
@@ -71,7 +72,7 @@ export const QueryGraphStatsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryGraphStatsRequest>): QueryGraphStatsRequest {
+  fromPartial(_: Partial<QueryGraphStatsRequest>): QueryGraphStatsRequest {
     const message = createBaseQueryGraphStatsRequest();
     return message;
   },
@@ -158,7 +159,7 @@ export const QueryGraphStatsResponse = {
     message.particles !== undefined && (obj.particles = (message.particles || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryGraphStatsResponse>): QueryGraphStatsResponse {
+  fromPartial(object: Partial<QueryGraphStatsResponse>): QueryGraphStatsResponse {
     const message = createBaseQueryGraphStatsResponse();
     message.cyberlinks = object.cyberlinks !== undefined && object.cyberlinks !== null ? BigInt(object.cyberlinks.toString()) : BigInt(0);
     message.particles = object.particles !== undefined && object.particles !== null ? BigInt(object.particles.toString()) : BigInt(0);

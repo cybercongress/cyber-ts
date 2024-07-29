@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { MsgCreateRoute, MsgEditRoute, MsgDeleteRoute, MsgEditRouteName, MsgUpdateParams } from "./tx";
 export const AminoConverter = {
   "/cyber.grid.v1beta1.MsgCreateRoute": {

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Rpc } from "../../../helpers";
 import { BinaryReader } from "../../../binary";
 import { MsgCreateRoute, MsgCreateRouteResponse, MsgEditRoute, MsgEditRouteResponse, MsgDeleteRoute, MsgDeleteRouteResponse, MsgEditRouteName, MsgEditRouteNameResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";

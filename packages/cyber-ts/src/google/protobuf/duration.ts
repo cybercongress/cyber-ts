@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { isSet, DeepPartial } from "../../helpers";
+import { isSet } from "../../helpers";
 import { JsonSafe } from "../../json-safe";
 import { GlobalDecoderRegistry } from "../../registry";
 /**
@@ -80,7 +81,7 @@ export interface Duration {
   nanos: number;
 }
 export interface DurationProtoMsg {
-  type_url: "/google.protobuf.Duration";
+  typeUrl: "/google.protobuf.Duration";
   value: Uint8Array;
 }
 /**
@@ -270,7 +271,7 @@ export const Duration = {
     message.nanos !== undefined && (obj.nanos = Math.round(message.nanos));
     return obj;
   },
-  fromPartial(object: DeepPartial<Duration>): Duration {
+  fromPartial(object: Partial<Duration>): Duration {
     const message = createBaseDuration();
     message.seconds = object.seconds !== undefined && object.seconds !== null ? BigInt(object.seconds.toString()) : BigInt(0);
     message.nanos = object.nanos ?? 0;

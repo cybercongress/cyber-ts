@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -8,12 +9,12 @@ import { GlobalDecoderRegistry } from "../../../registry";
  */
 export interface ClockContract {
   /** The address of the contract. */
-  contract_address: string;
+  contractAddress: string;
   /** The jail status of the contract. */
-  is_jailed: boolean;
+  isJailed: boolean;
 }
 export interface ClockContractProtoMsg {
-  type_url: "/cyber.clock.v1.ClockContract";
+  typeUrl: "/cyber.clock.v1.ClockContract";
   value: Uint8Array;
 }
 /**
@@ -40,14 +41,14 @@ export interface ClockContractSDKType {
 }
 function createBaseClockContract(): ClockContract {
   return {
-    contract_address: "",
-    is_jailed: false
+    contractAddress: "",
+    isJailed: false
   };
 }
 export const ClockContract = {
   typeUrl: "/cyber.clock.v1.ClockContract",
   is(o: any): o is ClockContract {
-    return o && (o.$typeUrl === ClockContract.typeUrl || typeof o.contract_address === "string" && typeof o.is_jailed === "boolean");
+    return o && (o.$typeUrl === ClockContract.typeUrl || typeof o.contractAddress === "string" && typeof o.isJailed === "boolean");
   },
   isSDK(o: any): o is ClockContractSDKType {
     return o && (o.$typeUrl === ClockContract.typeUrl || typeof o.contract_address === "string" && typeof o.is_jailed === "boolean");
@@ -56,11 +57,11 @@ export const ClockContract = {
     return o && (o.$typeUrl === ClockContract.typeUrl || typeof o.contract_address === "string" && typeof o.is_jailed === "boolean");
   },
   encode(message: ClockContract, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.contract_address !== "") {
-      writer.uint32(10).string(message.contract_address);
+    if (message.contractAddress !== "") {
+      writer.uint32(10).string(message.contractAddress);
     }
-    if (message.is_jailed === true) {
-      writer.uint32(16).bool(message.is_jailed);
+    if (message.isJailed === true) {
+      writer.uint32(16).bool(message.isJailed);
     }
     return writer;
   },
@@ -72,10 +73,10 @@ export const ClockContract = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.contract_address = reader.string();
+          message.contractAddress = reader.string();
           break;
         case 2:
-          message.is_jailed = reader.bool();
+          message.isJailed = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -86,36 +87,36 @@ export const ClockContract = {
   },
   fromJSON(object: any): ClockContract {
     return {
-      contract_address: isSet(object.contract_address) ? String(object.contract_address) : "",
-      is_jailed: isSet(object.is_jailed) ? Boolean(object.is_jailed) : false
+      contractAddress: isSet(object.contractAddress) ? String(object.contractAddress) : "",
+      isJailed: isSet(object.isJailed) ? Boolean(object.isJailed) : false
     };
   },
   toJSON(message: ClockContract): JsonSafe<ClockContract> {
     const obj: any = {};
-    message.contract_address !== undefined && (obj.contract_address = message.contract_address);
-    message.is_jailed !== undefined && (obj.is_jailed = message.is_jailed);
+    message.contractAddress !== undefined && (obj.contractAddress = message.contractAddress);
+    message.isJailed !== undefined && (obj.isJailed = message.isJailed);
     return obj;
   },
-  fromPartial(object: DeepPartial<ClockContract>): ClockContract {
+  fromPartial(object: Partial<ClockContract>): ClockContract {
     const message = createBaseClockContract();
-    message.contract_address = object.contract_address ?? "";
-    message.is_jailed = object.is_jailed ?? false;
+    message.contractAddress = object.contractAddress ?? "";
+    message.isJailed = object.isJailed ?? false;
     return message;
   },
   fromAmino(object: ClockContractAmino): ClockContract {
     const message = createBaseClockContract();
     if (object.contract_address !== undefined && object.contract_address !== null) {
-      message.contract_address = object.contract_address;
+      message.contractAddress = object.contract_address;
     }
     if (object.is_jailed !== undefined && object.is_jailed !== null) {
-      message.is_jailed = object.is_jailed;
+      message.isJailed = object.is_jailed;
     }
     return message;
   },
   toAmino(message: ClockContract): ClockContractAmino {
     const obj: any = {};
-    obj.contract_address = message.contract_address === "" ? undefined : message.contract_address;
-    obj.is_jailed = message.is_jailed === false ? undefined : message.is_jailed;
+    obj.contract_address = message.contractAddress === "" ? undefined : message.contractAddress;
+    obj.is_jailed = message.isJailed === false ? undefined : message.isJailed;
     return obj;
   },
   fromAminoMsg(object: ClockContractAminoMsg): ClockContract {

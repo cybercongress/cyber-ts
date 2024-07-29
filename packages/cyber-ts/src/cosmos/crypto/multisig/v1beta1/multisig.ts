@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { bytesFromBase64, base64FromBytes, DeepPartial, isSet } from "../../../../helpers";
+import { bytesFromBase64, base64FromBytes, isSet } from "../../../../helpers";
 import { JsonSafe } from "../../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../../registry";
 /**
@@ -11,7 +12,7 @@ export interface MultiSignature {
   signatures: Uint8Array[];
 }
 export interface MultiSignatureProtoMsg {
-  type_url: "/cosmos.crypto.multisig.v1beta1.MultiSignature";
+  typeUrl: "/cosmos.crypto.multisig.v1beta1.MultiSignature";
   value: Uint8Array;
 }
 /**
@@ -41,11 +42,11 @@ export interface MultiSignatureSDKType {
  * This is not thread safe, and is not intended for concurrent usage.
  */
 export interface CompactBitArray {
-  extra_bits_stored: number;
+  extraBitsStored: number;
   elems: Uint8Array;
 }
 export interface CompactBitArrayProtoMsg {
-  type_url: "/cosmos.crypto.multisig.v1beta1.CompactBitArray";
+  typeUrl: "/cosmos.crypto.multisig.v1beta1.CompactBitArray";
   value: Uint8Array;
 }
 /**
@@ -126,7 +127,7 @@ export const MultiSignature = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<MultiSignature>): MultiSignature {
+  fromPartial(object: Partial<MultiSignature>): MultiSignature {
     const message = createBaseMultiSignature();
     message.signatures = object.signatures?.map(e => e) || [];
     return message;
@@ -171,7 +172,7 @@ GlobalDecoderRegistry.register(MultiSignature.typeUrl, MultiSignature);
 GlobalDecoderRegistry.registerAminoProtoMapping(MultiSignature.aminoType, MultiSignature.typeUrl);
 function createBaseCompactBitArray(): CompactBitArray {
   return {
-    extra_bits_stored: 0,
+    extraBitsStored: 0,
     elems: new Uint8Array()
   };
 }
@@ -179,7 +180,7 @@ export const CompactBitArray = {
   typeUrl: "/cosmos.crypto.multisig.v1beta1.CompactBitArray",
   aminoType: "cosmos-sdk/CompactBitArray",
   is(o: any): o is CompactBitArray {
-    return o && (o.$typeUrl === CompactBitArray.typeUrl || typeof o.extra_bits_stored === "number" && (o.elems instanceof Uint8Array || typeof o.elems === "string"));
+    return o && (o.$typeUrl === CompactBitArray.typeUrl || typeof o.extraBitsStored === "number" && (o.elems instanceof Uint8Array || typeof o.elems === "string"));
   },
   isSDK(o: any): o is CompactBitArraySDKType {
     return o && (o.$typeUrl === CompactBitArray.typeUrl || typeof o.extra_bits_stored === "number" && (o.elems instanceof Uint8Array || typeof o.elems === "string"));
@@ -188,8 +189,8 @@ export const CompactBitArray = {
     return o && (o.$typeUrl === CompactBitArray.typeUrl || typeof o.extra_bits_stored === "number" && (o.elems instanceof Uint8Array || typeof o.elems === "string"));
   },
   encode(message: CompactBitArray, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.extra_bits_stored !== 0) {
-      writer.uint32(8).uint32(message.extra_bits_stored);
+    if (message.extraBitsStored !== 0) {
+      writer.uint32(8).uint32(message.extraBitsStored);
     }
     if (message.elems.length !== 0) {
       writer.uint32(18).bytes(message.elems);
@@ -204,7 +205,7 @@ export const CompactBitArray = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.extra_bits_stored = reader.uint32();
+          message.extraBitsStored = reader.uint32();
           break;
         case 2:
           message.elems = reader.bytes();
@@ -218,26 +219,26 @@ export const CompactBitArray = {
   },
   fromJSON(object: any): CompactBitArray {
     return {
-      extra_bits_stored: isSet(object.extra_bits_stored) ? Number(object.extra_bits_stored) : 0,
+      extraBitsStored: isSet(object.extraBitsStored) ? Number(object.extraBitsStored) : 0,
       elems: isSet(object.elems) ? bytesFromBase64(object.elems) : new Uint8Array()
     };
   },
   toJSON(message: CompactBitArray): JsonSafe<CompactBitArray> {
     const obj: any = {};
-    message.extra_bits_stored !== undefined && (obj.extra_bits_stored = Math.round(message.extra_bits_stored));
+    message.extraBitsStored !== undefined && (obj.extraBitsStored = Math.round(message.extraBitsStored));
     message.elems !== undefined && (obj.elems = base64FromBytes(message.elems !== undefined ? message.elems : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<CompactBitArray>): CompactBitArray {
+  fromPartial(object: Partial<CompactBitArray>): CompactBitArray {
     const message = createBaseCompactBitArray();
-    message.extra_bits_stored = object.extra_bits_stored ?? 0;
+    message.extraBitsStored = object.extraBitsStored ?? 0;
     message.elems = object.elems ?? new Uint8Array();
     return message;
   },
   fromAmino(object: CompactBitArrayAmino): CompactBitArray {
     const message = createBaseCompactBitArray();
     if (object.extra_bits_stored !== undefined && object.extra_bits_stored !== null) {
-      message.extra_bits_stored = object.extra_bits_stored;
+      message.extraBitsStored = object.extra_bits_stored;
     }
     if (object.elems !== undefined && object.elems !== null) {
       message.elems = bytesFromBase64(object.elems);
@@ -246,7 +247,7 @@ export const CompactBitArray = {
   },
   toAmino(message: CompactBitArray): CompactBitArrayAmino {
     const obj: any = {};
-    obj.extra_bits_stored = message.extra_bits_stored === 0 ? undefined : message.extra_bits_stored;
+    obj.extra_bits_stored = message.extraBitsStored === 0 ? undefined : message.extraBitsStored;
     obj.elems = message.elems ? base64FromBytes(message.elems) : undefined;
     return obj;
   },

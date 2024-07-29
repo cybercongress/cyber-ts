@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** ParameterChangeProposal defines a proposal to change one or more parameters. */
@@ -10,7 +11,7 @@ export interface ParameterChangeProposal {
   changes: ParamChange[];
 }
 export interface ParameterChangeProposalProtoMsg {
-  type_url: "/cosmos.params.v1beta1.ParameterChangeProposal";
+  typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal";
   value: Uint8Array;
 }
 /** ParameterChangeProposal defines a proposal to change one or more parameters. */
@@ -40,7 +41,7 @@ export interface ParamChange {
   value: string;
 }
 export interface ParamChangeProtoMsg {
-  type_url: "/cosmos.params.v1beta1.ParamChange";
+  typeUrl: "/cosmos.params.v1beta1.ParamChange";
   value: Uint8Array;
 }
 /**
@@ -138,7 +139,7 @@ export const ParameterChangeProposal = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<ParameterChangeProposal>): ParameterChangeProposal {
+  fromPartial(object: Partial<ParameterChangeProposal>): ParameterChangeProposal {
     const message = createBaseParameterChangeProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
@@ -259,7 +260,7 @@ export const ParamChange = {
     message.value !== undefined && (obj.value = message.value);
     return obj;
   },
-  fromPartial(object: DeepPartial<ParamChange>): ParamChange {
+  fromPartial(object: Partial<ParamChange>): ParamChange {
     const message = createBaseParamChange();
     message.subspace = object.subspace ?? "";
     message.key = object.key ?? "";

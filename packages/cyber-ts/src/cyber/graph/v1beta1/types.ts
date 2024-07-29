@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface Link {
@@ -7,7 +8,7 @@ export interface Link {
   to: string;
 }
 export interface LinkProtoMsg {
-  type_url: "/cyber.graph.v1beta1.Link";
+  typeUrl: "/cyber.graph.v1beta1.Link";
   value: Uint8Array;
 }
 export interface LinkAmino {
@@ -80,7 +81,7 @@ export const Link = {
     message.to !== undefined && (obj.to = message.to);
     return obj;
   },
-  fromPartial(object: DeepPartial<Link>): Link {
+  fromPartial(object: Partial<Link>): Link {
     const message = createBaseLink();
     message.from = object.from ?? "";
     message.to = object.to ?? "";

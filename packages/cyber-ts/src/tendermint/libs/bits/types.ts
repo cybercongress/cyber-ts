@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface BitArray {
@@ -7,7 +8,7 @@ export interface BitArray {
   elems: bigint[];
 }
 export interface BitArrayProtoMsg {
-  type_url: "/tendermint.libs.bits.BitArray";
+  typeUrl: "/tendermint.libs.bits.BitArray";
   value: Uint8Array;
 }
 export interface BitArrayAmino {
@@ -93,7 +94,7 @@ export const BitArray = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<BitArray>): BitArray {
+  fromPartial(object: Partial<BitArray>): BitArray {
     const message = createBaseBitArray();
     message.bits = object.bits !== undefined && object.bits !== null ? BigInt(object.bits.toString()) : BigInt(0);
     message.elems = object.elems?.map(e => BigInt(e.toString())) || [];

@@ -1,20 +1,21 @@
+//@ts-nocheck
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** Params defines the parameters for the tokenfactory module. */
 export interface Params {
-  denom_creation_fee: Coin[];
+  denomCreationFee: Coin[];
   /**
    * if denom_creation_fee is an empty array, then this field is used to add
    * more gas consumption to the base cost.
    * https://github.com/CosmWasm/token-factory/issues/11
    */
-  denom_creation_gas_consume?: bigint;
+  denomCreationGasConsume?: bigint;
 }
 export interface ParamsProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.Params";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.Params";
   value: Uint8Array;
 }
 /** Params defines the parameters for the tokenfactory module. */
@@ -38,15 +39,15 @@ export interface ParamsSDKType {
 }
 function createBaseParams(): Params {
   return {
-    denom_creation_fee: [],
-    denom_creation_gas_consume: undefined
+    denomCreationFee: [],
+    denomCreationGasConsume: undefined
   };
 }
 export const Params = {
   typeUrl: "/osmosis.tokenfactory.v1beta1.Params",
   aminoType: "osmosis/tokenfactory/params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || Array.isArray(o.denom_creation_fee) && (!o.denom_creation_fee.length || Coin.is(o.denom_creation_fee[0])));
+    return o && (o.$typeUrl === Params.typeUrl || Array.isArray(o.denomCreationFee) && (!o.denomCreationFee.length || Coin.is(o.denomCreationFee[0])));
   },
   isSDK(o: any): o is ParamsSDKType {
     return o && (o.$typeUrl === Params.typeUrl || Array.isArray(o.denom_creation_fee) && (!o.denom_creation_fee.length || Coin.isSDK(o.denom_creation_fee[0])));
@@ -55,11 +56,11 @@ export const Params = {
     return o && (o.$typeUrl === Params.typeUrl || Array.isArray(o.denom_creation_fee) && (!o.denom_creation_fee.length || Coin.isAmino(o.denom_creation_fee[0])));
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.denom_creation_fee) {
+    for (const v of message.denomCreationFee) {
       Coin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.denom_creation_gas_consume !== undefined) {
-      writer.uint32(16).uint64(message.denom_creation_gas_consume);
+    if (message.denomCreationGasConsume !== undefined) {
+      writer.uint32(16).uint64(message.denomCreationGasConsume);
     }
     return writer;
   },
@@ -71,10 +72,10 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.denom_creation_fee.push(Coin.decode(reader, reader.uint32()));
+          message.denomCreationFee.push(Coin.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.denom_creation_gas_consume = reader.uint64();
+          message.denomCreationGasConsume = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -85,44 +86,44 @@ export const Params = {
   },
   fromJSON(object: any): Params {
     return {
-      denom_creation_fee: Array.isArray(object?.denom_creation_fee) ? object.denom_creation_fee.map((e: any) => Coin.fromJSON(e)) : [],
-      denom_creation_gas_consume: isSet(object.denom_creation_gas_consume) ? BigInt(object.denom_creation_gas_consume.toString()) : undefined
+      denomCreationFee: Array.isArray(object?.denomCreationFee) ? object.denomCreationFee.map((e: any) => Coin.fromJSON(e)) : [],
+      denomCreationGasConsume: isSet(object.denomCreationGasConsume) ? BigInt(object.denomCreationGasConsume.toString()) : undefined
     };
   },
   toJSON(message: Params): JsonSafe<Params> {
     const obj: any = {};
-    if (message.denom_creation_fee) {
-      obj.denom_creation_fee = message.denom_creation_fee.map(e => e ? Coin.toJSON(e) : undefined);
+    if (message.denomCreationFee) {
+      obj.denomCreationFee = message.denomCreationFee.map(e => e ? Coin.toJSON(e) : undefined);
     } else {
-      obj.denom_creation_fee = [];
+      obj.denomCreationFee = [];
     }
-    if (message.denom_creation_gas_consume !== undefined) {
-      obj.denom_creation_gas_consume = message.denom_creation_gas_consume.toString();
+    if (message.denomCreationGasConsume !== undefined) {
+      obj.denomCreationGasConsume = message.denomCreationGasConsume.toString();
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<Params>): Params {
+  fromPartial(object: Partial<Params>): Params {
     const message = createBaseParams();
-    message.denom_creation_fee = object.denom_creation_fee?.map(e => Coin.fromPartial(e)) || [];
-    message.denom_creation_gas_consume = object.denom_creation_gas_consume !== undefined && object.denom_creation_gas_consume !== null ? BigInt(object.denom_creation_gas_consume.toString()) : undefined;
+    message.denomCreationFee = object.denomCreationFee?.map(e => Coin.fromPartial(e)) || [];
+    message.denomCreationGasConsume = object.denomCreationGasConsume !== undefined && object.denomCreationGasConsume !== null ? BigInt(object.denomCreationGasConsume.toString()) : undefined;
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
-    message.denom_creation_fee = object.denom_creation_fee?.map(e => Coin.fromAmino(e)) || [];
+    message.denomCreationFee = object.denom_creation_fee?.map(e => Coin.fromAmino(e)) || [];
     if (object.denom_creation_gas_consume !== undefined && object.denom_creation_gas_consume !== null) {
-      message.denom_creation_gas_consume = BigInt(object.denom_creation_gas_consume);
+      message.denomCreationGasConsume = BigInt(object.denom_creation_gas_consume);
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    if (message.denom_creation_fee) {
-      obj.denom_creation_fee = message.denom_creation_fee.map(e => e ? Coin.toAmino(e) : undefined);
+    if (message.denomCreationFee) {
+      obj.denom_creation_fee = message.denomCreationFee.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.denom_creation_fee = message.denom_creation_fee;
+      obj.denom_creation_fee = message.denomCreationFee;
     }
-    obj.denom_creation_gas_consume = message.denom_creation_gas_consume !== BigInt(0) ? message.denom_creation_gas_consume.toString() : undefined;
+    obj.denom_creation_gas_consume = message.denomCreationGasConsume !== BigInt(0) ? message.denomCreationGasConsume.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {

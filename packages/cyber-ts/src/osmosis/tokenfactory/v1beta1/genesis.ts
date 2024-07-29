@@ -1,17 +1,18 @@
+//@ts-nocheck
 import { Params, ParamsAmino, ParamsSDKType } from "./params";
 import { DenomAuthorityMetadata, DenomAuthorityMetadataAmino, DenomAuthorityMetadataSDKType } from "./authority_metadata";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** GenesisState defines the tokenfactory module's genesis state. */
 export interface GenesisState {
   /** params defines the parameters of the module. */
   params: Params;
-  factory_denoms: GenesisDenom[];
+  factoryDenoms: GenesisDenom[];
 }
 export interface GenesisStateProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.GenesisState";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the tokenfactory module's genesis state. */
@@ -36,10 +37,10 @@ export interface GenesisStateSDKType {
  */
 export interface GenesisDenom {
   denom: string;
-  authority_metadata: DenomAuthorityMetadata;
+  authorityMetadata: DenomAuthorityMetadata;
 }
 export interface GenesisDenomProtoMsg {
-  type_url: "/osmosis.tokenfactory.v1beta1.GenesisDenom";
+  typeUrl: "/osmosis.tokenfactory.v1beta1.GenesisDenom";
   value: Uint8Array;
 }
 /**
@@ -67,14 +68,14 @@ export interface GenesisDenomSDKType {
 function createBaseGenesisState(): GenesisState {
   return {
     params: Params.fromPartial({}),
-    factory_denoms: []
+    factoryDenoms: []
   };
 }
 export const GenesisState = {
   typeUrl: "/osmosis.tokenfactory.v1beta1.GenesisState",
   aminoType: "osmosis/tokenfactory/genesis-state",
   is(o: any): o is GenesisState {
-    return o && (o.$typeUrl === GenesisState.typeUrl || Params.is(o.params) && Array.isArray(o.factory_denoms) && (!o.factory_denoms.length || GenesisDenom.is(o.factory_denoms[0])));
+    return o && (o.$typeUrl === GenesisState.typeUrl || Params.is(o.params) && Array.isArray(o.factoryDenoms) && (!o.factoryDenoms.length || GenesisDenom.is(o.factoryDenoms[0])));
   },
   isSDK(o: any): o is GenesisStateSDKType {
     return o && (o.$typeUrl === GenesisState.typeUrl || Params.isSDK(o.params) && Array.isArray(o.factory_denoms) && (!o.factory_denoms.length || GenesisDenom.isSDK(o.factory_denoms[0])));
@@ -86,7 +87,7 @@ export const GenesisState = {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
-    for (const v of message.factory_denoms) {
+    for (const v of message.factoryDenoms) {
       GenesisDenom.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     return writer;
@@ -102,7 +103,7 @@ export const GenesisState = {
           message.params = Params.decode(reader, reader.uint32());
           break;
         case 2:
-          message.factory_denoms.push(GenesisDenom.decode(reader, reader.uint32()));
+          message.factoryDenoms.push(GenesisDenom.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -114,23 +115,23 @@ export const GenesisState = {
   fromJSON(object: any): GenesisState {
     return {
       params: isSet(object.params) ? Params.fromJSON(object.params) : undefined,
-      factory_denoms: Array.isArray(object?.factory_denoms) ? object.factory_denoms.map((e: any) => GenesisDenom.fromJSON(e)) : []
+      factoryDenoms: Array.isArray(object?.factoryDenoms) ? object.factoryDenoms.map((e: any) => GenesisDenom.fromJSON(e)) : []
     };
   },
   toJSON(message: GenesisState): JsonSafe<GenesisState> {
     const obj: any = {};
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
-    if (message.factory_denoms) {
-      obj.factory_denoms = message.factory_denoms.map(e => e ? GenesisDenom.toJSON(e) : undefined);
+    if (message.factoryDenoms) {
+      obj.factoryDenoms = message.factoryDenoms.map(e => e ? GenesisDenom.toJSON(e) : undefined);
     } else {
-      obj.factory_denoms = [];
+      obj.factoryDenoms = [];
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+  fromPartial(object: Partial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
-    message.factory_denoms = object.factory_denoms?.map(e => GenesisDenom.fromPartial(e)) || [];
+    message.factoryDenoms = object.factoryDenoms?.map(e => GenesisDenom.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -138,16 +139,16 @@ export const GenesisState = {
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
-    message.factory_denoms = object.factory_denoms?.map(e => GenesisDenom.fromAmino(e)) || [];
+    message.factoryDenoms = object.factory_denoms?.map(e => GenesisDenom.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     obj.params = message.params ? Params.toAmino(message.params) : undefined;
-    if (message.factory_denoms) {
-      obj.factory_denoms = message.factory_denoms.map(e => e ? GenesisDenom.toAmino(e) : undefined);
+    if (message.factoryDenoms) {
+      obj.factory_denoms = message.factoryDenoms.map(e => e ? GenesisDenom.toAmino(e) : undefined);
     } else {
-      obj.factory_denoms = message.factory_denoms;
+      obj.factory_denoms = message.factoryDenoms;
     }
     return obj;
   },
@@ -178,14 +179,14 @@ GlobalDecoderRegistry.registerAminoProtoMapping(GenesisState.aminoType, GenesisS
 function createBaseGenesisDenom(): GenesisDenom {
   return {
     denom: "",
-    authority_metadata: DenomAuthorityMetadata.fromPartial({})
+    authorityMetadata: DenomAuthorityMetadata.fromPartial({})
   };
 }
 export const GenesisDenom = {
   typeUrl: "/osmosis.tokenfactory.v1beta1.GenesisDenom",
   aminoType: "osmosis/tokenfactory/genesis-denom",
   is(o: any): o is GenesisDenom {
-    return o && (o.$typeUrl === GenesisDenom.typeUrl || typeof o.denom === "string" && DenomAuthorityMetadata.is(o.authority_metadata));
+    return o && (o.$typeUrl === GenesisDenom.typeUrl || typeof o.denom === "string" && DenomAuthorityMetadata.is(o.authorityMetadata));
   },
   isSDK(o: any): o is GenesisDenomSDKType {
     return o && (o.$typeUrl === GenesisDenom.typeUrl || typeof o.denom === "string" && DenomAuthorityMetadata.isSDK(o.authority_metadata));
@@ -197,8 +198,8 @@ export const GenesisDenom = {
     if (message.denom !== "") {
       writer.uint32(10).string(message.denom);
     }
-    if (message.authority_metadata !== undefined) {
-      DenomAuthorityMetadata.encode(message.authority_metadata, writer.uint32(18).fork()).ldelim();
+    if (message.authorityMetadata !== undefined) {
+      DenomAuthorityMetadata.encode(message.authorityMetadata, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -213,7 +214,7 @@ export const GenesisDenom = {
           message.denom = reader.string();
           break;
         case 2:
-          message.authority_metadata = DenomAuthorityMetadata.decode(reader, reader.uint32());
+          message.authorityMetadata = DenomAuthorityMetadata.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -225,19 +226,19 @@ export const GenesisDenom = {
   fromJSON(object: any): GenesisDenom {
     return {
       denom: isSet(object.denom) ? String(object.denom) : "",
-      authority_metadata: isSet(object.authority_metadata) ? DenomAuthorityMetadata.fromJSON(object.authority_metadata) : undefined
+      authorityMetadata: isSet(object.authorityMetadata) ? DenomAuthorityMetadata.fromJSON(object.authorityMetadata) : undefined
     };
   },
   toJSON(message: GenesisDenom): JsonSafe<GenesisDenom> {
     const obj: any = {};
     message.denom !== undefined && (obj.denom = message.denom);
-    message.authority_metadata !== undefined && (obj.authority_metadata = message.authority_metadata ? DenomAuthorityMetadata.toJSON(message.authority_metadata) : undefined);
+    message.authorityMetadata !== undefined && (obj.authorityMetadata = message.authorityMetadata ? DenomAuthorityMetadata.toJSON(message.authorityMetadata) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<GenesisDenom>): GenesisDenom {
+  fromPartial(object: Partial<GenesisDenom>): GenesisDenom {
     const message = createBaseGenesisDenom();
     message.denom = object.denom ?? "";
-    message.authority_metadata = object.authority_metadata !== undefined && object.authority_metadata !== null ? DenomAuthorityMetadata.fromPartial(object.authority_metadata) : undefined;
+    message.authorityMetadata = object.authorityMetadata !== undefined && object.authorityMetadata !== null ? DenomAuthorityMetadata.fromPartial(object.authorityMetadata) : undefined;
     return message;
   },
   fromAmino(object: GenesisDenomAmino): GenesisDenom {
@@ -246,14 +247,14 @@ export const GenesisDenom = {
       message.denom = object.denom;
     }
     if (object.authority_metadata !== undefined && object.authority_metadata !== null) {
-      message.authority_metadata = DenomAuthorityMetadata.fromAmino(object.authority_metadata);
+      message.authorityMetadata = DenomAuthorityMetadata.fromAmino(object.authority_metadata);
     }
     return message;
   },
   toAmino(message: GenesisDenom): GenesisDenomAmino {
     const obj: any = {};
     obj.denom = message.denom === "" ? undefined : message.denom;
-    obj.authority_metadata = message.authority_metadata ? DenomAuthorityMetadata.toAmino(message.authority_metadata) : undefined;
+    obj.authority_metadata = message.authorityMetadata ? DenomAuthorityMetadata.toAmino(message.authorityMetadata) : undefined;
     return obj;
   },
   fromAminoMsg(object: GenesisDenomAminoMsg): GenesisDenom {

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { ProtobufRpcClient } from "@cosmjs/stargate";
 import * as _CosmosAuthV1beta1Queryrpc from "./cosmos/auth/v1beta1/query.rpc.Query";
 import * as _CosmosAuthzV1beta1Queryrpc from "./cosmos/authz/v1beta1/query.rpc.Query";

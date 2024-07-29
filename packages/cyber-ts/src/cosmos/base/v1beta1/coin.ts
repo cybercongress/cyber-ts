@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -13,7 +14,7 @@ export interface Coin {
   amount: string;
 }
 export interface CoinProtoMsg {
-  type_url: "/cosmos.base.v1beta1.Coin";
+  typeUrl: "/cosmos.base.v1beta1.Coin";
   value: Uint8Array;
 }
 /**
@@ -51,7 +52,7 @@ export interface DecCoin {
   amount: string;
 }
 export interface DecCoinProtoMsg {
-  type_url: "/cosmos.base.v1beta1.DecCoin";
+  typeUrl: "/cosmos.base.v1beta1.DecCoin";
   value: Uint8Array;
 }
 /**
@@ -83,7 +84,7 @@ export interface IntProto {
   int: string;
 }
 export interface IntProtoProtoMsg {
-  type_url: "/cosmos.base.v1beta1.IntProto";
+  typeUrl: "/cosmos.base.v1beta1.IntProto";
   value: Uint8Array;
 }
 /** IntProto defines a Protobuf wrapper around an Int object. */
@@ -103,7 +104,7 @@ export interface DecProto {
   dec: string;
 }
 export interface DecProtoProtoMsg {
-  type_url: "/cosmos.base.v1beta1.DecProto";
+  typeUrl: "/cosmos.base.v1beta1.DecProto";
   value: Uint8Array;
 }
 /** DecProto defines a Protobuf wrapper around a Dec object. */
@@ -177,7 +178,7 @@ export const Coin = {
     message.amount !== undefined && (obj.amount = message.amount);
     return obj;
   },
-  fromPartial(object: DeepPartial<Coin>): Coin {
+  fromPartial(object: Partial<Coin>): Coin {
     const message = createBaseCoin();
     message.denom = object.denom ?? "";
     message.amount = object.amount ?? "";
@@ -282,7 +283,7 @@ export const DecCoin = {
     message.amount !== undefined && (obj.amount = message.amount);
     return obj;
   },
-  fromPartial(object: DeepPartial<DecCoin>): DecCoin {
+  fromPartial(object: Partial<DecCoin>): DecCoin {
     const message = createBaseDecCoin();
     message.denom = object.denom ?? "";
     message.amount = object.amount ?? "";
@@ -378,7 +379,7 @@ export const IntProto = {
     message.int !== undefined && (obj.int = message.int);
     return obj;
   },
-  fromPartial(object: DeepPartial<IntProto>): IntProto {
+  fromPartial(object: Partial<IntProto>): IntProto {
     const message = createBaseIntProto();
     message.int = object.int ?? "";
     return message;
@@ -469,7 +470,7 @@ export const DecProto = {
     message.dec !== undefined && (obj.dec = message.dec);
     return obj;
   },
-  fromPartial(object: DeepPartial<DecProto>): DecProto {
+  fromPartial(object: Partial<DecProto>): DecProto {
     const message = createBaseDecProto();
     message.dec = object.dec ?? "";
     return message;

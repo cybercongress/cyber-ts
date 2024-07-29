@@ -1,15 +1,16 @@
+//@ts-nocheck
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface Params {
-  max_slots: number;
-  max_gas: number;
-  fee_ttl: number;
+  maxSlots: number;
+  maxGas: number;
+  feeTtl: number;
 }
 export interface ParamsProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.Params";
+  typeUrl: "/cyber.dmn.v1beta1.Params";
   value: Uint8Array;
 }
 export interface ParamsAmino {
@@ -34,7 +35,7 @@ export interface Thought {
   particle: string;
 }
 export interface ThoughtProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.Thought";
+  typeUrl: "/cyber.dmn.v1beta1.Thought";
   value: Uint8Array;
 }
 export interface ThoughtAmino {
@@ -60,7 +61,7 @@ export interface Trigger {
   block: bigint;
 }
 export interface TriggerProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.Trigger";
+  typeUrl: "/cyber.dmn.v1beta1.Trigger";
   value: Uint8Array;
 }
 export interface TriggerAmino {
@@ -77,10 +78,10 @@ export interface TriggerSDKType {
 }
 export interface Load {
   input: string;
-  gas_price: Coin;
+  gasPrice: Coin;
 }
 export interface LoadProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.Load";
+  typeUrl: "/cyber.dmn.v1beta1.Load";
   value: Uint8Array;
 }
 export interface LoadAmino {
@@ -101,10 +102,10 @@ export interface ThoughtStats {
   calls: bigint;
   fees: bigint;
   gas: bigint;
-  last_block: bigint;
+  lastBlock: bigint;
 }
 export interface ThoughtStatsProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.ThoughtStats";
+  typeUrl: "/cyber.dmn.v1beta1.ThoughtStats";
   value: Uint8Array;
 }
 export interface ThoughtStatsAmino {
@@ -129,15 +130,15 @@ export interface ThoughtStatsSDKType {
 }
 function createBaseParams(): Params {
   return {
-    max_slots: 0,
-    max_gas: 0,
-    fee_ttl: 0
+    maxSlots: 0,
+    maxGas: 0,
+    feeTtl: 0
   };
 }
 export const Params = {
   typeUrl: "/cyber.dmn.v1beta1.Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.max_slots === "number" && typeof o.max_gas === "number" && typeof o.fee_ttl === "number");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.maxSlots === "number" && typeof o.maxGas === "number" && typeof o.feeTtl === "number");
   },
   isSDK(o: any): o is ParamsSDKType {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.max_slots === "number" && typeof o.max_gas === "number" && typeof o.fee_ttl === "number");
@@ -146,14 +147,14 @@ export const Params = {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.max_slots === "number" && typeof o.max_gas === "number" && typeof o.fee_ttl === "number");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.max_slots !== 0) {
-      writer.uint32(8).uint32(message.max_slots);
+    if (message.maxSlots !== 0) {
+      writer.uint32(8).uint32(message.maxSlots);
     }
-    if (message.max_gas !== 0) {
-      writer.uint32(16).uint32(message.max_gas);
+    if (message.maxGas !== 0) {
+      writer.uint32(16).uint32(message.maxGas);
     }
-    if (message.fee_ttl !== 0) {
-      writer.uint32(24).uint32(message.fee_ttl);
+    if (message.feeTtl !== 0) {
+      writer.uint32(24).uint32(message.feeTtl);
     }
     return writer;
   },
@@ -165,13 +166,13 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.max_slots = reader.uint32();
+          message.maxSlots = reader.uint32();
           break;
         case 2:
-          message.max_gas = reader.uint32();
+          message.maxGas = reader.uint32();
           break;
         case 3:
-          message.fee_ttl = reader.uint32();
+          message.feeTtl = reader.uint32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -182,43 +183,43 @@ export const Params = {
   },
   fromJSON(object: any): Params {
     return {
-      max_slots: isSet(object.max_slots) ? Number(object.max_slots) : 0,
-      max_gas: isSet(object.max_gas) ? Number(object.max_gas) : 0,
-      fee_ttl: isSet(object.fee_ttl) ? Number(object.fee_ttl) : 0
+      maxSlots: isSet(object.maxSlots) ? Number(object.maxSlots) : 0,
+      maxGas: isSet(object.maxGas) ? Number(object.maxGas) : 0,
+      feeTtl: isSet(object.feeTtl) ? Number(object.feeTtl) : 0
     };
   },
   toJSON(message: Params): JsonSafe<Params> {
     const obj: any = {};
-    message.max_slots !== undefined && (obj.max_slots = Math.round(message.max_slots));
-    message.max_gas !== undefined && (obj.max_gas = Math.round(message.max_gas));
-    message.fee_ttl !== undefined && (obj.fee_ttl = Math.round(message.fee_ttl));
+    message.maxSlots !== undefined && (obj.maxSlots = Math.round(message.maxSlots));
+    message.maxGas !== undefined && (obj.maxGas = Math.round(message.maxGas));
+    message.feeTtl !== undefined && (obj.feeTtl = Math.round(message.feeTtl));
     return obj;
   },
-  fromPartial(object: DeepPartial<Params>): Params {
+  fromPartial(object: Partial<Params>): Params {
     const message = createBaseParams();
-    message.max_slots = object.max_slots ?? 0;
-    message.max_gas = object.max_gas ?? 0;
-    message.fee_ttl = object.fee_ttl ?? 0;
+    message.maxSlots = object.maxSlots ?? 0;
+    message.maxGas = object.maxGas ?? 0;
+    message.feeTtl = object.feeTtl ?? 0;
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.max_slots !== undefined && object.max_slots !== null) {
-      message.max_slots = object.max_slots;
+      message.maxSlots = object.max_slots;
     }
     if (object.max_gas !== undefined && object.max_gas !== null) {
-      message.max_gas = object.max_gas;
+      message.maxGas = object.max_gas;
     }
     if (object.fee_ttl !== undefined && object.fee_ttl !== null) {
-      message.fee_ttl = object.fee_ttl;
+      message.feeTtl = object.fee_ttl;
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.max_slots = message.max_slots === 0 ? undefined : message.max_slots;
-    obj.max_gas = message.max_gas === 0 ? undefined : message.max_gas;
-    obj.fee_ttl = message.fee_ttl === 0 ? undefined : message.fee_ttl;
+    obj.max_slots = message.maxSlots === 0 ? undefined : message.maxSlots;
+    obj.max_gas = message.maxGas === 0 ? undefined : message.maxGas;
+    obj.fee_ttl = message.feeTtl === 0 ? undefined : message.feeTtl;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -323,7 +324,7 @@ export const Thought = {
     message.particle !== undefined && (obj.particle = message.particle);
     return obj;
   },
-  fromPartial(object: DeepPartial<Thought>): Thought {
+  fromPartial(object: Partial<Thought>): Thought {
     const message = createBaseThought();
     message.program = object.program ?? "";
     message.trigger = object.trigger !== undefined && object.trigger !== null ? Trigger.fromPartial(object.trigger) : undefined;
@@ -435,7 +436,7 @@ export const Trigger = {
     message.block !== undefined && (obj.block = (message.block || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<Trigger>): Trigger {
+  fromPartial(object: Partial<Trigger>): Trigger {
     const message = createBaseTrigger();
     message.period = object.period !== undefined && object.period !== null ? BigInt(object.period.toString()) : BigInt(0);
     message.block = object.block !== undefined && object.block !== null ? BigInt(object.block.toString()) : BigInt(0);
@@ -477,13 +478,13 @@ GlobalDecoderRegistry.register(Trigger.typeUrl, Trigger);
 function createBaseLoad(): Load {
   return {
     input: "",
-    gas_price: Coin.fromPartial({})
+    gasPrice: Coin.fromPartial({})
   };
 }
 export const Load = {
   typeUrl: "/cyber.dmn.v1beta1.Load",
   is(o: any): o is Load {
-    return o && (o.$typeUrl === Load.typeUrl || typeof o.input === "string" && Coin.is(o.gas_price));
+    return o && (o.$typeUrl === Load.typeUrl || typeof o.input === "string" && Coin.is(o.gasPrice));
   },
   isSDK(o: any): o is LoadSDKType {
     return o && (o.$typeUrl === Load.typeUrl || typeof o.input === "string" && Coin.isSDK(o.gas_price));
@@ -495,8 +496,8 @@ export const Load = {
     if (message.input !== "") {
       writer.uint32(10).string(message.input);
     }
-    if (message.gas_price !== undefined) {
-      Coin.encode(message.gas_price, writer.uint32(18).fork()).ldelim();
+    if (message.gasPrice !== undefined) {
+      Coin.encode(message.gasPrice, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -511,7 +512,7 @@ export const Load = {
           message.input = reader.string();
           break;
         case 2:
-          message.gas_price = Coin.decode(reader, reader.uint32());
+          message.gasPrice = Coin.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -523,19 +524,19 @@ export const Load = {
   fromJSON(object: any): Load {
     return {
       input: isSet(object.input) ? String(object.input) : "",
-      gas_price: isSet(object.gas_price) ? Coin.fromJSON(object.gas_price) : undefined
+      gasPrice: isSet(object.gasPrice) ? Coin.fromJSON(object.gasPrice) : undefined
     };
   },
   toJSON(message: Load): JsonSafe<Load> {
     const obj: any = {};
     message.input !== undefined && (obj.input = message.input);
-    message.gas_price !== undefined && (obj.gas_price = message.gas_price ? Coin.toJSON(message.gas_price) : undefined);
+    message.gasPrice !== undefined && (obj.gasPrice = message.gasPrice ? Coin.toJSON(message.gasPrice) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<Load>): Load {
+  fromPartial(object: Partial<Load>): Load {
     const message = createBaseLoad();
     message.input = object.input ?? "";
-    message.gas_price = object.gas_price !== undefined && object.gas_price !== null ? Coin.fromPartial(object.gas_price) : undefined;
+    message.gasPrice = object.gasPrice !== undefined && object.gasPrice !== null ? Coin.fromPartial(object.gasPrice) : undefined;
     return message;
   },
   fromAmino(object: LoadAmino): Load {
@@ -544,14 +545,14 @@ export const Load = {
       message.input = object.input;
     }
     if (object.gas_price !== undefined && object.gas_price !== null) {
-      message.gas_price = Coin.fromAmino(object.gas_price);
+      message.gasPrice = Coin.fromAmino(object.gas_price);
     }
     return message;
   },
   toAmino(message: Load): LoadAmino {
     const obj: any = {};
     obj.input = message.input === "" ? undefined : message.input;
-    obj.gas_price = message.gas_price ? Coin.toAmino(message.gas_price) : undefined;
+    obj.gas_price = message.gasPrice ? Coin.toAmino(message.gasPrice) : undefined;
     return obj;
   },
   fromAminoMsg(object: LoadAminoMsg): Load {
@@ -578,13 +579,13 @@ function createBaseThoughtStats(): ThoughtStats {
     calls: BigInt(0),
     fees: BigInt(0),
     gas: BigInt(0),
-    last_block: BigInt(0)
+    lastBlock: BigInt(0)
   };
 }
 export const ThoughtStats = {
   typeUrl: "/cyber.dmn.v1beta1.ThoughtStats",
   is(o: any): o is ThoughtStats {
-    return o && (o.$typeUrl === ThoughtStats.typeUrl || typeof o.program === "string" && typeof o.name === "string" && typeof o.calls === "bigint" && typeof o.fees === "bigint" && typeof o.gas === "bigint" && typeof o.last_block === "bigint");
+    return o && (o.$typeUrl === ThoughtStats.typeUrl || typeof o.program === "string" && typeof o.name === "string" && typeof o.calls === "bigint" && typeof o.fees === "bigint" && typeof o.gas === "bigint" && typeof o.lastBlock === "bigint");
   },
   isSDK(o: any): o is ThoughtStatsSDKType {
     return o && (o.$typeUrl === ThoughtStats.typeUrl || typeof o.program === "string" && typeof o.name === "string" && typeof o.calls === "bigint" && typeof o.fees === "bigint" && typeof o.gas === "bigint" && typeof o.last_block === "bigint");
@@ -608,8 +609,8 @@ export const ThoughtStats = {
     if (message.gas !== BigInt(0)) {
       writer.uint32(40).uint64(message.gas);
     }
-    if (message.last_block !== BigInt(0)) {
-      writer.uint32(48).uint64(message.last_block);
+    if (message.lastBlock !== BigInt(0)) {
+      writer.uint32(48).uint64(message.lastBlock);
     }
     return writer;
   },
@@ -636,7 +637,7 @@ export const ThoughtStats = {
           message.gas = reader.uint64();
           break;
         case 6:
-          message.last_block = reader.uint64();
+          message.lastBlock = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -652,7 +653,7 @@ export const ThoughtStats = {
       calls: isSet(object.calls) ? BigInt(object.calls.toString()) : BigInt(0),
       fees: isSet(object.fees) ? BigInt(object.fees.toString()) : BigInt(0),
       gas: isSet(object.gas) ? BigInt(object.gas.toString()) : BigInt(0),
-      last_block: isSet(object.last_block) ? BigInt(object.last_block.toString()) : BigInt(0)
+      lastBlock: isSet(object.lastBlock) ? BigInt(object.lastBlock.toString()) : BigInt(0)
     };
   },
   toJSON(message: ThoughtStats): JsonSafe<ThoughtStats> {
@@ -662,17 +663,17 @@ export const ThoughtStats = {
     message.calls !== undefined && (obj.calls = (message.calls || BigInt(0)).toString());
     message.fees !== undefined && (obj.fees = (message.fees || BigInt(0)).toString());
     message.gas !== undefined && (obj.gas = (message.gas || BigInt(0)).toString());
-    message.last_block !== undefined && (obj.last_block = (message.last_block || BigInt(0)).toString());
+    message.lastBlock !== undefined && (obj.lastBlock = (message.lastBlock || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<ThoughtStats>): ThoughtStats {
+  fromPartial(object: Partial<ThoughtStats>): ThoughtStats {
     const message = createBaseThoughtStats();
     message.program = object.program ?? "";
     message.name = object.name ?? "";
     message.calls = object.calls !== undefined && object.calls !== null ? BigInt(object.calls.toString()) : BigInt(0);
     message.fees = object.fees !== undefined && object.fees !== null ? BigInt(object.fees.toString()) : BigInt(0);
     message.gas = object.gas !== undefined && object.gas !== null ? BigInt(object.gas.toString()) : BigInt(0);
-    message.last_block = object.last_block !== undefined && object.last_block !== null ? BigInt(object.last_block.toString()) : BigInt(0);
+    message.lastBlock = object.lastBlock !== undefined && object.lastBlock !== null ? BigInt(object.lastBlock.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: ThoughtStatsAmino): ThoughtStats {
@@ -693,7 +694,7 @@ export const ThoughtStats = {
       message.gas = BigInt(object.gas);
     }
     if (object.last_block !== undefined && object.last_block !== null) {
-      message.last_block = BigInt(object.last_block);
+      message.lastBlock = BigInt(object.last_block);
     }
     return message;
   },
@@ -704,7 +705,7 @@ export const ThoughtStats = {
     obj.calls = message.calls !== BigInt(0) ? message.calls.toString() : undefined;
     obj.fees = message.fees !== BigInt(0) ? message.fees.toString() : undefined;
     obj.gas = message.gas !== BigInt(0) ? message.gas.toString() : undefined;
-    obj.last_block = message.last_block !== BigInt(0) ? message.last_block.toString() : undefined;
+    obj.last_block = message.lastBlock !== BigInt(0) ? message.lastBlock.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ThoughtStatsAminoMsg): ThoughtStats {

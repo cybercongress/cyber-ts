@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { Params, ParamsAmino, ParamsSDKType, Route, RouteAmino, RouteSDKType } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface GenesisState {
@@ -8,7 +9,7 @@ export interface GenesisState {
   routes: Route[];
 }
 export interface GenesisStateProtoMsg {
-  type_url: "/cyber.grid.v1beta1.GenesisState";
+  typeUrl: "/cyber.grid.v1beta1.GenesisState";
   value: Uint8Array;
 }
 export interface GenesisStateAmino {
@@ -85,7 +86,7 @@ export const GenesisState = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+  fromPartial(object: Partial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.routes = object.routes?.map(e => Route.fromPartial(e)) || [];

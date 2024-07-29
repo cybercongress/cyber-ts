@@ -1,14 +1,14 @@
+//@ts-nocheck
 import { GrantAuthorization, GrantAuthorizationAmino, GrantAuthorizationSDKType } from "./authz";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { JsonSafe } from "../../../json-safe";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** GenesisState defines the authz module's genesis state. */
 export interface GenesisState {
   authorization: GrantAuthorization[];
 }
 export interface GenesisStateProtoMsg {
-  type_url: "/cosmos.authz.v1beta1.GenesisState";
+  typeUrl: "/cosmos.authz.v1beta1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the authz module's genesis state. */
@@ -77,7 +77,7 @@ export const GenesisState = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+  fromPartial(object: Partial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.authorization = object.authorization?.map(e => GrantAuthorization.fromPartial(e)) || [];
     return message;

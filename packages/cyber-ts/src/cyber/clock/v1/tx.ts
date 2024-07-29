@@ -1,17 +1,18 @@
+//@ts-nocheck
 import { Params, ParamsAmino, ParamsSDKType } from "./genesis";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** MsgRegisterClockContract is the Msg/RegisterClockContract request type. */
 export interface MsgRegisterClockContract {
   /** The address of the sender. */
-  sender_address: string;
+  senderAddress: string;
   /** The address of the contract to register. */
-  contract_address: string;
+  contractAddress: string;
 }
 export interface MsgRegisterClockContractProtoMsg {
-  type_url: "/cyber.clock.v1.MsgRegisterClockContract";
+  typeUrl: "/cyber.clock.v1.MsgRegisterClockContract";
   value: Uint8Array;
 }
 /** MsgRegisterClockContract is the Msg/RegisterClockContract request type. */
@@ -36,7 +37,7 @@ export interface MsgRegisterClockContractSDKType {
  */
 export interface MsgRegisterClockContractResponse {}
 export interface MsgRegisterClockContractResponseProtoMsg {
-  type_url: "/cyber.clock.v1.MsgRegisterClockContractResponse";
+  typeUrl: "/cyber.clock.v1.MsgRegisterClockContractResponse";
   value: Uint8Array;
 }
 /**
@@ -56,12 +57,12 @@ export interface MsgRegisterClockContractResponseSDKType {}
 /** MsgUnregisterClockContract is the Msg/UnregisterClockContract request type. */
 export interface MsgUnregisterClockContract {
   /** The address of the sender. */
-  sender_address: string;
+  senderAddress: string;
   /** The address of the contract to unregister. */
-  contract_address: string;
+  contractAddress: string;
 }
 export interface MsgUnregisterClockContractProtoMsg {
-  type_url: "/cyber.clock.v1.MsgUnregisterClockContract";
+  typeUrl: "/cyber.clock.v1.MsgUnregisterClockContract";
   value: Uint8Array;
 }
 /** MsgUnregisterClockContract is the Msg/UnregisterClockContract request type. */
@@ -86,7 +87,7 @@ export interface MsgUnregisterClockContractSDKType {
  */
 export interface MsgUnregisterClockContractResponse {}
 export interface MsgUnregisterClockContractResponseProtoMsg {
-  type_url: "/cyber.clock.v1.MsgUnregisterClockContractResponse";
+  typeUrl: "/cyber.clock.v1.MsgUnregisterClockContractResponse";
   value: Uint8Array;
 }
 /**
@@ -106,12 +107,12 @@ export interface MsgUnregisterClockContractResponseSDKType {}
 /** MsgUnjailClockContract is the Msg/UnjailClockContract request type. */
 export interface MsgUnjailClockContract {
   /** The address of the sender. */
-  sender_address: string;
+  senderAddress: string;
   /** The address of the contract to unjail. */
-  contract_address: string;
+  contractAddress: string;
 }
 export interface MsgUnjailClockContractProtoMsg {
-  type_url: "/cyber.clock.v1.MsgUnjailClockContract";
+  typeUrl: "/cyber.clock.v1.MsgUnjailClockContract";
   value: Uint8Array;
 }
 /** MsgUnjailClockContract is the Msg/UnjailClockContract request type. */
@@ -136,7 +137,7 @@ export interface MsgUnjailClockContractSDKType {
  */
 export interface MsgUnjailClockContractResponse {}
 export interface MsgUnjailClockContractResponseProtoMsg {
-  type_url: "/cyber.clock.v1.MsgUnjailClockContractResponse";
+  typeUrl: "/cyber.clock.v1.MsgUnjailClockContractResponse";
   value: Uint8Array;
 }
 /**
@@ -169,7 +170,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  type_url: "/cyber.clock.v1.MsgUpdateParams";
+  typeUrl: "/cyber.clock.v1.MsgUpdateParams";
   value: Uint8Array;
 }
 /**
@@ -208,7 +209,7 @@ export interface MsgUpdateParamsSDKType {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  type_url: "/cyber.clock.v1.MsgUpdateParamsResponse";
+  typeUrl: "/cyber.clock.v1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**
@@ -231,14 +232,14 @@ export interface MsgUpdateParamsResponseAminoMsg {
 export interface MsgUpdateParamsResponseSDKType {}
 function createBaseMsgRegisterClockContract(): MsgRegisterClockContract {
   return {
-    sender_address: "",
-    contract_address: ""
+    senderAddress: "",
+    contractAddress: ""
   };
 }
 export const MsgRegisterClockContract = {
   typeUrl: "/cyber.clock.v1.MsgRegisterClockContract",
   is(o: any): o is MsgRegisterClockContract {
-    return o && (o.$typeUrl === MsgRegisterClockContract.typeUrl || typeof o.sender_address === "string" && typeof o.contract_address === "string");
+    return o && (o.$typeUrl === MsgRegisterClockContract.typeUrl || typeof o.senderAddress === "string" && typeof o.contractAddress === "string");
   },
   isSDK(o: any): o is MsgRegisterClockContractSDKType {
     return o && (o.$typeUrl === MsgRegisterClockContract.typeUrl || typeof o.sender_address === "string" && typeof o.contract_address === "string");
@@ -247,11 +248,11 @@ export const MsgRegisterClockContract = {
     return o && (o.$typeUrl === MsgRegisterClockContract.typeUrl || typeof o.sender_address === "string" && typeof o.contract_address === "string");
   },
   encode(message: MsgRegisterClockContract, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.sender_address !== "") {
-      writer.uint32(10).string(message.sender_address);
+    if (message.senderAddress !== "") {
+      writer.uint32(10).string(message.senderAddress);
     }
-    if (message.contract_address !== "") {
-      writer.uint32(18).string(message.contract_address);
+    if (message.contractAddress !== "") {
+      writer.uint32(18).string(message.contractAddress);
     }
     return writer;
   },
@@ -263,10 +264,10 @@ export const MsgRegisterClockContract = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.sender_address = reader.string();
+          message.senderAddress = reader.string();
           break;
         case 2:
-          message.contract_address = reader.string();
+          message.contractAddress = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -277,36 +278,36 @@ export const MsgRegisterClockContract = {
   },
   fromJSON(object: any): MsgRegisterClockContract {
     return {
-      sender_address: isSet(object.sender_address) ? String(object.sender_address) : "",
-      contract_address: isSet(object.contract_address) ? String(object.contract_address) : ""
+      senderAddress: isSet(object.senderAddress) ? String(object.senderAddress) : "",
+      contractAddress: isSet(object.contractAddress) ? String(object.contractAddress) : ""
     };
   },
   toJSON(message: MsgRegisterClockContract): JsonSafe<MsgRegisterClockContract> {
     const obj: any = {};
-    message.sender_address !== undefined && (obj.sender_address = message.sender_address);
-    message.contract_address !== undefined && (obj.contract_address = message.contract_address);
+    message.senderAddress !== undefined && (obj.senderAddress = message.senderAddress);
+    message.contractAddress !== undefined && (obj.contractAddress = message.contractAddress);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgRegisterClockContract>): MsgRegisterClockContract {
+  fromPartial(object: Partial<MsgRegisterClockContract>): MsgRegisterClockContract {
     const message = createBaseMsgRegisterClockContract();
-    message.sender_address = object.sender_address ?? "";
-    message.contract_address = object.contract_address ?? "";
+    message.senderAddress = object.senderAddress ?? "";
+    message.contractAddress = object.contractAddress ?? "";
     return message;
   },
   fromAmino(object: MsgRegisterClockContractAmino): MsgRegisterClockContract {
     const message = createBaseMsgRegisterClockContract();
     if (object.sender_address !== undefined && object.sender_address !== null) {
-      message.sender_address = object.sender_address;
+      message.senderAddress = object.sender_address;
     }
     if (object.contract_address !== undefined && object.contract_address !== null) {
-      message.contract_address = object.contract_address;
+      message.contractAddress = object.contract_address;
     }
     return message;
   },
   toAmino(message: MsgRegisterClockContract): MsgRegisterClockContractAmino {
     const obj: any = {};
-    obj.sender_address = message.sender_address === "" ? undefined : message.sender_address;
-    obj.contract_address = message.contract_address === "" ? undefined : message.contract_address;
+    obj.sender_address = message.senderAddress === "" ? undefined : message.senderAddress;
+    obj.contract_address = message.contractAddress === "" ? undefined : message.contractAddress;
     return obj;
   },
   fromAminoMsg(object: MsgRegisterClockContractAminoMsg): MsgRegisterClockContract {
@@ -364,7 +365,7 @@ export const MsgRegisterClockContractResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgRegisterClockContractResponse>): MsgRegisterClockContractResponse {
+  fromPartial(_: Partial<MsgRegisterClockContractResponse>): MsgRegisterClockContractResponse {
     const message = createBaseMsgRegisterClockContractResponse();
     return message;
   },
@@ -395,14 +396,14 @@ export const MsgRegisterClockContractResponse = {
 GlobalDecoderRegistry.register(MsgRegisterClockContractResponse.typeUrl, MsgRegisterClockContractResponse);
 function createBaseMsgUnregisterClockContract(): MsgUnregisterClockContract {
   return {
-    sender_address: "",
-    contract_address: ""
+    senderAddress: "",
+    contractAddress: ""
   };
 }
 export const MsgUnregisterClockContract = {
   typeUrl: "/cyber.clock.v1.MsgUnregisterClockContract",
   is(o: any): o is MsgUnregisterClockContract {
-    return o && (o.$typeUrl === MsgUnregisterClockContract.typeUrl || typeof o.sender_address === "string" && typeof o.contract_address === "string");
+    return o && (o.$typeUrl === MsgUnregisterClockContract.typeUrl || typeof o.senderAddress === "string" && typeof o.contractAddress === "string");
   },
   isSDK(o: any): o is MsgUnregisterClockContractSDKType {
     return o && (o.$typeUrl === MsgUnregisterClockContract.typeUrl || typeof o.sender_address === "string" && typeof o.contract_address === "string");
@@ -411,11 +412,11 @@ export const MsgUnregisterClockContract = {
     return o && (o.$typeUrl === MsgUnregisterClockContract.typeUrl || typeof o.sender_address === "string" && typeof o.contract_address === "string");
   },
   encode(message: MsgUnregisterClockContract, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.sender_address !== "") {
-      writer.uint32(10).string(message.sender_address);
+    if (message.senderAddress !== "") {
+      writer.uint32(10).string(message.senderAddress);
     }
-    if (message.contract_address !== "") {
-      writer.uint32(18).string(message.contract_address);
+    if (message.contractAddress !== "") {
+      writer.uint32(18).string(message.contractAddress);
     }
     return writer;
   },
@@ -427,10 +428,10 @@ export const MsgUnregisterClockContract = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.sender_address = reader.string();
+          message.senderAddress = reader.string();
           break;
         case 2:
-          message.contract_address = reader.string();
+          message.contractAddress = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -441,36 +442,36 @@ export const MsgUnregisterClockContract = {
   },
   fromJSON(object: any): MsgUnregisterClockContract {
     return {
-      sender_address: isSet(object.sender_address) ? String(object.sender_address) : "",
-      contract_address: isSet(object.contract_address) ? String(object.contract_address) : ""
+      senderAddress: isSet(object.senderAddress) ? String(object.senderAddress) : "",
+      contractAddress: isSet(object.contractAddress) ? String(object.contractAddress) : ""
     };
   },
   toJSON(message: MsgUnregisterClockContract): JsonSafe<MsgUnregisterClockContract> {
     const obj: any = {};
-    message.sender_address !== undefined && (obj.sender_address = message.sender_address);
-    message.contract_address !== undefined && (obj.contract_address = message.contract_address);
+    message.senderAddress !== undefined && (obj.senderAddress = message.senderAddress);
+    message.contractAddress !== undefined && (obj.contractAddress = message.contractAddress);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgUnregisterClockContract>): MsgUnregisterClockContract {
+  fromPartial(object: Partial<MsgUnregisterClockContract>): MsgUnregisterClockContract {
     const message = createBaseMsgUnregisterClockContract();
-    message.sender_address = object.sender_address ?? "";
-    message.contract_address = object.contract_address ?? "";
+    message.senderAddress = object.senderAddress ?? "";
+    message.contractAddress = object.contractAddress ?? "";
     return message;
   },
   fromAmino(object: MsgUnregisterClockContractAmino): MsgUnregisterClockContract {
     const message = createBaseMsgUnregisterClockContract();
     if (object.sender_address !== undefined && object.sender_address !== null) {
-      message.sender_address = object.sender_address;
+      message.senderAddress = object.sender_address;
     }
     if (object.contract_address !== undefined && object.contract_address !== null) {
-      message.contract_address = object.contract_address;
+      message.contractAddress = object.contract_address;
     }
     return message;
   },
   toAmino(message: MsgUnregisterClockContract): MsgUnregisterClockContractAmino {
     const obj: any = {};
-    obj.sender_address = message.sender_address === "" ? undefined : message.sender_address;
-    obj.contract_address = message.contract_address === "" ? undefined : message.contract_address;
+    obj.sender_address = message.senderAddress === "" ? undefined : message.senderAddress;
+    obj.contract_address = message.contractAddress === "" ? undefined : message.contractAddress;
     return obj;
   },
   fromAminoMsg(object: MsgUnregisterClockContractAminoMsg): MsgUnregisterClockContract {
@@ -528,7 +529,7 @@ export const MsgUnregisterClockContractResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgUnregisterClockContractResponse>): MsgUnregisterClockContractResponse {
+  fromPartial(_: Partial<MsgUnregisterClockContractResponse>): MsgUnregisterClockContractResponse {
     const message = createBaseMsgUnregisterClockContractResponse();
     return message;
   },
@@ -559,14 +560,14 @@ export const MsgUnregisterClockContractResponse = {
 GlobalDecoderRegistry.register(MsgUnregisterClockContractResponse.typeUrl, MsgUnregisterClockContractResponse);
 function createBaseMsgUnjailClockContract(): MsgUnjailClockContract {
   return {
-    sender_address: "",
-    contract_address: ""
+    senderAddress: "",
+    contractAddress: ""
   };
 }
 export const MsgUnjailClockContract = {
   typeUrl: "/cyber.clock.v1.MsgUnjailClockContract",
   is(o: any): o is MsgUnjailClockContract {
-    return o && (o.$typeUrl === MsgUnjailClockContract.typeUrl || typeof o.sender_address === "string" && typeof o.contract_address === "string");
+    return o && (o.$typeUrl === MsgUnjailClockContract.typeUrl || typeof o.senderAddress === "string" && typeof o.contractAddress === "string");
   },
   isSDK(o: any): o is MsgUnjailClockContractSDKType {
     return o && (o.$typeUrl === MsgUnjailClockContract.typeUrl || typeof o.sender_address === "string" && typeof o.contract_address === "string");
@@ -575,11 +576,11 @@ export const MsgUnjailClockContract = {
     return o && (o.$typeUrl === MsgUnjailClockContract.typeUrl || typeof o.sender_address === "string" && typeof o.contract_address === "string");
   },
   encode(message: MsgUnjailClockContract, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.sender_address !== "") {
-      writer.uint32(10).string(message.sender_address);
+    if (message.senderAddress !== "") {
+      writer.uint32(10).string(message.senderAddress);
     }
-    if (message.contract_address !== "") {
-      writer.uint32(18).string(message.contract_address);
+    if (message.contractAddress !== "") {
+      writer.uint32(18).string(message.contractAddress);
     }
     return writer;
   },
@@ -591,10 +592,10 @@ export const MsgUnjailClockContract = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.sender_address = reader.string();
+          message.senderAddress = reader.string();
           break;
         case 2:
-          message.contract_address = reader.string();
+          message.contractAddress = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -605,36 +606,36 @@ export const MsgUnjailClockContract = {
   },
   fromJSON(object: any): MsgUnjailClockContract {
     return {
-      sender_address: isSet(object.sender_address) ? String(object.sender_address) : "",
-      contract_address: isSet(object.contract_address) ? String(object.contract_address) : ""
+      senderAddress: isSet(object.senderAddress) ? String(object.senderAddress) : "",
+      contractAddress: isSet(object.contractAddress) ? String(object.contractAddress) : ""
     };
   },
   toJSON(message: MsgUnjailClockContract): JsonSafe<MsgUnjailClockContract> {
     const obj: any = {};
-    message.sender_address !== undefined && (obj.sender_address = message.sender_address);
-    message.contract_address !== undefined && (obj.contract_address = message.contract_address);
+    message.senderAddress !== undefined && (obj.senderAddress = message.senderAddress);
+    message.contractAddress !== undefined && (obj.contractAddress = message.contractAddress);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgUnjailClockContract>): MsgUnjailClockContract {
+  fromPartial(object: Partial<MsgUnjailClockContract>): MsgUnjailClockContract {
     const message = createBaseMsgUnjailClockContract();
-    message.sender_address = object.sender_address ?? "";
-    message.contract_address = object.contract_address ?? "";
+    message.senderAddress = object.senderAddress ?? "";
+    message.contractAddress = object.contractAddress ?? "";
     return message;
   },
   fromAmino(object: MsgUnjailClockContractAmino): MsgUnjailClockContract {
     const message = createBaseMsgUnjailClockContract();
     if (object.sender_address !== undefined && object.sender_address !== null) {
-      message.sender_address = object.sender_address;
+      message.senderAddress = object.sender_address;
     }
     if (object.contract_address !== undefined && object.contract_address !== null) {
-      message.contract_address = object.contract_address;
+      message.contractAddress = object.contract_address;
     }
     return message;
   },
   toAmino(message: MsgUnjailClockContract): MsgUnjailClockContractAmino {
     const obj: any = {};
-    obj.sender_address = message.sender_address === "" ? undefined : message.sender_address;
-    obj.contract_address = message.contract_address === "" ? undefined : message.contract_address;
+    obj.sender_address = message.senderAddress === "" ? undefined : message.senderAddress;
+    obj.contract_address = message.contractAddress === "" ? undefined : message.contractAddress;
     return obj;
   },
   fromAminoMsg(object: MsgUnjailClockContractAminoMsg): MsgUnjailClockContract {
@@ -692,7 +693,7 @@ export const MsgUnjailClockContractResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgUnjailClockContractResponse>): MsgUnjailClockContractResponse {
+  fromPartial(_: Partial<MsgUnjailClockContractResponse>): MsgUnjailClockContractResponse {
     const message = createBaseMsgUnjailClockContractResponse();
     return message;
   },
@@ -779,7 +780,7 @@ export const MsgUpdateParams = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgUpdateParams>): MsgUpdateParams {
+  fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? "";
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
@@ -856,7 +857,7 @@ export const MsgUpdateParamsResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
+  fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
   },

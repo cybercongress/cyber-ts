@@ -16,6 +16,10 @@ export const options: TelescopeInput = {
     bundle: {
       enabled: true
     },
+    removeUnusedImports: true,
+    tsDisable: {
+      disableAll: true
+    },
     reactQuery: {
       enabled: true
     },
@@ -28,9 +32,9 @@ export const options: TelescopeInput = {
       enabled: true,
       addTypeUrlToDecoders: true,
       addTypeUrlToObjects: true,
-      addAminoTypeToObjects: true,
+      // addAminoTypeToObjects: true,
       parser: {
-        keepCase: true
+        keepCase: false
       },
       excluded: {
         packages: [
@@ -73,32 +77,31 @@ export const options: TelescopeInput = {
         toProto: true
       },
       typingsFormat: {
+        duration: 'duration',
+        timestamp: 'date',
+        useExact: false,
+        useDeepPartial: false,
+        num64: 'bigint',
         customTypes: {
           useCosmosSDKDec: true
-        },
-        num64: 'bigint',
-        useDeepPartial: true,
-        useExact: false,
-        timestamp: 'date',
-        duration: 'duration',
-        autoFixUndefinedEnumDefault: true
+        }
       }
     },
     aminoEncoding: {
       enabled: true,
-      omitEmptyTags: ['omitempty', 'dont_omitempty'],
-      customTypes: {
-        useCosmosSDKDec: false
-      },
+      // omitEmptyTags: ['omitempty', 'dont_omitempty'],
+      // customTypes: {
+      //   useCosmosSDKDec: true
+      // },
       exceptions: {
         ...AMINO_MAP
       },
     },
-    stargateClients: {
-      enabled: true,
-      includeCosmosDefaultTypes: true,
-      //addGetTxRpc: true
-    },
+    // stargateClients: {
+    //   enabled: true,
+    //   includeCosmosDefaultTypes: true,
+    //   //addGetTxRpc: true
+    // },
     lcdClients: {
       enabled: true
     },

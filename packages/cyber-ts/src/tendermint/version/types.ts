@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { isSet, DeepPartial } from "../../helpers";
+import { isSet } from "../../helpers";
 import { JsonSafe } from "../../json-safe";
 import { GlobalDecoderRegistry } from "../../registry";
 /**
@@ -12,7 +13,7 @@ export interface App {
   software: string;
 }
 export interface AppProtoMsg {
-  type_url: "/tendermint.version.App";
+  typeUrl: "/tendermint.version.App";
   value: Uint8Array;
 }
 /**
@@ -47,7 +48,7 @@ export interface Consensus {
   app: bigint;
 }
 export interface ConsensusProtoMsg {
-  type_url: "/tendermint.version.Consensus";
+  typeUrl: "/tendermint.version.Consensus";
   value: Uint8Array;
 }
 /**
@@ -130,7 +131,7 @@ export const App = {
     message.software !== undefined && (obj.software = message.software);
     return obj;
   },
-  fromPartial(object: DeepPartial<App>): App {
+  fromPartial(object: Partial<App>): App {
     const message = createBaseApp();
     message.protocol = object.protocol !== undefined && object.protocol !== null ? BigInt(object.protocol.toString()) : BigInt(0);
     message.software = object.software ?? "";
@@ -227,7 +228,7 @@ export const Consensus = {
     message.app !== undefined && (obj.app = (message.app || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<Consensus>): Consensus {
+  fromPartial(object: Partial<Consensus>): Consensus {
     const message = createBaseConsensus();
     message.block = object.block !== undefined && object.block !== null ? BigInt(object.block.toString()) : BigInt(0);
     message.app = object.app !== undefined && object.app !== null ? BigInt(object.app.toString()) : BigInt(0);

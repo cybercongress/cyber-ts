@@ -1,7 +1,8 @@
+//@ts-nocheck
 import { Timestamp } from "../../../google/protobuf/timestamp";
 import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { toTimestamp, fromTimestamp, isSet, fromJsonTimestamp, DeepPartial } from "../../../helpers";
+import { toTimestamp, fromTimestamp, isSet, fromJsonTimestamp } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** Plan specifies information about a planned upgrade and when it should occur. */
@@ -39,10 +40,10 @@ export interface Plan {
    * If this field is not empty, an error will be thrown.
    */
   /** @deprecated */
-  upgraded_client_state?: Any;
+  upgradedClientState?: Any;
 }
 export interface PlanProtoMsg {
-  type_url: "/cosmos.upgrade.v1beta1.Plan";
+  typeUrl: "/cosmos.upgrade.v1beta1.Plan";
   value: Uint8Array;
 }
 /** Plan specifies information about a planned upgrade and when it should occur. */
@@ -110,7 +111,7 @@ export interface SoftwareUpgradeProposal {
   plan: Plan;
 }
 export interface SoftwareUpgradeProposalProtoMsg {
-  type_url: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal";
+  typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal";
   value: Uint8Array;
 }
 /**
@@ -155,7 +156,7 @@ export interface CancelSoftwareUpgradeProposal {
   description: string;
 }
 export interface CancelSoftwareUpgradeProposalProtoMsg {
-  type_url: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal";
+  typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal";
   value: Uint8Array;
 }
 /**
@@ -197,7 +198,7 @@ export interface ModuleVersion {
   version: bigint;
 }
 export interface ModuleVersionProtoMsg {
-  type_url: "/cosmos.upgrade.v1beta1.ModuleVersion";
+  typeUrl: "/cosmos.upgrade.v1beta1.ModuleVersion";
   value: Uint8Array;
 }
 /**
@@ -230,7 +231,7 @@ function createBasePlan(): Plan {
     time: new Date(),
     height: BigInt(0),
     info: "",
-    upgraded_client_state: undefined
+    upgradedClientState: undefined
   };
 }
 export const Plan = {
@@ -258,8 +259,8 @@ export const Plan = {
     if (message.info !== "") {
       writer.uint32(34).string(message.info);
     }
-    if (message.upgraded_client_state !== undefined) {
-      Any.encode(message.upgraded_client_state, writer.uint32(42).fork()).ldelim();
+    if (message.upgradedClientState !== undefined) {
+      Any.encode(message.upgradedClientState, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -283,7 +284,7 @@ export const Plan = {
           message.info = reader.string();
           break;
         case 5:
-          message.upgraded_client_state = Any.decode(reader, reader.uint32());
+          message.upgradedClientState = Any.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -298,7 +299,7 @@ export const Plan = {
       time: isSet(object.time) ? fromJsonTimestamp(object.time) : undefined,
       height: isSet(object.height) ? BigInt(object.height.toString()) : BigInt(0),
       info: isSet(object.info) ? String(object.info) : "",
-      upgraded_client_state: isSet(object.upgraded_client_state) ? Any.fromJSON(object.upgraded_client_state) : undefined
+      upgradedClientState: isSet(object.upgradedClientState) ? Any.fromJSON(object.upgradedClientState) : undefined
     };
   },
   toJSON(message: Plan): JsonSafe<Plan> {
@@ -307,16 +308,16 @@ export const Plan = {
     message.time !== undefined && (obj.time = message.time.toISOString());
     message.height !== undefined && (obj.height = (message.height || BigInt(0)).toString());
     message.info !== undefined && (obj.info = message.info);
-    message.upgraded_client_state !== undefined && (obj.upgraded_client_state = message.upgraded_client_state ? Any.toJSON(message.upgraded_client_state) : undefined);
+    message.upgradedClientState !== undefined && (obj.upgradedClientState = message.upgradedClientState ? Any.toJSON(message.upgradedClientState) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<Plan>): Plan {
+  fromPartial(object: Partial<Plan>): Plan {
     const message = createBasePlan();
     message.name = object.name ?? "";
     message.time = object.time ?? undefined;
     message.height = object.height !== undefined && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
     message.info = object.info ?? "";
-    message.upgraded_client_state = object.upgraded_client_state !== undefined && object.upgraded_client_state !== null ? Any.fromPartial(object.upgraded_client_state) : undefined;
+    message.upgradedClientState = object.upgradedClientState !== undefined && object.upgradedClientState !== null ? Any.fromPartial(object.upgradedClientState) : undefined;
     return message;
   },
   fromAmino(object: PlanAmino): Plan {
@@ -334,7 +335,7 @@ export const Plan = {
       message.info = object.info;
     }
     if (object.upgraded_client_state !== undefined && object.upgraded_client_state !== null) {
-      message.upgraded_client_state = Any.fromAmino(object.upgraded_client_state);
+      message.upgradedClientState = Any.fromAmino(object.upgraded_client_state);
     }
     return message;
   },
@@ -344,7 +345,7 @@ export const Plan = {
     obj.time = message.time ? Timestamp.toAmino(toTimestamp(message.time)) : undefined;
     obj.height = message.height !== BigInt(0) ? message.height.toString() : undefined;
     obj.info = message.info === "" ? undefined : message.info;
-    obj.upgraded_client_state = message.upgraded_client_state ? Any.toAmino(message.upgraded_client_state) : undefined;
+    obj.upgraded_client_state = message.upgradedClientState ? Any.toAmino(message.upgradedClientState) : undefined;
     return obj;
   },
   fromAminoMsg(object: PlanAminoMsg): Plan {
@@ -440,7 +441,7 @@ export const SoftwareUpgradeProposal = {
     message.plan !== undefined && (obj.plan = message.plan ? Plan.toJSON(message.plan) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<SoftwareUpgradeProposal>): SoftwareUpgradeProposal {
+  fromPartial(object: Partial<SoftwareUpgradeProposal>): SoftwareUpgradeProposal {
     const message = createBaseSoftwareUpgradeProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
@@ -551,7 +552,7 @@ export const CancelSoftwareUpgradeProposal = {
     message.description !== undefined && (obj.description = message.description);
     return obj;
   },
-  fromPartial(object: DeepPartial<CancelSoftwareUpgradeProposal>): CancelSoftwareUpgradeProposal {
+  fromPartial(object: Partial<CancelSoftwareUpgradeProposal>): CancelSoftwareUpgradeProposal {
     const message = createBaseCancelSoftwareUpgradeProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
@@ -656,7 +657,7 @@ export const ModuleVersion = {
     message.version !== undefined && (obj.version = (message.version || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<ModuleVersion>): ModuleVersion {
+  fromPartial(object: Partial<ModuleVersion>): ModuleVersion {
     const message = createBaseModuleVersion();
     message.name = object.name ?? "";
     message.version = object.version !== undefined && object.version !== null ? BigInt(object.version.toString()) : BigInt(0);

@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** GenesisState - initial state of module */
@@ -8,7 +9,7 @@ export interface GenesisState {
   params: Params;
 }
 export interface GenesisStateProtoMsg {
-  type_url: "/cyber.clock.v1.GenesisState";
+  typeUrl: "/cyber.clock.v1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState - initial state of module */
@@ -30,10 +31,10 @@ export interface Params {
    * contract_gas_limit defines the maximum amount of gas that can be used by a
    * contract.
    */
-  contract_gas_limit: bigint;
+  contractGasLimit: bigint;
 }
 export interface ParamsProtoMsg {
-  type_url: "/cyber.clock.v1.Params";
+  typeUrl: "/cyber.clock.v1.Params";
   value: Uint8Array;
 }
 /** Params defines the set of module parameters. */
@@ -101,7 +102,7 @@ export const GenesisState = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+  fromPartial(object: Partial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -137,13 +138,13 @@ export const GenesisState = {
 GlobalDecoderRegistry.register(GenesisState.typeUrl, GenesisState);
 function createBaseParams(): Params {
   return {
-    contract_gas_limit: BigInt(0)
+    contractGasLimit: BigInt(0)
   };
 }
 export const Params = {
   typeUrl: "/cyber.clock.v1.Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.contract_gas_limit === "bigint");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.contractGasLimit === "bigint");
   },
   isSDK(o: any): o is ParamsSDKType {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.contract_gas_limit === "bigint");
@@ -152,8 +153,8 @@ export const Params = {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.contract_gas_limit === "bigint");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.contract_gas_limit !== BigInt(0)) {
-      writer.uint32(8).uint64(message.contract_gas_limit);
+    if (message.contractGasLimit !== BigInt(0)) {
+      writer.uint32(8).uint64(message.contractGasLimit);
     }
     return writer;
   },
@@ -165,7 +166,7 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.contract_gas_limit = reader.uint64();
+          message.contractGasLimit = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -176,29 +177,29 @@ export const Params = {
   },
   fromJSON(object: any): Params {
     return {
-      contract_gas_limit: isSet(object.contract_gas_limit) ? BigInt(object.contract_gas_limit.toString()) : BigInt(0)
+      contractGasLimit: isSet(object.contractGasLimit) ? BigInt(object.contractGasLimit.toString()) : BigInt(0)
     };
   },
   toJSON(message: Params): JsonSafe<Params> {
     const obj: any = {};
-    message.contract_gas_limit !== undefined && (obj.contract_gas_limit = (message.contract_gas_limit || BigInt(0)).toString());
+    message.contractGasLimit !== undefined && (obj.contractGasLimit = (message.contractGasLimit || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<Params>): Params {
+  fromPartial(object: Partial<Params>): Params {
     const message = createBaseParams();
-    message.contract_gas_limit = object.contract_gas_limit !== undefined && object.contract_gas_limit !== null ? BigInt(object.contract_gas_limit.toString()) : BigInt(0);
+    message.contractGasLimit = object.contractGasLimit !== undefined && object.contractGasLimit !== null ? BigInt(object.contractGasLimit.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.contract_gas_limit !== undefined && object.contract_gas_limit !== null) {
-      message.contract_gas_limit = BigInt(object.contract_gas_limit);
+      message.contractGasLimit = BigInt(object.contract_gas_limit);
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.contract_gas_limit = message.contract_gas_limit !== BigInt(0) ? message.contract_gas_limit.toString() : undefined;
+    obj.contract_gas_limit = message.contractGasLimit !== BigInt(0) ? message.contractGasLimit.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {

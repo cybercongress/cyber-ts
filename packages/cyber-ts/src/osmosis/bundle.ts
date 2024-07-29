@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as _100 from "./tokenfactory/v1beta1/authority_metadata";
 import * as _101 from "./tokenfactory/v1beta1/genesis";
 import * as _102 from "./tokenfactory/v1beta1/params";

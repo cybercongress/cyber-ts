@@ -1,7 +1,8 @@
+//@ts-nocheck
 import { Trigger, TriggerAmino, TriggerSDKType, Load, LoadAmino, LoadSDKType, Params, ParamsAmino, ParamsSDKType } from "./types";
 import { Coin, CoinAmino, CoinSDKType } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface MsgCreateThought {
@@ -12,7 +13,7 @@ export interface MsgCreateThought {
   particle: string;
 }
 export interface MsgCreateThoughtProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgCreateThought";
+  typeUrl: "/cyber.dmn.v1beta1.MsgCreateThought";
   value: Uint8Array;
 }
 export interface MsgCreateThoughtAmino {
@@ -38,7 +39,7 @@ export interface MsgForgetThought {
   name: string;
 }
 export interface MsgForgetThoughtProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgForgetThought";
+  typeUrl: "/cyber.dmn.v1beta1.MsgForgetThought";
   value: Uint8Array;
 }
 export interface MsgForgetThoughtAmino {
@@ -59,7 +60,7 @@ export interface MsgChangeThoughtParticle {
   particle: string;
 }
 export interface MsgChangeThoughtParticleProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtParticle";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtParticle";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtParticleAmino {
@@ -79,10 +80,10 @@ export interface MsgChangeThoughtParticleSDKType {
 export interface MsgChangeThoughtName {
   program: string;
   name: string;
-  new_name: string;
+  newName: string;
 }
 export interface MsgChangeThoughtNameProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtName";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtName";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtNameAmino {
@@ -105,7 +106,7 @@ export interface MsgChangeThoughtInput {
   input: string;
 }
 export interface MsgChangeThoughtInputProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtInput";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtInput";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtInputAmino {
@@ -125,10 +126,10 @@ export interface MsgChangeThoughtInputSDKType {
 export interface MsgChangeThoughtGasPrice {
   program: string;
   name: string;
-  gas_price: Coin;
+  gasPrice: Coin;
 }
 export interface MsgChangeThoughtGasPriceProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtGasPrice";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtGasPrice";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtGasPriceAmino {
@@ -151,7 +152,7 @@ export interface MsgChangeThoughtPeriod {
   period: bigint;
 }
 export interface MsgChangeThoughtPeriodProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtPeriod";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtPeriod";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtPeriodAmino {
@@ -174,7 +175,7 @@ export interface MsgChangeThoughtBlock {
   block: bigint;
 }
 export interface MsgChangeThoughtBlockProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtBlock";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtBlock";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtBlockAmino {
@@ -196,7 +197,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgUpdateParams";
+  typeUrl: "/cyber.dmn.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 export interface MsgUpdateParamsAmino {
@@ -213,7 +214,7 @@ export interface MsgUpdateParamsSDKType {
 }
 export interface MsgCreateThoughtResponse {}
 export interface MsgCreateThoughtResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgCreateThoughtResponse";
+  typeUrl: "/cyber.dmn.v1beta1.MsgCreateThoughtResponse";
   value: Uint8Array;
 }
 export interface MsgCreateThoughtResponseAmino {}
@@ -224,7 +225,7 @@ export interface MsgCreateThoughtResponseAminoMsg {
 export interface MsgCreateThoughtResponseSDKType {}
 export interface MsgForgetThoughtResponse {}
 export interface MsgForgetThoughtResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgForgetThoughtResponse";
+  typeUrl: "/cyber.dmn.v1beta1.MsgForgetThoughtResponse";
   value: Uint8Array;
 }
 export interface MsgForgetThoughtResponseAmino {}
@@ -235,7 +236,7 @@ export interface MsgForgetThoughtResponseAminoMsg {
 export interface MsgForgetThoughtResponseSDKType {}
 export interface MsgChangeThoughtParticleResponse {}
 export interface MsgChangeThoughtParticleResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtParticleResponse";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtParticleResponse";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtParticleResponseAmino {}
@@ -246,7 +247,7 @@ export interface MsgChangeThoughtParticleResponseAminoMsg {
 export interface MsgChangeThoughtParticleResponseSDKType {}
 export interface MsgChangeThoughtNameResponse {}
 export interface MsgChangeThoughtNameResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtNameResponse";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtNameResponse";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtNameResponseAmino {}
@@ -257,7 +258,7 @@ export interface MsgChangeThoughtNameResponseAminoMsg {
 export interface MsgChangeThoughtNameResponseSDKType {}
 export interface MsgChangeThoughtInputResponse {}
 export interface MsgChangeThoughtInputResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtInputResponse";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtInputResponse";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtInputResponseAmino {}
@@ -268,7 +269,7 @@ export interface MsgChangeThoughtInputResponseAminoMsg {
 export interface MsgChangeThoughtInputResponseSDKType {}
 export interface MsgChangeThoughtGasPriceResponse {}
 export interface MsgChangeThoughtGasPriceResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtGasPriceResponse";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtGasPriceResponse";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtGasPriceResponseAmino {}
@@ -279,7 +280,7 @@ export interface MsgChangeThoughtGasPriceResponseAminoMsg {
 export interface MsgChangeThoughtGasPriceResponseSDKType {}
 export interface MsgChangeThoughtPeriodResponse {}
 export interface MsgChangeThoughtPeriodResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtPeriodResponse";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtPeriodResponse";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtPeriodResponseAmino {}
@@ -290,7 +291,7 @@ export interface MsgChangeThoughtPeriodResponseAminoMsg {
 export interface MsgChangeThoughtPeriodResponseSDKType {}
 export interface MsgChangeThoughtBlockResponse {}
 export interface MsgChangeThoughtBlockResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgChangeThoughtBlockResponse";
+  typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtBlockResponse";
   value: Uint8Array;
 }
 export interface MsgChangeThoughtBlockResponseAmino {}
@@ -301,7 +302,7 @@ export interface MsgChangeThoughtBlockResponseAminoMsg {
 export interface MsgChangeThoughtBlockResponseSDKType {}
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  type_url: "/cyber.dmn.v1beta1.MsgUpdateParamsResponse";
+  typeUrl: "/cyber.dmn.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 export interface MsgUpdateParamsResponseAmino {}
@@ -395,7 +396,7 @@ export const MsgCreateThought = {
     message.particle !== undefined && (obj.particle = message.particle);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgCreateThought>): MsgCreateThought {
+  fromPartial(object: Partial<MsgCreateThought>): MsgCreateThought {
     const message = createBaseMsgCreateThought();
     message.program = object.program ?? "";
     message.trigger = object.trigger !== undefined && object.trigger !== null ? Trigger.fromPartial(object.trigger) : undefined;
@@ -507,7 +508,7 @@ export const MsgForgetThought = {
     message.name !== undefined && (obj.name = message.name);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgForgetThought>): MsgForgetThought {
+  fromPartial(object: Partial<MsgForgetThought>): MsgForgetThought {
     const message = createBaseMsgForgetThought();
     message.program = object.program ?? "";
     message.name = object.name ?? "";
@@ -613,7 +614,7 @@ export const MsgChangeThoughtParticle = {
     message.particle !== undefined && (obj.particle = message.particle);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgChangeThoughtParticle>): MsgChangeThoughtParticle {
+  fromPartial(object: Partial<MsgChangeThoughtParticle>): MsgChangeThoughtParticle {
     const message = createBaseMsgChangeThoughtParticle();
     message.program = object.program ?? "";
     message.name = object.name ?? "";
@@ -661,13 +662,13 @@ function createBaseMsgChangeThoughtName(): MsgChangeThoughtName {
   return {
     program: "",
     name: "",
-    new_name: ""
+    newName: ""
   };
 }
 export const MsgChangeThoughtName = {
   typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtName",
   is(o: any): o is MsgChangeThoughtName {
-    return o && (o.$typeUrl === MsgChangeThoughtName.typeUrl || typeof o.program === "string" && typeof o.name === "string" && typeof o.new_name === "string");
+    return o && (o.$typeUrl === MsgChangeThoughtName.typeUrl || typeof o.program === "string" && typeof o.name === "string" && typeof o.newName === "string");
   },
   isSDK(o: any): o is MsgChangeThoughtNameSDKType {
     return o && (o.$typeUrl === MsgChangeThoughtName.typeUrl || typeof o.program === "string" && typeof o.name === "string" && typeof o.new_name === "string");
@@ -682,8 +683,8 @@ export const MsgChangeThoughtName = {
     if (message.name !== "") {
       writer.uint32(18).string(message.name);
     }
-    if (message.new_name !== "") {
-      writer.uint32(26).string(message.new_name);
+    if (message.newName !== "") {
+      writer.uint32(26).string(message.newName);
     }
     return writer;
   },
@@ -701,7 +702,7 @@ export const MsgChangeThoughtName = {
           message.name = reader.string();
           break;
         case 3:
-          message.new_name = reader.string();
+          message.newName = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -714,21 +715,21 @@ export const MsgChangeThoughtName = {
     return {
       program: isSet(object.program) ? String(object.program) : "",
       name: isSet(object.name) ? String(object.name) : "",
-      new_name: isSet(object.new_name) ? String(object.new_name) : ""
+      newName: isSet(object.newName) ? String(object.newName) : ""
     };
   },
   toJSON(message: MsgChangeThoughtName): JsonSafe<MsgChangeThoughtName> {
     const obj: any = {};
     message.program !== undefined && (obj.program = message.program);
     message.name !== undefined && (obj.name = message.name);
-    message.new_name !== undefined && (obj.new_name = message.new_name);
+    message.newName !== undefined && (obj.newName = message.newName);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgChangeThoughtName>): MsgChangeThoughtName {
+  fromPartial(object: Partial<MsgChangeThoughtName>): MsgChangeThoughtName {
     const message = createBaseMsgChangeThoughtName();
     message.program = object.program ?? "";
     message.name = object.name ?? "";
-    message.new_name = object.new_name ?? "";
+    message.newName = object.newName ?? "";
     return message;
   },
   fromAmino(object: MsgChangeThoughtNameAmino): MsgChangeThoughtName {
@@ -740,7 +741,7 @@ export const MsgChangeThoughtName = {
       message.name = object.name;
     }
     if (object.new_name !== undefined && object.new_name !== null) {
-      message.new_name = object.new_name;
+      message.newName = object.new_name;
     }
     return message;
   },
@@ -748,7 +749,7 @@ export const MsgChangeThoughtName = {
     const obj: any = {};
     obj.program = message.program === "" ? undefined : message.program;
     obj.name = message.name === "" ? undefined : message.name;
-    obj.new_name = message.new_name === "" ? undefined : message.new_name;
+    obj.new_name = message.newName === "" ? undefined : message.newName;
     return obj;
   },
   fromAminoMsg(object: MsgChangeThoughtNameAminoMsg): MsgChangeThoughtName {
@@ -835,7 +836,7 @@ export const MsgChangeThoughtInput = {
     message.input !== undefined && (obj.input = message.input);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgChangeThoughtInput>): MsgChangeThoughtInput {
+  fromPartial(object: Partial<MsgChangeThoughtInput>): MsgChangeThoughtInput {
     const message = createBaseMsgChangeThoughtInput();
     message.program = object.program ?? "";
     message.name = object.name ?? "";
@@ -883,13 +884,13 @@ function createBaseMsgChangeThoughtGasPrice(): MsgChangeThoughtGasPrice {
   return {
     program: "",
     name: "",
-    gas_price: Coin.fromPartial({})
+    gasPrice: Coin.fromPartial({})
   };
 }
 export const MsgChangeThoughtGasPrice = {
   typeUrl: "/cyber.dmn.v1beta1.MsgChangeThoughtGasPrice",
   is(o: any): o is MsgChangeThoughtGasPrice {
-    return o && (o.$typeUrl === MsgChangeThoughtGasPrice.typeUrl || typeof o.program === "string" && typeof o.name === "string" && Coin.is(o.gas_price));
+    return o && (o.$typeUrl === MsgChangeThoughtGasPrice.typeUrl || typeof o.program === "string" && typeof o.name === "string" && Coin.is(o.gasPrice));
   },
   isSDK(o: any): o is MsgChangeThoughtGasPriceSDKType {
     return o && (o.$typeUrl === MsgChangeThoughtGasPrice.typeUrl || typeof o.program === "string" && typeof o.name === "string" && Coin.isSDK(o.gas_price));
@@ -904,8 +905,8 @@ export const MsgChangeThoughtGasPrice = {
     if (message.name !== "") {
       writer.uint32(18).string(message.name);
     }
-    if (message.gas_price !== undefined) {
-      Coin.encode(message.gas_price, writer.uint32(26).fork()).ldelim();
+    if (message.gasPrice !== undefined) {
+      Coin.encode(message.gasPrice, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -923,7 +924,7 @@ export const MsgChangeThoughtGasPrice = {
           message.name = reader.string();
           break;
         case 3:
-          message.gas_price = Coin.decode(reader, reader.uint32());
+          message.gasPrice = Coin.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -936,21 +937,21 @@ export const MsgChangeThoughtGasPrice = {
     return {
       program: isSet(object.program) ? String(object.program) : "",
       name: isSet(object.name) ? String(object.name) : "",
-      gas_price: isSet(object.gas_price) ? Coin.fromJSON(object.gas_price) : undefined
+      gasPrice: isSet(object.gasPrice) ? Coin.fromJSON(object.gasPrice) : undefined
     };
   },
   toJSON(message: MsgChangeThoughtGasPrice): JsonSafe<MsgChangeThoughtGasPrice> {
     const obj: any = {};
     message.program !== undefined && (obj.program = message.program);
     message.name !== undefined && (obj.name = message.name);
-    message.gas_price !== undefined && (obj.gas_price = message.gas_price ? Coin.toJSON(message.gas_price) : undefined);
+    message.gasPrice !== undefined && (obj.gasPrice = message.gasPrice ? Coin.toJSON(message.gasPrice) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgChangeThoughtGasPrice>): MsgChangeThoughtGasPrice {
+  fromPartial(object: Partial<MsgChangeThoughtGasPrice>): MsgChangeThoughtGasPrice {
     const message = createBaseMsgChangeThoughtGasPrice();
     message.program = object.program ?? "";
     message.name = object.name ?? "";
-    message.gas_price = object.gas_price !== undefined && object.gas_price !== null ? Coin.fromPartial(object.gas_price) : undefined;
+    message.gasPrice = object.gasPrice !== undefined && object.gasPrice !== null ? Coin.fromPartial(object.gasPrice) : undefined;
     return message;
   },
   fromAmino(object: MsgChangeThoughtGasPriceAmino): MsgChangeThoughtGasPrice {
@@ -962,7 +963,7 @@ export const MsgChangeThoughtGasPrice = {
       message.name = object.name;
     }
     if (object.gas_price !== undefined && object.gas_price !== null) {
-      message.gas_price = Coin.fromAmino(object.gas_price);
+      message.gasPrice = Coin.fromAmino(object.gas_price);
     }
     return message;
   },
@@ -970,7 +971,7 @@ export const MsgChangeThoughtGasPrice = {
     const obj: any = {};
     obj.program = message.program === "" ? undefined : message.program;
     obj.name = message.name === "" ? undefined : message.name;
-    obj.gas_price = message.gas_price ? Coin.toAmino(message.gas_price) : undefined;
+    obj.gas_price = message.gasPrice ? Coin.toAmino(message.gasPrice) : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgChangeThoughtGasPriceAminoMsg): MsgChangeThoughtGasPrice {
@@ -1057,7 +1058,7 @@ export const MsgChangeThoughtPeriod = {
     message.period !== undefined && (obj.period = (message.period || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgChangeThoughtPeriod>): MsgChangeThoughtPeriod {
+  fromPartial(object: Partial<MsgChangeThoughtPeriod>): MsgChangeThoughtPeriod {
     const message = createBaseMsgChangeThoughtPeriod();
     message.program = object.program ?? "";
     message.name = object.name ?? "";
@@ -1168,7 +1169,7 @@ export const MsgChangeThoughtBlock = {
     message.block !== undefined && (obj.block = (message.block || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgChangeThoughtBlock>): MsgChangeThoughtBlock {
+  fromPartial(object: Partial<MsgChangeThoughtBlock>): MsgChangeThoughtBlock {
     const message = createBaseMsgChangeThoughtBlock();
     message.program = object.program ?? "";
     message.name = object.name ?? "";
@@ -1270,7 +1271,7 @@ export const MsgUpdateParams = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<MsgUpdateParams>): MsgUpdateParams {
+  fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams {
     const message = createBaseMsgUpdateParams();
     message.authority = object.authority ?? "";
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
@@ -1347,7 +1348,7 @@ export const MsgCreateThoughtResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgCreateThoughtResponse>): MsgCreateThoughtResponse {
+  fromPartial(_: Partial<MsgCreateThoughtResponse>): MsgCreateThoughtResponse {
     const message = createBaseMsgCreateThoughtResponse();
     return message;
   },
@@ -1414,7 +1415,7 @@ export const MsgForgetThoughtResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgForgetThoughtResponse>): MsgForgetThoughtResponse {
+  fromPartial(_: Partial<MsgForgetThoughtResponse>): MsgForgetThoughtResponse {
     const message = createBaseMsgForgetThoughtResponse();
     return message;
   },
@@ -1481,7 +1482,7 @@ export const MsgChangeThoughtParticleResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgChangeThoughtParticleResponse>): MsgChangeThoughtParticleResponse {
+  fromPartial(_: Partial<MsgChangeThoughtParticleResponse>): MsgChangeThoughtParticleResponse {
     const message = createBaseMsgChangeThoughtParticleResponse();
     return message;
   },
@@ -1548,7 +1549,7 @@ export const MsgChangeThoughtNameResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgChangeThoughtNameResponse>): MsgChangeThoughtNameResponse {
+  fromPartial(_: Partial<MsgChangeThoughtNameResponse>): MsgChangeThoughtNameResponse {
     const message = createBaseMsgChangeThoughtNameResponse();
     return message;
   },
@@ -1615,7 +1616,7 @@ export const MsgChangeThoughtInputResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgChangeThoughtInputResponse>): MsgChangeThoughtInputResponse {
+  fromPartial(_: Partial<MsgChangeThoughtInputResponse>): MsgChangeThoughtInputResponse {
     const message = createBaseMsgChangeThoughtInputResponse();
     return message;
   },
@@ -1682,7 +1683,7 @@ export const MsgChangeThoughtGasPriceResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgChangeThoughtGasPriceResponse>): MsgChangeThoughtGasPriceResponse {
+  fromPartial(_: Partial<MsgChangeThoughtGasPriceResponse>): MsgChangeThoughtGasPriceResponse {
     const message = createBaseMsgChangeThoughtGasPriceResponse();
     return message;
   },
@@ -1749,7 +1750,7 @@ export const MsgChangeThoughtPeriodResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgChangeThoughtPeriodResponse>): MsgChangeThoughtPeriodResponse {
+  fromPartial(_: Partial<MsgChangeThoughtPeriodResponse>): MsgChangeThoughtPeriodResponse {
     const message = createBaseMsgChangeThoughtPeriodResponse();
     return message;
   },
@@ -1816,7 +1817,7 @@ export const MsgChangeThoughtBlockResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgChangeThoughtBlockResponse>): MsgChangeThoughtBlockResponse {
+  fromPartial(_: Partial<MsgChangeThoughtBlockResponse>): MsgChangeThoughtBlockResponse {
     const message = createBaseMsgChangeThoughtBlockResponse();
     return message;
   },
@@ -1883,7 +1884,7 @@ export const MsgUpdateParamsResponse = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
+  fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
     const message = createBaseMsgUpdateParamsResponse();
     return message;
   },

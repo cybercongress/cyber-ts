@@ -1,15 +1,16 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { Decimal } from "@cosmjs/math";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface Params {
-  calculation_period: bigint;
-  damping_factor: string;
+  calculationPeriod: bigint;
+  dampingFactor: string;
   tolerance: string;
 }
 export interface ParamsProtoMsg {
-  type_url: "/cyber.rank.v1beta1.Params";
+  typeUrl: "/cyber.rank.v1beta1.Params";
   value: Uint8Array;
 }
 export interface ParamsAmino {
@@ -31,7 +32,7 @@ export interface RankedParticle {
   rank: bigint;
 }
 export interface RankedParticleProtoMsg {
-  type_url: "/cyber.rank.v1beta1.RankedParticle";
+  typeUrl: "/cyber.rank.v1beta1.RankedParticle";
   value: Uint8Array;
 }
 export interface RankedParticleAmino {
@@ -48,15 +49,15 @@ export interface RankedParticleSDKType {
 }
 function createBaseParams(): Params {
   return {
-    calculation_period: BigInt(0),
-    damping_factor: "",
+    calculationPeriod: BigInt(0),
+    dampingFactor: "",
     tolerance: ""
   };
 }
 export const Params = {
   typeUrl: "/cyber.rank.v1beta1.Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.calculation_period === "bigint" && typeof o.damping_factor === "string" && typeof o.tolerance === "string");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.calculationPeriod === "bigint" && typeof o.dampingFactor === "string" && typeof o.tolerance === "string");
   },
   isSDK(o: any): o is ParamsSDKType {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.calculation_period === "bigint" && typeof o.damping_factor === "string" && typeof o.tolerance === "string");
@@ -65,11 +66,11 @@ export const Params = {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.calculation_period === "bigint" && typeof o.damping_factor === "string" && typeof o.tolerance === "string");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.calculation_period !== BigInt(0)) {
-      writer.uint32(8).int64(message.calculation_period);
+    if (message.calculationPeriod !== BigInt(0)) {
+      writer.uint32(8).int64(message.calculationPeriod);
     }
-    if (message.damping_factor !== "") {
-      writer.uint32(18).string(Decimal.fromUserInput(message.damping_factor, 18).atomics);
+    if (message.dampingFactor !== "") {
+      writer.uint32(18).string(Decimal.fromUserInput(message.dampingFactor, 18).atomics);
     }
     if (message.tolerance !== "") {
       writer.uint32(26).string(Decimal.fromUserInput(message.tolerance, 18).atomics);
@@ -84,10 +85,10 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.calculation_period = reader.int64();
+          message.calculationPeriod = reader.int64();
           break;
         case 2:
-          message.damping_factor = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.dampingFactor = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
           message.tolerance = Decimal.fromAtomics(reader.string(), 18).toString();
@@ -101,32 +102,32 @@ export const Params = {
   },
   fromJSON(object: any): Params {
     return {
-      calculation_period: isSet(object.calculation_period) ? BigInt(object.calculation_period.toString()) : BigInt(0),
-      damping_factor: isSet(object.damping_factor) ? String(object.damping_factor) : "",
+      calculationPeriod: isSet(object.calculationPeriod) ? BigInt(object.calculationPeriod.toString()) : BigInt(0),
+      dampingFactor: isSet(object.dampingFactor) ? String(object.dampingFactor) : "",
       tolerance: isSet(object.tolerance) ? String(object.tolerance) : ""
     };
   },
   toJSON(message: Params): JsonSafe<Params> {
     const obj: any = {};
-    message.calculation_period !== undefined && (obj.calculation_period = (message.calculation_period || BigInt(0)).toString());
-    message.damping_factor !== undefined && (obj.damping_factor = message.damping_factor);
+    message.calculationPeriod !== undefined && (obj.calculationPeriod = (message.calculationPeriod || BigInt(0)).toString());
+    message.dampingFactor !== undefined && (obj.dampingFactor = message.dampingFactor);
     message.tolerance !== undefined && (obj.tolerance = message.tolerance);
     return obj;
   },
-  fromPartial(object: DeepPartial<Params>): Params {
+  fromPartial(object: Partial<Params>): Params {
     const message = createBaseParams();
-    message.calculation_period = object.calculation_period !== undefined && object.calculation_period !== null ? BigInt(object.calculation_period.toString()) : BigInt(0);
-    message.damping_factor = object.damping_factor ?? "";
+    message.calculationPeriod = object.calculationPeriod !== undefined && object.calculationPeriod !== null ? BigInt(object.calculationPeriod.toString()) : BigInt(0);
+    message.dampingFactor = object.dampingFactor ?? "";
     message.tolerance = object.tolerance ?? "";
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.calculation_period !== undefined && object.calculation_period !== null) {
-      message.calculation_period = BigInt(object.calculation_period);
+      message.calculationPeriod = BigInt(object.calculation_period);
     }
     if (object.damping_factor !== undefined && object.damping_factor !== null) {
-      message.damping_factor = object.damping_factor;
+      message.dampingFactor = object.damping_factor;
     }
     if (object.tolerance !== undefined && object.tolerance !== null) {
       message.tolerance = object.tolerance;
@@ -135,8 +136,8 @@ export const Params = {
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.calculation_period = message.calculation_period !== BigInt(0) ? message.calculation_period.toString() : undefined;
-    obj.damping_factor = message.damping_factor === "" ? undefined : message.damping_factor;
+    obj.calculation_period = message.calculationPeriod !== BigInt(0) ? message.calculationPeriod.toString() : undefined;
+    obj.damping_factor = message.dampingFactor === "" ? undefined : message.dampingFactor;
     obj.tolerance = message.tolerance === "" ? undefined : message.tolerance;
     return obj;
   },
@@ -215,7 +216,7 @@ export const RankedParticle = {
     message.rank !== undefined && (obj.rank = (message.rank || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<RankedParticle>): RankedParticle {
+  fromPartial(object: Partial<RankedParticle>): RankedParticle {
     const message = createBaseRankedParticle();
     message.particle = object.particle ?? "";
     message.rank = object.rank !== undefined && object.rank !== null ? BigInt(object.rank.toString()) : BigInt(0);

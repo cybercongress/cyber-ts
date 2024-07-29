@@ -1,15 +1,16 @@
+//@ts-nocheck
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** Params defines the parameters for the bank module. */
 export interface Params {
-  send_enabled: SendEnabled[];
-  default_send_enabled: boolean;
+  sendEnabled: SendEnabled[];
+  defaultSendEnabled: boolean;
 }
 export interface ParamsProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.Params";
+  typeUrl: "/cosmos.bank.v1beta1.Params";
   value: Uint8Array;
 }
 /** Params defines the parameters for the bank module. */
@@ -35,7 +36,7 @@ export interface SendEnabled {
   enabled: boolean;
 }
 export interface SendEnabledProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.SendEnabled";
+  typeUrl: "/cosmos.bank.v1beta1.SendEnabled";
   value: Uint8Array;
 }
 /**
@@ -64,7 +65,7 @@ export interface Input {
   coins: Coin[];
 }
 export interface InputProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.Input";
+  typeUrl: "/cosmos.bank.v1beta1.Input";
   value: Uint8Array;
 }
 /** Input models transaction input. */
@@ -87,7 +88,7 @@ export interface Output {
   coins: Coin[];
 }
 export interface OutputProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.Output";
+  typeUrl: "/cosmos.bank.v1beta1.Output";
   value: Uint8Array;
 }
 /** Output models transaction outputs. */
@@ -115,7 +116,7 @@ export interface Supply {
   total: Coin[];
 }
 export interface SupplyProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.Supply";
+  typeUrl: "/cosmos.bank.v1beta1.Supply";
   value: Uint8Array;
 }
 /**
@@ -160,7 +161,7 @@ export interface DenomUnit {
   aliases: string[];
 }
 export interface DenomUnitProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.DenomUnit";
+  typeUrl: "/cosmos.bank.v1beta1.DenomUnit";
   value: Uint8Array;
 }
 /**
@@ -201,7 +202,7 @@ export interface DenomUnitSDKType {
 export interface Metadata {
   description: string;
   /** denom_units represents the list of DenomUnit's for a given coin */
-  denom_units: DenomUnit[];
+  denomUnits: DenomUnit[];
   /** base represents the base denom (should be the DenomUnit with exponent = 0). */
   base: string;
   /**
@@ -234,10 +235,10 @@ export interface Metadata {
    * 
    * Since: cosmos-sdk 0.46
    */
-  uri_hash: string;
+  uriHash: string;
 }
 export interface MetadataProtoMsg {
-  type_url: "/cosmos.bank.v1beta1.Metadata";
+  typeUrl: "/cosmos.bank.v1beta1.Metadata";
   value: Uint8Array;
 }
 /**
@@ -302,15 +303,15 @@ export interface MetadataSDKType {
 }
 function createBaseParams(): Params {
   return {
-    send_enabled: [],
-    default_send_enabled: false
+    sendEnabled: [],
+    defaultSendEnabled: false
   };
 }
 export const Params = {
   typeUrl: "/cosmos.bank.v1beta1.Params",
   aminoType: "cosmos-sdk/Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || Array.isArray(o.send_enabled) && (!o.send_enabled.length || SendEnabled.is(o.send_enabled[0])) && typeof o.default_send_enabled === "boolean");
+    return o && (o.$typeUrl === Params.typeUrl || Array.isArray(o.sendEnabled) && (!o.sendEnabled.length || SendEnabled.is(o.sendEnabled[0])) && typeof o.defaultSendEnabled === "boolean");
   },
   isSDK(o: any): o is ParamsSDKType {
     return o && (o.$typeUrl === Params.typeUrl || Array.isArray(o.send_enabled) && (!o.send_enabled.length || SendEnabled.isSDK(o.send_enabled[0])) && typeof o.default_send_enabled === "boolean");
@@ -319,11 +320,11 @@ export const Params = {
     return o && (o.$typeUrl === Params.typeUrl || Array.isArray(o.send_enabled) && (!o.send_enabled.length || SendEnabled.isAmino(o.send_enabled[0])) && typeof o.default_send_enabled === "boolean");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.send_enabled) {
+    for (const v of message.sendEnabled) {
       SendEnabled.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.default_send_enabled === true) {
-      writer.uint32(16).bool(message.default_send_enabled);
+    if (message.defaultSendEnabled === true) {
+      writer.uint32(16).bool(message.defaultSendEnabled);
     }
     return writer;
   },
@@ -335,10 +336,10 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.send_enabled.push(SendEnabled.decode(reader, reader.uint32()));
+          message.sendEnabled.push(SendEnabled.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.default_send_enabled = reader.bool();
+          message.defaultSendEnabled = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -349,42 +350,42 @@ export const Params = {
   },
   fromJSON(object: any): Params {
     return {
-      send_enabled: Array.isArray(object?.send_enabled) ? object.send_enabled.map((e: any) => SendEnabled.fromJSON(e)) : [],
-      default_send_enabled: isSet(object.default_send_enabled) ? Boolean(object.default_send_enabled) : false
+      sendEnabled: Array.isArray(object?.sendEnabled) ? object.sendEnabled.map((e: any) => SendEnabled.fromJSON(e)) : [],
+      defaultSendEnabled: isSet(object.defaultSendEnabled) ? Boolean(object.defaultSendEnabled) : false
     };
   },
   toJSON(message: Params): JsonSafe<Params> {
     const obj: any = {};
-    if (message.send_enabled) {
-      obj.send_enabled = message.send_enabled.map(e => e ? SendEnabled.toJSON(e) : undefined);
+    if (message.sendEnabled) {
+      obj.sendEnabled = message.sendEnabled.map(e => e ? SendEnabled.toJSON(e) : undefined);
     } else {
-      obj.send_enabled = [];
+      obj.sendEnabled = [];
     }
-    message.default_send_enabled !== undefined && (obj.default_send_enabled = message.default_send_enabled);
+    message.defaultSendEnabled !== undefined && (obj.defaultSendEnabled = message.defaultSendEnabled);
     return obj;
   },
-  fromPartial(object: DeepPartial<Params>): Params {
+  fromPartial(object: Partial<Params>): Params {
     const message = createBaseParams();
-    message.send_enabled = object.send_enabled?.map(e => SendEnabled.fromPartial(e)) || [];
-    message.default_send_enabled = object.default_send_enabled ?? false;
+    message.sendEnabled = object.sendEnabled?.map(e => SendEnabled.fromPartial(e)) || [];
+    message.defaultSendEnabled = object.defaultSendEnabled ?? false;
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
-    message.send_enabled = object.send_enabled?.map(e => SendEnabled.fromAmino(e)) || [];
+    message.sendEnabled = object.send_enabled?.map(e => SendEnabled.fromAmino(e)) || [];
     if (object.default_send_enabled !== undefined && object.default_send_enabled !== null) {
-      message.default_send_enabled = object.default_send_enabled;
+      message.defaultSendEnabled = object.default_send_enabled;
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    if (message.send_enabled) {
-      obj.send_enabled = message.send_enabled.map(e => e ? SendEnabled.toAmino(e) : undefined);
+    if (message.sendEnabled) {
+      obj.send_enabled = message.sendEnabled.map(e => e ? SendEnabled.toAmino(e) : undefined);
     } else {
-      obj.send_enabled = message.send_enabled;
+      obj.send_enabled = message.sendEnabled;
     }
-    obj.default_send_enabled = message.default_send_enabled === false ? undefined : message.default_send_enabled;
+    obj.default_send_enabled = message.defaultSendEnabled === false ? undefined : message.defaultSendEnabled;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -470,7 +471,7 @@ export const SendEnabled = {
     message.enabled !== undefined && (obj.enabled = message.enabled);
     return obj;
   },
-  fromPartial(object: DeepPartial<SendEnabled>): SendEnabled {
+  fromPartial(object: Partial<SendEnabled>): SendEnabled {
     const message = createBaseSendEnabled();
     message.denom = object.denom ?? "";
     message.enabled = object.enabled ?? false;
@@ -579,7 +580,7 @@ export const Input = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<Input>): Input {
+  fromPartial(object: Partial<Input>): Input {
     const message = createBaseInput();
     message.address = object.address ?? "";
     message.coins = object.coins?.map(e => Coin.fromPartial(e)) || [];
@@ -690,7 +691,7 @@ export const Output = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<Output>): Output {
+  fromPartial(object: Partial<Output>): Output {
     const message = createBaseOutput();
     message.address = object.address ?? "";
     message.coins = object.coins?.map(e => Coin.fromPartial(e)) || [];
@@ -793,7 +794,7 @@ export const Supply = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<Supply>): Supply {
+  fromPartial(object: Partial<Supply>): Supply {
     const message = createBaseSupply();
     message.total = object.total?.map(e => Coin.fromPartial(e)) || [];
     return message;
@@ -908,7 +909,7 @@ export const DenomUnit = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<DenomUnit>): DenomUnit {
+  fromPartial(object: Partial<DenomUnit>): DenomUnit {
     const message = createBaseDenomUnit();
     message.denom = object.denom ?? "";
     message.exponent = object.exponent ?? 0;
@@ -964,20 +965,20 @@ GlobalDecoderRegistry.registerAminoProtoMapping(DenomUnit.aminoType, DenomUnit.t
 function createBaseMetadata(): Metadata {
   return {
     description: "",
-    denom_units: [],
+    denomUnits: [],
     base: "",
     display: "",
     name: "",
     symbol: "",
     uri: "",
-    uri_hash: ""
+    uriHash: ""
   };
 }
 export const Metadata = {
   typeUrl: "/cosmos.bank.v1beta1.Metadata",
   aminoType: "cosmos-sdk/Metadata",
   is(o: any): o is Metadata {
-    return o && (o.$typeUrl === Metadata.typeUrl || typeof o.description === "string" && Array.isArray(o.denom_units) && (!o.denom_units.length || DenomUnit.is(o.denom_units[0])) && typeof o.base === "string" && typeof o.display === "string" && typeof o.name === "string" && typeof o.symbol === "string" && typeof o.uri === "string" && typeof o.uri_hash === "string");
+    return o && (o.$typeUrl === Metadata.typeUrl || typeof o.description === "string" && Array.isArray(o.denomUnits) && (!o.denomUnits.length || DenomUnit.is(o.denomUnits[0])) && typeof o.base === "string" && typeof o.display === "string" && typeof o.name === "string" && typeof o.symbol === "string" && typeof o.uri === "string" && typeof o.uriHash === "string");
   },
   isSDK(o: any): o is MetadataSDKType {
     return o && (o.$typeUrl === Metadata.typeUrl || typeof o.description === "string" && Array.isArray(o.denom_units) && (!o.denom_units.length || DenomUnit.isSDK(o.denom_units[0])) && typeof o.base === "string" && typeof o.display === "string" && typeof o.name === "string" && typeof o.symbol === "string" && typeof o.uri === "string" && typeof o.uri_hash === "string");
@@ -989,7 +990,7 @@ export const Metadata = {
     if (message.description !== "") {
       writer.uint32(10).string(message.description);
     }
-    for (const v of message.denom_units) {
+    for (const v of message.denomUnits) {
       DenomUnit.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     if (message.base !== "") {
@@ -1007,8 +1008,8 @@ export const Metadata = {
     if (message.uri !== "") {
       writer.uint32(58).string(message.uri);
     }
-    if (message.uri_hash !== "") {
-      writer.uint32(66).string(message.uri_hash);
+    if (message.uriHash !== "") {
+      writer.uint32(66).string(message.uriHash);
     }
     return writer;
   },
@@ -1023,7 +1024,7 @@ export const Metadata = {
           message.description = reader.string();
           break;
         case 2:
-          message.denom_units.push(DenomUnit.decode(reader, reader.uint32()));
+          message.denomUnits.push(DenomUnit.decode(reader, reader.uint32()));
           break;
         case 3:
           message.base = reader.string();
@@ -1041,7 +1042,7 @@ export const Metadata = {
           message.uri = reader.string();
           break;
         case 8:
-          message.uri_hash = reader.string();
+          message.uriHash = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1053,41 +1054,41 @@ export const Metadata = {
   fromJSON(object: any): Metadata {
     return {
       description: isSet(object.description) ? String(object.description) : "",
-      denom_units: Array.isArray(object?.denom_units) ? object.denom_units.map((e: any) => DenomUnit.fromJSON(e)) : [],
+      denomUnits: Array.isArray(object?.denomUnits) ? object.denomUnits.map((e: any) => DenomUnit.fromJSON(e)) : [],
       base: isSet(object.base) ? String(object.base) : "",
       display: isSet(object.display) ? String(object.display) : "",
       name: isSet(object.name) ? String(object.name) : "",
       symbol: isSet(object.symbol) ? String(object.symbol) : "",
       uri: isSet(object.uri) ? String(object.uri) : "",
-      uri_hash: isSet(object.uri_hash) ? String(object.uri_hash) : ""
+      uriHash: isSet(object.uriHash) ? String(object.uriHash) : ""
     };
   },
   toJSON(message: Metadata): JsonSafe<Metadata> {
     const obj: any = {};
     message.description !== undefined && (obj.description = message.description);
-    if (message.denom_units) {
-      obj.denom_units = message.denom_units.map(e => e ? DenomUnit.toJSON(e) : undefined);
+    if (message.denomUnits) {
+      obj.denomUnits = message.denomUnits.map(e => e ? DenomUnit.toJSON(e) : undefined);
     } else {
-      obj.denom_units = [];
+      obj.denomUnits = [];
     }
     message.base !== undefined && (obj.base = message.base);
     message.display !== undefined && (obj.display = message.display);
     message.name !== undefined && (obj.name = message.name);
     message.symbol !== undefined && (obj.symbol = message.symbol);
     message.uri !== undefined && (obj.uri = message.uri);
-    message.uri_hash !== undefined && (obj.uri_hash = message.uri_hash);
+    message.uriHash !== undefined && (obj.uriHash = message.uriHash);
     return obj;
   },
-  fromPartial(object: DeepPartial<Metadata>): Metadata {
+  fromPartial(object: Partial<Metadata>): Metadata {
     const message = createBaseMetadata();
     message.description = object.description ?? "";
-    message.denom_units = object.denom_units?.map(e => DenomUnit.fromPartial(e)) || [];
+    message.denomUnits = object.denomUnits?.map(e => DenomUnit.fromPartial(e)) || [];
     message.base = object.base ?? "";
     message.display = object.display ?? "";
     message.name = object.name ?? "";
     message.symbol = object.symbol ?? "";
     message.uri = object.uri ?? "";
-    message.uri_hash = object.uri_hash ?? "";
+    message.uriHash = object.uriHash ?? "";
     return message;
   },
   fromAmino(object: MetadataAmino): Metadata {
@@ -1095,7 +1096,7 @@ export const Metadata = {
     if (object.description !== undefined && object.description !== null) {
       message.description = object.description;
     }
-    message.denom_units = object.denom_units?.map(e => DenomUnit.fromAmino(e)) || [];
+    message.denomUnits = object.denom_units?.map(e => DenomUnit.fromAmino(e)) || [];
     if (object.base !== undefined && object.base !== null) {
       message.base = object.base;
     }
@@ -1112,24 +1113,24 @@ export const Metadata = {
       message.uri = object.uri;
     }
     if (object.uri_hash !== undefined && object.uri_hash !== null) {
-      message.uri_hash = object.uri_hash;
+      message.uriHash = object.uri_hash;
     }
     return message;
   },
   toAmino(message: Metadata): MetadataAmino {
     const obj: any = {};
     obj.description = message.description === "" ? undefined : message.description;
-    if (message.denom_units) {
-      obj.denom_units = message.denom_units.map(e => e ? DenomUnit.toAmino(e) : undefined);
+    if (message.denomUnits) {
+      obj.denom_units = message.denomUnits.map(e => e ? DenomUnit.toAmino(e) : undefined);
     } else {
-      obj.denom_units = message.denom_units;
+      obj.denom_units = message.denomUnits;
     }
     obj.base = message.base === "" ? undefined : message.base;
     obj.display = message.display === "" ? undefined : message.display;
     obj.name = message.name === "" ? undefined : message.name;
     obj.symbol = message.symbol === "" ? undefined : message.symbol;
     obj.uri = message.uri === "" ? undefined : message.uri;
-    obj.uri_hash = message.uri_hash === "" ? undefined : message.uri_hash;
+    obj.uri_hash = message.uriHash === "" ? undefined : message.uriHash;
     return obj;
   },
   fromAminoMsg(object: MetadataAminoMsg): Metadata {

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { setPaginationParams } from "../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
 import { QueryContractInfoRequest, QueryContractInfoResponseSDKType, QueryContractHistoryRequest, QueryContractHistoryResponseSDKType, QueryContractsByCodeRequest, QueryContractsByCodeResponseSDKType, QueryAllContractStateRequest, QueryAllContractStateResponseSDKType, QueryRawContractStateRequest, QueryRawContractStateResponseSDKType, QuerySmartContractStateRequest, QuerySmartContractStateResponseSDKType, QueryCodeRequest, QueryCodeResponseSDKType, QueryCodesRequest, QueryCodesResponseSDKType, QueryPinnedCodesRequest, QueryPinnedCodesResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryContractsByCreatorRequest, QueryContractsByCreatorResponseSDKType } from "./query";
@@ -45,7 +46,7 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `cosmwasm/wasm/v1/code/${params.code_id}/contracts`;
+    const endpoint = `cosmwasm/wasm/v1/code/${params.codeId}/contracts`;
     return await this.req.get<QueryContractsByCodeResponseSDKType>(endpoint, options);
   }
   /* AllContractState gets all raw store data for a single contract */
@@ -61,17 +62,17 @@ export class LCDQueryClient {
   }
   /* RawContractState gets single key from the raw store data of a contract */
   async rawContractState(params: QueryRawContractStateRequest): Promise<QueryRawContractStateResponseSDKType> {
-    const endpoint = `cosmwasm/wasm/v1/contract/${params.address}/raw/${params.query_data}`;
+    const endpoint = `cosmwasm/wasm/v1/contract/${params.address}/raw/${params.queryData}`;
     return await this.req.get<QueryRawContractStateResponseSDKType>(endpoint);
   }
   /* SmartContractState get smart query result from the contract */
   async smartContractState(params: QuerySmartContractStateRequest): Promise<QuerySmartContractStateResponseSDKType> {
-    const endpoint = `cosmwasm/wasm/v1/contract/${params.address}/smart/${params.query_data}`;
+    const endpoint = `cosmwasm/wasm/v1/contract/${params.address}/smart/${params.queryData}`;
     return await this.req.get<QuerySmartContractStateResponseSDKType>(endpoint);
   }
   /* Code gets the binary code and metadata for a singe wasm code */
   async code(params: QueryCodeRequest): Promise<QueryCodeResponseSDKType> {
-    const endpoint = `cosmwasm/wasm/v1/code/${params.code_id}`;
+    const endpoint = `cosmwasm/wasm/v1/code/${params.codeId}`;
     return await this.req.get<QueryCodeResponseSDKType>(endpoint);
   }
   /* Codes gets the metadata for all stored wasm codes */
@@ -113,7 +114,7 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `cosmwasm/wasm/v1/contracts/creator/${params.creator_address}`;
+    const endpoint = `cosmwasm/wasm/v1/contracts/creator/${params.creatorAddress}`;
     return await this.req.get<QueryContractsByCreatorResponseSDKType>(endpoint, options);
   }
 }

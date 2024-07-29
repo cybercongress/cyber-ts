@@ -1,6 +1,7 @@
+//@ts-nocheck
 import { ParamChange, ParamChangeAmino, ParamChangeSDKType } from "./params";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -11,7 +12,7 @@ export interface QueryParamsRequest {
   key: string;
 }
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cosmos.params.v1beta1.QueryParamsRequest";
+  typeUrl: "/cosmos.params.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -36,7 +37,7 @@ export interface QueryParamsResponse {
   param: ParamChange;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cosmos.params.v1beta1.QueryParamsResponse";
+  typeUrl: "/cosmos.params.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse is response type for the Query/Params RPC method. */
@@ -58,7 +59,7 @@ export interface QueryParamsResponseSDKType {
  */
 export interface QuerySubspacesRequest {}
 export interface QuerySubspacesRequestProtoMsg {
-  type_url: "/cosmos.params.v1beta1.QuerySubspacesRequest";
+  typeUrl: "/cosmos.params.v1beta1.QuerySubspacesRequest";
   value: Uint8Array;
 }
 /**
@@ -83,7 +84,7 @@ export interface QuerySubspacesResponse {
   subspaces: Subspace[];
 }
 export interface QuerySubspacesResponseProtoMsg {
-  type_url: "/cosmos.params.v1beta1.QuerySubspacesResponse";
+  typeUrl: "/cosmos.params.v1beta1.QuerySubspacesResponse";
   value: Uint8Array;
 }
 /**
@@ -113,7 +114,7 @@ export interface Subspace {
   keys: string[];
 }
 export interface SubspaceProtoMsg {
-  type_url: "/cosmos.params.v1beta1.Subspace";
+  typeUrl: "/cosmos.params.v1beta1.Subspace";
   value: Uint8Array;
 }
 /**
@@ -195,7 +196,7 @@ export const QueryParamsRequest = {
     message.key !== undefined && (obj.key = message.key);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(object: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     message.subspace = object.subspace ?? "";
     message.key = object.key ?? "";
@@ -291,7 +292,7 @@ export const QueryParamsResponse = {
     message.param !== undefined && (obj.param = message.param ? ParamChange.toJSON(message.param) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.param = object.param !== undefined && object.param !== null ? ParamChange.fromPartial(object.param) : undefined;
     return message;
@@ -371,7 +372,7 @@ export const QuerySubspacesRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QuerySubspacesRequest>): QuerySubspacesRequest {
+  fromPartial(_: Partial<QuerySubspacesRequest>): QuerySubspacesRequest {
     const message = createBaseQuerySubspacesRequest();
     return message;
   },
@@ -461,7 +462,7 @@ export const QuerySubspacesResponse = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<QuerySubspacesResponse>): QuerySubspacesResponse {
+  fromPartial(object: Partial<QuerySubspacesResponse>): QuerySubspacesResponse {
     const message = createBaseQuerySubspacesResponse();
     message.subspaces = object.subspaces?.map(e => Subspace.fromPartial(e)) || [];
     return message;
@@ -567,7 +568,7 @@ export const Subspace = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<Subspace>): Subspace {
+  fromPartial(object: Partial<Subspace>): Subspace {
     const message = createBaseSubspace();
     message.subspace = object.subspace ?? "";
     message.keys = object.keys?.map(e => e) || [];

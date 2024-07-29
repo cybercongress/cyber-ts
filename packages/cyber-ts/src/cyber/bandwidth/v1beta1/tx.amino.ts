@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { MsgUpdateParams } from "./tx";
 export const AminoConverter = {
   "/cyber.bandwidth.v1beta1.MsgUpdateParams": {

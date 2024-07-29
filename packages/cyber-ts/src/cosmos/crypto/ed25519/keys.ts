@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, bytesFromBase64, base64FromBytes, DeepPartial } from "../../../helpers";
+import { isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -13,7 +14,7 @@ export interface PubKey {
   key: Uint8Array;
 }
 export interface PubKeyProtoMsg {
-  type_url: "/cosmos.crypto.ed25519.PubKey";
+  typeUrl: "/cosmos.crypto.ed25519.PubKey";
   value: Uint8Array;
 }
 /**
@@ -48,7 +49,7 @@ export interface PrivKey {
   key: Uint8Array;
 }
 export interface PrivKeyProtoMsg {
-  type_url: "/cosmos.crypto.ed25519.PrivKey";
+  typeUrl: "/cosmos.crypto.ed25519.PrivKey";
   value: Uint8Array;
 }
 /**
@@ -119,7 +120,7 @@ export const PubKey = {
     message.key !== undefined && (obj.key = base64FromBytes(message.key !== undefined ? message.key : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<PubKey>): PubKey {
+  fromPartial(object: Partial<PubKey>): PubKey {
     const message = createBasePubKey();
     message.key = object.key ?? new Uint8Array();
     return message;
@@ -210,7 +211,7 @@ export const PrivKey = {
     message.key !== undefined && (obj.key = base64FromBytes(message.key !== undefined ? message.key : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<PrivKey>): PrivKey {
+  fromPartial(object: Partial<PrivKey>): PrivKey {
     const message = createBasePrivKey();
     message.key = object.key ?? new Uint8Array();
     return message;

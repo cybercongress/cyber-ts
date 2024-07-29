@@ -1,12 +1,13 @@
+//@ts-nocheck
 import { Params, ParamsAmino, ParamsSDKType } from "./mint";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { JsonSafe } from "../../../json-safe";
-import { DeepPartial, isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cosmos.mint.v1beta1.QueryParamsRequest";
+  typeUrl: "/cosmos.mint.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
@@ -23,7 +24,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cosmos.mint.v1beta1.QueryParamsResponse";
+  typeUrl: "/cosmos.mint.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
@@ -42,7 +43,7 @@ export interface QueryParamsResponseSDKType {
 /** QueryInflationRequest is the request type for the Query/Inflation RPC method. */
 export interface QueryInflationRequest {}
 export interface QueryInflationRequestProtoMsg {
-  type_url: "/cosmos.mint.v1beta1.QueryInflationRequest";
+  typeUrl: "/cosmos.mint.v1beta1.QueryInflationRequest";
   value: Uint8Array;
 }
 /** QueryInflationRequest is the request type for the Query/Inflation RPC method. */
@@ -62,7 +63,7 @@ export interface QueryInflationResponse {
   inflation: Uint8Array;
 }
 export interface QueryInflationResponseProtoMsg {
-  type_url: "/cosmos.mint.v1beta1.QueryInflationResponse";
+  typeUrl: "/cosmos.mint.v1beta1.QueryInflationResponse";
   value: Uint8Array;
 }
 /**
@@ -90,7 +91,7 @@ export interface QueryInflationResponseSDKType {
  */
 export interface QueryAnnualProvisionsRequest {}
 export interface QueryAnnualProvisionsRequestProtoMsg {
-  type_url: "/cosmos.mint.v1beta1.QueryAnnualProvisionsRequest";
+  typeUrl: "/cosmos.mint.v1beta1.QueryAnnualProvisionsRequest";
   value: Uint8Array;
 }
 /**
@@ -113,10 +114,10 @@ export interface QueryAnnualProvisionsRequestSDKType {}
  */
 export interface QueryAnnualProvisionsResponse {
   /** annual_provisions is the current minting annual provisions value. */
-  annual_provisions: Uint8Array;
+  annualProvisions: Uint8Array;
 }
 export interface QueryAnnualProvisionsResponseProtoMsg {
-  type_url: "/cosmos.mint.v1beta1.QueryAnnualProvisionsResponse";
+  typeUrl: "/cosmos.mint.v1beta1.QueryAnnualProvisionsResponse";
   value: Uint8Array;
 }
 /**
@@ -177,7 +178,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -263,7 +264,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -343,7 +344,7 @@ export const QueryInflationRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryInflationRequest>): QueryInflationRequest {
+  fromPartial(_: Partial<QueryInflationRequest>): QueryInflationRequest {
     const message = createBaseQueryInflationRequest();
     return message;
   },
@@ -429,7 +430,7 @@ export const QueryInflationResponse = {
     message.inflation !== undefined && (obj.inflation = base64FromBytes(message.inflation !== undefined ? message.inflation : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryInflationResponse>): QueryInflationResponse {
+  fromPartial(object: Partial<QueryInflationResponse>): QueryInflationResponse {
     const message = createBaseQueryInflationResponse();
     message.inflation = object.inflation ?? new Uint8Array();
     return message;
@@ -509,7 +510,7 @@ export const QueryAnnualProvisionsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryAnnualProvisionsRequest>): QueryAnnualProvisionsRequest {
+  fromPartial(_: Partial<QueryAnnualProvisionsRequest>): QueryAnnualProvisionsRequest {
     const message = createBaseQueryAnnualProvisionsRequest();
     return message;
   },
@@ -547,14 +548,14 @@ GlobalDecoderRegistry.register(QueryAnnualProvisionsRequest.typeUrl, QueryAnnual
 GlobalDecoderRegistry.registerAminoProtoMapping(QueryAnnualProvisionsRequest.aminoType, QueryAnnualProvisionsRequest.typeUrl);
 function createBaseQueryAnnualProvisionsResponse(): QueryAnnualProvisionsResponse {
   return {
-    annual_provisions: new Uint8Array()
+    annualProvisions: new Uint8Array()
   };
 }
 export const QueryAnnualProvisionsResponse = {
   typeUrl: "/cosmos.mint.v1beta1.QueryAnnualProvisionsResponse",
   aminoType: "cosmos-sdk/QueryAnnualProvisionsResponse",
   is(o: any): o is QueryAnnualProvisionsResponse {
-    return o && (o.$typeUrl === QueryAnnualProvisionsResponse.typeUrl || o.annual_provisions instanceof Uint8Array || typeof o.annual_provisions === "string");
+    return o && (o.$typeUrl === QueryAnnualProvisionsResponse.typeUrl || o.annualProvisions instanceof Uint8Array || typeof o.annualProvisions === "string");
   },
   isSDK(o: any): o is QueryAnnualProvisionsResponseSDKType {
     return o && (o.$typeUrl === QueryAnnualProvisionsResponse.typeUrl || o.annual_provisions instanceof Uint8Array || typeof o.annual_provisions === "string");
@@ -563,8 +564,8 @@ export const QueryAnnualProvisionsResponse = {
     return o && (o.$typeUrl === QueryAnnualProvisionsResponse.typeUrl || o.annual_provisions instanceof Uint8Array || typeof o.annual_provisions === "string");
   },
   encode(message: QueryAnnualProvisionsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.annual_provisions.length !== 0) {
-      writer.uint32(10).bytes(message.annual_provisions);
+    if (message.annualProvisions.length !== 0) {
+      writer.uint32(10).bytes(message.annualProvisions);
     }
     return writer;
   },
@@ -576,7 +577,7 @@ export const QueryAnnualProvisionsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.annual_provisions = reader.bytes();
+          message.annualProvisions = reader.bytes();
           break;
         default:
           reader.skipType(tag & 7);
@@ -587,29 +588,29 @@ export const QueryAnnualProvisionsResponse = {
   },
   fromJSON(object: any): QueryAnnualProvisionsResponse {
     return {
-      annual_provisions: isSet(object.annual_provisions) ? bytesFromBase64(object.annual_provisions) : new Uint8Array()
+      annualProvisions: isSet(object.annualProvisions) ? bytesFromBase64(object.annualProvisions) : new Uint8Array()
     };
   },
   toJSON(message: QueryAnnualProvisionsResponse): JsonSafe<QueryAnnualProvisionsResponse> {
     const obj: any = {};
-    message.annual_provisions !== undefined && (obj.annual_provisions = base64FromBytes(message.annual_provisions !== undefined ? message.annual_provisions : new Uint8Array()));
+    message.annualProvisions !== undefined && (obj.annualProvisions = base64FromBytes(message.annualProvisions !== undefined ? message.annualProvisions : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryAnnualProvisionsResponse>): QueryAnnualProvisionsResponse {
+  fromPartial(object: Partial<QueryAnnualProvisionsResponse>): QueryAnnualProvisionsResponse {
     const message = createBaseQueryAnnualProvisionsResponse();
-    message.annual_provisions = object.annual_provisions ?? new Uint8Array();
+    message.annualProvisions = object.annualProvisions ?? new Uint8Array();
     return message;
   },
   fromAmino(object: QueryAnnualProvisionsResponseAmino): QueryAnnualProvisionsResponse {
     const message = createBaseQueryAnnualProvisionsResponse();
     if (object.annual_provisions !== undefined && object.annual_provisions !== null) {
-      message.annual_provisions = bytesFromBase64(object.annual_provisions);
+      message.annualProvisions = bytesFromBase64(object.annual_provisions);
     }
     return message;
   },
   toAmino(message: QueryAnnualProvisionsResponse): QueryAnnualProvisionsResponseAmino {
     const obj: any = {};
-    obj.annual_provisions = message.annual_provisions ? base64FromBytes(message.annual_provisions) : undefined;
+    obj.annual_provisions = message.annualProvisions ? base64FromBytes(message.annualProvisions) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryAnnualProvisionsResponseAminoMsg): QueryAnnualProvisionsResponse {

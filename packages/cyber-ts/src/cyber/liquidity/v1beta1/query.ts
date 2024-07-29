@@ -1,7 +1,8 @@
+//@ts-nocheck
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../../cosmos/base/query/v1beta1/pagination";
 import { Pool, PoolAmino, PoolSDKType, PoolBatch, PoolBatchAmino, PoolBatchSDKType, Params, ParamsAmino, ParamsSDKType, SwapMsgState, SwapMsgStateAmino, SwapMsgStateSDKType, DepositMsgState, DepositMsgStateAmino, DepositMsgStateSDKType, WithdrawMsgState, WithdrawMsgStateAmino, WithdrawMsgStateSDKType } from "./liquidity";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -9,10 +10,10 @@ import { GlobalDecoderRegistry } from "../../../registry";
  * pool_id.
  */
 export interface QueryLiquidityPoolRequest {
-  pool_id: bigint;
+  poolId: bigint;
 }
 export interface QueryLiquidityPoolRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryLiquidityPoolRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolRequest";
   value: Uint8Array;
 }
 /**
@@ -41,7 +42,7 @@ export interface QueryLiquidityPoolResponse {
   pool: Pool;
 }
 export interface QueryLiquidityPoolResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryLiquidityPoolResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolResponse";
   value: Uint8Array;
 }
 /**
@@ -67,10 +68,10 @@ export interface QueryLiquidityPoolResponseSDKType {
  * Requestable specified pool_coin_denom.
  */
 export interface QueryLiquidityPoolByPoolCoinDenomRequest {
-  pool_coin_denom: string;
+  poolCoinDenom: string;
 }
 export interface QueryLiquidityPoolByPoolCoinDenomRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryLiquidityPoolByPoolCoinDenomRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolByPoolCoinDenomRequest";
   value: Uint8Array;
 }
 /**
@@ -96,10 +97,10 @@ export interface QueryLiquidityPoolByPoolCoinDenomRequestSDKType {
  * specified reserve_acc.
  */
 export interface QueryLiquidityPoolByReserveAccRequest {
-  reserve_acc: string;
+  reserveAcc: string;
 }
 export interface QueryLiquidityPoolByReserveAccRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryLiquidityPoolByReserveAccRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolByReserveAccRequest";
   value: Uint8Array;
 }
 /**
@@ -126,10 +127,10 @@ export interface QueryLiquidityPoolByReserveAccRequestSDKType {
  */
 export interface QueryLiquidityPoolBatchRequest {
   /** id of the target pool for query */
-  pool_id: bigint;
+  poolId: bigint;
 }
 export interface QueryLiquidityPoolBatchRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryLiquidityPoolBatchRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolBatchRequest";
   value: Uint8Array;
 }
 /**
@@ -159,7 +160,7 @@ export interface QueryLiquidityPoolBatchResponse {
   batch: PoolBatch;
 }
 export interface QueryLiquidityPoolBatchResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryLiquidityPoolBatchResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolBatchResponse";
   value: Uint8Array;
 }
 /**
@@ -189,7 +190,7 @@ export interface QueryLiquidityPoolsRequest {
   pagination?: PageRequest;
 }
 export interface QueryLiquidityPoolsRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryLiquidityPoolsRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolsRequest";
   value: Uint8Array;
 }
 /**
@@ -225,7 +226,7 @@ export interface QueryLiquidityPoolsResponse {
   pagination?: PageResponse;
 }
 export interface QueryLiquidityPoolsResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryLiquidityPoolsResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolsResponse";
   value: Uint8Array;
 }
 /**
@@ -257,7 +258,7 @@ export interface QueryLiquidityPoolsResponseSDKType {
 /** QueryParamsRequest is request type for the QueryParams RPC method. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryParamsRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest is request type for the QueryParams RPC method. */
@@ -277,7 +278,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryParamsResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 /**
@@ -305,12 +306,12 @@ export interface QueryParamsResponseSDKType {
  */
 export interface QueryPoolBatchSwapMsgsRequest {
   /** id of the target pool for query */
-  pool_id: bigint;
+  poolId: bigint;
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
 }
 export interface QueryPoolBatchSwapMsgsRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgsRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgsRequest";
   value: Uint8Array;
 }
 /**
@@ -341,12 +342,12 @@ export interface QueryPoolBatchSwapMsgsRequestSDKType {
  */
 export interface QueryPoolBatchSwapMsgRequest {
   /** id of the target pool for query */
-  pool_id: bigint;
+  poolId: bigint;
   /** target msg_index of the pool */
-  msg_index: bigint;
+  msgIndex: bigint;
 }
 export interface QueryPoolBatchSwapMsgRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgRequest";
   value: Uint8Array;
 }
 /**
@@ -385,7 +386,7 @@ export interface QueryPoolBatchSwapMsgsResponse {
   pagination?: PageResponse;
 }
 export interface QueryPoolBatchSwapMsgsResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgsResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgsResponse";
   value: Uint8Array;
 }
 /**
@@ -422,7 +423,7 @@ export interface QueryPoolBatchSwapMsgResponse {
   swap: SwapMsgState;
 }
 export interface QueryPoolBatchSwapMsgResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgResponse";
   value: Uint8Array;
 }
 /**
@@ -449,12 +450,12 @@ export interface QueryPoolBatchSwapMsgResponseSDKType {
  */
 export interface QueryPoolBatchDepositMsgsRequest {
   /** id of the target pool for query */
-  pool_id: bigint;
+  poolId: bigint;
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
 }
 export interface QueryPoolBatchDepositMsgsRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgsRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgsRequest";
   value: Uint8Array;
 }
 /**
@@ -485,12 +486,12 @@ export interface QueryPoolBatchDepositMsgsRequestSDKType {
  */
 export interface QueryPoolBatchDepositMsgRequest {
   /** id of the target pool for query */
-  pool_id: bigint;
+  poolId: bigint;
   /** target msg_index of the pool */
-  msg_index: bigint;
+  msgIndex: bigint;
 }
 export interface QueryPoolBatchDepositMsgRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgRequest";
   value: Uint8Array;
 }
 /**
@@ -529,7 +530,7 @@ export interface QueryPoolBatchDepositMsgsResponse {
   pagination?: PageResponse;
 }
 export interface QueryPoolBatchDepositMsgsResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgsResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgsResponse";
   value: Uint8Array;
 }
 /**
@@ -566,7 +567,7 @@ export interface QueryPoolBatchDepositMsgResponse {
   deposit: DepositMsgState;
 }
 export interface QueryPoolBatchDepositMsgResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgResponse";
   value: Uint8Array;
 }
 /**
@@ -593,12 +594,12 @@ export interface QueryPoolBatchDepositMsgResponseSDKType {
  */
 export interface QueryPoolBatchWithdrawMsgsRequest {
   /** id of the target pool for query */
-  pool_id: bigint;
+  poolId: bigint;
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
 }
 export interface QueryPoolBatchWithdrawMsgsRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgsRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgsRequest";
   value: Uint8Array;
 }
 /**
@@ -629,12 +630,12 @@ export interface QueryPoolBatchWithdrawMsgsRequestSDKType {
  */
 export interface QueryPoolBatchWithdrawMsgRequest {
   /** id of the target pool for query */
-  pool_id: bigint;
+  poolId: bigint;
   /** target msg_index of the pool */
-  msg_index: bigint;
+  msgIndex: bigint;
 }
 export interface QueryPoolBatchWithdrawMsgRequestProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgRequest";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgRequest";
   value: Uint8Array;
 }
 /**
@@ -673,7 +674,7 @@ export interface QueryPoolBatchWithdrawMsgsResponse {
   pagination?: PageResponse;
 }
 export interface QueryPoolBatchWithdrawMsgsResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgsResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgsResponse";
   value: Uint8Array;
 }
 /**
@@ -710,7 +711,7 @@ export interface QueryPoolBatchWithdrawMsgResponse {
   withdraw: WithdrawMsgState;
 }
 export interface QueryPoolBatchWithdrawMsgResponseProtoMsg {
-  type_url: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgResponse";
+  typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgResponse";
   value: Uint8Array;
 }
 /**
@@ -733,13 +734,13 @@ export interface QueryPoolBatchWithdrawMsgResponseSDKType {
 }
 function createBaseQueryLiquidityPoolRequest(): QueryLiquidityPoolRequest {
   return {
-    pool_id: BigInt(0)
+    poolId: BigInt(0)
   };
 }
 export const QueryLiquidityPoolRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolRequest",
   is(o: any): o is QueryLiquidityPoolRequest {
-    return o && (o.$typeUrl === QueryLiquidityPoolRequest.typeUrl || typeof o.pool_id === "bigint");
+    return o && (o.$typeUrl === QueryLiquidityPoolRequest.typeUrl || typeof o.poolId === "bigint");
   },
   isSDK(o: any): o is QueryLiquidityPoolRequestSDKType {
     return o && (o.$typeUrl === QueryLiquidityPoolRequest.typeUrl || typeof o.pool_id === "bigint");
@@ -748,8 +749,8 @@ export const QueryLiquidityPoolRequest = {
     return o && (o.$typeUrl === QueryLiquidityPoolRequest.typeUrl || typeof o.pool_id === "bigint");
   },
   encode(message: QueryLiquidityPoolRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(8).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.poolId);
     }
     return writer;
   },
@@ -761,7 +762,7 @@ export const QueryLiquidityPoolRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -772,29 +773,29 @@ export const QueryLiquidityPoolRequest = {
   },
   fromJSON(object: any): QueryLiquidityPoolRequest {
     return {
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0)
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0)
     };
   },
   toJSON(message: QueryLiquidityPoolRequest): JsonSafe<QueryLiquidityPoolRequest> {
     const obj: any = {};
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLiquidityPoolRequest>): QueryLiquidityPoolRequest {
+  fromPartial(object: Partial<QueryLiquidityPoolRequest>): QueryLiquidityPoolRequest {
     const message = createBaseQueryLiquidityPoolRequest();
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryLiquidityPoolRequestAmino): QueryLiquidityPoolRequest {
     const message = createBaseQueryLiquidityPoolRequest();
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     return message;
   },
   toAmino(message: QueryLiquidityPoolRequest): QueryLiquidityPoolRequestAmino {
     const obj: any = {};
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryLiquidityPoolRequestAminoMsg): QueryLiquidityPoolRequest {
@@ -863,7 +864,7 @@ export const QueryLiquidityPoolResponse = {
     message.pool !== undefined && (obj.pool = message.pool ? Pool.toJSON(message.pool) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLiquidityPoolResponse>): QueryLiquidityPoolResponse {
+  fromPartial(object: Partial<QueryLiquidityPoolResponse>): QueryLiquidityPoolResponse {
     const message = createBaseQueryLiquidityPoolResponse();
     message.pool = object.pool !== undefined && object.pool !== null ? Pool.fromPartial(object.pool) : undefined;
     return message;
@@ -899,13 +900,13 @@ export const QueryLiquidityPoolResponse = {
 GlobalDecoderRegistry.register(QueryLiquidityPoolResponse.typeUrl, QueryLiquidityPoolResponse);
 function createBaseQueryLiquidityPoolByPoolCoinDenomRequest(): QueryLiquidityPoolByPoolCoinDenomRequest {
   return {
-    pool_coin_denom: ""
+    poolCoinDenom: ""
   };
 }
 export const QueryLiquidityPoolByPoolCoinDenomRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolByPoolCoinDenomRequest",
   is(o: any): o is QueryLiquidityPoolByPoolCoinDenomRequest {
-    return o && (o.$typeUrl === QueryLiquidityPoolByPoolCoinDenomRequest.typeUrl || typeof o.pool_coin_denom === "string");
+    return o && (o.$typeUrl === QueryLiquidityPoolByPoolCoinDenomRequest.typeUrl || typeof o.poolCoinDenom === "string");
   },
   isSDK(o: any): o is QueryLiquidityPoolByPoolCoinDenomRequestSDKType {
     return o && (o.$typeUrl === QueryLiquidityPoolByPoolCoinDenomRequest.typeUrl || typeof o.pool_coin_denom === "string");
@@ -914,8 +915,8 @@ export const QueryLiquidityPoolByPoolCoinDenomRequest = {
     return o && (o.$typeUrl === QueryLiquidityPoolByPoolCoinDenomRequest.typeUrl || typeof o.pool_coin_denom === "string");
   },
   encode(message: QueryLiquidityPoolByPoolCoinDenomRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_coin_denom !== "") {
-      writer.uint32(10).string(message.pool_coin_denom);
+    if (message.poolCoinDenom !== "") {
+      writer.uint32(10).string(message.poolCoinDenom);
     }
     return writer;
   },
@@ -927,7 +928,7 @@ export const QueryLiquidityPoolByPoolCoinDenomRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_coin_denom = reader.string();
+          message.poolCoinDenom = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -938,29 +939,29 @@ export const QueryLiquidityPoolByPoolCoinDenomRequest = {
   },
   fromJSON(object: any): QueryLiquidityPoolByPoolCoinDenomRequest {
     return {
-      pool_coin_denom: isSet(object.pool_coin_denom) ? String(object.pool_coin_denom) : ""
+      poolCoinDenom: isSet(object.poolCoinDenom) ? String(object.poolCoinDenom) : ""
     };
   },
   toJSON(message: QueryLiquidityPoolByPoolCoinDenomRequest): JsonSafe<QueryLiquidityPoolByPoolCoinDenomRequest> {
     const obj: any = {};
-    message.pool_coin_denom !== undefined && (obj.pool_coin_denom = message.pool_coin_denom);
+    message.poolCoinDenom !== undefined && (obj.poolCoinDenom = message.poolCoinDenom);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLiquidityPoolByPoolCoinDenomRequest>): QueryLiquidityPoolByPoolCoinDenomRequest {
+  fromPartial(object: Partial<QueryLiquidityPoolByPoolCoinDenomRequest>): QueryLiquidityPoolByPoolCoinDenomRequest {
     const message = createBaseQueryLiquidityPoolByPoolCoinDenomRequest();
-    message.pool_coin_denom = object.pool_coin_denom ?? "";
+    message.poolCoinDenom = object.poolCoinDenom ?? "";
     return message;
   },
   fromAmino(object: QueryLiquidityPoolByPoolCoinDenomRequestAmino): QueryLiquidityPoolByPoolCoinDenomRequest {
     const message = createBaseQueryLiquidityPoolByPoolCoinDenomRequest();
     if (object.pool_coin_denom !== undefined && object.pool_coin_denom !== null) {
-      message.pool_coin_denom = object.pool_coin_denom;
+      message.poolCoinDenom = object.pool_coin_denom;
     }
     return message;
   },
   toAmino(message: QueryLiquidityPoolByPoolCoinDenomRequest): QueryLiquidityPoolByPoolCoinDenomRequestAmino {
     const obj: any = {};
-    obj.pool_coin_denom = message.pool_coin_denom === "" ? undefined : message.pool_coin_denom;
+    obj.pool_coin_denom = message.poolCoinDenom === "" ? undefined : message.poolCoinDenom;
     return obj;
   },
   fromAminoMsg(object: QueryLiquidityPoolByPoolCoinDenomRequestAminoMsg): QueryLiquidityPoolByPoolCoinDenomRequest {
@@ -982,13 +983,13 @@ export const QueryLiquidityPoolByPoolCoinDenomRequest = {
 GlobalDecoderRegistry.register(QueryLiquidityPoolByPoolCoinDenomRequest.typeUrl, QueryLiquidityPoolByPoolCoinDenomRequest);
 function createBaseQueryLiquidityPoolByReserveAccRequest(): QueryLiquidityPoolByReserveAccRequest {
   return {
-    reserve_acc: ""
+    reserveAcc: ""
   };
 }
 export const QueryLiquidityPoolByReserveAccRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolByReserveAccRequest",
   is(o: any): o is QueryLiquidityPoolByReserveAccRequest {
-    return o && (o.$typeUrl === QueryLiquidityPoolByReserveAccRequest.typeUrl || typeof o.reserve_acc === "string");
+    return o && (o.$typeUrl === QueryLiquidityPoolByReserveAccRequest.typeUrl || typeof o.reserveAcc === "string");
   },
   isSDK(o: any): o is QueryLiquidityPoolByReserveAccRequestSDKType {
     return o && (o.$typeUrl === QueryLiquidityPoolByReserveAccRequest.typeUrl || typeof o.reserve_acc === "string");
@@ -997,8 +998,8 @@ export const QueryLiquidityPoolByReserveAccRequest = {
     return o && (o.$typeUrl === QueryLiquidityPoolByReserveAccRequest.typeUrl || typeof o.reserve_acc === "string");
   },
   encode(message: QueryLiquidityPoolByReserveAccRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.reserve_acc !== "") {
-      writer.uint32(10).string(message.reserve_acc);
+    if (message.reserveAcc !== "") {
+      writer.uint32(10).string(message.reserveAcc);
     }
     return writer;
   },
@@ -1010,7 +1011,7 @@ export const QueryLiquidityPoolByReserveAccRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.reserve_acc = reader.string();
+          message.reserveAcc = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1021,29 +1022,29 @@ export const QueryLiquidityPoolByReserveAccRequest = {
   },
   fromJSON(object: any): QueryLiquidityPoolByReserveAccRequest {
     return {
-      reserve_acc: isSet(object.reserve_acc) ? String(object.reserve_acc) : ""
+      reserveAcc: isSet(object.reserveAcc) ? String(object.reserveAcc) : ""
     };
   },
   toJSON(message: QueryLiquidityPoolByReserveAccRequest): JsonSafe<QueryLiquidityPoolByReserveAccRequest> {
     const obj: any = {};
-    message.reserve_acc !== undefined && (obj.reserve_acc = message.reserve_acc);
+    message.reserveAcc !== undefined && (obj.reserveAcc = message.reserveAcc);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLiquidityPoolByReserveAccRequest>): QueryLiquidityPoolByReserveAccRequest {
+  fromPartial(object: Partial<QueryLiquidityPoolByReserveAccRequest>): QueryLiquidityPoolByReserveAccRequest {
     const message = createBaseQueryLiquidityPoolByReserveAccRequest();
-    message.reserve_acc = object.reserve_acc ?? "";
+    message.reserveAcc = object.reserveAcc ?? "";
     return message;
   },
   fromAmino(object: QueryLiquidityPoolByReserveAccRequestAmino): QueryLiquidityPoolByReserveAccRequest {
     const message = createBaseQueryLiquidityPoolByReserveAccRequest();
     if (object.reserve_acc !== undefined && object.reserve_acc !== null) {
-      message.reserve_acc = object.reserve_acc;
+      message.reserveAcc = object.reserve_acc;
     }
     return message;
   },
   toAmino(message: QueryLiquidityPoolByReserveAccRequest): QueryLiquidityPoolByReserveAccRequestAmino {
     const obj: any = {};
-    obj.reserve_acc = message.reserve_acc === "" ? undefined : message.reserve_acc;
+    obj.reserve_acc = message.reserveAcc === "" ? undefined : message.reserveAcc;
     return obj;
   },
   fromAminoMsg(object: QueryLiquidityPoolByReserveAccRequestAminoMsg): QueryLiquidityPoolByReserveAccRequest {
@@ -1065,13 +1066,13 @@ export const QueryLiquidityPoolByReserveAccRequest = {
 GlobalDecoderRegistry.register(QueryLiquidityPoolByReserveAccRequest.typeUrl, QueryLiquidityPoolByReserveAccRequest);
 function createBaseQueryLiquidityPoolBatchRequest(): QueryLiquidityPoolBatchRequest {
   return {
-    pool_id: BigInt(0)
+    poolId: BigInt(0)
   };
 }
 export const QueryLiquidityPoolBatchRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryLiquidityPoolBatchRequest",
   is(o: any): o is QueryLiquidityPoolBatchRequest {
-    return o && (o.$typeUrl === QueryLiquidityPoolBatchRequest.typeUrl || typeof o.pool_id === "bigint");
+    return o && (o.$typeUrl === QueryLiquidityPoolBatchRequest.typeUrl || typeof o.poolId === "bigint");
   },
   isSDK(o: any): o is QueryLiquidityPoolBatchRequestSDKType {
     return o && (o.$typeUrl === QueryLiquidityPoolBatchRequest.typeUrl || typeof o.pool_id === "bigint");
@@ -1080,8 +1081,8 @@ export const QueryLiquidityPoolBatchRequest = {
     return o && (o.$typeUrl === QueryLiquidityPoolBatchRequest.typeUrl || typeof o.pool_id === "bigint");
   },
   encode(message: QueryLiquidityPoolBatchRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(8).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.poolId);
     }
     return writer;
   },
@@ -1093,7 +1094,7 @@ export const QueryLiquidityPoolBatchRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1104,29 +1105,29 @@ export const QueryLiquidityPoolBatchRequest = {
   },
   fromJSON(object: any): QueryLiquidityPoolBatchRequest {
     return {
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0)
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0)
     };
   },
   toJSON(message: QueryLiquidityPoolBatchRequest): JsonSafe<QueryLiquidityPoolBatchRequest> {
     const obj: any = {};
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLiquidityPoolBatchRequest>): QueryLiquidityPoolBatchRequest {
+  fromPartial(object: Partial<QueryLiquidityPoolBatchRequest>): QueryLiquidityPoolBatchRequest {
     const message = createBaseQueryLiquidityPoolBatchRequest();
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryLiquidityPoolBatchRequestAmino): QueryLiquidityPoolBatchRequest {
     const message = createBaseQueryLiquidityPoolBatchRequest();
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     return message;
   },
   toAmino(message: QueryLiquidityPoolBatchRequest): QueryLiquidityPoolBatchRequestAmino {
     const obj: any = {};
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryLiquidityPoolBatchRequestAminoMsg): QueryLiquidityPoolBatchRequest {
@@ -1195,7 +1196,7 @@ export const QueryLiquidityPoolBatchResponse = {
     message.batch !== undefined && (obj.batch = message.batch ? PoolBatch.toJSON(message.batch) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLiquidityPoolBatchResponse>): QueryLiquidityPoolBatchResponse {
+  fromPartial(object: Partial<QueryLiquidityPoolBatchResponse>): QueryLiquidityPoolBatchResponse {
     const message = createBaseQueryLiquidityPoolBatchResponse();
     message.batch = object.batch !== undefined && object.batch !== null ? PoolBatch.fromPartial(object.batch) : undefined;
     return message;
@@ -1278,7 +1279,7 @@ export const QueryLiquidityPoolsRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLiquidityPoolsRequest>): QueryLiquidityPoolsRequest {
+  fromPartial(object: Partial<QueryLiquidityPoolsRequest>): QueryLiquidityPoolsRequest {
     const message = createBaseQueryLiquidityPoolsRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -1374,7 +1375,7 @@ export const QueryLiquidityPoolsResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryLiquidityPoolsResponse>): QueryLiquidityPoolsResponse {
+  fromPartial(object: Partial<QueryLiquidityPoolsResponse>): QueryLiquidityPoolsResponse {
     const message = createBaseQueryLiquidityPoolsResponse();
     message.pools = object.pools?.map(e => Pool.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -1453,7 +1454,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -1531,7 +1532,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -1567,14 +1568,14 @@ export const QueryParamsResponse = {
 GlobalDecoderRegistry.register(QueryParamsResponse.typeUrl, QueryParamsResponse);
 function createBaseQueryPoolBatchSwapMsgsRequest(): QueryPoolBatchSwapMsgsRequest {
   return {
-    pool_id: BigInt(0),
+    poolId: BigInt(0),
     pagination: undefined
   };
 }
 export const QueryPoolBatchSwapMsgsRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgsRequest",
   is(o: any): o is QueryPoolBatchSwapMsgsRequest {
-    return o && (o.$typeUrl === QueryPoolBatchSwapMsgsRequest.typeUrl || typeof o.pool_id === "bigint");
+    return o && (o.$typeUrl === QueryPoolBatchSwapMsgsRequest.typeUrl || typeof o.poolId === "bigint");
   },
   isSDK(o: any): o is QueryPoolBatchSwapMsgsRequestSDKType {
     return o && (o.$typeUrl === QueryPoolBatchSwapMsgsRequest.typeUrl || typeof o.pool_id === "bigint");
@@ -1583,8 +1584,8 @@ export const QueryPoolBatchSwapMsgsRequest = {
     return o && (o.$typeUrl === QueryPoolBatchSwapMsgsRequest.typeUrl || typeof o.pool_id === "bigint");
   },
   encode(message: QueryPoolBatchSwapMsgsRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(8).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.poolId);
     }
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
@@ -1599,7 +1600,7 @@ export const QueryPoolBatchSwapMsgsRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         case 2:
           message.pagination = PageRequest.decode(reader, reader.uint32());
@@ -1613,26 +1614,26 @@ export const QueryPoolBatchSwapMsgsRequest = {
   },
   fromJSON(object: any): QueryPoolBatchSwapMsgsRequest {
     return {
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0),
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0),
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined
     };
   },
   toJSON(message: QueryPoolBatchSwapMsgsRequest): JsonSafe<QueryPoolBatchSwapMsgsRequest> {
     const obj: any = {};
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchSwapMsgsRequest>): QueryPoolBatchSwapMsgsRequest {
+  fromPartial(object: Partial<QueryPoolBatchSwapMsgsRequest>): QueryPoolBatchSwapMsgsRequest {
     const message = createBaseQueryPoolBatchSwapMsgsRequest();
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryPoolBatchSwapMsgsRequestAmino): QueryPoolBatchSwapMsgsRequest {
     const message = createBaseQueryPoolBatchSwapMsgsRequest();
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageRequest.fromAmino(object.pagination);
@@ -1641,7 +1642,7 @@ export const QueryPoolBatchSwapMsgsRequest = {
   },
   toAmino(message: QueryPoolBatchSwapMsgsRequest): QueryPoolBatchSwapMsgsRequestAmino {
     const obj: any = {};
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
   },
@@ -1664,14 +1665,14 @@ export const QueryPoolBatchSwapMsgsRequest = {
 GlobalDecoderRegistry.register(QueryPoolBatchSwapMsgsRequest.typeUrl, QueryPoolBatchSwapMsgsRequest);
 function createBaseQueryPoolBatchSwapMsgRequest(): QueryPoolBatchSwapMsgRequest {
   return {
-    pool_id: BigInt(0),
-    msg_index: BigInt(0)
+    poolId: BigInt(0),
+    msgIndex: BigInt(0)
   };
 }
 export const QueryPoolBatchSwapMsgRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchSwapMsgRequest",
   is(o: any): o is QueryPoolBatchSwapMsgRequest {
-    return o && (o.$typeUrl === QueryPoolBatchSwapMsgRequest.typeUrl || typeof o.pool_id === "bigint" && typeof o.msg_index === "bigint");
+    return o && (o.$typeUrl === QueryPoolBatchSwapMsgRequest.typeUrl || typeof o.poolId === "bigint" && typeof o.msgIndex === "bigint");
   },
   isSDK(o: any): o is QueryPoolBatchSwapMsgRequestSDKType {
     return o && (o.$typeUrl === QueryPoolBatchSwapMsgRequest.typeUrl || typeof o.pool_id === "bigint" && typeof o.msg_index === "bigint");
@@ -1680,11 +1681,11 @@ export const QueryPoolBatchSwapMsgRequest = {
     return o && (o.$typeUrl === QueryPoolBatchSwapMsgRequest.typeUrl || typeof o.pool_id === "bigint" && typeof o.msg_index === "bigint");
   },
   encode(message: QueryPoolBatchSwapMsgRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(8).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.poolId);
     }
-    if (message.msg_index !== BigInt(0)) {
-      writer.uint32(16).uint64(message.msg_index);
+    if (message.msgIndex !== BigInt(0)) {
+      writer.uint32(16).uint64(message.msgIndex);
     }
     return writer;
   },
@@ -1696,10 +1697,10 @@ export const QueryPoolBatchSwapMsgRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         case 2:
-          message.msg_index = reader.uint64();
+          message.msgIndex = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1710,36 +1711,36 @@ export const QueryPoolBatchSwapMsgRequest = {
   },
   fromJSON(object: any): QueryPoolBatchSwapMsgRequest {
     return {
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0),
-      msg_index: isSet(object.msg_index) ? BigInt(object.msg_index.toString()) : BigInt(0)
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0),
+      msgIndex: isSet(object.msgIndex) ? BigInt(object.msgIndex.toString()) : BigInt(0)
     };
   },
   toJSON(message: QueryPoolBatchSwapMsgRequest): JsonSafe<QueryPoolBatchSwapMsgRequest> {
     const obj: any = {};
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
-    message.msg_index !== undefined && (obj.msg_index = (message.msg_index || BigInt(0)).toString());
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
+    message.msgIndex !== undefined && (obj.msgIndex = (message.msgIndex || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchSwapMsgRequest>): QueryPoolBatchSwapMsgRequest {
+  fromPartial(object: Partial<QueryPoolBatchSwapMsgRequest>): QueryPoolBatchSwapMsgRequest {
     const message = createBaseQueryPoolBatchSwapMsgRequest();
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
-    message.msg_index = object.msg_index !== undefined && object.msg_index !== null ? BigInt(object.msg_index.toString()) : BigInt(0);
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
+    message.msgIndex = object.msgIndex !== undefined && object.msgIndex !== null ? BigInt(object.msgIndex.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryPoolBatchSwapMsgRequestAmino): QueryPoolBatchSwapMsgRequest {
     const message = createBaseQueryPoolBatchSwapMsgRequest();
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     if (object.msg_index !== undefined && object.msg_index !== null) {
-      message.msg_index = BigInt(object.msg_index);
+      message.msgIndex = BigInt(object.msg_index);
     }
     return message;
   },
   toAmino(message: QueryPoolBatchSwapMsgRequest): QueryPoolBatchSwapMsgRequestAmino {
     const obj: any = {};
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
-    obj.msg_index = message.msg_index !== BigInt(0) ? message.msg_index.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    obj.msg_index = message.msgIndex !== BigInt(0) ? message.msgIndex.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryPoolBatchSwapMsgRequestAminoMsg): QueryPoolBatchSwapMsgRequest {
@@ -1821,7 +1822,7 @@ export const QueryPoolBatchSwapMsgsResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchSwapMsgsResponse>): QueryPoolBatchSwapMsgsResponse {
+  fromPartial(object: Partial<QueryPoolBatchSwapMsgsResponse>): QueryPoolBatchSwapMsgsResponse {
     const message = createBaseQueryPoolBatchSwapMsgsResponse();
     message.swaps = object.swaps?.map(e => SwapMsgState.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -1911,7 +1912,7 @@ export const QueryPoolBatchSwapMsgResponse = {
     message.swap !== undefined && (obj.swap = message.swap ? SwapMsgState.toJSON(message.swap) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchSwapMsgResponse>): QueryPoolBatchSwapMsgResponse {
+  fromPartial(object: Partial<QueryPoolBatchSwapMsgResponse>): QueryPoolBatchSwapMsgResponse {
     const message = createBaseQueryPoolBatchSwapMsgResponse();
     message.swap = object.swap !== undefined && object.swap !== null ? SwapMsgState.fromPartial(object.swap) : undefined;
     return message;
@@ -1947,14 +1948,14 @@ export const QueryPoolBatchSwapMsgResponse = {
 GlobalDecoderRegistry.register(QueryPoolBatchSwapMsgResponse.typeUrl, QueryPoolBatchSwapMsgResponse);
 function createBaseQueryPoolBatchDepositMsgsRequest(): QueryPoolBatchDepositMsgsRequest {
   return {
-    pool_id: BigInt(0),
+    poolId: BigInt(0),
     pagination: undefined
   };
 }
 export const QueryPoolBatchDepositMsgsRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgsRequest",
   is(o: any): o is QueryPoolBatchDepositMsgsRequest {
-    return o && (o.$typeUrl === QueryPoolBatchDepositMsgsRequest.typeUrl || typeof o.pool_id === "bigint");
+    return o && (o.$typeUrl === QueryPoolBatchDepositMsgsRequest.typeUrl || typeof o.poolId === "bigint");
   },
   isSDK(o: any): o is QueryPoolBatchDepositMsgsRequestSDKType {
     return o && (o.$typeUrl === QueryPoolBatchDepositMsgsRequest.typeUrl || typeof o.pool_id === "bigint");
@@ -1963,8 +1964,8 @@ export const QueryPoolBatchDepositMsgsRequest = {
     return o && (o.$typeUrl === QueryPoolBatchDepositMsgsRequest.typeUrl || typeof o.pool_id === "bigint");
   },
   encode(message: QueryPoolBatchDepositMsgsRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(8).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.poolId);
     }
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
@@ -1979,7 +1980,7 @@ export const QueryPoolBatchDepositMsgsRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         case 2:
           message.pagination = PageRequest.decode(reader, reader.uint32());
@@ -1993,26 +1994,26 @@ export const QueryPoolBatchDepositMsgsRequest = {
   },
   fromJSON(object: any): QueryPoolBatchDepositMsgsRequest {
     return {
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0),
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0),
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined
     };
   },
   toJSON(message: QueryPoolBatchDepositMsgsRequest): JsonSafe<QueryPoolBatchDepositMsgsRequest> {
     const obj: any = {};
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchDepositMsgsRequest>): QueryPoolBatchDepositMsgsRequest {
+  fromPartial(object: Partial<QueryPoolBatchDepositMsgsRequest>): QueryPoolBatchDepositMsgsRequest {
     const message = createBaseQueryPoolBatchDepositMsgsRequest();
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryPoolBatchDepositMsgsRequestAmino): QueryPoolBatchDepositMsgsRequest {
     const message = createBaseQueryPoolBatchDepositMsgsRequest();
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageRequest.fromAmino(object.pagination);
@@ -2021,7 +2022,7 @@ export const QueryPoolBatchDepositMsgsRequest = {
   },
   toAmino(message: QueryPoolBatchDepositMsgsRequest): QueryPoolBatchDepositMsgsRequestAmino {
     const obj: any = {};
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
   },
@@ -2044,14 +2045,14 @@ export const QueryPoolBatchDepositMsgsRequest = {
 GlobalDecoderRegistry.register(QueryPoolBatchDepositMsgsRequest.typeUrl, QueryPoolBatchDepositMsgsRequest);
 function createBaseQueryPoolBatchDepositMsgRequest(): QueryPoolBatchDepositMsgRequest {
   return {
-    pool_id: BigInt(0),
-    msg_index: BigInt(0)
+    poolId: BigInt(0),
+    msgIndex: BigInt(0)
   };
 }
 export const QueryPoolBatchDepositMsgRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchDepositMsgRequest",
   is(o: any): o is QueryPoolBatchDepositMsgRequest {
-    return o && (o.$typeUrl === QueryPoolBatchDepositMsgRequest.typeUrl || typeof o.pool_id === "bigint" && typeof o.msg_index === "bigint");
+    return o && (o.$typeUrl === QueryPoolBatchDepositMsgRequest.typeUrl || typeof o.poolId === "bigint" && typeof o.msgIndex === "bigint");
   },
   isSDK(o: any): o is QueryPoolBatchDepositMsgRequestSDKType {
     return o && (o.$typeUrl === QueryPoolBatchDepositMsgRequest.typeUrl || typeof o.pool_id === "bigint" && typeof o.msg_index === "bigint");
@@ -2060,11 +2061,11 @@ export const QueryPoolBatchDepositMsgRequest = {
     return o && (o.$typeUrl === QueryPoolBatchDepositMsgRequest.typeUrl || typeof o.pool_id === "bigint" && typeof o.msg_index === "bigint");
   },
   encode(message: QueryPoolBatchDepositMsgRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(8).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.poolId);
     }
-    if (message.msg_index !== BigInt(0)) {
-      writer.uint32(16).uint64(message.msg_index);
+    if (message.msgIndex !== BigInt(0)) {
+      writer.uint32(16).uint64(message.msgIndex);
     }
     return writer;
   },
@@ -2076,10 +2077,10 @@ export const QueryPoolBatchDepositMsgRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         case 2:
-          message.msg_index = reader.uint64();
+          message.msgIndex = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -2090,36 +2091,36 @@ export const QueryPoolBatchDepositMsgRequest = {
   },
   fromJSON(object: any): QueryPoolBatchDepositMsgRequest {
     return {
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0),
-      msg_index: isSet(object.msg_index) ? BigInt(object.msg_index.toString()) : BigInt(0)
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0),
+      msgIndex: isSet(object.msgIndex) ? BigInt(object.msgIndex.toString()) : BigInt(0)
     };
   },
   toJSON(message: QueryPoolBatchDepositMsgRequest): JsonSafe<QueryPoolBatchDepositMsgRequest> {
     const obj: any = {};
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
-    message.msg_index !== undefined && (obj.msg_index = (message.msg_index || BigInt(0)).toString());
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
+    message.msgIndex !== undefined && (obj.msgIndex = (message.msgIndex || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchDepositMsgRequest>): QueryPoolBatchDepositMsgRequest {
+  fromPartial(object: Partial<QueryPoolBatchDepositMsgRequest>): QueryPoolBatchDepositMsgRequest {
     const message = createBaseQueryPoolBatchDepositMsgRequest();
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
-    message.msg_index = object.msg_index !== undefined && object.msg_index !== null ? BigInt(object.msg_index.toString()) : BigInt(0);
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
+    message.msgIndex = object.msgIndex !== undefined && object.msgIndex !== null ? BigInt(object.msgIndex.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryPoolBatchDepositMsgRequestAmino): QueryPoolBatchDepositMsgRequest {
     const message = createBaseQueryPoolBatchDepositMsgRequest();
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     if (object.msg_index !== undefined && object.msg_index !== null) {
-      message.msg_index = BigInt(object.msg_index);
+      message.msgIndex = BigInt(object.msg_index);
     }
     return message;
   },
   toAmino(message: QueryPoolBatchDepositMsgRequest): QueryPoolBatchDepositMsgRequestAmino {
     const obj: any = {};
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
-    obj.msg_index = message.msg_index !== BigInt(0) ? message.msg_index.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    obj.msg_index = message.msgIndex !== BigInt(0) ? message.msgIndex.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryPoolBatchDepositMsgRequestAminoMsg): QueryPoolBatchDepositMsgRequest {
@@ -2201,7 +2202,7 @@ export const QueryPoolBatchDepositMsgsResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchDepositMsgsResponse>): QueryPoolBatchDepositMsgsResponse {
+  fromPartial(object: Partial<QueryPoolBatchDepositMsgsResponse>): QueryPoolBatchDepositMsgsResponse {
     const message = createBaseQueryPoolBatchDepositMsgsResponse();
     message.deposits = object.deposits?.map(e => DepositMsgState.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -2291,7 +2292,7 @@ export const QueryPoolBatchDepositMsgResponse = {
     message.deposit !== undefined && (obj.deposit = message.deposit ? DepositMsgState.toJSON(message.deposit) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchDepositMsgResponse>): QueryPoolBatchDepositMsgResponse {
+  fromPartial(object: Partial<QueryPoolBatchDepositMsgResponse>): QueryPoolBatchDepositMsgResponse {
     const message = createBaseQueryPoolBatchDepositMsgResponse();
     message.deposit = object.deposit !== undefined && object.deposit !== null ? DepositMsgState.fromPartial(object.deposit) : undefined;
     return message;
@@ -2327,14 +2328,14 @@ export const QueryPoolBatchDepositMsgResponse = {
 GlobalDecoderRegistry.register(QueryPoolBatchDepositMsgResponse.typeUrl, QueryPoolBatchDepositMsgResponse);
 function createBaseQueryPoolBatchWithdrawMsgsRequest(): QueryPoolBatchWithdrawMsgsRequest {
   return {
-    pool_id: BigInt(0),
+    poolId: BigInt(0),
     pagination: undefined
   };
 }
 export const QueryPoolBatchWithdrawMsgsRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgsRequest",
   is(o: any): o is QueryPoolBatchWithdrawMsgsRequest {
-    return o && (o.$typeUrl === QueryPoolBatchWithdrawMsgsRequest.typeUrl || typeof o.pool_id === "bigint");
+    return o && (o.$typeUrl === QueryPoolBatchWithdrawMsgsRequest.typeUrl || typeof o.poolId === "bigint");
   },
   isSDK(o: any): o is QueryPoolBatchWithdrawMsgsRequestSDKType {
     return o && (o.$typeUrl === QueryPoolBatchWithdrawMsgsRequest.typeUrl || typeof o.pool_id === "bigint");
@@ -2343,8 +2344,8 @@ export const QueryPoolBatchWithdrawMsgsRequest = {
     return o && (o.$typeUrl === QueryPoolBatchWithdrawMsgsRequest.typeUrl || typeof o.pool_id === "bigint");
   },
   encode(message: QueryPoolBatchWithdrawMsgsRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(8).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.poolId);
     }
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
@@ -2359,7 +2360,7 @@ export const QueryPoolBatchWithdrawMsgsRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         case 2:
           message.pagination = PageRequest.decode(reader, reader.uint32());
@@ -2373,26 +2374,26 @@ export const QueryPoolBatchWithdrawMsgsRequest = {
   },
   fromJSON(object: any): QueryPoolBatchWithdrawMsgsRequest {
     return {
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0),
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0),
       pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined
     };
   },
   toJSON(message: QueryPoolBatchWithdrawMsgsRequest): JsonSafe<QueryPoolBatchWithdrawMsgsRequest> {
     const obj: any = {};
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchWithdrawMsgsRequest>): QueryPoolBatchWithdrawMsgsRequest {
+  fromPartial(object: Partial<QueryPoolBatchWithdrawMsgsRequest>): QueryPoolBatchWithdrawMsgsRequest {
     const message = createBaseQueryPoolBatchWithdrawMsgsRequest();
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryPoolBatchWithdrawMsgsRequestAmino): QueryPoolBatchWithdrawMsgsRequest {
     const message = createBaseQueryPoolBatchWithdrawMsgsRequest();
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageRequest.fromAmino(object.pagination);
@@ -2401,7 +2402,7 @@ export const QueryPoolBatchWithdrawMsgsRequest = {
   },
   toAmino(message: QueryPoolBatchWithdrawMsgsRequest): QueryPoolBatchWithdrawMsgsRequestAmino {
     const obj: any = {};
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
   },
@@ -2424,14 +2425,14 @@ export const QueryPoolBatchWithdrawMsgsRequest = {
 GlobalDecoderRegistry.register(QueryPoolBatchWithdrawMsgsRequest.typeUrl, QueryPoolBatchWithdrawMsgsRequest);
 function createBaseQueryPoolBatchWithdrawMsgRequest(): QueryPoolBatchWithdrawMsgRequest {
   return {
-    pool_id: BigInt(0),
-    msg_index: BigInt(0)
+    poolId: BigInt(0),
+    msgIndex: BigInt(0)
   };
 }
 export const QueryPoolBatchWithdrawMsgRequest = {
   typeUrl: "/cyber.liquidity.v1beta1.QueryPoolBatchWithdrawMsgRequest",
   is(o: any): o is QueryPoolBatchWithdrawMsgRequest {
-    return o && (o.$typeUrl === QueryPoolBatchWithdrawMsgRequest.typeUrl || typeof o.pool_id === "bigint" && typeof o.msg_index === "bigint");
+    return o && (o.$typeUrl === QueryPoolBatchWithdrawMsgRequest.typeUrl || typeof o.poolId === "bigint" && typeof o.msgIndex === "bigint");
   },
   isSDK(o: any): o is QueryPoolBatchWithdrawMsgRequestSDKType {
     return o && (o.$typeUrl === QueryPoolBatchWithdrawMsgRequest.typeUrl || typeof o.pool_id === "bigint" && typeof o.msg_index === "bigint");
@@ -2440,11 +2441,11 @@ export const QueryPoolBatchWithdrawMsgRequest = {
     return o && (o.$typeUrl === QueryPoolBatchWithdrawMsgRequest.typeUrl || typeof o.pool_id === "bigint" && typeof o.msg_index === "bigint");
   },
   encode(message: QueryPoolBatchWithdrawMsgRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.pool_id !== BigInt(0)) {
-      writer.uint32(8).uint64(message.pool_id);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.poolId);
     }
-    if (message.msg_index !== BigInt(0)) {
-      writer.uint32(16).uint64(message.msg_index);
+    if (message.msgIndex !== BigInt(0)) {
+      writer.uint32(16).uint64(message.msgIndex);
     }
     return writer;
   },
@@ -2456,10 +2457,10 @@ export const QueryPoolBatchWithdrawMsgRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.pool_id = reader.uint64();
+          message.poolId = reader.uint64();
           break;
         case 2:
-          message.msg_index = reader.uint64();
+          message.msgIndex = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -2470,36 +2471,36 @@ export const QueryPoolBatchWithdrawMsgRequest = {
   },
   fromJSON(object: any): QueryPoolBatchWithdrawMsgRequest {
     return {
-      pool_id: isSet(object.pool_id) ? BigInt(object.pool_id.toString()) : BigInt(0),
-      msg_index: isSet(object.msg_index) ? BigInt(object.msg_index.toString()) : BigInt(0)
+      poolId: isSet(object.poolId) ? BigInt(object.poolId.toString()) : BigInt(0),
+      msgIndex: isSet(object.msgIndex) ? BigInt(object.msgIndex.toString()) : BigInt(0)
     };
   },
   toJSON(message: QueryPoolBatchWithdrawMsgRequest): JsonSafe<QueryPoolBatchWithdrawMsgRequest> {
     const obj: any = {};
-    message.pool_id !== undefined && (obj.pool_id = (message.pool_id || BigInt(0)).toString());
-    message.msg_index !== undefined && (obj.msg_index = (message.msg_index || BigInt(0)).toString());
+    message.poolId !== undefined && (obj.poolId = (message.poolId || BigInt(0)).toString());
+    message.msgIndex !== undefined && (obj.msgIndex = (message.msgIndex || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchWithdrawMsgRequest>): QueryPoolBatchWithdrawMsgRequest {
+  fromPartial(object: Partial<QueryPoolBatchWithdrawMsgRequest>): QueryPoolBatchWithdrawMsgRequest {
     const message = createBaseQueryPoolBatchWithdrawMsgRequest();
-    message.pool_id = object.pool_id !== undefined && object.pool_id !== null ? BigInt(object.pool_id.toString()) : BigInt(0);
-    message.msg_index = object.msg_index !== undefined && object.msg_index !== null ? BigInt(object.msg_index.toString()) : BigInt(0);
+    message.poolId = object.poolId !== undefined && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
+    message.msgIndex = object.msgIndex !== undefined && object.msgIndex !== null ? BigInt(object.msgIndex.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryPoolBatchWithdrawMsgRequestAmino): QueryPoolBatchWithdrawMsgRequest {
     const message = createBaseQueryPoolBatchWithdrawMsgRequest();
     if (object.pool_id !== undefined && object.pool_id !== null) {
-      message.pool_id = BigInt(object.pool_id);
+      message.poolId = BigInt(object.pool_id);
     }
     if (object.msg_index !== undefined && object.msg_index !== null) {
-      message.msg_index = BigInt(object.msg_index);
+      message.msgIndex = BigInt(object.msg_index);
     }
     return message;
   },
   toAmino(message: QueryPoolBatchWithdrawMsgRequest): QueryPoolBatchWithdrawMsgRequestAmino {
     const obj: any = {};
-    obj.pool_id = message.pool_id !== BigInt(0) ? message.pool_id.toString() : undefined;
-    obj.msg_index = message.msg_index !== BigInt(0) ? message.msg_index.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    obj.msg_index = message.msgIndex !== BigInt(0) ? message.msgIndex.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryPoolBatchWithdrawMsgRequestAminoMsg): QueryPoolBatchWithdrawMsgRequest {
@@ -2581,7 +2582,7 @@ export const QueryPoolBatchWithdrawMsgsResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchWithdrawMsgsResponse>): QueryPoolBatchWithdrawMsgsResponse {
+  fromPartial(object: Partial<QueryPoolBatchWithdrawMsgsResponse>): QueryPoolBatchWithdrawMsgsResponse {
     const message = createBaseQueryPoolBatchWithdrawMsgsResponse();
     message.withdraws = object.withdraws?.map(e => WithdrawMsgState.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -2671,7 +2672,7 @@ export const QueryPoolBatchWithdrawMsgResponse = {
     message.withdraw !== undefined && (obj.withdraw = message.withdraw ? WithdrawMsgState.toJSON(message.withdraw) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryPoolBatchWithdrawMsgResponse>): QueryPoolBatchWithdrawMsgResponse {
+  fromPartial(object: Partial<QueryPoolBatchWithdrawMsgResponse>): QueryPoolBatchWithdrawMsgResponse {
     const message = createBaseQueryPoolBatchWithdrawMsgResponse();
     message.withdraw = object.withdraw !== undefined && object.withdraw !== null ? WithdrawMsgState.fromPartial(object.withdraw) : undefined;
     return message;

@@ -1,8 +1,9 @@
+//@ts-nocheck
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../../cosmos/base/query/v1beta1/pagination";
 import { ClockContract, ClockContractAmino, ClockContractSDKType } from "./clock";
 import { Params, ParamsAmino, ParamsSDKType } from "./genesis";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** QueryClockContracts is the request type to get all contracts. */
@@ -11,7 +12,7 @@ export interface QueryClockContracts {
   pagination?: PageRequest;
 }
 export interface QueryClockContractsProtoMsg {
-  type_url: "/cyber.clock.v1.QueryClockContracts";
+  typeUrl: "/cyber.clock.v1.QueryClockContracts";
   value: Uint8Array;
 }
 /** QueryClockContracts is the request type to get all contracts. */
@@ -33,12 +34,12 @@ export interface QueryClockContractsSDKType {
  */
 export interface QueryClockContractsResponse {
   /** clock_contracts are the clock contracts. */
-  clock_contracts: ClockContract[];
+  clockContracts: ClockContract[];
   /** pagination defines the pagination in the response. */
   pagination?: PageResponse;
 }
 export interface QueryClockContractsResponseProtoMsg {
-  type_url: "/cyber.clock.v1.QueryClockContractsResponse";
+  typeUrl: "/cyber.clock.v1.QueryClockContractsResponse";
   value: Uint8Array;
 }
 /**
@@ -66,10 +67,10 @@ export interface QueryClockContractsResponseSDKType {
 /** QueryClockContract is the request type to get a single contract. */
 export interface QueryClockContract {
   /** contract_address is the address of the contract to query. */
-  contract_address: string;
+  contractAddress: string;
 }
 export interface QueryClockContractProtoMsg {
-  type_url: "/cyber.clock.v1.QueryClockContract";
+  typeUrl: "/cyber.clock.v1.QueryClockContract";
   value: Uint8Array;
 }
 /** QueryClockContract is the request type to get a single contract. */
@@ -91,10 +92,10 @@ export interface QueryClockContractSDKType {
  */
 export interface QueryClockContractResponse {
   /** contract is the clock contract. */
-  clock_contract: ClockContract;
+  clockContract: ClockContract;
 }
 export interface QueryClockContractResponseProtoMsg {
-  type_url: "/cyber.clock.v1.QueryClockContractResponse";
+  typeUrl: "/cyber.clock.v1.QueryClockContractResponse";
   value: Uint8Array;
 }
 /**
@@ -119,7 +120,7 @@ export interface QueryClockContractResponseSDKType {
 /** QueryParams is the request type to get all module params. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cyber.clock.v1.QueryParamsRequest";
+  typeUrl: "/cyber.clock.v1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParams is the request type to get all module params. */
@@ -138,7 +139,7 @@ export interface QueryParamsResponse {
   params?: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cyber.clock.v1.QueryParamsResponse";
+  typeUrl: "/cyber.clock.v1.QueryParamsResponse";
   value: Uint8Array;
 }
 /**
@@ -208,7 +209,7 @@ export const QueryClockContracts = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryClockContracts>): QueryClockContracts {
+  fromPartial(object: Partial<QueryClockContracts>): QueryClockContracts {
     const message = createBaseQueryClockContracts();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -244,14 +245,14 @@ export const QueryClockContracts = {
 GlobalDecoderRegistry.register(QueryClockContracts.typeUrl, QueryClockContracts);
 function createBaseQueryClockContractsResponse(): QueryClockContractsResponse {
   return {
-    clock_contracts: [],
+    clockContracts: [],
     pagination: undefined
   };
 }
 export const QueryClockContractsResponse = {
   typeUrl: "/cyber.clock.v1.QueryClockContractsResponse",
   is(o: any): o is QueryClockContractsResponse {
-    return o && (o.$typeUrl === QueryClockContractsResponse.typeUrl || Array.isArray(o.clock_contracts) && (!o.clock_contracts.length || ClockContract.is(o.clock_contracts[0])));
+    return o && (o.$typeUrl === QueryClockContractsResponse.typeUrl || Array.isArray(o.clockContracts) && (!o.clockContracts.length || ClockContract.is(o.clockContracts[0])));
   },
   isSDK(o: any): o is QueryClockContractsResponseSDKType {
     return o && (o.$typeUrl === QueryClockContractsResponse.typeUrl || Array.isArray(o.clock_contracts) && (!o.clock_contracts.length || ClockContract.isSDK(o.clock_contracts[0])));
@@ -260,7 +261,7 @@ export const QueryClockContractsResponse = {
     return o && (o.$typeUrl === QueryClockContractsResponse.typeUrl || Array.isArray(o.clock_contracts) && (!o.clock_contracts.length || ClockContract.isAmino(o.clock_contracts[0])));
   },
   encode(message: QueryClockContractsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.clock_contracts) {
+    for (const v of message.clockContracts) {
       ClockContract.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
@@ -276,7 +277,7 @@ export const QueryClockContractsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.clock_contracts.push(ClockContract.decode(reader, reader.uint32()));
+          message.clockContracts.push(ClockContract.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -290,29 +291,29 @@ export const QueryClockContractsResponse = {
   },
   fromJSON(object: any): QueryClockContractsResponse {
     return {
-      clock_contracts: Array.isArray(object?.clock_contracts) ? object.clock_contracts.map((e: any) => ClockContract.fromJSON(e)) : [],
+      clockContracts: Array.isArray(object?.clockContracts) ? object.clockContracts.map((e: any) => ClockContract.fromJSON(e)) : [],
       pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined
     };
   },
   toJSON(message: QueryClockContractsResponse): JsonSafe<QueryClockContractsResponse> {
     const obj: any = {};
-    if (message.clock_contracts) {
-      obj.clock_contracts = message.clock_contracts.map(e => e ? ClockContract.toJSON(e) : undefined);
+    if (message.clockContracts) {
+      obj.clockContracts = message.clockContracts.map(e => e ? ClockContract.toJSON(e) : undefined);
     } else {
-      obj.clock_contracts = [];
+      obj.clockContracts = [];
     }
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryClockContractsResponse>): QueryClockContractsResponse {
+  fromPartial(object: Partial<QueryClockContractsResponse>): QueryClockContractsResponse {
     const message = createBaseQueryClockContractsResponse();
-    message.clock_contracts = object.clock_contracts?.map(e => ClockContract.fromPartial(e)) || [];
+    message.clockContracts = object.clockContracts?.map(e => ClockContract.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryClockContractsResponseAmino): QueryClockContractsResponse {
     const message = createBaseQueryClockContractsResponse();
-    message.clock_contracts = object.clock_contracts?.map(e => ClockContract.fromAmino(e)) || [];
+    message.clockContracts = object.clock_contracts?.map(e => ClockContract.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -320,10 +321,10 @@ export const QueryClockContractsResponse = {
   },
   toAmino(message: QueryClockContractsResponse): QueryClockContractsResponseAmino {
     const obj: any = {};
-    if (message.clock_contracts) {
-      obj.clock_contracts = message.clock_contracts.map(e => e ? ClockContract.toAmino(e) : undefined);
+    if (message.clockContracts) {
+      obj.clock_contracts = message.clockContracts.map(e => e ? ClockContract.toAmino(e) : undefined);
     } else {
-      obj.clock_contracts = message.clock_contracts;
+      obj.clock_contracts = message.clockContracts;
     }
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
@@ -347,13 +348,13 @@ export const QueryClockContractsResponse = {
 GlobalDecoderRegistry.register(QueryClockContractsResponse.typeUrl, QueryClockContractsResponse);
 function createBaseQueryClockContract(): QueryClockContract {
   return {
-    contract_address: ""
+    contractAddress: ""
   };
 }
 export const QueryClockContract = {
   typeUrl: "/cyber.clock.v1.QueryClockContract",
   is(o: any): o is QueryClockContract {
-    return o && (o.$typeUrl === QueryClockContract.typeUrl || typeof o.contract_address === "string");
+    return o && (o.$typeUrl === QueryClockContract.typeUrl || typeof o.contractAddress === "string");
   },
   isSDK(o: any): o is QueryClockContractSDKType {
     return o && (o.$typeUrl === QueryClockContract.typeUrl || typeof o.contract_address === "string");
@@ -362,8 +363,8 @@ export const QueryClockContract = {
     return o && (o.$typeUrl === QueryClockContract.typeUrl || typeof o.contract_address === "string");
   },
   encode(message: QueryClockContract, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.contract_address !== "") {
-      writer.uint32(10).string(message.contract_address);
+    if (message.contractAddress !== "") {
+      writer.uint32(10).string(message.contractAddress);
     }
     return writer;
   },
@@ -375,7 +376,7 @@ export const QueryClockContract = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.contract_address = reader.string();
+          message.contractAddress = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -386,29 +387,29 @@ export const QueryClockContract = {
   },
   fromJSON(object: any): QueryClockContract {
     return {
-      contract_address: isSet(object.contract_address) ? String(object.contract_address) : ""
+      contractAddress: isSet(object.contractAddress) ? String(object.contractAddress) : ""
     };
   },
   toJSON(message: QueryClockContract): JsonSafe<QueryClockContract> {
     const obj: any = {};
-    message.contract_address !== undefined && (obj.contract_address = message.contract_address);
+    message.contractAddress !== undefined && (obj.contractAddress = message.contractAddress);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryClockContract>): QueryClockContract {
+  fromPartial(object: Partial<QueryClockContract>): QueryClockContract {
     const message = createBaseQueryClockContract();
-    message.contract_address = object.contract_address ?? "";
+    message.contractAddress = object.contractAddress ?? "";
     return message;
   },
   fromAmino(object: QueryClockContractAmino): QueryClockContract {
     const message = createBaseQueryClockContract();
     if (object.contract_address !== undefined && object.contract_address !== null) {
-      message.contract_address = object.contract_address;
+      message.contractAddress = object.contract_address;
     }
     return message;
   },
   toAmino(message: QueryClockContract): QueryClockContractAmino {
     const obj: any = {};
-    obj.contract_address = message.contract_address === "" ? undefined : message.contract_address;
+    obj.contract_address = message.contractAddress === "" ? undefined : message.contractAddress;
     return obj;
   },
   fromAminoMsg(object: QueryClockContractAminoMsg): QueryClockContract {
@@ -430,13 +431,13 @@ export const QueryClockContract = {
 GlobalDecoderRegistry.register(QueryClockContract.typeUrl, QueryClockContract);
 function createBaseQueryClockContractResponse(): QueryClockContractResponse {
   return {
-    clock_contract: ClockContract.fromPartial({})
+    clockContract: ClockContract.fromPartial({})
   };
 }
 export const QueryClockContractResponse = {
   typeUrl: "/cyber.clock.v1.QueryClockContractResponse",
   is(o: any): o is QueryClockContractResponse {
-    return o && (o.$typeUrl === QueryClockContractResponse.typeUrl || ClockContract.is(o.clock_contract));
+    return o && (o.$typeUrl === QueryClockContractResponse.typeUrl || ClockContract.is(o.clockContract));
   },
   isSDK(o: any): o is QueryClockContractResponseSDKType {
     return o && (o.$typeUrl === QueryClockContractResponse.typeUrl || ClockContract.isSDK(o.clock_contract));
@@ -445,8 +446,8 @@ export const QueryClockContractResponse = {
     return o && (o.$typeUrl === QueryClockContractResponse.typeUrl || ClockContract.isAmino(o.clock_contract));
   },
   encode(message: QueryClockContractResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.clock_contract !== undefined) {
-      ClockContract.encode(message.clock_contract, writer.uint32(10).fork()).ldelim();
+    if (message.clockContract !== undefined) {
+      ClockContract.encode(message.clockContract, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -458,7 +459,7 @@ export const QueryClockContractResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.clock_contract = ClockContract.decode(reader, reader.uint32());
+          message.clockContract = ClockContract.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -469,29 +470,29 @@ export const QueryClockContractResponse = {
   },
   fromJSON(object: any): QueryClockContractResponse {
     return {
-      clock_contract: isSet(object.clock_contract) ? ClockContract.fromJSON(object.clock_contract) : undefined
+      clockContract: isSet(object.clockContract) ? ClockContract.fromJSON(object.clockContract) : undefined
     };
   },
   toJSON(message: QueryClockContractResponse): JsonSafe<QueryClockContractResponse> {
     const obj: any = {};
-    message.clock_contract !== undefined && (obj.clock_contract = message.clock_contract ? ClockContract.toJSON(message.clock_contract) : undefined);
+    message.clockContract !== undefined && (obj.clockContract = message.clockContract ? ClockContract.toJSON(message.clockContract) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryClockContractResponse>): QueryClockContractResponse {
+  fromPartial(object: Partial<QueryClockContractResponse>): QueryClockContractResponse {
     const message = createBaseQueryClockContractResponse();
-    message.clock_contract = object.clock_contract !== undefined && object.clock_contract !== null ? ClockContract.fromPartial(object.clock_contract) : undefined;
+    message.clockContract = object.clockContract !== undefined && object.clockContract !== null ? ClockContract.fromPartial(object.clockContract) : undefined;
     return message;
   },
   fromAmino(object: QueryClockContractResponseAmino): QueryClockContractResponse {
     const message = createBaseQueryClockContractResponse();
     if (object.clock_contract !== undefined && object.clock_contract !== null) {
-      message.clock_contract = ClockContract.fromAmino(object.clock_contract);
+      message.clockContract = ClockContract.fromAmino(object.clock_contract);
     }
     return message;
   },
   toAmino(message: QueryClockContractResponse): QueryClockContractResponseAmino {
     const obj: any = {};
-    obj.clock_contract = message.clock_contract ? ClockContract.toAmino(message.clock_contract) : undefined;
+    obj.clock_contract = message.clockContract ? ClockContract.toAmino(message.clockContract) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryClockContractResponseAminoMsg): QueryClockContractResponse {
@@ -549,7 +550,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -627,7 +628,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;

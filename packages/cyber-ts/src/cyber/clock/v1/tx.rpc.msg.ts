@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Rpc } from "../../../helpers";
 import { BinaryReader } from "../../../binary";
 import { MsgRegisterClockContract, MsgRegisterClockContractResponse, MsgUnregisterClockContract, MsgUnregisterClockContractResponse, MsgUnjailClockContract, MsgUnjailClockContractResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";

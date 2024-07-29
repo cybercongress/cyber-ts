@@ -1,17 +1,18 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { Decimal } from "@cosmjs/math";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface Params {
-  recovery_period: bigint;
-  adjust_price_period: bigint;
-  base_price: string;
-  base_load: string;
-  max_block_bandwidth: bigint;
+  recoveryPeriod: bigint;
+  adjustPricePeriod: bigint;
+  basePrice: string;
+  baseLoad: string;
+  maxBlockBandwidth: bigint;
 }
 export interface ParamsProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.Params";
+  typeUrl: "/cyber.bandwidth.v1beta1.Params";
   value: Uint8Array;
 }
 export interface ParamsAmino {
@@ -34,12 +35,12 @@ export interface ParamsSDKType {
 }
 export interface NeuronBandwidth {
   neuron: string;
-  remained_value: bigint;
-  last_updated_block: bigint;
-  max_value: bigint;
+  remainedValue: bigint;
+  lastUpdatedBlock: bigint;
+  maxValue: bigint;
 }
 export interface NeuronBandwidthProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.NeuronBandwidth";
+  typeUrl: "/cyber.bandwidth.v1beta1.NeuronBandwidth";
   value: Uint8Array;
 }
 export interface NeuronBandwidthAmino {
@@ -62,7 +63,7 @@ export interface Price {
   price: string;
 }
 export interface PriceProtoMsg {
-  type_url: "/cyber.bandwidth.v1beta1.Price";
+  typeUrl: "/cyber.bandwidth.v1beta1.Price";
   value: Uint8Array;
 }
 export interface PriceAmino {
@@ -77,17 +78,17 @@ export interface PriceSDKType {
 }
 function createBaseParams(): Params {
   return {
-    recovery_period: BigInt(0),
-    adjust_price_period: BigInt(0),
-    base_price: "",
-    base_load: "",
-    max_block_bandwidth: BigInt(0)
+    recoveryPeriod: BigInt(0),
+    adjustPricePeriod: BigInt(0),
+    basePrice: "",
+    baseLoad: "",
+    maxBlockBandwidth: BigInt(0)
   };
 }
 export const Params = {
   typeUrl: "/cyber.bandwidth.v1beta1.Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.recovery_period === "bigint" && typeof o.adjust_price_period === "bigint" && typeof o.base_price === "string" && typeof o.base_load === "string" && typeof o.max_block_bandwidth === "bigint");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.recoveryPeriod === "bigint" && typeof o.adjustPricePeriod === "bigint" && typeof o.basePrice === "string" && typeof o.baseLoad === "string" && typeof o.maxBlockBandwidth === "bigint");
   },
   isSDK(o: any): o is ParamsSDKType {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.recovery_period === "bigint" && typeof o.adjust_price_period === "bigint" && typeof o.base_price === "string" && typeof o.base_load === "string" && typeof o.max_block_bandwidth === "bigint");
@@ -96,20 +97,20 @@ export const Params = {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.recovery_period === "bigint" && typeof o.adjust_price_period === "bigint" && typeof o.base_price === "string" && typeof o.base_load === "string" && typeof o.max_block_bandwidth === "bigint");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.recovery_period !== BigInt(0)) {
-      writer.uint32(8).uint64(message.recovery_period);
+    if (message.recoveryPeriod !== BigInt(0)) {
+      writer.uint32(8).uint64(message.recoveryPeriod);
     }
-    if (message.adjust_price_period !== BigInt(0)) {
-      writer.uint32(16).uint64(message.adjust_price_period);
+    if (message.adjustPricePeriod !== BigInt(0)) {
+      writer.uint32(16).uint64(message.adjustPricePeriod);
     }
-    if (message.base_price !== "") {
-      writer.uint32(26).string(Decimal.fromUserInput(message.base_price, 18).atomics);
+    if (message.basePrice !== "") {
+      writer.uint32(26).string(Decimal.fromUserInput(message.basePrice, 18).atomics);
     }
-    if (message.base_load !== "") {
-      writer.uint32(34).string(Decimal.fromUserInput(message.base_load, 18).atomics);
+    if (message.baseLoad !== "") {
+      writer.uint32(34).string(Decimal.fromUserInput(message.baseLoad, 18).atomics);
     }
-    if (message.max_block_bandwidth !== BigInt(0)) {
-      writer.uint32(40).uint64(message.max_block_bandwidth);
+    if (message.maxBlockBandwidth !== BigInt(0)) {
+      writer.uint32(40).uint64(message.maxBlockBandwidth);
     }
     return writer;
   },
@@ -121,19 +122,19 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.recovery_period = reader.uint64();
+          message.recoveryPeriod = reader.uint64();
           break;
         case 2:
-          message.adjust_price_period = reader.uint64();
+          message.adjustPricePeriod = reader.uint64();
           break;
         case 3:
-          message.base_price = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.basePrice = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
-          message.base_load = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.baseLoad = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 5:
-          message.max_block_bandwidth = reader.uint64();
+          message.maxBlockBandwidth = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -144,57 +145,57 @@ export const Params = {
   },
   fromJSON(object: any): Params {
     return {
-      recovery_period: isSet(object.recovery_period) ? BigInt(object.recovery_period.toString()) : BigInt(0),
-      adjust_price_period: isSet(object.adjust_price_period) ? BigInt(object.adjust_price_period.toString()) : BigInt(0),
-      base_price: isSet(object.base_price) ? String(object.base_price) : "",
-      base_load: isSet(object.base_load) ? String(object.base_load) : "",
-      max_block_bandwidth: isSet(object.max_block_bandwidth) ? BigInt(object.max_block_bandwidth.toString()) : BigInt(0)
+      recoveryPeriod: isSet(object.recoveryPeriod) ? BigInt(object.recoveryPeriod.toString()) : BigInt(0),
+      adjustPricePeriod: isSet(object.adjustPricePeriod) ? BigInt(object.adjustPricePeriod.toString()) : BigInt(0),
+      basePrice: isSet(object.basePrice) ? String(object.basePrice) : "",
+      baseLoad: isSet(object.baseLoad) ? String(object.baseLoad) : "",
+      maxBlockBandwidth: isSet(object.maxBlockBandwidth) ? BigInt(object.maxBlockBandwidth.toString()) : BigInt(0)
     };
   },
   toJSON(message: Params): JsonSafe<Params> {
     const obj: any = {};
-    message.recovery_period !== undefined && (obj.recovery_period = (message.recovery_period || BigInt(0)).toString());
-    message.adjust_price_period !== undefined && (obj.adjust_price_period = (message.adjust_price_period || BigInt(0)).toString());
-    message.base_price !== undefined && (obj.base_price = message.base_price);
-    message.base_load !== undefined && (obj.base_load = message.base_load);
-    message.max_block_bandwidth !== undefined && (obj.max_block_bandwidth = (message.max_block_bandwidth || BigInt(0)).toString());
+    message.recoveryPeriod !== undefined && (obj.recoveryPeriod = (message.recoveryPeriod || BigInt(0)).toString());
+    message.adjustPricePeriod !== undefined && (obj.adjustPricePeriod = (message.adjustPricePeriod || BigInt(0)).toString());
+    message.basePrice !== undefined && (obj.basePrice = message.basePrice);
+    message.baseLoad !== undefined && (obj.baseLoad = message.baseLoad);
+    message.maxBlockBandwidth !== undefined && (obj.maxBlockBandwidth = (message.maxBlockBandwidth || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<Params>): Params {
+  fromPartial(object: Partial<Params>): Params {
     const message = createBaseParams();
-    message.recovery_period = object.recovery_period !== undefined && object.recovery_period !== null ? BigInt(object.recovery_period.toString()) : BigInt(0);
-    message.adjust_price_period = object.adjust_price_period !== undefined && object.adjust_price_period !== null ? BigInt(object.adjust_price_period.toString()) : BigInt(0);
-    message.base_price = object.base_price ?? "";
-    message.base_load = object.base_load ?? "";
-    message.max_block_bandwidth = object.max_block_bandwidth !== undefined && object.max_block_bandwidth !== null ? BigInt(object.max_block_bandwidth.toString()) : BigInt(0);
+    message.recoveryPeriod = object.recoveryPeriod !== undefined && object.recoveryPeriod !== null ? BigInt(object.recoveryPeriod.toString()) : BigInt(0);
+    message.adjustPricePeriod = object.adjustPricePeriod !== undefined && object.adjustPricePeriod !== null ? BigInt(object.adjustPricePeriod.toString()) : BigInt(0);
+    message.basePrice = object.basePrice ?? "";
+    message.baseLoad = object.baseLoad ?? "";
+    message.maxBlockBandwidth = object.maxBlockBandwidth !== undefined && object.maxBlockBandwidth !== null ? BigInt(object.maxBlockBandwidth.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.recovery_period !== undefined && object.recovery_period !== null) {
-      message.recovery_period = BigInt(object.recovery_period);
+      message.recoveryPeriod = BigInt(object.recovery_period);
     }
     if (object.adjust_price_period !== undefined && object.adjust_price_period !== null) {
-      message.adjust_price_period = BigInt(object.adjust_price_period);
+      message.adjustPricePeriod = BigInt(object.adjust_price_period);
     }
     if (object.base_price !== undefined && object.base_price !== null) {
-      message.base_price = object.base_price;
+      message.basePrice = object.base_price;
     }
     if (object.base_load !== undefined && object.base_load !== null) {
-      message.base_load = object.base_load;
+      message.baseLoad = object.base_load;
     }
     if (object.max_block_bandwidth !== undefined && object.max_block_bandwidth !== null) {
-      message.max_block_bandwidth = BigInt(object.max_block_bandwidth);
+      message.maxBlockBandwidth = BigInt(object.max_block_bandwidth);
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.recovery_period = message.recovery_period !== BigInt(0) ? message.recovery_period.toString() : undefined;
-    obj.adjust_price_period = message.adjust_price_period !== BigInt(0) ? message.adjust_price_period.toString() : undefined;
-    obj.base_price = message.base_price === "" ? undefined : message.base_price;
-    obj.base_load = message.base_load === "" ? undefined : message.base_load;
-    obj.max_block_bandwidth = message.max_block_bandwidth !== BigInt(0) ? message.max_block_bandwidth.toString() : undefined;
+    obj.recovery_period = message.recoveryPeriod !== BigInt(0) ? message.recoveryPeriod.toString() : undefined;
+    obj.adjust_price_period = message.adjustPricePeriod !== BigInt(0) ? message.adjustPricePeriod.toString() : undefined;
+    obj.base_price = message.basePrice === "" ? undefined : message.basePrice;
+    obj.base_load = message.baseLoad === "" ? undefined : message.baseLoad;
+    obj.max_block_bandwidth = message.maxBlockBandwidth !== BigInt(0) ? message.maxBlockBandwidth.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -217,15 +218,15 @@ GlobalDecoderRegistry.register(Params.typeUrl, Params);
 function createBaseNeuronBandwidth(): NeuronBandwidth {
   return {
     neuron: "",
-    remained_value: BigInt(0),
-    last_updated_block: BigInt(0),
-    max_value: BigInt(0)
+    remainedValue: BigInt(0),
+    lastUpdatedBlock: BigInt(0),
+    maxValue: BigInt(0)
   };
 }
 export const NeuronBandwidth = {
   typeUrl: "/cyber.bandwidth.v1beta1.NeuronBandwidth",
   is(o: any): o is NeuronBandwidth {
-    return o && (o.$typeUrl === NeuronBandwidth.typeUrl || typeof o.neuron === "string" && typeof o.remained_value === "bigint" && typeof o.last_updated_block === "bigint" && typeof o.max_value === "bigint");
+    return o && (o.$typeUrl === NeuronBandwidth.typeUrl || typeof o.neuron === "string" && typeof o.remainedValue === "bigint" && typeof o.lastUpdatedBlock === "bigint" && typeof o.maxValue === "bigint");
   },
   isSDK(o: any): o is NeuronBandwidthSDKType {
     return o && (o.$typeUrl === NeuronBandwidth.typeUrl || typeof o.neuron === "string" && typeof o.remained_value === "bigint" && typeof o.last_updated_block === "bigint" && typeof o.max_value === "bigint");
@@ -237,14 +238,14 @@ export const NeuronBandwidth = {
     if (message.neuron !== "") {
       writer.uint32(10).string(message.neuron);
     }
-    if (message.remained_value !== BigInt(0)) {
-      writer.uint32(16).uint64(message.remained_value);
+    if (message.remainedValue !== BigInt(0)) {
+      writer.uint32(16).uint64(message.remainedValue);
     }
-    if (message.last_updated_block !== BigInt(0)) {
-      writer.uint32(24).uint64(message.last_updated_block);
+    if (message.lastUpdatedBlock !== BigInt(0)) {
+      writer.uint32(24).uint64(message.lastUpdatedBlock);
     }
-    if (message.max_value !== BigInt(0)) {
-      writer.uint32(32).uint64(message.max_value);
+    if (message.maxValue !== BigInt(0)) {
+      writer.uint32(32).uint64(message.maxValue);
     }
     return writer;
   },
@@ -259,13 +260,13 @@ export const NeuronBandwidth = {
           message.neuron = reader.string();
           break;
         case 2:
-          message.remained_value = reader.uint64();
+          message.remainedValue = reader.uint64();
           break;
         case 3:
-          message.last_updated_block = reader.uint64();
+          message.lastUpdatedBlock = reader.uint64();
           break;
         case 4:
-          message.max_value = reader.uint64();
+          message.maxValue = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -277,25 +278,25 @@ export const NeuronBandwidth = {
   fromJSON(object: any): NeuronBandwidth {
     return {
       neuron: isSet(object.neuron) ? String(object.neuron) : "",
-      remained_value: isSet(object.remained_value) ? BigInt(object.remained_value.toString()) : BigInt(0),
-      last_updated_block: isSet(object.last_updated_block) ? BigInt(object.last_updated_block.toString()) : BigInt(0),
-      max_value: isSet(object.max_value) ? BigInt(object.max_value.toString()) : BigInt(0)
+      remainedValue: isSet(object.remainedValue) ? BigInt(object.remainedValue.toString()) : BigInt(0),
+      lastUpdatedBlock: isSet(object.lastUpdatedBlock) ? BigInt(object.lastUpdatedBlock.toString()) : BigInt(0),
+      maxValue: isSet(object.maxValue) ? BigInt(object.maxValue.toString()) : BigInt(0)
     };
   },
   toJSON(message: NeuronBandwidth): JsonSafe<NeuronBandwidth> {
     const obj: any = {};
     message.neuron !== undefined && (obj.neuron = message.neuron);
-    message.remained_value !== undefined && (obj.remained_value = (message.remained_value || BigInt(0)).toString());
-    message.last_updated_block !== undefined && (obj.last_updated_block = (message.last_updated_block || BigInt(0)).toString());
-    message.max_value !== undefined && (obj.max_value = (message.max_value || BigInt(0)).toString());
+    message.remainedValue !== undefined && (obj.remainedValue = (message.remainedValue || BigInt(0)).toString());
+    message.lastUpdatedBlock !== undefined && (obj.lastUpdatedBlock = (message.lastUpdatedBlock || BigInt(0)).toString());
+    message.maxValue !== undefined && (obj.maxValue = (message.maxValue || BigInt(0)).toString());
     return obj;
   },
-  fromPartial(object: DeepPartial<NeuronBandwidth>): NeuronBandwidth {
+  fromPartial(object: Partial<NeuronBandwidth>): NeuronBandwidth {
     const message = createBaseNeuronBandwidth();
     message.neuron = object.neuron ?? "";
-    message.remained_value = object.remained_value !== undefined && object.remained_value !== null ? BigInt(object.remained_value.toString()) : BigInt(0);
-    message.last_updated_block = object.last_updated_block !== undefined && object.last_updated_block !== null ? BigInt(object.last_updated_block.toString()) : BigInt(0);
-    message.max_value = object.max_value !== undefined && object.max_value !== null ? BigInt(object.max_value.toString()) : BigInt(0);
+    message.remainedValue = object.remainedValue !== undefined && object.remainedValue !== null ? BigInt(object.remainedValue.toString()) : BigInt(0);
+    message.lastUpdatedBlock = object.lastUpdatedBlock !== undefined && object.lastUpdatedBlock !== null ? BigInt(object.lastUpdatedBlock.toString()) : BigInt(0);
+    message.maxValue = object.maxValue !== undefined && object.maxValue !== null ? BigInt(object.maxValue.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: NeuronBandwidthAmino): NeuronBandwidth {
@@ -304,22 +305,22 @@ export const NeuronBandwidth = {
       message.neuron = object.neuron;
     }
     if (object.remained_value !== undefined && object.remained_value !== null) {
-      message.remained_value = BigInt(object.remained_value);
+      message.remainedValue = BigInt(object.remained_value);
     }
     if (object.last_updated_block !== undefined && object.last_updated_block !== null) {
-      message.last_updated_block = BigInt(object.last_updated_block);
+      message.lastUpdatedBlock = BigInt(object.last_updated_block);
     }
     if (object.max_value !== undefined && object.max_value !== null) {
-      message.max_value = BigInt(object.max_value);
+      message.maxValue = BigInt(object.max_value);
     }
     return message;
   },
   toAmino(message: NeuronBandwidth): NeuronBandwidthAmino {
     const obj: any = {};
     obj.neuron = message.neuron === "" ? undefined : message.neuron;
-    obj.remained_value = message.remained_value !== BigInt(0) ? message.remained_value.toString() : undefined;
-    obj.last_updated_block = message.last_updated_block !== BigInt(0) ? message.last_updated_block.toString() : undefined;
-    obj.max_value = message.max_value !== BigInt(0) ? message.max_value.toString() : undefined;
+    obj.remained_value = message.remainedValue !== BigInt(0) ? message.remainedValue.toString() : undefined;
+    obj.last_updated_block = message.lastUpdatedBlock !== BigInt(0) ? message.lastUpdatedBlock.toString() : undefined;
+    obj.max_value = message.maxValue !== BigInt(0) ? message.maxValue.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: NeuronBandwidthAminoMsg): NeuronBandwidth {
@@ -388,7 +389,7 @@ export const Price = {
     message.price !== undefined && (obj.price = message.price);
     return obj;
   },
-  fromPartial(object: DeepPartial<Price>): Price {
+  fromPartial(object: Partial<Price>): Price {
     const message = createBasePrice();
     message.price = object.price ?? "";
     return message;

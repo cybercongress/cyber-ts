@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { GeneratedType, Registry, OfflineSigner } from "@cosmjs/proto-signing";
 import { defaultRegistryTypes, AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
 import { HttpEndpoint } from "@cosmjs/tendermint-rpc";
@@ -30,6 +31,8 @@ export const cyberAminoConverters = {
 export const cyberProtoRegistry: ReadonlyArray<[string, GeneratedType]> = [...cyberBandwidthV1beta1TxRegistry.registry, ...cyberClockV1TxRegistry.registry, ...cyberDmnV1beta1TxRegistry.registry, ...cyberGraphV1beta1TxRegistry.registry, ...cyberGridV1beta1TxRegistry.registry, ...cyberLiquidityV1beta1TxRegistry.registry, ...cyberRankV1beta1TxRegistry.registry, ...cyberResourcesV1beta1TxRegistry.registry];
 export const getSigningCyberClientOptions = ({
   defaultTypes = defaultRegistryTypes
+}: {
+  defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 } = {}): {
   registry: Registry;
   aminoTypes: AminoTypes;

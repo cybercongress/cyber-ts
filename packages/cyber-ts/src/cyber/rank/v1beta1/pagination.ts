@@ -1,13 +1,14 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 export interface PageRequest {
   page: number;
-  per_page: number;
+  perPage: number;
 }
 export interface PageRequestProtoMsg {
-  type_url: "/cyber.rank.v1beta1.PageRequest";
+  typeUrl: "/cyber.rank.v1beta1.PageRequest";
   value: Uint8Array;
 }
 export interface PageRequestAmino {
@@ -26,7 +27,7 @@ export interface PageResponse {
   total: number;
 }
 export interface PageResponseProtoMsg {
-  type_url: "/cyber.rank.v1beta1.PageResponse";
+  typeUrl: "/cyber.rank.v1beta1.PageResponse";
   value: Uint8Array;
 }
 export interface PageResponseAmino {
@@ -42,13 +43,13 @@ export interface PageResponseSDKType {
 function createBasePageRequest(): PageRequest {
   return {
     page: 0,
-    per_page: 0
+    perPage: 0
   };
 }
 export const PageRequest = {
   typeUrl: "/cyber.rank.v1beta1.PageRequest",
   is(o: any): o is PageRequest {
-    return o && (o.$typeUrl === PageRequest.typeUrl || typeof o.page === "number" && typeof o.per_page === "number");
+    return o && (o.$typeUrl === PageRequest.typeUrl || typeof o.page === "number" && typeof o.perPage === "number");
   },
   isSDK(o: any): o is PageRequestSDKType {
     return o && (o.$typeUrl === PageRequest.typeUrl || typeof o.page === "number" && typeof o.per_page === "number");
@@ -60,8 +61,8 @@ export const PageRequest = {
     if (message.page !== 0) {
       writer.uint32(8).uint32(message.page);
     }
-    if (message.per_page !== 0) {
-      writer.uint32(16).uint32(message.per_page);
+    if (message.perPage !== 0) {
+      writer.uint32(16).uint32(message.perPage);
     }
     return writer;
   },
@@ -76,7 +77,7 @@ export const PageRequest = {
           message.page = reader.uint32();
           break;
         case 2:
-          message.per_page = reader.uint32();
+          message.perPage = reader.uint32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -88,19 +89,19 @@ export const PageRequest = {
   fromJSON(object: any): PageRequest {
     return {
       page: isSet(object.page) ? Number(object.page) : 0,
-      per_page: isSet(object.per_page) ? Number(object.per_page) : 0
+      perPage: isSet(object.perPage) ? Number(object.perPage) : 0
     };
   },
   toJSON(message: PageRequest): JsonSafe<PageRequest> {
     const obj: any = {};
     message.page !== undefined && (obj.page = Math.round(message.page));
-    message.per_page !== undefined && (obj.per_page = Math.round(message.per_page));
+    message.perPage !== undefined && (obj.perPage = Math.round(message.perPage));
     return obj;
   },
-  fromPartial(object: DeepPartial<PageRequest>): PageRequest {
+  fromPartial(object: Partial<PageRequest>): PageRequest {
     const message = createBasePageRequest();
     message.page = object.page ?? 0;
-    message.per_page = object.per_page ?? 0;
+    message.perPage = object.perPage ?? 0;
     return message;
   },
   fromAmino(object: PageRequestAmino): PageRequest {
@@ -109,14 +110,14 @@ export const PageRequest = {
       message.page = object.page;
     }
     if (object.per_page !== undefined && object.per_page !== null) {
-      message.per_page = object.per_page;
+      message.perPage = object.per_page;
     }
     return message;
   },
   toAmino(message: PageRequest): PageRequestAmino {
     const obj: any = {};
     obj.page = message.page === 0 ? undefined : message.page;
-    obj.per_page = message.per_page === 0 ? undefined : message.per_page;
+    obj.per_page = message.perPage === 0 ? undefined : message.perPage;
     return obj;
   },
   fromAminoMsg(object: PageRequestAminoMsg): PageRequest {
@@ -185,7 +186,7 @@ export const PageResponse = {
     message.total !== undefined && (obj.total = Math.round(message.total));
     return obj;
   },
-  fromPartial(object: DeepPartial<PageResponse>): PageResponse {
+  fromPartial(object: Partial<PageResponse>): PageResponse {
     const message = createBasePageResponse();
     message.total = object.total ?? 0;
     return message;

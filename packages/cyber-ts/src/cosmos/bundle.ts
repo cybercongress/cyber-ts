@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as _2 from "./auth/v1beta1/auth";
 import * as _3 from "./auth/v1beta1/genesis";
 import * as _4 from "./auth/v1beta1/query";

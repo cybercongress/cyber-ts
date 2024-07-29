@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { isSet, DeepPartial, fromJsonTimestamp, fromTimestamp } from "../../helpers";
+import { isSet, fromJsonTimestamp, fromTimestamp } from "../../helpers";
 import { JsonSafe } from "../../json-safe";
 import { GlobalDecoderRegistry } from "../../registry";
 /**
@@ -102,7 +103,7 @@ export interface Timestamp {
   nanos: number;
 }
 export interface TimestampProtoMsg {
-  type_url: "/google.protobuf.Timestamp";
+  typeUrl: "/google.protobuf.Timestamp";
   value: Uint8Array;
 }
 /**
@@ -340,7 +341,7 @@ export const Timestamp = {
     message.nanos !== undefined && (obj.nanos = Math.round(message.nanos));
     return obj;
   },
-  fromPartial(object: DeepPartial<Timestamp>): Timestamp {
+  fromPartial(object: Partial<Timestamp>): Timestamp {
     const message = createBaseTimestamp();
     message.seconds = object.seconds !== undefined && object.seconds !== null ? BigInt(object.seconds.toString()) : BigInt(0);
     message.nanos = object.nanos ?? 0;

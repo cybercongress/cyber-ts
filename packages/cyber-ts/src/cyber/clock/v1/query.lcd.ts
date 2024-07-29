@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { setPaginationParams } from "../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
 import { QueryClockContracts, QueryClockContractsResponseSDKType, QueryClockContract, QueryClockContractResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType } from "./query";
@@ -28,7 +29,7 @@ export class LCDQueryClient {
   }
   /* ClockContract */
   async clockContract(params: QueryClockContract): Promise<QueryClockContractResponseSDKType> {
-    const endpoint = `cyber/clock/v1/contracts/${params.contract_address}`;
+    const endpoint = `cyber/clock/v1/contracts/${params.contractAddress}`;
     return await this.req.get<QueryClockContractResponseSDKType>(endpoint);
   }
   /* Params */

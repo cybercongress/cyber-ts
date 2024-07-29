@@ -1,8 +1,9 @@
+//@ts-nocheck
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
 import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Params, ParamsAmino, ParamsSDKType, BaseAccount, BaseAccountProtoMsg, BaseAccountSDKType, ModuleAccount, ModuleAccountProtoMsg, ModuleAccountSDKType } from "./auth";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
+import { isSet, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /**
@@ -15,7 +16,7 @@ export interface QueryAccountsRequest {
   pagination?: PageRequest;
 }
 export interface QueryAccountsRequestProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.QueryAccountsRequest";
+  typeUrl: "/cosmos.auth.v1beta1.QueryAccountsRequest";
   value: Uint8Array;
 }
 /**
@@ -51,7 +52,7 @@ export interface QueryAccountsResponse {
   pagination?: PageResponse;
 }
 export interface QueryAccountsResponseProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.QueryAccountsResponse";
+  typeUrl: "/cosmos.auth.v1beta1.QueryAccountsResponse";
   value: Uint8Array;
 }
 export type QueryAccountsResponseEncoded = Omit<QueryAccountsResponse, "accounts"> & {
@@ -87,7 +88,7 @@ export interface QueryAccountRequest {
   address: string;
 }
 export interface QueryAccountRequestProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.QueryAccountRequest";
+  typeUrl: "/cosmos.auth.v1beta1.QueryAccountRequest";
   value: Uint8Array;
 }
 /** QueryAccountRequest is the request type for the Query/Account RPC method. */
@@ -106,7 +107,7 @@ export interface QueryAccountRequestSDKType {
 /** QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method. */
 export interface QueryModuleAccountsRequest {}
 export interface QueryModuleAccountsRequestProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.QueryModuleAccountsRequest";
+  typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsRequest";
   value: Uint8Array;
 }
 /** QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method. */
@@ -123,7 +124,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.QueryParamsResponse";
+  typeUrl: "/cosmos.auth.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
@@ -145,7 +146,7 @@ export interface QueryAccountResponse {
   account?: BaseAccount | Any | undefined;
 }
 export interface QueryAccountResponseProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.QueryAccountResponse";
+  typeUrl: "/cosmos.auth.v1beta1.QueryAccountResponse";
   value: Uint8Array;
 }
 export type QueryAccountResponseEncoded = Omit<QueryAccountResponse, "account"> & {
@@ -167,7 +168,7 @@ export interface QueryAccountResponseSDKType {
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.QueryParamsRequest";
+  typeUrl: "/cosmos.auth.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
@@ -183,7 +184,7 @@ export interface QueryModuleAccountsResponse {
   accounts: (ModuleAccount | Any)[] | Any[];
 }
 export interface QueryModuleAccountsResponseProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.QueryModuleAccountsResponse";
+  typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsResponse";
   value: Uint8Array;
 }
 export type QueryModuleAccountsResponseEncoded = Omit<QueryModuleAccountsResponse, "accounts"> & {
@@ -204,7 +205,7 @@ export interface QueryModuleAccountsResponseSDKType {
 /** Bech32PrefixRequest is the request type for Bech32Prefix rpc method */
 export interface Bech32PrefixRequest {}
 export interface Bech32PrefixRequestProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.Bech32PrefixRequest";
+  typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixRequest";
   value: Uint8Array;
 }
 /** Bech32PrefixRequest is the request type for Bech32Prefix rpc method */
@@ -217,10 +218,10 @@ export interface Bech32PrefixRequestAminoMsg {
 export interface Bech32PrefixRequestSDKType {}
 /** Bech32PrefixResponse is the response type for Bech32Prefix rpc method */
 export interface Bech32PrefixResponse {
-  bech32_prefix: string;
+  bech32Prefix: string;
 }
 export interface Bech32PrefixResponseProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.Bech32PrefixResponse";
+  typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixResponse";
   value: Uint8Array;
 }
 /** Bech32PrefixResponse is the response type for Bech32Prefix rpc method */
@@ -237,10 +238,10 @@ export interface Bech32PrefixResponseSDKType {
 }
 /** AddressBytesToStringRequest is the request type for AddressString rpc method */
 export interface AddressBytesToStringRequest {
-  address_bytes: Uint8Array;
+  addressBytes: Uint8Array;
 }
 export interface AddressBytesToStringRequestProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.AddressBytesToStringRequest";
+  typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringRequest";
   value: Uint8Array;
 }
 /** AddressBytesToStringRequest is the request type for AddressString rpc method */
@@ -257,10 +258,10 @@ export interface AddressBytesToStringRequestSDKType {
 }
 /** AddressBytesToStringResponse is the response type for AddressString rpc method */
 export interface AddressBytesToStringResponse {
-  address_string: string;
+  addressString: string;
 }
 export interface AddressBytesToStringResponseProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.AddressBytesToStringResponse";
+  typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringResponse";
   value: Uint8Array;
 }
 /** AddressBytesToStringResponse is the response type for AddressString rpc method */
@@ -277,10 +278,10 @@ export interface AddressBytesToStringResponseSDKType {
 }
 /** AddressStringToBytesRequest is the request type for AccountBytes rpc method */
 export interface AddressStringToBytesRequest {
-  address_string: string;
+  addressString: string;
 }
 export interface AddressStringToBytesRequestProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.AddressStringToBytesRequest";
+  typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesRequest";
   value: Uint8Array;
 }
 /** AddressStringToBytesRequest is the request type for AccountBytes rpc method */
@@ -297,10 +298,10 @@ export interface AddressStringToBytesRequestSDKType {
 }
 /** AddressStringToBytesResponse is the response type for AddressBytes rpc method */
 export interface AddressStringToBytesResponse {
-  address_bytes: Uint8Array;
+  addressBytes: Uint8Array;
 }
 export interface AddressStringToBytesResponseProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.AddressStringToBytesResponse";
+  typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesResponse";
   value: Uint8Array;
 }
 /** AddressStringToBytesResponse is the response type for AddressBytes rpc method */
@@ -365,7 +366,7 @@ export const QueryAccountsRequest = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryAccountsRequest>): QueryAccountsRequest {
+  fromPartial(object: Partial<QueryAccountsRequest>): QueryAccountsRequest {
     const message = createBaseQueryAccountsRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
@@ -469,7 +470,7 @@ export const QueryAccountsResponse = {
     message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryAccountsResponse>): QueryAccountsResponse {
+  fromPartial(object: Partial<QueryAccountsResponse>): QueryAccountsResponse {
     const message = createBaseQueryAccountsResponse();
     message.accounts = object.accounts?.map(e => GlobalDecoderRegistry.fromPartial(e) as any) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
@@ -567,7 +568,7 @@ export const QueryAccountRequest = {
     message.address !== undefined && (obj.address = message.address);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryAccountRequest>): QueryAccountRequest {
+  fromPartial(object: Partial<QueryAccountRequest>): QueryAccountRequest {
     const message = createBaseQueryAccountRequest();
     message.address = object.address ?? "";
     return message;
@@ -647,7 +648,7 @@ export const QueryModuleAccountsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryModuleAccountsRequest>): QueryModuleAccountsRequest {
+  fromPartial(_: Partial<QueryModuleAccountsRequest>): QueryModuleAccountsRequest {
     const message = createBaseQueryModuleAccountsRequest();
     return message;
   },
@@ -733,7 +734,7 @@ export const QueryParamsResponse = {
     message.params !== undefined && (obj.params = message.params ? Params.toJSON(message.params) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
+  fromPartial(object: Partial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
@@ -824,7 +825,7 @@ export const QueryAccountResponse = {
     message.account !== undefined && (obj.account = message.account ? GlobalDecoderRegistry.toJSON(message.account) : undefined);
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryAccountResponse>): QueryAccountResponse {
+  fromPartial(object: Partial<QueryAccountResponse>): QueryAccountResponse {
     const message = createBaseQueryAccountResponse();
     message.account = object.account !== undefined && object.account !== null ? GlobalDecoderRegistry.fromPartial(object.account) : undefined;
     return message;
@@ -904,7 +905,7 @@ export const QueryParamsRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<QueryParamsRequest>): QueryParamsRequest {
+  fromPartial(_: Partial<QueryParamsRequest>): QueryParamsRequest {
     const message = createBaseQueryParamsRequest();
     return message;
   },
@@ -994,7 +995,7 @@ export const QueryModuleAccountsResponse = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<QueryModuleAccountsResponse>): QueryModuleAccountsResponse {
+  fromPartial(object: Partial<QueryModuleAccountsResponse>): QueryModuleAccountsResponse {
     const message = createBaseQueryModuleAccountsResponse();
     message.accounts = object.accounts?.map(e => GlobalDecoderRegistry.fromPartial(e) as any) || [];
     return message;
@@ -1076,7 +1077,7 @@ export const Bech32PrefixRequest = {
     const obj: any = {};
     return obj;
   },
-  fromPartial(_: DeepPartial<Bech32PrefixRequest>): Bech32PrefixRequest {
+  fromPartial(_: Partial<Bech32PrefixRequest>): Bech32PrefixRequest {
     const message = createBaseBech32PrefixRequest();
     return message;
   },
@@ -1114,14 +1115,14 @@ GlobalDecoderRegistry.register(Bech32PrefixRequest.typeUrl, Bech32PrefixRequest)
 GlobalDecoderRegistry.registerAminoProtoMapping(Bech32PrefixRequest.aminoType, Bech32PrefixRequest.typeUrl);
 function createBaseBech32PrefixResponse(): Bech32PrefixResponse {
   return {
-    bech32_prefix: ""
+    bech32Prefix: ""
   };
 }
 export const Bech32PrefixResponse = {
   typeUrl: "/cosmos.auth.v1beta1.Bech32PrefixResponse",
   aminoType: "cosmos-sdk/Bech32PrefixResponse",
   is(o: any): o is Bech32PrefixResponse {
-    return o && (o.$typeUrl === Bech32PrefixResponse.typeUrl || typeof o.bech32_prefix === "string");
+    return o && (o.$typeUrl === Bech32PrefixResponse.typeUrl || typeof o.bech32Prefix === "string");
   },
   isSDK(o: any): o is Bech32PrefixResponseSDKType {
     return o && (o.$typeUrl === Bech32PrefixResponse.typeUrl || typeof o.bech32_prefix === "string");
@@ -1130,8 +1131,8 @@ export const Bech32PrefixResponse = {
     return o && (o.$typeUrl === Bech32PrefixResponse.typeUrl || typeof o.bech32_prefix === "string");
   },
   encode(message: Bech32PrefixResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.bech32_prefix !== "") {
-      writer.uint32(10).string(message.bech32_prefix);
+    if (message.bech32Prefix !== "") {
+      writer.uint32(10).string(message.bech32Prefix);
     }
     return writer;
   },
@@ -1143,7 +1144,7 @@ export const Bech32PrefixResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.bech32_prefix = reader.string();
+          message.bech32Prefix = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1154,29 +1155,29 @@ export const Bech32PrefixResponse = {
   },
   fromJSON(object: any): Bech32PrefixResponse {
     return {
-      bech32_prefix: isSet(object.bech32_prefix) ? String(object.bech32_prefix) : ""
+      bech32Prefix: isSet(object.bech32Prefix) ? String(object.bech32Prefix) : ""
     };
   },
   toJSON(message: Bech32PrefixResponse): JsonSafe<Bech32PrefixResponse> {
     const obj: any = {};
-    message.bech32_prefix !== undefined && (obj.bech32_prefix = message.bech32_prefix);
+    message.bech32Prefix !== undefined && (obj.bech32Prefix = message.bech32Prefix);
     return obj;
   },
-  fromPartial(object: DeepPartial<Bech32PrefixResponse>): Bech32PrefixResponse {
+  fromPartial(object: Partial<Bech32PrefixResponse>): Bech32PrefixResponse {
     const message = createBaseBech32PrefixResponse();
-    message.bech32_prefix = object.bech32_prefix ?? "";
+    message.bech32Prefix = object.bech32Prefix ?? "";
     return message;
   },
   fromAmino(object: Bech32PrefixResponseAmino): Bech32PrefixResponse {
     const message = createBaseBech32PrefixResponse();
     if (object.bech32_prefix !== undefined && object.bech32_prefix !== null) {
-      message.bech32_prefix = object.bech32_prefix;
+      message.bech32Prefix = object.bech32_prefix;
     }
     return message;
   },
   toAmino(message: Bech32PrefixResponse): Bech32PrefixResponseAmino {
     const obj: any = {};
-    obj.bech32_prefix = message.bech32_prefix === "" ? undefined : message.bech32_prefix;
+    obj.bech32_prefix = message.bech32Prefix === "" ? undefined : message.bech32Prefix;
     return obj;
   },
   fromAminoMsg(object: Bech32PrefixResponseAminoMsg): Bech32PrefixResponse {
@@ -1205,14 +1206,14 @@ GlobalDecoderRegistry.register(Bech32PrefixResponse.typeUrl, Bech32PrefixRespons
 GlobalDecoderRegistry.registerAminoProtoMapping(Bech32PrefixResponse.aminoType, Bech32PrefixResponse.typeUrl);
 function createBaseAddressBytesToStringRequest(): AddressBytesToStringRequest {
   return {
-    address_bytes: new Uint8Array()
+    addressBytes: new Uint8Array()
   };
 }
 export const AddressBytesToStringRequest = {
   typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringRequest",
   aminoType: "cosmos-sdk/AddressBytesToStringRequest",
   is(o: any): o is AddressBytesToStringRequest {
-    return o && (o.$typeUrl === AddressBytesToStringRequest.typeUrl || o.address_bytes instanceof Uint8Array || typeof o.address_bytes === "string");
+    return o && (o.$typeUrl === AddressBytesToStringRequest.typeUrl || o.addressBytes instanceof Uint8Array || typeof o.addressBytes === "string");
   },
   isSDK(o: any): o is AddressBytesToStringRequestSDKType {
     return o && (o.$typeUrl === AddressBytesToStringRequest.typeUrl || o.address_bytes instanceof Uint8Array || typeof o.address_bytes === "string");
@@ -1221,8 +1222,8 @@ export const AddressBytesToStringRequest = {
     return o && (o.$typeUrl === AddressBytesToStringRequest.typeUrl || o.address_bytes instanceof Uint8Array || typeof o.address_bytes === "string");
   },
   encode(message: AddressBytesToStringRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.address_bytes.length !== 0) {
-      writer.uint32(10).bytes(message.address_bytes);
+    if (message.addressBytes.length !== 0) {
+      writer.uint32(10).bytes(message.addressBytes);
     }
     return writer;
   },
@@ -1234,7 +1235,7 @@ export const AddressBytesToStringRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address_bytes = reader.bytes();
+          message.addressBytes = reader.bytes();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1245,29 +1246,29 @@ export const AddressBytesToStringRequest = {
   },
   fromJSON(object: any): AddressBytesToStringRequest {
     return {
-      address_bytes: isSet(object.address_bytes) ? bytesFromBase64(object.address_bytes) : new Uint8Array()
+      addressBytes: isSet(object.addressBytes) ? bytesFromBase64(object.addressBytes) : new Uint8Array()
     };
   },
   toJSON(message: AddressBytesToStringRequest): JsonSafe<AddressBytesToStringRequest> {
     const obj: any = {};
-    message.address_bytes !== undefined && (obj.address_bytes = base64FromBytes(message.address_bytes !== undefined ? message.address_bytes : new Uint8Array()));
+    message.addressBytes !== undefined && (obj.addressBytes = base64FromBytes(message.addressBytes !== undefined ? message.addressBytes : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<AddressBytesToStringRequest>): AddressBytesToStringRequest {
+  fromPartial(object: Partial<AddressBytesToStringRequest>): AddressBytesToStringRequest {
     const message = createBaseAddressBytesToStringRequest();
-    message.address_bytes = object.address_bytes ?? new Uint8Array();
+    message.addressBytes = object.addressBytes ?? new Uint8Array();
     return message;
   },
   fromAmino(object: AddressBytesToStringRequestAmino): AddressBytesToStringRequest {
     const message = createBaseAddressBytesToStringRequest();
     if (object.address_bytes !== undefined && object.address_bytes !== null) {
-      message.address_bytes = bytesFromBase64(object.address_bytes);
+      message.addressBytes = bytesFromBase64(object.address_bytes);
     }
     return message;
   },
   toAmino(message: AddressBytesToStringRequest): AddressBytesToStringRequestAmino {
     const obj: any = {};
-    obj.address_bytes = message.address_bytes ? base64FromBytes(message.address_bytes) : undefined;
+    obj.address_bytes = message.addressBytes ? base64FromBytes(message.addressBytes) : undefined;
     return obj;
   },
   fromAminoMsg(object: AddressBytesToStringRequestAminoMsg): AddressBytesToStringRequest {
@@ -1296,14 +1297,14 @@ GlobalDecoderRegistry.register(AddressBytesToStringRequest.typeUrl, AddressBytes
 GlobalDecoderRegistry.registerAminoProtoMapping(AddressBytesToStringRequest.aminoType, AddressBytesToStringRequest.typeUrl);
 function createBaseAddressBytesToStringResponse(): AddressBytesToStringResponse {
   return {
-    address_string: ""
+    addressString: ""
   };
 }
 export const AddressBytesToStringResponse = {
   typeUrl: "/cosmos.auth.v1beta1.AddressBytesToStringResponse",
   aminoType: "cosmos-sdk/AddressBytesToStringResponse",
   is(o: any): o is AddressBytesToStringResponse {
-    return o && (o.$typeUrl === AddressBytesToStringResponse.typeUrl || typeof o.address_string === "string");
+    return o && (o.$typeUrl === AddressBytesToStringResponse.typeUrl || typeof o.addressString === "string");
   },
   isSDK(o: any): o is AddressBytesToStringResponseSDKType {
     return o && (o.$typeUrl === AddressBytesToStringResponse.typeUrl || typeof o.address_string === "string");
@@ -1312,8 +1313,8 @@ export const AddressBytesToStringResponse = {
     return o && (o.$typeUrl === AddressBytesToStringResponse.typeUrl || typeof o.address_string === "string");
   },
   encode(message: AddressBytesToStringResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.address_string !== "") {
-      writer.uint32(10).string(message.address_string);
+    if (message.addressString !== "") {
+      writer.uint32(10).string(message.addressString);
     }
     return writer;
   },
@@ -1325,7 +1326,7 @@ export const AddressBytesToStringResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address_string = reader.string();
+          message.addressString = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1336,29 +1337,29 @@ export const AddressBytesToStringResponse = {
   },
   fromJSON(object: any): AddressBytesToStringResponse {
     return {
-      address_string: isSet(object.address_string) ? String(object.address_string) : ""
+      addressString: isSet(object.addressString) ? String(object.addressString) : ""
     };
   },
   toJSON(message: AddressBytesToStringResponse): JsonSafe<AddressBytesToStringResponse> {
     const obj: any = {};
-    message.address_string !== undefined && (obj.address_string = message.address_string);
+    message.addressString !== undefined && (obj.addressString = message.addressString);
     return obj;
   },
-  fromPartial(object: DeepPartial<AddressBytesToStringResponse>): AddressBytesToStringResponse {
+  fromPartial(object: Partial<AddressBytesToStringResponse>): AddressBytesToStringResponse {
     const message = createBaseAddressBytesToStringResponse();
-    message.address_string = object.address_string ?? "";
+    message.addressString = object.addressString ?? "";
     return message;
   },
   fromAmino(object: AddressBytesToStringResponseAmino): AddressBytesToStringResponse {
     const message = createBaseAddressBytesToStringResponse();
     if (object.address_string !== undefined && object.address_string !== null) {
-      message.address_string = object.address_string;
+      message.addressString = object.address_string;
     }
     return message;
   },
   toAmino(message: AddressBytesToStringResponse): AddressBytesToStringResponseAmino {
     const obj: any = {};
-    obj.address_string = message.address_string === "" ? undefined : message.address_string;
+    obj.address_string = message.addressString === "" ? undefined : message.addressString;
     return obj;
   },
   fromAminoMsg(object: AddressBytesToStringResponseAminoMsg): AddressBytesToStringResponse {
@@ -1387,14 +1388,14 @@ GlobalDecoderRegistry.register(AddressBytesToStringResponse.typeUrl, AddressByte
 GlobalDecoderRegistry.registerAminoProtoMapping(AddressBytesToStringResponse.aminoType, AddressBytesToStringResponse.typeUrl);
 function createBaseAddressStringToBytesRequest(): AddressStringToBytesRequest {
   return {
-    address_string: ""
+    addressString: ""
   };
 }
 export const AddressStringToBytesRequest = {
   typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesRequest",
   aminoType: "cosmos-sdk/AddressStringToBytesRequest",
   is(o: any): o is AddressStringToBytesRequest {
-    return o && (o.$typeUrl === AddressStringToBytesRequest.typeUrl || typeof o.address_string === "string");
+    return o && (o.$typeUrl === AddressStringToBytesRequest.typeUrl || typeof o.addressString === "string");
   },
   isSDK(o: any): o is AddressStringToBytesRequestSDKType {
     return o && (o.$typeUrl === AddressStringToBytesRequest.typeUrl || typeof o.address_string === "string");
@@ -1403,8 +1404,8 @@ export const AddressStringToBytesRequest = {
     return o && (o.$typeUrl === AddressStringToBytesRequest.typeUrl || typeof o.address_string === "string");
   },
   encode(message: AddressStringToBytesRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.address_string !== "") {
-      writer.uint32(10).string(message.address_string);
+    if (message.addressString !== "") {
+      writer.uint32(10).string(message.addressString);
     }
     return writer;
   },
@@ -1416,7 +1417,7 @@ export const AddressStringToBytesRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address_string = reader.string();
+          message.addressString = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1427,29 +1428,29 @@ export const AddressStringToBytesRequest = {
   },
   fromJSON(object: any): AddressStringToBytesRequest {
     return {
-      address_string: isSet(object.address_string) ? String(object.address_string) : ""
+      addressString: isSet(object.addressString) ? String(object.addressString) : ""
     };
   },
   toJSON(message: AddressStringToBytesRequest): JsonSafe<AddressStringToBytesRequest> {
     const obj: any = {};
-    message.address_string !== undefined && (obj.address_string = message.address_string);
+    message.addressString !== undefined && (obj.addressString = message.addressString);
     return obj;
   },
-  fromPartial(object: DeepPartial<AddressStringToBytesRequest>): AddressStringToBytesRequest {
+  fromPartial(object: Partial<AddressStringToBytesRequest>): AddressStringToBytesRequest {
     const message = createBaseAddressStringToBytesRequest();
-    message.address_string = object.address_string ?? "";
+    message.addressString = object.addressString ?? "";
     return message;
   },
   fromAmino(object: AddressStringToBytesRequestAmino): AddressStringToBytesRequest {
     const message = createBaseAddressStringToBytesRequest();
     if (object.address_string !== undefined && object.address_string !== null) {
-      message.address_string = object.address_string;
+      message.addressString = object.address_string;
     }
     return message;
   },
   toAmino(message: AddressStringToBytesRequest): AddressStringToBytesRequestAmino {
     const obj: any = {};
-    obj.address_string = message.address_string === "" ? undefined : message.address_string;
+    obj.address_string = message.addressString === "" ? undefined : message.addressString;
     return obj;
   },
   fromAminoMsg(object: AddressStringToBytesRequestAminoMsg): AddressStringToBytesRequest {
@@ -1478,14 +1479,14 @@ GlobalDecoderRegistry.register(AddressStringToBytesRequest.typeUrl, AddressStrin
 GlobalDecoderRegistry.registerAminoProtoMapping(AddressStringToBytesRequest.aminoType, AddressStringToBytesRequest.typeUrl);
 function createBaseAddressStringToBytesResponse(): AddressStringToBytesResponse {
   return {
-    address_bytes: new Uint8Array()
+    addressBytes: new Uint8Array()
   };
 }
 export const AddressStringToBytesResponse = {
   typeUrl: "/cosmos.auth.v1beta1.AddressStringToBytesResponse",
   aminoType: "cosmos-sdk/AddressStringToBytesResponse",
   is(o: any): o is AddressStringToBytesResponse {
-    return o && (o.$typeUrl === AddressStringToBytesResponse.typeUrl || o.address_bytes instanceof Uint8Array || typeof o.address_bytes === "string");
+    return o && (o.$typeUrl === AddressStringToBytesResponse.typeUrl || o.addressBytes instanceof Uint8Array || typeof o.addressBytes === "string");
   },
   isSDK(o: any): o is AddressStringToBytesResponseSDKType {
     return o && (o.$typeUrl === AddressStringToBytesResponse.typeUrl || o.address_bytes instanceof Uint8Array || typeof o.address_bytes === "string");
@@ -1494,8 +1495,8 @@ export const AddressStringToBytesResponse = {
     return o && (o.$typeUrl === AddressStringToBytesResponse.typeUrl || o.address_bytes instanceof Uint8Array || typeof o.address_bytes === "string");
   },
   encode(message: AddressStringToBytesResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.address_bytes.length !== 0) {
-      writer.uint32(10).bytes(message.address_bytes);
+    if (message.addressBytes.length !== 0) {
+      writer.uint32(10).bytes(message.addressBytes);
     }
     return writer;
   },
@@ -1507,7 +1508,7 @@ export const AddressStringToBytesResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.address_bytes = reader.bytes();
+          message.addressBytes = reader.bytes();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1518,29 +1519,29 @@ export const AddressStringToBytesResponse = {
   },
   fromJSON(object: any): AddressStringToBytesResponse {
     return {
-      address_bytes: isSet(object.address_bytes) ? bytesFromBase64(object.address_bytes) : new Uint8Array()
+      addressBytes: isSet(object.addressBytes) ? bytesFromBase64(object.addressBytes) : new Uint8Array()
     };
   },
   toJSON(message: AddressStringToBytesResponse): JsonSafe<AddressStringToBytesResponse> {
     const obj: any = {};
-    message.address_bytes !== undefined && (obj.address_bytes = base64FromBytes(message.address_bytes !== undefined ? message.address_bytes : new Uint8Array()));
+    message.addressBytes !== undefined && (obj.addressBytes = base64FromBytes(message.addressBytes !== undefined ? message.addressBytes : new Uint8Array()));
     return obj;
   },
-  fromPartial(object: DeepPartial<AddressStringToBytesResponse>): AddressStringToBytesResponse {
+  fromPartial(object: Partial<AddressStringToBytesResponse>): AddressStringToBytesResponse {
     const message = createBaseAddressStringToBytesResponse();
-    message.address_bytes = object.address_bytes ?? new Uint8Array();
+    message.addressBytes = object.addressBytes ?? new Uint8Array();
     return message;
   },
   fromAmino(object: AddressStringToBytesResponseAmino): AddressStringToBytesResponse {
     const message = createBaseAddressStringToBytesResponse();
     if (object.address_bytes !== undefined && object.address_bytes !== null) {
-      message.address_bytes = bytesFromBase64(object.address_bytes);
+      message.addressBytes = bytesFromBase64(object.address_bytes);
     }
     return message;
   },
   toAmino(message: AddressStringToBytesResponse): AddressStringToBytesResponseAmino {
     const obj: any = {};
-    obj.address_bytes = message.address_bytes ? base64FromBytes(message.address_bytes) : undefined;
+    obj.address_bytes = message.addressBytes ? base64FromBytes(message.addressBytes) : undefined;
     return obj;
   },
   fromAminoMsg(object: AddressStringToBytesResponseAminoMsg): AddressStringToBytesResponse {

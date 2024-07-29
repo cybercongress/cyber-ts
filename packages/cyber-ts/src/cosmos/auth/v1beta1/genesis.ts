@@ -1,7 +1,8 @@
+//@ts-nocheck
 import { Params, ParamsAmino, ParamsSDKType } from "./auth";
 import { Any, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { isSet, DeepPartial } from "../../../helpers";
+import { isSet } from "../../../helpers";
 import { JsonSafe } from "../../../json-safe";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** GenesisState defines the auth module's genesis state. */
@@ -12,7 +13,7 @@ export interface GenesisState {
   accounts: Any[];
 }
 export interface GenesisStateProtoMsg {
-  type_url: "/cosmos.auth.v1beta1.GenesisState";
+  typeUrl: "/cosmos.auth.v1beta1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the auth module's genesis state. */
@@ -94,7 +95,7 @@ export const GenesisState = {
     }
     return obj;
   },
-  fromPartial(object: DeepPartial<GenesisState>): GenesisState {
+  fromPartial(object: Partial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.accounts = object.accounts?.map(e => Any.fromPartial(e)) || [];
