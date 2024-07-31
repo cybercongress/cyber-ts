@@ -13,6 +13,7 @@ export const options: TelescopeInput = {
   protoDirs,
   outPath,
   options: {
+    env: 'default',
     bundle: {
       enabled: true
     },
@@ -32,6 +33,8 @@ export const options: TelescopeInput = {
       enabled: true,
       addTypeUrlToDecoders: true,
       addTypeUrlToObjects: true,
+      enableRegistryLoader: true,
+      enableMessageComposer: true,
       // addAminoTypeToObjects: true,
       parser: {
         keepCase: false
@@ -72,9 +75,6 @@ export const options: TelescopeInput = {
         decode: true,
         fromPartial: true,
         toAmino: true,
-        fromAmino: true,
-        fromProto: true,
-        toProto: true
       },
       typingsFormat: {
         duration: 'duration',
@@ -89,25 +89,25 @@ export const options: TelescopeInput = {
     },
     aminoEncoding: {
       enabled: true,
-      // omitEmptyTags: ['omitempty', 'dont_omitempty'],
-      // customTypes: {
-      //   useCosmosSDKDec: true
-      // },
+      omitEmptyTags: ['omitempty', 'dont_omitempty'],
+      disableMsgTypes: false,
       exceptions: {
         ...AMINO_MAP
       },
     },
-    // stargateClients: {
-    //   enabled: true,
-    //   includeCosmosDefaultTypes: true,
-    //   //addGetTxRpc: true
-    // },
+    stargateClients: {
+      enabled: true,
+      includeCosmosDefaultTypes: true,
+      addGetTxRpc: true
+    },
     lcdClients: {
-      enabled: true
+      enabled: true,
+      bundle: true,
     },
     rpcClients: {
-      // type: 'grpc-gateway',
       enabled: true,
+      bundle: true,
+      // type: 'grpc-gateway',f
       camelCase: true,
       useConnectComet: true
     },

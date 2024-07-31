@@ -2,6 +2,8 @@
 import { GeneratedType, Registry, OfflineSigner } from "@cosmjs/proto-signing";
 import { defaultRegistryTypes, AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
 import { HttpEndpoint } from "@cosmjs/tendermint-rpc";
+import { createRpcClient } from "../extern";
+import { DeliverTxResponse, EncodeObject, StdFee, TxRpc, SigningClientParams } from "../types";
 import * as osmosisTokenfactoryV1beta1TxRegistry from "./tokenfactory/v1beta1/tx.registry";
 import * as osmosisTokenfactoryV1beta1TxAmino from "./tokenfactory/v1beta1/tx.amino";
 export const osmosisAminoConverters = {
@@ -45,4 +47,18 @@ export const getSigningOsmosisClient = async ({
     aminoTypes
   });
   return client;
+};
+export const getSigningOsmosisTxRpc = async ({
+  rpcEndpoint,
+  signer
+}: SigningClientParams) => {
+  let txRpc = (await createRpcClient(rpcEndpoint)) as TxRpc;
+  const signingClient = await getSigningOsmosisClient({
+    rpcEndpoint,
+    signer
+  });
+  txRpc.signAndBroadcast = (signerAddress: string, messages: EncodeObject[], fee: number | StdFee | "auto", memo?: string) => {
+    return signingClient.signAndBroadcast(signerAddress, messages, fee, memo) as Promise<DeliverTxResponse>;
+  };
+  return txRpc;
 };
