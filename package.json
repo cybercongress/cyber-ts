@@ -2,7 +2,7 @@
   "name": "cyber-ts",
   "version": "0.1.0",
   "author": "cyborgshead <cyborgshead@proton.me>",
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/cyborgshead/cyber-ts"
