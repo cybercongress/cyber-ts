@@ -5,12 +5,17 @@
     cyber-ts
 </p>
 
-<p align="center" width="100%">
-  <a href="https://github.com/cyborgshead/cyber-ts/actions/workflows/run-tests.yml">
-    <img height="20" src="https://github.com/cyborgshead/cyber-ts/actions/workflows/run-tests.yml/badge.svg" />
-  </a>
-   <a href="https://github.com/cyborgshead/cyber-ts/blob/main/LICENSE"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-</p>
+[//]: # (<p align="center" width="100%">)
+
+[//]: # (  <a href="https://github.com/cyborgshead/cyber-ts/actions/workflows/run-tests.yml">)
+
+[//]: # (    <img height="20" src="https://github.com/cyborgshead/cyber-ts/actions/workflows/run-tests.yml/badge.svg" />)
+
+[//]: # (  </a>)
+
+[//]: # (   <a href="https://github.com/cyborgshead/cyber-ts/blob/main/LICENSE"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>)
+
+[//]: # (</p>)
 
 
 ## install
@@ -45,32 +50,32 @@ npm install @cyborgshead/cyber-ts
 ### RPC Clients
 
 ```js
-import { bostrom } from '@cyborgshead/cyber-ts';
+import { cyber } from '@cyborgshead/cyber-ts';
 
-const { createRPCQueryClient } = bostrom.ClientFactory; 
+const { createRPCQueryClient } = cyber.ClientFactory; 
 const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
 
 // now you can query the cosmos modules
 const balance = await client.cosmos.bank.v1beta1
-    .allBalances({ address: 'bostrom1addresshere' });
+    .allBalances({ address: 'cyber1addresshere' });
 
-// you can also query the bostrom modules
-const balances = await client.bostrom.exchange.v1beta1
+// you can also query the cyber modules
+const balances = await client.cyber.exchange.v1beta1
     .exchangeBalances()
 ```
 
 ### Composing Messages
 
-Import the `bostrom` object from `@cyborgshead/cyber-ts`. 
+Import the `cyber` object from `@cyborgshead/cyber-ts`. 
 
 ```js
-import { bostrom } from '@cyborgshead/cyber-ts';
+import { cyber } from '@cyborgshead/cyber-ts';
 
 const {
     createSpotLimitOrder,
     createSpotMarketOrder,
     deposit
-} = bostrom.exchange.v1beta1.MessageComposer.withTypeUrl;
+} = cyber.exchange.v1beta1.MessageComposer.withTypeUrl;
 ```
 
 #### CosmWasm Messages
@@ -139,12 +144,12 @@ Here are the docs on [creating signers](https://docs.cosmology.zone/cosmos-kit) 
 
 ### Initializing the Stargate Client
 
-Use `getSigningBostromClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
+Use `getSigningCyberClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
 
 ```js
-import { getSigningBostromClient } from 'cyber-ts';
+import { getSigningCyberClient } from 'cyber-ts';
 
-const stargateClient = await getSigningBostromClient({
+const stargateClient = await getSigningCyberClient({
   rpcEndpoint,
   signer // OfflineSigner
 });
@@ -176,7 +181,7 @@ import { chains } from 'chain-registry';
 
 const mnemonic =
   'unfold client turtle either pilot stock floor glow toward bullet car science';
-  const chain = chains.find(({ chain_name }) => chain_name === 'bostrom');
+  const chain = chains.find(({ chain_name }) => chain_name === 'cyber');
   const signer = await getOfflineSigner({
     mnemonic,
     chain
@@ -228,25 +233,25 @@ import {
     cosmwasmProtoRegistry,
     ibcProtoRegistry,
     ibcAminoConverters,
-    bostromAminoConverters,
-    bostromProtoRegistry
+    cyberAminoConverters,
+    cyberProtoRegistry
 } from 'cyber-ts';
 
 const signer: OfflineSigner = /* create your signer (see above)  */
-const rpcEndpint = 'https://rpc.cosmos.directory/bostrom'; // or another URL
+const rpcEndpint = 'https://rpc.cosmos.directory/cyber'; // or another URL
 
 const protoRegistry: ReadonlyArray<[string, GeneratedType]> = [
     ...cosmosProtoRegistry,
     ...cosmwasmProtoRegistry,
     ...ibcProtoRegistry,
-    ...bostromProtoRegistry
+    ...cyberProtoRegistry
 ];
 
 const aminoConverters = {
     ...cosmosAminoConverters,
     ...cosmwasmAminoConverters,
     ...ibcAminoConverters,
-    ...bostromAminoConverters
+    ...cyberAminoConverters
 };
 
 const registry = new Registry(protoRegistry);
