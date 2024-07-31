@@ -31,7 +31,10 @@
   },
   "devDependencies": {
     "@cosmology/telescope": "^1.0.1",
-    "@protobufs/cosmwasm": "^0.1.1"
+    "@protobufs/cosmwasm": "^0.1.1",
+    "@tanstack/react-query": "^4.36.1",
+    "type-fest": "^4.23.0",
+    "react": "^18.3.1"
   },
   "dependencies": {
     "@cosmjs/encoding": "0.32.3",
@@ -39,7 +42,8 @@
     "@cosmjs/amino": "0.32.3",
     "@cosmjs/proto-signing": "0.32.3",
     "@cosmjs/stargate": "0.32.3",
-    "@cosmology/lcd": "^0.13.3"
+    "@cosmology/lcd": "^0.13.3",
+    "@cosmjs/cosmwasm-stargate": "0.32.3"
   },
   "keywords": []
 }

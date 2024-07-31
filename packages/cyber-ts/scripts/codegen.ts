@@ -1,6 +1,6 @@
 import { TelescopeInput } from '@cosmology/telescope';
 import telescope from '@cosmology/telescope';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { rimrafSync as rimraf } from 'rimraf';
 
 import { AMINO_MAP } from './aminos';
@@ -8,6 +8,18 @@ import { AMINO_MAP } from './aminos';
 const protoDirs: string[] = [join(__dirname, '/../proto')];
 const outPath: string = join(__dirname, '../src');
 rimraf(outPath);
+
+const contractsDir = resolve(join(__dirname, '/../contracts'));
+const contracts = [
+  {
+    name: 'Gift',
+    dir: join(contractsDir, 'gift')
+  },
+  {
+    name: 'Passport',
+    dir: join(contractsDir, 'passport')
+  }
+];
 
 export const options: TelescopeInput = {
   protoDirs,
@@ -110,6 +122,37 @@ export const options: TelescopeInput = {
       // type: 'grpc-gateway',f
       camelCase: true,
       useConnectComet: true
+    },
+    // TODO need to ignore changes for already generated files because of autogen namings issues
+    cosmwasm: {
+      contracts,
+      outPath: join(__dirname, '../src/codegen'),
+      options: {
+        bundle: {
+          enabled: true,
+          bundleFile: 'contracts.ts',
+          scope: 'contracts'
+        },
+        types: {
+          enabled: true
+        },
+        client: {
+          enabled: true
+        },
+        messageBuilder: {
+          enabled: false
+        },
+        messageComposer: {
+          enabled: false
+        },
+        reactQuery: {
+          enabled: false,
+          version: 'v4',
+        },
+        useContractsHooks: {
+          enabled: false
+        },
+      }
     },
   }
 };
