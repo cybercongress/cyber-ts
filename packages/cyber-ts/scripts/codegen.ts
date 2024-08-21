@@ -119,40 +119,8 @@ export const options: TelescopeInput = {
     rpcClients: {
       enabled: true,
       bundle: true,
-      // type: 'grpc-gateway',f
       camelCase: true,
       useConnectComet: true
-    },
-    // TODO need to ignore changes for already generated files because of autogen namings issues
-    cosmwasm: {
-      contracts,
-      outPath: join(__dirname, '../src/codegen'),
-      options: {
-        bundle: {
-          enabled: true,
-          bundleFile: 'contracts.ts',
-          scope: 'contracts'
-        },
-        types: {
-          enabled: true
-        },
-        client: {
-          enabled: true
-        },
-        messageBuilder: {
-          enabled: false
-        },
-        messageComposer: {
-          enabled: false
-        },
-        reactQuery: {
-          enabled: false,
-          version: 'v4',
-        },
-        useContractsHooks: {
-          enabled: false
-        },
-      }
     },
   }
 };
