@@ -12,8 +12,8 @@
   "registry": "https://registry.npmjs.org",
   "command": {
     "create": {
-      "homepage": "https://github.com/cyborgshead/cyber-ts",
-      "license": "SEE LICENSE IN LICENSE",
+      "homepage": "https://github.com/cybercongress/cyber-ts",
+      "license": "MIT",
       "access": "restricted"
     },
     "publish": {

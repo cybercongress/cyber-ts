@@ -1,16 +1,16 @@
 {
-  "name": "cyber-ts",
-  "version": "0.1.1",
+  "name": "cyber-hub",
+  "version": "0.0.1",
   "author": "cyborgshead <cyborgshead@proton.me>",
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cyborgshead/cyber-ts"
-  },
-  "license": "SEE LICENSE IN LICENSE",
   "publishConfig": {
     "access": "restricted"
   },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cybercongress/cyber-ts"
+  },
+  "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
@@ -18,8 +18,8 @@
     "clean": "lerna run clean",
     "build": "lerna run build --stream",
     "lint": "lerna run lint --parallel",
-    "test": "lerna run test --stream --scope @cyborgshead/cyber-ts",
-    "codegen": "lerna run codegen --stream --scope @cyborgshead/cyber-ts",
+    "test": "lerna run test --stream --scope @cybercongress/cyber-ts",
+    "codegen": "lerna run codegen --stream --scope @cybercongress/cyber-ts",
     "symlink": "symlink-workspace --logLevel error",
     "postinstall": "yarn symlink"
   },

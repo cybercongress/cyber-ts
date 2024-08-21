@@ -1,12 +1,12 @@
 {
-  "name": "@cyborgshead/cyber-ts",
+  "name": "@cybercongress/cyber-ts",
   "version": "0.1.1",
   "author": "cyborgshead <cyborgshead@proton.me>",
-  "description": "cyber-ts",
+  "description": "cyber-ts sdk",
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
-  "homepage": "https://github.com/cyborgshead/cyber-ts",
+  "homepage": "https://github.com/cybercongress/cyber-ts",
   "license": "SEE LICENSE IN LICENSE",
   "publishConfig": {
     "access": "public",
@@ -14,10 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cyborgshead/cyber-ts"
+    "url": "https://github.com/cybercongress/cyber-ts"
   },
   "bugs": {
-    "url": "https://github.com/cyborgshead/cyber-ts/issues"
+    "url": "https://github.com/cybercongress/cyber-ts/issues"
   },
   "scripts": {
     "copy": "copyfiles -f ../../LICENSE README.md package.json dist",

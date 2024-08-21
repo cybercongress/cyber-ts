@@ -1,31 +1,13 @@
-# @cyborgshead/cyber-ts
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/545047/188804067-28e67e5e-0214-4449-ab04-2e0c564a6885.svg" width="80"><br />
-    cyber-ts
-</p>
-
-[//]: # (<p align="center" width="100%">)
-
-[//]: # (  <a href="https://github.com/cyborgshead/cyber-ts/actions/workflows/run-tests.yml">)
-
-[//]: # (    <img height="20" src="https://github.com/cyborgshead/cyber-ts/actions/workflows/run-tests.yml/badge.svg" />)
-
-[//]: # (  </a>)
-
-[//]: # (   <a href="https://github.com/cyborgshead/cyber-ts/blob/main/LICENSE"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>)
-
-[//]: # (</p>)
-
+# @cybercongress/cyber-ts
 
 ## install
 
 ```sh
-npm install @cyborgshead/cyber-ts
+npm install @cybercongress/cyber-ts
 ```
 ## Table of contents
 
-- [@cyborgshead/cyber-ts](#@cyborgshead/cyber-ts)
+- [@cybercongress/cyber-ts](#@cybercongress/cyber-ts)
   - [Install](#install)
   - [Table of contents](#table-of-contents)
 - [Usage](#usage)
@@ -50,7 +32,7 @@ npm install @cyborgshead/cyber-ts
 ### RPC Clients
 
 ```js
-import { cyber } from '@cyborgshead/cyber-ts';
+import { cyber } from '@cybercongress/cyber-ts';
 
 const { createRPCQueryClient } = cyber.ClientFactory; 
 const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
@@ -66,10 +48,10 @@ const balances = await client.cyber.exchange.v1beta1
 
 ### Composing Messages
 
-Import the `cyber` object from `@cyborgshead/cyber-ts`. 
+Import the `cyber` object from `@cybercongress/cyber-ts`. 
 
 ```js
-import { cyber } from '@cyborgshead/cyber-ts';
+import { cyber } from '@cybercongress/cyber-ts';
 
 const {
     createSpotLimitOrder,
@@ -81,7 +63,7 @@ const {
 #### CosmWasm Messages
 
 ```js
-import { cosmwasm } from "@cyborgshead/cyber-ts";
+import { cosmwasm } from "@cybercongress/cyber-ts";
 
 const {
     clearAdmin,
@@ -96,7 +78,7 @@ const {
 #### IBC Messages
 
 ```js
-import { ibc } from '@cyborgshead/cyber-ts';
+import { ibc } from '@cybercongress/cyber-ts';
 
 const {
     transfer
@@ -106,7 +88,7 @@ const {
 #### Cosmos Messages
 
 ```js
-import { cosmos } from '@cyborgshead/cyber-ts';
+import { cosmos } from '@cybercongress/cyber-ts';
 
 const {
     fundCommunityPool,
@@ -274,7 +256,7 @@ yarn build
 
 ### Codegen
 
-Look inside of `scripts/codegen.ts` and configure the settings for bundling your SDK and contracts into `@cyborgshead/cyber-ts`:
+Look inside of `scripts/codegen.ts` and configure the settings for bundling your SDK and contracts into `@cybercongress/cyber-ts`:
 
 ```
 yarn codegen
@@ -302,19 +284,6 @@ yarn build
 cd dist
 npm publish
 ```
-
-
-## Related
-
-Checkout these related projects:
-
-* [@cosmology/telescope](https://github.com/cosmology-tech/telescope) Your Frontend Companion for Building with TypeScript with Cosmos SDK Modules.
-* [@cosmwasm/ts-codegen](https://github.com/CosmWasm/ts-codegen) Convert your CosmWasm smart contracts into dev-friendly TypeScript classes.
-* [chain-registry](https://github.com/cosmology-tech/chain-registry) Everything from token symbols, logos, and IBC denominations for all assets you want to support in your application.
-* [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit) Experience the convenience of connecting with a variety of web3 wallets through a single, streamlined interface.
-* [create-cosmos-app](https://github.com/cosmology-tech/create-cosmos-app) Set up a modern Cosmos app by running one command.
-* [interchain-ui](https://github.com/cosmology-tech/interchain-ui) The Interchain Design System, empowering developers with a flexible, easy-to-use UI kit.
-* [starship](https://github.com/cosmology-tech/starship) Unified Testing and Development for the Interchain.
 
 ## Credits
 
