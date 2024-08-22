@@ -21,7 +21,8 @@
     "test": "lerna run test --stream --scope @cybercongress/cyber-ts",
     "codegen": "lerna run codegen --stream --scope @cybercongress/cyber-ts",
     "symlink": "symlink-workspace --logLevel error",
-    "postinstall": "yarn symlink"
+    "postinstall": "yarn symlink",
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
